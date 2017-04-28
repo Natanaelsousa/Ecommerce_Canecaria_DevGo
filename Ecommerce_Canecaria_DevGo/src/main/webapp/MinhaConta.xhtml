@@ -5,7 +5,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 
 
 
@@ -104,8 +105,8 @@
                         <div class="col-md-12 col-md-pull-5">
                             <div class=" form-group col-md-10 ">
                                 <label for="EmailContaCliente">E-mail</label>
-                                <h:inputText p:type="email" class="form-control" id="LogarEmail"
-                                             p:placeholder="Digite seu E-mail"/>
+                                <h:inputText pt:type="email" class="form-control" id="LogarEmail"
+                                             pt:placeholder="Digite seu E-mail"/>
                             </div>
 
                             <!-- Espaço entre um input e outro -->
@@ -113,16 +114,16 @@
                             <div class="space"></div>
                             <div class="col-md-10">
                                 <label for="SenhaContaCliente">Senha</label>
-                                <h:inputText p:type="password" class="form-control" id="LogarSenha"
-                                            p:placeholder="Digite sua senha"/>
+                                <h:inputText pt:type="password" class="form-control" id="LogarSenha"
+                                             pt:placeholder="Digite sua senha"/>
                             </div>
 
                             <!-- Espaço entre um input e os botões -->
                             <div class="space"></div>
                             <div class="space"></div>
                             <div class="form-group col-md-9">
-                                <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Logar"></h:commandButton>
-                                <h:commandButton class="btn btn-info btn-lg btn-block" p:type="submit" value="Esqueci minha senha"></h:commandButton>
+                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Logar"></h:commandButton>
+                                <h:commandButton class="btn btn-info btn-lg btn-block" pt:type="submit" value="Esqueci minha senha"></h:commandButton>
                             </div>
                         </div>
                     </div>
@@ -135,25 +136,31 @@
                     <div class="row">
                         <div class="form-group col-md-7">
                             <label for="NomeCompleto">Nome completo</label>
-                            <h:inputText p:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}" required="true"/>
+                            <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}" required="true"/>
                         </div>
 
                         <div class="form-group col-md-7">
                             <label for="cpf">CPF</label>
-                            <h:inputText p:type="number" class="form-control" id="CPFInput"
-                                         required="true" value = "#{ClienteBean.cliente.cpf}" p:placeholder="Ex:00000000000"/>
+                            <h:inputText pt:type="number" class="form-control" id="CPFInput"
+                                         required="true" value = "#{ClienteBean.cliente.cpf}" pt:placeholder="Ex:00000000000"/>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="DataNascimento">Data de nascimento</label>
-                            <h:inputText h:type="date" class="form-control" id="DataNascimentoInput" required="true" value = "#{ClienteBean.cliente.data_nascimento}" p:placeholder="dd/mm/aaaa"/>
+                            <p:inputMask class="form-control" id="DataNascimentoInput" mask="99/99/9999" placeholder="Dia/Mês/Ano"
+                                         value="#{ClienteBean.cliente.data_nascimento}"
+                                         requiredMessage="Campo data de nascimente é obrigatório."
+                                         required="true">
+
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>
+                            </p:inputMask>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label for="Sexo">Sexo</label><br/>
-                            <h:inputText p:type="radio" h:name="Masculino" required="true"
+                            <h:inputText pt:type="radio" h:name="Masculino" required="true"
                                          value = "#{ClienteBean.cliente.sexo}"  /> Masculino <br></br>
-                            <h:inputText p:type="radio" h:name="Feminino"
+                            <h:inputText pt:type="radio" h:name="Feminino"
                                          required="true" value = "#{ClienteBean.cliente.sexo}" /> Feminino
                         </div>
                     </div>
@@ -163,35 +170,35 @@
 
                         <div class="form-group col-md-6">
                             <label for="Cep">Cep</label>
-                            <h:inputText p:type="number" class="form-control" id="CepInput"
-                                         required="true" value = "#{ClienteBean.cliente.cep}" p:placeholder="Digite aqui seu CEP"  />
+                            <h:inputText pt:type="number" class="form-control" id="CepInput"
+                                         required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite aqui seu CEP"  />
                         </div>
                         <div class="form-group col-md-8">
                             <label for="Rua">Rua</label>
-                            <h:inputText p:type="text" class="form-control"
-                                         required="true" value = "#{ClienteBean.cliente.rua}" id="RuaInput" p:placeholder="Ex: Rua Manoel Joaquim" />
+                            <h:inputText pt:type="text" class="form-control"
+                                         required="true" value = "#{ClienteBean.cliente.rua}" id="RuaInput" pt:placeholder="Ex: Rua Manoel Joaquim" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="NumeroComplemento">Numero/Complemento</label>
-                            <h:inputText p:type="text" class="form-control" id="NumeroComplementoInput"
-                                         required="true" value = "#{ClienteBean.cliente.numero}" p:placeholder="Numero+complemento" />
+                            <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput"
+                                         required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Numero+complemento" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="Bairro">Bairro</label>
-                            <h:inputText p:type="text" class="form-control" p:placeholder="Digite seu bairro"
+                            <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite seu bairro"
                                          required="true" value = "#{ClienteBean.cliente.bairro}" id="BairroInput" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="Cidade">Cidade</label>
-                            <h:inputText p:type="text" class="form-control" p:placeholder="Digite sua cidade"
+                            <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite sua cidade"
                                          required="true" value = "#{ClienteBean.cliente.cidade}" id="CidadeInput" />
                         </div>
                         <div class="form-group col-md-2">
                             <label for="UF">uf</label>
-                            <h:inputText p:type="text" class="form-control" id="UFInput" p:placeholder="Ex:SP"
+                            <h:inputText pt:type="text" class="form-control" id="UFInput" pt:placeholder="Ex:SP"
                                          required="true" value = "#{ClienteBean.cliente.estado}"    />
                         </div>
                     </div>
@@ -200,13 +207,13 @@
 
                         <div class="form-group col-md-6">
                             <label for="Telefone">Telefone residencial</label>
-                            <h:inputText p:type="number" class="form-control" id="TelefoneInput"
+                            <h:inputText pt:type="number" class="form-control" id="TelefoneInput"
                                          required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="Celular">Celular</label>
-                            <h:inputText p:type="number" class="form-control" id="CelularInput"
+                            <h:inputText pt:type="number" class="form-control" id="CelularInput"
                                          required="true" value = "#{ClienteBean.cliente.celular}" />
                         </div>
 
@@ -216,13 +223,13 @@
 
                         <div class="form-group col-md-6">
                             <label for="Email">Email</label>
-                            <h:inputText p:type="email" class="form-control" id="EmailInput"
-                                         required="true" value = "#{ClienteBean.cliente.email}"   p:placeholder="seuemail@email.com"/>
+                            <h:inputText pt:type="email" class="form-control" id="EmailInput"
+                                         required="true" value = "#{ClienteBean.cliente.email}"   pt:placeholder="seuemail@email.com"/>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Senha</label>
-                            <h:inputText p:type="password"  p:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
+                            <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
                                          required="true" value = "#{ClienteBean.cliente.senha}" />
                         </div>
                     </div>
@@ -231,11 +238,11 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" action = "#{ClienteBean.CadastrarCliente}">
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Finalizar cadastro" action = "#{ClienteBean.CadastrarCliente}">
                             </h:commandButton>
                         </div>
                         <div class="col-md-6">
-                            <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" p:type="reset" value="Limpar tudo">
+                            <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" pt:type="reset" value="Limpar tudo">
                             </h:commandButton>
                         </div>
                     </div>

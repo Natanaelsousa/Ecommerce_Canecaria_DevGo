@@ -10,7 +10,7 @@ public class Cliente {
     private Integer cod_cliente;
     private String nome;
     private String cpf;
-    private String data_nascimento;
+    private Date data_nascimento;
     private String sexo;
 
 //Dados complementares
@@ -28,7 +28,7 @@ public class Cliente {
     private String email;
     private String senha;
 
-    public Cliente( String nome, String cpf, String data_nascimento,
+    public Cliente( String nome, String cpf, Date data_nascimento,
             String sexo, String cep, String rua, String bairro, String cidade, String estado,
             String celular, String email, String senha,String telefone_residencial) {
         this.telefone_residencial = telefone_residencial;
@@ -81,11 +81,11 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getData_nascimento() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(String data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
