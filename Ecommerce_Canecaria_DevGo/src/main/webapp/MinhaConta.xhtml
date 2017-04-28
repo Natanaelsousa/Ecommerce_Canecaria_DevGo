@@ -35,6 +35,8 @@
         <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
 
         <script type="text/javascript" src="js/modernizr.custom.js"></script>
+         <script type="text/javascript" src="js/funcoes.js"></script>
+        
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'/>
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
@@ -97,7 +99,7 @@
 
             <!-- Criar conta no e-commerce -->
             <h:form  prependId="false" enctype="multipart/form-data">
-
+                <h:messages errorStyle="color: red"/>
                 <div class="col-md-6">
                     <!-- Espaço entre um  label e input -->
                     <div class="space"></div>
@@ -136,13 +138,16 @@
                     <div class="row">
                         <div class="form-group col-md-7">
                             <label for="NomeCompleto">Nome completo</label>
-                            <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}" required="true"/>
+                            <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}"
+                        onkeypress="return somenteLetras(event)"   required="true"/>
                         </div>
 
                         <div class="form-group col-md-7">
                             <label for="cpf">CPF</label>
-                            <h:inputText pt:type="number" class="form-control" id="CPFInput"
-                                         required="true" value = "#{ClienteBean.cliente.cpf}" pt:placeholder="Ex:00000000000"/>
+                            <h:inputText pt:type="number" class="form-control" id="CPFInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
+                                         required="true" value = "#{ClienteBean.cliente.cpf}" pt:placeholder="Ex:00000000000">
+                                <f:validateLength maximum="11"/>
+                            </h:inputText>
                         </div>
 
                         <div class="form-group col-md-6">
@@ -171,17 +176,18 @@
                         <div class="form-group col-md-6">
                             <label for="Cep">Cep</label>
                             <h:inputText pt:type="number" class="form-control" id="CepInput"
-                                         required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite aqui seu CEP"  />
+                                         required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite aqui seu CEP"
+                                         onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
                         </div>
                         <div class="form-group col-md-8">
                             <label for="Rua">Rua</label>
                             <h:inputText pt:type="text" class="form-control"
-                                         required="true" value = "#{ClienteBean.cliente.rua}" id="RuaInput" pt:placeholder="Ex: Rua Manoel Joaquim" />
+                                         required="true" value = "#{ClienteBean.cliente.rua}" id="rua" pt:placeholder="Ex: Rua Manoel Joaquim" />
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="NumeroComplemento">Numero/Complemento</label>
-                            <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput"
-                                         required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Numero+complemento" />
+                        <div class="form-group col-md-3">
+                            <label for="Numero">Numero</label>
+                            <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
+                                         required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Numero" />
                         </div>
                     </div>
 
@@ -189,16 +195,16 @@
                         <div class="form-group col-md-4">
                             <label for="Bairro">Bairro</label>
                             <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite seu bairro"
-                                         required="true" value = "#{ClienteBean.cliente.bairro}" id="BairroInput" />
+                                         required="true" value = "#{ClienteBean.cliente.bairro}" id="bairro" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="Cidade">Cidade</label>
                             <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite sua cidade"
-                                         required="true" value = "#{ClienteBean.cliente.cidade}" id="CidadeInput" />
+                                         required="true" value = "#{ClienteBean.cliente.cidade}" id="cidade" />
                         </div>
                         <div class="form-group col-md-2">
                             <label for="UF">uf</label>
-                            <h:inputText pt:type="text" class="form-control" id="UFInput" pt:placeholder="Ex:SP"
+                            <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
                                          required="true" value = "#{ClienteBean.cliente.estado}"    />
                         </div>
                     </div>
@@ -208,30 +214,36 @@
                         <div class="form-group col-md-6">
                             <label for="Telefone">Telefone residencial</label>
                             <h:inputText pt:type="number" class="form-control" id="TelefoneInput"
-                                         required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
+                              onkeypress="return somenteNumero(event)" required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="Celular">Celular</label>
                             <h:inputText pt:type="number" class="form-control" id="CelularInput"
-                                         required="true" value = "#{ClienteBean.cliente.celular}" />
+                        onkeypress="return somenteNumero(event)"  required="true" value = "#{ClienteBean.cliente.celular}" />
                         </div>
 
                     </div>
 
                     <div class="row">
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-10">
                             <label for="Email">Email</label>
                             <h:inputText pt:type="email" class="form-control" id="EmailInput"
                                          required="true" value = "#{ClienteBean.cliente.email}"   pt:placeholder="seuemail@email.com"/>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="exampleInputEmail1">Senha</label>
                             <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
-                                         required="true" value = "#{ClienteBean.cliente.senha}" />
+                              onchange="Senha2.pattern = this.value;" required="true" value = "" />
                         </div>
+                         <div class="form-group col-md-4">
+                         <label for="exampleInputEmail1">Confirmação</label>
+                            <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="Senha2"
+      onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')"
+      required="true" value = "#{ClienteBean.cliente.senha}" />
+                         </div>
                     </div>
 
                     <hr />
