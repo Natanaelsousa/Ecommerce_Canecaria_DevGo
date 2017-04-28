@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Canecaria - Fale conosco</title>
+        <meta name="description" content="Your Description Here" />
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
+        <meta name="author" content="ThemeForces.Com" />
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
+        <link rel="stylesheet" type="text/css"  href="css/FaleConosco.css" />
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+
+    </h:head>
+    <h:body>
+        <div id="page">
+
+
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
+            </div>
+
+
+
+            <!-- Conteudo da pagina -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="page-header">
+                            <h2>Fale conosco</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="form-group col-md-12 col-md-push-1">
+                            <h:form>
+                                <!-- Preencher formulario de solicitação -->
+                                <h3>Preencha os dados e entre em contato conosco</h3>
+
+                              
+
+                                <div class="form-group col-md-7">
+                                    <label for="NomeCompleto">Nome completo</label>
+                                    <h:inputText p:type="text" class="form-control" id="NomeInput" value="#{ContatoBean.contato.nome_completo}" required="true" />
+                                </div>
+
+                                <div class="form-group col-md-7">
+                                    <label for="Email">Email</label>
+                                    <h:inputText p:type="text" class="form-control" id="EmailInput"
+                                                 value="#{ContatoBean.contato.email_contato}" required="true"    p:placeholder="seuemail@email.com"/>
+                                </div>
+
+                                  <div class="form-group col-md-7">
+                                    <h:outputLabel value="Selecione o motivo do contato:" />
+                                    <h:selectOneMenu class="form-control" value="#{ContatoBean.contato.cod_tipo_solicitacao}" converter="javax.faces.Integer">
+                                        <f:selectItem itemValue="" itemLabel="Selecione..."  />
+                                        <f:selectItems  value="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.ccod_tipo_solicitacao}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                
+                                <div class="form-group col-md-7">
+                                    <label for="Descricao">Descricao</label>
+                                    <h:inputTextarea p:type="text" class="form-control" id="DescricaoInput" value="#{ContatoBean.contato.descricao_contato}" required="true"  cols="35" rows="8"  p:placeholder=""/>
+                                </div>
+
+
+                                <div class="form-group col-md-7">
+                                    <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar solicitacao " action="#{ContatoBean.CadastrarSolicitacaoContato}">
+                                    </h:commandButton>
+                                </div>
+
+                                <div class="form-group col-md-7">
+                                    <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" p:type="reset" value="Limpar tudo">
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <!--FIM  Preencher formulario de solicitação -->
+
+                <!-- Mapa e contatos -->
+                <div class="col-md-6">
+                    <section id="contact">                    
+                        <div class="row">
+                            <div class="col-md-3 col-md-push-1">
+                                <div class="info">
+
+                                    <h3>Espaço para o mapa</h3>
+
+
+                                    <div>
+                                        <i class="fa fa-map-marker"></i>
+                                        <p>Rua Eusébio - 432 <br></br> ,São Paulo</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="fa fa-envelope"></i>
+                                        <p>canecaria@canecariaCanecas.com</p>
+                                    </div>
+
+                                    <div>
+                                        <i class="fa fa-phone"></i>
+                                        <p>11 5662-7926</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!--FIM  Mapa e contatos -->
+            </div>
+        </div>
+
+        <!-- Importando o rodape -->
+        <div id="footer">
+            <ui:insert name="rodape" >
+                <ui:include src="rodape.xhtml" />
+            </ui:insert>
+        </div>
+
+    </h:body>
+</html>
+
+

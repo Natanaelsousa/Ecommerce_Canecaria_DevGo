@@ -1,0 +1,22 @@
+
+/* 
+    Created on : 20/04/2017, 20:35:16
+    Author     : sibele
+*/
+
+/* Contact Section */
+
+#contact .info i {
+  font-size: 32px;
+  color: #03C4EB;
+  float: left;
+}
+
+#contact .info p {
+  padding: 0 0 10px 50px;
+  line-height: 24px;
+   font-size: 17px;
+}
+
+
+

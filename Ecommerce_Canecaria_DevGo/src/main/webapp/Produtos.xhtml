@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Canecaria - Produtos</title>
+        <meta name="description" content="Your Description Here" />
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
+        <meta name="author" content="ThemeForces.Com" />
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <div id="page">
+
+
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
+            </div>
+
+            <!-- Fim -->
+
+            <!-- Conteudo da pagina -->
+            <div id="content">
+
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="page-header">
+                                <h3>Nossos Produtos</h3>
+                            </div>
+                        </div>
+                    </div><!-- end .row -->
+                </div><!-- end .container-fluid -->
+
+                <!-- Menu Lateral -->
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3" id="categorias">
+
+                            <ul class="nav nav-pills nav-stacked">
+                                
+                                <li class="active"><a><span class="glyphicon glyphicon-list-alt"></span>  CATEGORIAS</a></li>
+                    
+                                <ui:repeat value="#{CategoriasBean.ListarDetalhesCategorias()}" var="categ" > 
+
+                                    <h:form>
+                                        <li>
+                                            <a>
+                                                <span class="glyphicon glyphicon-chevron-right">
+                                                    <h:commandLink  value="#{categ.nome_categoria}">
+                                                        <f:param name="cat" value="#{categ.cod_categoria}" />
+                                                    </h:commandLink>
+                                                </span>
+                                            </a> 
+                                        </li>
+                                    </h:form>
+
+                                </ui:repeat>
+
+                            </ul>
+                            
+                            <div class="space"></div>
+                            
+                        </div>
+
+
+                        <div class="col-md-9 col-lg-9">
+
+
+                            <div class="row carousel-holder">
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                        <!-- Indicators -->
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        </ol>
+
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="item active">
+                                                <img src="https://makemug.files.wordpress.com/2014/11/banner-coffe-206467ba35b73bd15e0a0f664efc4bd71414601846.jpg" title="Banner Propaganda 1" alt="Propaganda 1" />
+                                                <div class="carousel-caption">
+                                                    <!--<h3>Canecas Personalizadas</h3>
+                                                    <p>As melhores estão aqui.</p>
+                                                    -->
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="https://makemug.files.wordpress.com/2014/11/banner-coffe-206467ba35b73bd15e0a0f664efc4bd71414601846.jpg" title="Banner Propaganda 2" alt="Propaganda 2"  />
+                                                <div class="carousel-caption">
+                                                    <!--<h3>Canecas Personalizadas</h3>
+                                                    <p>As melhores estão aqui.</p>
+                                                    -->
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="https://makemug.files.wordpress.com/2014/11/banner-coffe-206467ba35b73bd15e0a0f664efc4bd71414601846.jpg" title="Banner Propaganda 3" alt="Propaganda 3"  />
+
+                                                <div class="carousel-caption">
+                                                    <!--<h3>Canecas Personalizadas</h3>
+                                                    <p>As melhores estão aqui.</p>
+                                                    -->
+                                                </div>
+                                            </div>
+
+                                            <!-- Left and right controls -->
+                                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                <span class="sr-only">Anterior</span>
+                                            </a>
+                                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                <span class="sr-only">Próximo</span>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="space"></div>
+
+                            <div class="row">
+                                <h:form id="atualizar">
+                                    <ui:repeat value="#{produtoNavigationControllerBean.ListarProdutosPorCategoria()}"  var="prod" >
+                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div class="thumbnail">
+                                                <p> <a href="DetalharProduto.xhtml">
+                                                        <img title="Imagem do Produto" alt="Imagem do Produto" src="imagem" width="180" height="180" />
+                                                    </a>
+                                                </p>
+
+                                                <div class="captionProdutosList">
+                                                    <a class="pull-right"> <h:outputText value="#{prod.valor_produto}"> <f:convertNumber type="currency" locale="pt-BR" /> 
+                                                        </h:outputText></a>
+                                                    <a href="DetalharProduto.xhtml"><h:outputText value="#{prod.nome_produto}" /></a>
+                                                    <a style="width:95%; height:95%" href="#" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </ui:repeat>
+                                </h:form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container -->
+
+            </div>
+            <!-- Fim -->
+
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
+            <!-- Fim -->
+
+        </div>
+    </h:body>
+</html>
+
+

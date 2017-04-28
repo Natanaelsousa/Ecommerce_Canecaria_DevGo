@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <title>Canecaria - Detalhes do Produto</title>
+        <meta name="description" content="Your Description Here" />
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
+        <meta name="author" content="ThemeForces.Com" />
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
+        <link rel="stylesheet" type="text/css"  href="css/carrinho.css" />
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <div id="page">
+
+
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
+            </div>
+
+            <!-- Fim -->
+
+            <!-- Conteudo da pagina -->
+            <div id="content">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="page-header">
+                                <h3>Detalhes do Produto</h3>
+                            </div>
+                        </div>
+                    </div><!-- end .row -->
+                </div><!-- end .container-fluid -->
+
+                <!-- Menu Lateral -->
+                <div class="container">
+
+                    <div class="row">	  
+
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">  -->
+                            <!-- Menu Lateral -->
+
+                            <a title="Caneca Marvel">
+                                <img src="http://s3.amazonaws.com/img.iluria.com/product/249C05/56B607/450xN.jpg" style="width:100%" title="Produto Canecão Marvel" alt="Canecão Marvel"/>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
+
+                            <h3>Canecão Marvel</h3>
+                            <hr class="soft"/>
+                            <form class="form-horizontal qtyFrm">
+                                <div class="control-group">
+                                    <label class="control-label"><span>R$44,99</span></label>
+                                    <div class="controls">
+                                        <input type="number" class="span1" placeholder="Quantidade."/>
+                                        <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr class="soft clr"/>
+                            <ul id="productDetail" class="nav nav-tabs">
+                                <li class="active"><a href="#home" data-toggle="tab">Descrição do Produto</a></li>
+                            </ul>
+
+                            <table class="table">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Canecão de porcelana da Marvel, comporta até 700ml, com 11cm de altura e peso de 600g. Pode ser levada ao microondas e lava-louças que não trinca e nem desbota
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- Fim -->
+
+
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
+            <!-- Fim -->
+
+        </div>
+
+    </h:body>
+</html>
+
+
