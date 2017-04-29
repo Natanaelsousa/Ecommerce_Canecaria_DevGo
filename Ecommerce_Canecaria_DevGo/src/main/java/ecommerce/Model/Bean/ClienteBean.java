@@ -23,12 +23,15 @@ public class ClienteBean {
 
     
     private Cliente cliente = new Cliente();
+    private UsuarioSistema criptoUser = new UsuarioSistema();
     /**
      * Creates a new instance of CadastroCliente
      */
     
     //Falta testar ainda 
   public void CadastrarCliente (){
+     criptoUser.setSenha(cliente.getSenha());
+     cliente.setSenha(criptoUser.getHashSenha());
      ClienteDAOImpl daoCadastro = new ClienteDAOImpl (); 
      try{
          daoCadastro.CadastrarCliente(cliente);
@@ -59,6 +62,6 @@ public class ClienteBean {
         this.cliente = cliente;
     }
 
-  
+
     
 }

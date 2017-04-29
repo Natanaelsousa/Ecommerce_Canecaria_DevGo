@@ -236,13 +236,13 @@
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Senha</label>
                             <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
-                                         onchange="Senha2.pattern = this.value;" required="true" value = "" />
+                                         onchange="Senha2.pattern = this.value;" required="true" value="#{ClienteBean.cliente.senha}"  />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Confirmação</label>
                             <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="Senha2"
                                          onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')"
-                                         required="true" value = "#{ClienteBean.cliente.senha}" />
+                                         required="true" value="#{ClienteBean.cliente.senha}" />
                         </div>
                     </div>
 
