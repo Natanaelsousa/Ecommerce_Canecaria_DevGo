@@ -36,23 +36,23 @@ public class ContatoBean {
     /* Verifica quantos chamados tem em cada fila */
     public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
-        int quantidadeChamados= contatos.CountSolicitacaoChamadoContato(cod_tipo_solicitacao);
-        
+        int quantidadeChamados = contatos.CountSolicitacaoChamadoContato(cod_tipo_solicitacao);
+
         return quantidadeChamados;
     }
-    
-    
-     /* Lista os produtos cadastrados no banco */
+
+    /* Lista os produtos cadastrados no banco */
     public List<Contato> ListarSolicitacoesContatos() throws Exception {
         ContatoDAO contatosDao = new ContatoDAOImpl();
+        List<Contato> ListarSolicitacoesContatos = null;
+       ListarSolicitacoesContatos = contatosDao.ListarSolicitacoesContatos();
 
-     List<Contato> ListarSolicitacoesContatos = contatosDao.ListarSolicitacoesContatos();
-
+       if(ListarSolicitacoesContatos.isEmpty() ){
+           ListarSolicitacoesContatos = null;
+       }
         return ListarSolicitacoesContatos;
     }
-    
 
-    
     public ContatoBean() {
     }
 
