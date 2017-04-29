@@ -47,6 +47,7 @@ public class ClienteBean {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+        cliente = new Cliente();
     }
 
     public String validaLogin() {
