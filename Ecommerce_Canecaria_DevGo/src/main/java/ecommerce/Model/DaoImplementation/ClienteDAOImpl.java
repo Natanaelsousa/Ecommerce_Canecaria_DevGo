@@ -2,10 +2,14 @@ package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.MetodosAcessores.Cliente;
 import ecommerce.Model.Dao.ClienteDAO;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /* @author sibele */
-public class ClienteDAOImpl  extends GenericaDAOImpl  implements ClienteDAO{
+public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
     //Insere os dados do cliente no banco
     public void CadastrarCliente(Cliente cliente) throws SQLException {
@@ -31,5 +35,73 @@ public class ClienteDAOImpl  extends GenericaDAOImpl  implements ClienteDAO{
     public void ExclusaoDeCadastroCliente(Cliente cliente, String cpf_cliente, String senha) throws SQLException {
         String query = "DELETE * FROM CLIENTE WHERE COD_CLIENTE = " + cpf_cliente + " and SENHA = " + senha;
         delete(query, cliente.getNome(), cliente.getCpf(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(), cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha());
+    }
+
+    public Cliente EncontraUserCliente(String email, String senha) throws SQLException {
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + email + "' and senha = '" + senha + "'";
+        Cliente cliente = null;
+        
+        PreparedStatement stmt
+                = getConnection().prepareStatement(select);
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            cliente = new Cliente();
+            cliente.setCidade(rs.getString("CIDADE"));
+            cliente.setCod_cliente(rs.getInt("COD_CLIENTE"));
+            cliente.setData_nascimento(rs.getDate("DATA_NASCIMENTO"));
+            cliente.setCelular(rs.getString("CELULAR"));
+            cliente.setEstado(rs.getString("ESTADO"));
+            cliente.setNumero(rs.getString("NUMERO"));
+            cliente.setSenha(rs.getString("SENHA"));
+            cliente.setNome(rs.getString("NOME"));
+            cliente.setRua(rs.getNString("RUA"));
+            cliente.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
+            cliente.setCep(rs.getString("CEP"));
+            cliente.setEmail(rs.getNString("EMAIL"));
+            cliente.setBairro(rs.getNString("BAIRRO"));
+            cliente.setSexo(rs.getNString("SEXO"));
+            cliente.setCpf(rs.getNString("CPF"));
+        }
+        
+        rs.close();
+        stmt.close();
+        return cliente;
+    }
+     public List<Cliente> BuscaClientes() throws SQLException {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        Cliente cliente = null;
+        String select = "SELECT * FROM CLIENTE";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(select);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            cliente = new Cliente();
+            cliente.setCidade(rs.getString("CIDADE"));
+            cliente.setCod_cliente(rs.getInt("COD_CLIENTE"));
+            cliente.setData_nascimento(rs.getDate("DATA_NASCIMENTO"));
+            cliente.setCelular(rs.getString("CELULAR"));
+            cliente.setEstado(rs.getString("ESTADO"));
+            cliente.setNumero(rs.getString("NUMERO"));
+            cliente.setSenha(rs.getString("SENHA"));
+            cliente.setNome(rs.getString("NOME"));
+            cliente.setRua(rs.getNString("RUA"));
+            cliente.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
+            cliente.setCep(rs.getString("CEP"));
+            cliente.setEmail(rs.getNString("EMAIL"));
+            cliente.setBairro(rs.getNString("BAIRRO"));
+            cliente.setSexo(rs.getNString("SEXO"));
+            cliente.setCpf(rs.getNString("CPF"));
+            clientes.add(cliente);
+        }
+
+        rs.close();
+        stmt.close();
+
+        return clientes;
     }
 }

@@ -21,33 +21,52 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ClienteBean {
 
-    
     private Cliente cliente = new Cliente();
     private UsuarioSistema criptoUser = new UsuarioSistema();
+
     /**
      * Creates a new instance of CadastroCliente
      */
-    
 
-  public void CadastrarCliente (){
-     criptoUser.setSenha(cliente.getSenha());
-     cliente.setSenha(criptoUser.getHashSenha());
-     ClienteDAOImpl daoCadastro = new ClienteDAOImpl (); 
-     try{
-         daoCadastro.CadastrarCliente(cliente);
-     }  catch (SQLException ex) {
+    public void CadastrarCliente() {
+        criptoUser.setSenha(cliente.getSenha());
+        cliente.setSenha(criptoUser.getHashSenha());
+        ClienteDAOImpl daoCadastro = new ClienteDAOImpl();
+        try {
+            daoCadastro.CadastrarCliente(cliente);
+        } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-     cliente = new Cliente ();
-  }
-  public void editarCliente (){
-    ClienteDAOImpl daoEditar = new ClienteDAOImpl (); 
-     try{
-         daoEditar.EditarCadastroCliente(cliente);
-     }  catch (SQLException ex) {
+        cliente = new Cliente();
+    }
+
+    public void editarCliente() {
+        ClienteDAOImpl daoEditar = new ClienteDAOImpl();
+        try {
+            daoEditar.EditarCadastroCliente(cliente);
+        } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-  }
+        }
+    }
+
+    public String validaLogin() {
+        ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+        criptoUser.setSenha(cliente.getSenha());
+        cliente.setSenha(criptoUser.getHashSenha());
+        Cliente validaCliente = null;
+        String ambienteCliente = "MinhaConta";
+        try {
+            validaCliente = daoValidar.EncontraUserCliente(cliente.getEmail(), cliente.getSenha());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (validaCliente != null) {
+            ambienteCliente = "AmbienteCliente.xhtml";
+        }
+        cliente = new Cliente();
+        return ambienteCliente;
+    }
 
     /**
      * @return the cliente
@@ -63,6 +82,4 @@ public class ClienteBean {
         this.cliente = cliente;
     }
 
-
-    
 }

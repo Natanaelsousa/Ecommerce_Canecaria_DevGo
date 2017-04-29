@@ -107,7 +107,7 @@
                             <div class=" form-group col-md-10 ">
                                 <label for="EmailContaCliente">E-mail</label>
                                 <h:inputText pt:type="email" class="form-control" id="LogarEmail"
-                                        required="true"  pt:placeholder="Digite seu E-mail"/>
+                                             value ="#{ClienteBean.cliente.email}" required="true"  pt:placeholder="Digite seu E-mail"/>
                             </div>
 
                             <!-- Espaço entre um input e outro -->
@@ -116,14 +116,14 @@
                             <div class="col-md-10">
                                 <label for="SenhaContaCliente">Senha</label>
                                 <h:inputText pt:type="password" class="form-control" id="LogarSenha"
-                                     required="true"     pt:placeholder="Digite sua senha"/>
+                                             value="#{ClienteBean.cliente.senha}"  required="true"     pt:placeholder="Digite sua senha"/>
                             </div>
 
                             <!-- Espaço entre um input e os botões -->
                             <div class="space"></div>
                             <div class="space"></div>
                             <div class="form-group col-md-9">
-                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Logar"></h:commandButton>
+                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{ClienteBean.validaLogin()}" value="Logar"></h:commandButton>
                                 <h:commandButton class="btn btn-info btn-lg btn-block" pt:type="submit" value="Esqueci minha senha"></h:commandButton>
                             </div>
                         </div>

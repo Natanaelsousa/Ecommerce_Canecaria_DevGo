@@ -28,6 +28,7 @@ and open the template in the editor.
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap_1.css"/>
         <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"/>
 
         <!-- Stylesheet
@@ -84,20 +85,108 @@ and open the template in the editor.
         <div class="container">
             <div class="alert alert-info" role="alert">Bem vindo! Fique a vontade no seu ambiente :-)</div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 col-md-pull-1">
+
                 <nav class="navbar navbar-inverse">
-                    <a class="list"><label></label>
-                        <a href="CarrinhoCompras.xhtml" class="list-group-item">Meus Pedidos</a>
-                        <a href="EditarCadastroCliente.xhtml" class="list-group-item">Editar Cadastro</a>
-                        <a href="Produtos.html" class="list-group-item">Produtos</a>
-                        <a href="SobreEmpresa.xhtml" class="list-group-item">Sobre a Empresa</a>
-                    </a>
+                    <li class="active"><a><span class="glyphicon glyphicon-chevron-right"></span>Menu</a></li>
+                    <a href="CarrinhoCompras.xhtml" class="list-group-item">Meus Pedidos</a>
+                    <a href="EditarCadastroCliente.xhtml" class="list-group-item">Editar Cadastro</a>
+                    <a href="Produtos.xhtml" class="list-group-item">Produtos</a>
+                    <a href="SobreEmpresa.xhtml" class="list-group-item">Sobre a Empresa</a>
                 </nav>
             </div>
-
-
-
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>
+                                    <div>Fale Conosco</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="FaleConosco.xhtml">
+                            <div class="panel-footer">
+                                <span class="pull-left">Acessar agora</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>
+                                    <div>Produtos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="Produtos.xhtml">
+                            <div class="panel-footer">
+                                <span class="pull-left">Acessar agora</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>
+                                    <div>Meus Pedidos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="CarrinhoCompras.xhtml">
+                            <div class="panel-footer">
+                                <span class="pull-left">Acessar agora</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"></div>
+                                    <div>Editar cadastro</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Acessar agora</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="space"></div>
 
         <nav id="tf-footer">
