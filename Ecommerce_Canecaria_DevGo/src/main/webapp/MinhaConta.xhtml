@@ -97,9 +97,8 @@
                 </div>
             </div>
 
-            <!-- Criar conta no e-commerce -->
-            <h:form  prependId="false" enctype="multipart/form-data">
-                <h:messages errorStyle="color: red"/>
+             <h:form id="formUm" prependId="false" enctype="multipart/form-data">
+            <h:messages errorStyle="color: red"/>
                 <div class="col-md-6">
                     <!-- Espaço entre um  label e input -->
                     <div class="space"></div>
@@ -108,7 +107,7 @@
                             <div class=" form-group col-md-10 ">
                                 <label for="EmailContaCliente">E-mail</label>
                                 <h:inputText pt:type="email" class="form-control" id="LogarEmail"
-                                             pt:placeholder="Digite seu E-mail"/>
+                                        required="true"  pt:placeholder="Digite seu E-mail"/>
                             </div>
 
                             <!-- Espaço entre um input e outro -->
@@ -117,7 +116,7 @@
                             <div class="col-md-10">
                                 <label for="SenhaContaCliente">Senha</label>
                                 <h:inputText pt:type="password" class="form-control" id="LogarSenha"
-                                             pt:placeholder="Digite sua senha"/>
+                                     required="true"     pt:placeholder="Digite sua senha"/>
                             </div>
 
                             <!-- Espaço entre um input e os botões -->
@@ -130,7 +129,10 @@
                         </div>
                     </div>
                 </div>
-
+        </h:form >
+        
+            <h:form  id="formDois" prependId="false" enctype="multipart/form-data">
+               
                 <div class="col-md-6 col-md-push-1 ">
                     <!-- Espaço entre label e input -->
                     <div class="space"></div>

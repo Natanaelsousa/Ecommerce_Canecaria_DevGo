@@ -28,7 +28,7 @@ public class ClienteBean {
      * Creates a new instance of CadastroCliente
      */
     
-    //Falta testar ainda 
+
   public void CadastrarCliente (){
      criptoUser.setSenha(cliente.getSenha());
      cliente.setSenha(criptoUser.getHashSenha());
@@ -38,6 +38,7 @@ public class ClienteBean {
      }  catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+     cliente = new Cliente ();
   }
   public void editarCliente (){
     ClienteDAOImpl daoEditar = new ClienteDAOImpl (); 
