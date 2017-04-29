@@ -58,7 +58,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
      /* Verifica quantos chamados tem em cada fila */
     public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException {
 
-        String query = "select count(*) from contato where COD_TIPO_SOLICITACAO = " + cod_tipo_solicitacao;
+        String query = "select count(*) from contato where COD_TIPO_SOLICITACAO = " + cod_tipo_solicitacao + " and STATUS_SOLICITACAO = 0";
         int quantidadeChamadosFila = 0;
         ResultSet rs = getConnection().createStatement().executeQuery(query);
 

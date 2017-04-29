@@ -58,30 +58,24 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-header">
-                        <h3>Solicitações de atendimento</h3>
-                    </div>
+                        <h2>Filas de atendimento</h2>
+                    </div> 
                 </div>
             </div><!-- end .row -->
         </div><!-- end .container-fluid -->
 
-
         <c:forEach var="SolicitacoesFaleConosco" items="#{ContatoBean.ListarSolicitacoesContatos()}">
-            <div class="container">
-
-                <ul class="list-group">
-                    <h3><li class="list-group-item active" var="FilaFaleConosco" value="${SolicitacoesFaleConosco}" >${SolicitacoesFaleConosco.cod_tipo_solicitacao}<span class="badge" >${ContatoBean.CountSolicitacaoChamadoContato(SolicitacoesFaleConosco.cod_tipo_solicitacao)}</span></li></h3>
-
-                </ul>
+            <!-- Verifica se tem algum chamado pendente nas filas -->
+            <c:if test="${SolicitacoesFaleConosco == 'null' }">
+                <div class="col-md-2 col-md-push-1">
+                    <h4> Nao tem chamado</h4>
+                </div>
+            </c:if>
+            <div class="col-md-2 col-md-push-1">
+                <h4> Fila ${SolicitacoesFaleConosco.cod_tipo_solicitacao}</h4>
+                <h1> <span class="label label-primary">${ContatoBean.CountSolicitacaoChamadoContato(SolicitacoesFaleConosco.cod_tipo_solicitacao)}</span></h1>
             </div>
         </c:forEach>
-
-        <section class="row text-center placeholders">
-        <div class="col-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail"></img>
-            <h4>Label</h4>
-            <div class="text-muted">Something else</div>
-        </div>
-        </section>
 
         <!-- Importando o rodape -->
         <div id="footer">
