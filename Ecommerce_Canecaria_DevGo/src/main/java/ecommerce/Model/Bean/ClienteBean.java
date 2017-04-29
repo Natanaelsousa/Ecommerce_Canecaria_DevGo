@@ -36,7 +36,7 @@ public class ClienteBean {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
         }
   }
-  public void editarCliente (Cliente cliente){
+  public void editarCliente (){
     ClienteDAOImpl daoEditar = new ClienteDAOImpl (); 
      try{
          daoEditar.EditarCadastroCliente(cliente);

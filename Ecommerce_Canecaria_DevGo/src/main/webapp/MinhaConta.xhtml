@@ -35,8 +35,8 @@
         <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
 
         <script type="text/javascript" src="js/modernizr.custom.js"></script>
-         <script type="text/javascript" src="js/funcoes.js"></script>
-        
+        <script type="text/javascript" src="js/funcoes.js"></script>
+
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'/>
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
@@ -86,7 +86,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-6 col-md-pull-2">
+                <div class="col-md-6 col-md-pull-1">
                     <h2>Já tem cadastro na loja?</h2>
                     <h4>Caso você já tenha seu cadastro na loja, informe seu email e sua senha de acesso à loja.</h4>
                 </div>
@@ -104,7 +104,7 @@
                     <!-- Espaço entre um  label e input -->
                     <div class="space"></div>
                     <div class="row">
-                        <div class="col-md-12 col-md-pull-5">
+                        <div class="col-md-12 col-md-pull-2">
                             <div class=" form-group col-md-10 ">
                                 <label for="EmailContaCliente">E-mail</label>
                                 <h:inputText pt:type="email" class="form-control" id="LogarEmail"
@@ -136,13 +136,13 @@
                     <div class="space"></div>
 
                     <div class="row">
-                        <div class="form-group col-md-7">
+                        <div class="form-group col-md-10">
                             <label for="NomeCompleto">Nome completo</label>
                             <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}"
-                        onkeypress="return somenteLetras(event)"   required="true"/>
+                      pt:placeholder="Exemplo: João Alves Gomes"  onkeypress="return somenteLetras(event)"   required="true"/>
                         </div>
 
-                        <div class="form-group col-md-7">
+                        <div class="form-group col-md-10">
                             <label for="cpf">CPF</label>
                             <h:inputText pt:type="number" class="form-control" id="CPFInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
                                          required="true" value = "#{ClienteBean.cliente.cpf}" pt:placeholder="Ex:00000000000">
@@ -161,12 +161,12 @@
                             </p:inputMask>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label for="Sexo">Sexo</label><br/>
-                            <h:inputText pt:type="radio" h:name="Masculino" required="true"
-                                         value = "#{ClienteBean.cliente.sexo}"  /> Masculino <br></br>
-                            <h:inputText pt:type="radio" h:name="Feminino"
-                                         required="true" value = "#{ClienteBean.cliente.sexo}" /> Feminino
+                            <h:selectOneRadio value = "#{ClienteBean.cliente.sexo}"> 
+                                <f:selectItem itemValue = "M" itemLabel="Masculino" />
+                                <f:selectItem itemValue = "F" itemLabel="Feminino" />
+                            </h:selectOneRadio>   
                         </div>
                     </div>
 
@@ -202,7 +202,7 @@
                             <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite sua cidade"
                                          required="true" value = "#{ClienteBean.cliente.cidade}" id="cidade" />
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="UF">uf</label>
                             <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
                                          required="true" value = "#{ClienteBean.cliente.estado}"    />
@@ -213,14 +213,14 @@
 
                         <div class="form-group col-md-6">
                             <label for="Telefone">Telefone residencial</label>
-                            <h:inputText pt:type="number" class="form-control" id="TelefoneInput"
-                              onkeypress="return somenteNumero(event)" required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
+                            <h:inputText pt:type="number" class="form-control" id="TelefoneInput" pt:placeholder="(11) 5555-5555"
+                                         onkeypress="return somenteNumero(event)" required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="Celular">Celular</label>
-                            <h:inputText pt:type="number" class="form-control" id="CelularInput"
-                        onkeypress="return somenteNumero(event)"  required="true" value = "#{ClienteBean.cliente.celular}" />
+                            <h:inputText pt:type="number" class="form-control" id="CelularInput" pt:placeholder="(11) 95555-5555"
+                                         onkeypress="return somenteNumero(event)"  required="true" value = "#{ClienteBean.cliente.celular}" />
                         </div>
 
                     </div>
@@ -233,17 +233,17 @@
                                          required="true" value = "#{ClienteBean.cliente.email}"   pt:placeholder="seuemail@email.com"/>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="exampleInputEmail1">Senha</label>
                             <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
-                              onchange="Senha2.pattern = this.value;" required="true" value = "" />
+                                         onchange="Senha2.pattern = this.value;" required="true" value = "" />
                         </div>
-                         <div class="form-group col-md-4">
-                         <label for="exampleInputEmail1">Confirmação</label>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Confirmação</label>
                             <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="Senha2"
-      onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')"
-      required="true" value = "#{ClienteBean.cliente.senha}" />
-                         </div>
+                                         onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')"
+                                         required="true" value = "#{ClienteBean.cliente.senha}" />
+                        </div>
                     </div>
 
                     <hr />

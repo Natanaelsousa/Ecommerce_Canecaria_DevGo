@@ -20,10 +20,10 @@ public class ClienteDAOImpl  extends GenericaDAOImpl  implements ClienteDAO{
 
     //Editar os dados do cliente no banco
     public void EditarCadastroCliente(Cliente cliente) throws SQLException {
-        String query = "UPDATE cliente "
-                + "SET nome = ?, data_nascimento = ?,sexo = ?, cep = ?,rua = ?,numero = ?,bairro = ?,cidade = ?, estado = ?, "
-                + "telefone_residencial = ?,celular = ?,email = ?, senha = ? "
-                + "WHERE cpf = ?";
+        String query = "UPDATE CLIENTE "
+                + "SET NOME = ?, DATA_NASCIMENTO = ?,SEXO = ?, CEP = ?,RUA = ?,NUMERO = ?,BAIRRO = ?,CIDADE = ?, ESTADO = ?, "
+                + "TELEFONE_RESIDENCIAL = ?,CELULAR = ?,EMAIL = ?, SENHA = ? "
+                + "WHERE CPF = ?";
         update(query, cliente.getNome(), cliente.getCpf(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(), cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha());
     }
 
