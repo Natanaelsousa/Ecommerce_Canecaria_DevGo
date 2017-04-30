@@ -55,7 +55,7 @@ public class ClienteBean {
     }
 
     public void validaLogin() throws SQLException, IOException {
-        ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+            ClienteDAOImpl daoValidar = new ClienteDAOImpl();
         RequestContext context = RequestContext.getCurrentInstance();
         criptoUser.setSenha(cliente.getSenha());
         cliente.setSenha(criptoUser.getHashSenha());
@@ -65,10 +65,11 @@ public class ClienteBean {
       FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteCliente.xhtml"); 
    }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Erro de login", "Usuário ou senha inválidos");
+                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
             FacesContext.getCurrentInstance().addMessage(null, message);
             context.addCallbackParam("loggedIn", mensagem);
    }
+        cliente = new Cliente();
     }
 
     /**

@@ -38,7 +38,8 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
     }
 
     public Cliente EncontraUserCliente(Cliente cliente) throws SQLException {
-        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + cliente.getEmail() + "' and senha = '" + cliente.getSenha() + "'";
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + cliente.getEmail() +
+                "' and senha = '" + cliente.getSenha() + "'";
         Cliente cliente1 = null;
         
         PreparedStatement stmt
@@ -67,7 +68,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
         
         rs.close();
         stmt.close();
-        return cliente;
+        return cliente1;
     }
      public List<Cliente> BuscaClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList<Cliente>();
