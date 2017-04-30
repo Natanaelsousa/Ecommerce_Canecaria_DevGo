@@ -37,9 +37,9 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
         delete(query, cliente.getNome(), cliente.getCpf(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(), cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha());
     }
 
-    public Cliente EncontraUserCliente(String email, String senha) throws SQLException {
-        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + email + "' and senha = '" + senha + "'";
-        Cliente cliente = null;
+    public Cliente EncontraUserCliente(Cliente cliente) throws SQLException {
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + cliente.getEmail() + "' and senha = '" + cliente.getSenha() + "'";
+        Cliente cliente1 = null;
         
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);
@@ -47,22 +47,22 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
         ResultSet rs = stmt.executeQuery();
         
         while (rs.next()) {
-            cliente = new Cliente();
-            cliente.setCidade(rs.getString("CIDADE"));
-            cliente.setCod_cliente(rs.getInt("COD_CLIENTE"));
-            cliente.setData_nascimento(rs.getDate("DATA_NASCIMENTO"));
-            cliente.setCelular(rs.getString("CELULAR"));
-            cliente.setEstado(rs.getString("ESTADO"));
-            cliente.setNumero(rs.getString("NUMERO"));
-            cliente.setSenha(rs.getString("SENHA"));
-            cliente.setNome(rs.getString("NOME"));
-            cliente.setRua(rs.getNString("RUA"));
-            cliente.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
-            cliente.setCep(rs.getString("CEP"));
-            cliente.setEmail(rs.getNString("EMAIL"));
-            cliente.setBairro(rs.getNString("BAIRRO"));
-            cliente.setSexo(rs.getNString("SEXO"));
-            cliente.setCpf(rs.getNString("CPF"));
+            cliente1 = new Cliente();
+            cliente1.setCidade(rs.getString("CIDADE"));
+            cliente1.setCod_cliente(rs.getInt("COD_CLIENTE"));
+            cliente1.setData_nascimento(rs.getDate("DATA_NASCIMENTO"));
+            cliente1.setCelular(rs.getString("CELULAR"));
+            cliente1.setEstado(rs.getString("ESTADO"));
+            cliente1.setNumero(rs.getString("NUMERO"));
+            cliente1.setSenha(rs.getString("SENHA"));
+            cliente1.setNome(rs.getString("NOME"));
+            cliente1.setRua(rs.getNString("RUA"));
+            cliente1.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
+            cliente1.setCep(rs.getString("CEP"));
+            cliente1.setEmail(rs.getNString("EMAIL"));
+            cliente1.setBairro(rs.getNString("BAIRRO"));
+            cliente1.setSexo(rs.getNString("SEXO"));
+            cliente1.setCpf(rs.getNString("CPF"));
         }
         
         rs.close();

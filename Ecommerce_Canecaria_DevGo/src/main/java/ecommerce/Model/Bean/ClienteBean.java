@@ -7,11 +7,15 @@ package ecommerce.Model.Bean;
 
 import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
 import ecommerce.Model.MetodosAcessores.Cliente;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -50,23 +54,21 @@ public class ClienteBean {
         cliente = new Cliente();
     }
 
-    public String validaLogin() {
+    public void validaLogin() throws SQLException, IOException {
         ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+        RequestContext context = RequestContext.getCurrentInstance();
         criptoUser.setSenha(cliente.getSenha());
         cliente.setSenha(criptoUser.getHashSenha());
-        Cliente validaCliente = null;
-        String ambienteCliente = "MinhaConta";
-        try {
-            validaCliente = daoValidar.EncontraUserCliente(cliente.getEmail(), cliente.getSenha());
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (validaCliente != null) {
-            ambienteCliente = "AmbienteCliente.xhtml";
-        }
-        cliente = new Cliente();
-        return ambienteCliente;
+        String mensagem = "Erro ao se tentar se logar!";
+        
+        if(daoValidar.EncontraUserCliente(cliente) != null){
+      FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteCliente.xhtml"); 
+   }else{
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Erro de login", "Usuário ou senha inválidos");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            context.addCallbackParam("loggedIn", mensagem);
+   }
     }
 
     /**
