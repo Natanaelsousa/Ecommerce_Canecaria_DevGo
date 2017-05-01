@@ -82,6 +82,25 @@ public class UsuarioSistema {
     List<String> papeisUsuario = Arrays.asList(papeis);
     return papeisUsuario.contains(papel);
   }
+//  -benzóico.
+//* Este método pode ser usado para verificar um hash calculado a partir de um texto simples (por exemplo, durante um login
+//* Request) com o de um hash armazenado a partir de um banco de dados. O hash de senha do banco de dados
+//* Deve ser passado como a segunda variável.
+//* @param password_plaintext Senha de texto simples da conta, conforme fornecido durante uma solicitação de login
+//* @param stored_hash O hash da senha armazenada da conta, recuperado do banco de dados de autorização
+//* @return boolean - true se a senha coincide com a senha do hash armazenado, false caso contrário
+//-benzóico.
+public boolean validaSenha (String senhaGravada, String senhaLogin) {
+		boolean senha_verificada = false;
+
+		if(BCrypt.checkpw(senhaGravada, senhaLogin) == true){
+                    senha_verificada = true;
+                }
+		
+
+		return senha_verificada;
+	}
+
 
   public static UsuarioSistema obterUsuario(String usuario, String senha) {
     UsuarioSistema usuarioEncontrado = USUARIOS_CADASTRADOS.get(usuario);
