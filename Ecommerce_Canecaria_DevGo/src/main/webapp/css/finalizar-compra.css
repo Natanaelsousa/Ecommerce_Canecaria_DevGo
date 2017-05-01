@@ -40,9 +40,10 @@ and open the template in the editor.
 */
 .card-wrapper {
     background-color: #6FB7E9;
-    overflow: visible;
+    /*overflow: visible;
     border: 2px solid #ebebeb;
-    margin-bottom: 1px;    
+   margin-bottom: 1px; 
+*/   
 }
 .personal-information {
   background-color: #3C8DC5;
