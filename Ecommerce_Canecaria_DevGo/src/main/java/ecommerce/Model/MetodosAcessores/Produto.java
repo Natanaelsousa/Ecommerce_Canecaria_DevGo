@@ -9,6 +9,7 @@ public class Produto {
     private Integer cod_categoria; //Atributo estrangeiro
     private String nome_produto;
     private Integer qtde_produto;
+    private Integer qtde_para_acrescentar;
     private float valor_produto;
     private String descricao_produto;
     private Timestamp data_inclusao;
@@ -53,6 +54,16 @@ public class Produto {
         this.qtde_produto = qtde_produto;
     }
 
+    public Integer getQtde_para_acrescentar() {
+        return qtde_para_acrescentar;
+    }
+
+    public void setQtde_para_acrescentar(Integer qtde_para_acrescentar) {
+        this.qtde_para_acrescentar = qtde_para_acrescentar;
+    }
+
+    
+    
     public float getValor_produto() {
         return valor_produto;
     }

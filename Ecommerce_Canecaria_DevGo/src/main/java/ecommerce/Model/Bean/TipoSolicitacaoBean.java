@@ -25,16 +25,13 @@ public class TipoSolicitacaoBean {
    
    
    /* Lista os tipos de solicitações cadastrados no banco */
-    public List<SelectItem> ListarTiposDeSolicitacoes() throws Exception {
+    public List<TipoSolicitacao> ListarTiposDeSolicitacoes() throws Exception {
         TipoSolicitacaoDAO tipoSolicitacaoDAO = new TipoSolicitacaoDAOImpl();
 
-        List<TipoSolicitacao> listarSolicitacoes = tipoSolicitacaoDAO.ListarTiposDeSolicitacoes();
-        List<SelectItem> itensSolicitacoes = new ArrayList<SelectItem>(listarSolicitacoes.size());
-
-        for (TipoSolicitacao solic : listarSolicitacoes) {
-            itensSolicitacoes.add(new SelectItem(solic.getCod_tipo_solicitacao(), solic.getTipo_solicitacao_nome()));
-        }
-        return itensSolicitacoes;
+        List<TipoSolicitacao> listarFilasSolicitacoes = tipoSolicitacaoDAO.ListarTiposDeSolicitacoes();
+       
+     
+        return listarFilasSolicitacoes;
     }
     
     

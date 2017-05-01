@@ -22,4 +22,7 @@ public interface ContatoDAO {
 
     
     public List<Contato> ListarSolicitacoesContatos() throws Exception;
+    
+    /* Traz as solicitações pendentes de uma determinada fila */
+    public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException;
 }

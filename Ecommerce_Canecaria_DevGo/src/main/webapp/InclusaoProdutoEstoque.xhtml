@@ -59,18 +59,22 @@
                 <hr/>
 
                 <h:form>
+
+
+
+
                     <div class="row">
                         <div class="form-group col-md-2 "></div>
                         <div class="form-group col-md-4">
-                            <h:outputLabel for="QtdProduto" value="Quantidade a inserir:" />
-                            <h:inputText p:type="number" class="form-control" id="QtdProdutoInput" p:placeholder="Ex:3" value="#{ProdutosBean.produto.qtde_produto}" required="true"/>
+                            <h:outputLabel value="Quantidade a inserir:" />
+                            <h:inputText p:type="number" class="form-control"  p:placeholder="Ex:3" value="#{ProdutosBean.produto.qtde_para_acrescentar}" required="true"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-md-2 "></div>
-                        <div class="form-group col-md-7 ">
-                            <h:outputLabel value="Localizar produto... " />
+                        <div class="form-group col-md-7">
+                            <h:outputLabel value="Inserir produto... " />
                             <h:selectOneMenu class="form-control" value="#{ProdutosBean.produto.cod_produto}" converter="javax.faces.Integer">
                                 <f:selectItem itemValue="" itemLabel="Selecione o produto..." />
                                 <f:selectItems value="#{ProdutosBean.ListarProdutosIdENome()}" var="produto" itemLabel="#{produto.nome_produto}" itemValue="#{produto.cod_produto}" />

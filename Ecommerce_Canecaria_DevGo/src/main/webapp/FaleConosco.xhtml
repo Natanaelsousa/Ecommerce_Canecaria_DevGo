@@ -91,7 +91,7 @@
                                     <h:outputLabel value="Selecione o motivo do contato:" />
                                     <h:selectOneMenu class="form-control" value="#{ContatoBean.contato.cod_tipo_solicitacao}" converter="javax.faces.Integer">
                                         <f:selectItem itemValue="" itemLabel="Selecione..."  />
-                                        <f:selectItems  value="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.ccod_tipo_solicitacao}" />
+                                        <f:selectItems  value="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.cod_tipo_solicitacao}" />
                                     </h:selectOneMenu>
                                 </div>
                                 

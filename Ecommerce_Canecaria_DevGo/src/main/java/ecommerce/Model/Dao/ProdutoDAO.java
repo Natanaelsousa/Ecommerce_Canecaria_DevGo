@@ -13,7 +13,7 @@ public interface ProdutoDAO {
     public void ExclusaoDeCadastroProduto(Produto produto) throws SQLException;
 
     public void EditarCadastroProduto(Produto produto) throws SQLException;
-
+   
     public Produto BuscarProdutoPorCategoria(String codigo_categoria) throws SQLException;
 
     public void InserirQuantidadeDeProdutoExistente(Produto produto) throws SQLException;
