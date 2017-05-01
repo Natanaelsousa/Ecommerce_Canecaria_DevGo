@@ -1,0 +1,160 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/04/2017, 00:56:24
+    Author     : Erik
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500);
+
+.form body {
+  padding: 60px 0px;
+  background-color: #B2D1E5;
+  margin: 0 auto;
+  width: 600px;
+   
+}
+
+
+
+.form .body-text {
+  padding: 0 20px 30px 20px;
+  font-family: "Roboto";
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+}
+.form-container {
+  width: 100%;
+  margin-top: 20px;
+  
+}
+/*.card-wrapper {
+  background-color: #6FB7E9;
+  padding: 10px 0px;
+  width: 100%;
+}
+*/
+.card-wrapper {
+    background-color: #6FB7E9;
+    overflow: visible;
+    border: 2px solid #ebebeb;
+    margin-bottom: 1px;    
+}
+.personal-information {
+  background-color: #3C8DC5;
+  color: #fff;
+  padding: 1px 0px;
+  text-align: center;
+}
+h1 {
+  font-size: 1.3em;
+  font-family: "Roboto"
+}
+input {
+  margin: 1px 0px;
+  padding-left: 3%;
+   border:1px solid #e2e0e0;
+   margin-bottom: 2px;   
+ 
+}
+
+      
+
+input[type="text"]{
+  display: block;
+  height: 50px;
+  width: 100%;
+   border:1px solid #e2e0e0;
+   margin-bottom: 2px;   
+  
+}
+input[type="email"]{
+  display: block;
+  height: 50px;
+  width: 100%;
+  border:1px solid #e2e0e0;
+  margin-bottom: 2px;   
+}
+input[type="submit"]{
+  display: block;
+  height: 60px;
+  width: 100%;
+  border: none;
+  background-color: #3C8DC5;
+  color: #fff;
+  margin-top: 2px;
+  curson: pointer;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  font-weight: bold;
+   margin-bottom: 20px;   
+  
+}
+input[type="submit"]:hover{
+  background-color: #6FB7E9;
+  transition: 0.3s ease;
+ 
+}
+#column-left {
+  width: 46.8%;
+  float: left;
+  margin-bottom: 2px;
+  border:1px solid #e2e0e0;
+  
+}
+#column-right {
+  width: 46.8%;
+  float: right;
+   border:1px solid #e2e0e0;
+}
+
+@media only screen and (max-width: 480px){
+ .form body {
+    width: 100%; 
+  }
+  .form-container {
+    width: 100%;
+  }
+ 
+ .form h1 {
+    font-size: 1.2em;
+  }
+  .form input {
+  margin: 2px 0px;
+  } 
+  #input-field {
+    width: 100%;
+  }
+  .form input[type="text"]{
+  height: 40px;
+  
+  }
+ .form input[type="email"]{
+  height: 40px;
+
+  }
+  .form input[type="submit"]{
+  height: 50px;
+  
+  }
+ .form #column-left {
+    width: 100%;
+    display: block;
+    float: none;
+  }
+ .form #column-right {
+    width: 100%;
+    display: block;
+    float: none;
+    
+  }
+ .form #input-button {
+    width: 100%;
+  }
+  
+
+}
