@@ -24,7 +24,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         while (rs.next()) {
             Produto produtos = new Produto();
-           
+
             produtos.setCod_produto(rs.getInt("COD_PROD"));
             produtos.setNome_produto(rs.getString("NOME_PRODUTO"));
 
@@ -39,16 +39,29 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     }
 
     //Insere os dados do produto no banco
+    @Override
     public void CadastrarProduto(Produto produto) throws SQLException {
-        String query = "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO, COD_CATEGORIA) VALUES (?,?,?,?)";
-        insert(query, produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getCod_categoria());
+        String query = "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO,QTDE_PRODUTO, COD_CATEGORIA) VALUES (?,?,?,?,?)";
+
+        // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
+        produto.setqtde_produto(0);
+
+        insert(query, produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getQtde_produto(), produto.getCod_categoria());
 
     }
 
     //Soma a quantidade de produtos ja existentem com a que sera inserida
+    @Override
     public void InserirQuantidadeDeProdutoExistente(Produto produto) throws SQLException {
-        String query = "update produto set QTDE_PRODUTO = QTDE_PRODUTO+ ? where COD_PROD = ?";
-        update(query, produto.getQtde_produto(), produto.getCod_produto());
+        String update = "update produto "
+                + "set QTDE_PRODUTO = (QTDE_PRODUTO+?) "
+                + "where COD_PROD = ?";
+        
+        update(update,produto.getCod_produto(),produto.getQtde_para_acrescentar());
+     
+        System.out.println(produto.getCod_produto());
+        System.out.println(produto.getQtde_para_acrescentar());
+        
 
     }
 
@@ -94,12 +107,12 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
         stmt.close();
         return produto;
     }
-    
+
     @Override
     public List<Produto> ListarProdutosCategoria(String categoria) throws SQLException {
         List<Produto> produto = new ArrayList<Produto>();
 
-        String query = "SELECT COD_PROD,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_CATEGORIA ='"+categoria+"'";
+        String query = "SELECT COD_PROD,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_CATEGORIA ='" + categoria + "'";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -114,7 +127,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
             produtos.setNome_produto(rs.getString("NOME_PRODUTO"));
             produtos.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
             produtos.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
-    
+
             produto.add(produtos);
         }
 
@@ -124,13 +137,13 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
         return produto;
 
     }
-    
-      //Localiza um produto especifico
+
+    //Localiza um produto especifico
     public Produto BuscarUmProduto(Produto produto) throws SQLException {
 
-        String query = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_PROD = ? " ;
+        String query = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_PROD = ? ";
 
-         PreparedStatement stmt
+        PreparedStatement stmt
                 = getConnection().prepareStatement(query);
 
         ResultSet rs = stmt.executeQuery();

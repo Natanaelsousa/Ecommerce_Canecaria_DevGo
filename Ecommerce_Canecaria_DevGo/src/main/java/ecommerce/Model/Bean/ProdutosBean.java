@@ -6,12 +6,13 @@ import ecommerce.Model.MetodosAcessores.Categoria;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /*  @author sibele */
 @ManagedBean(name = "ProdutosBean")
-@RequestScoped
 public class ProdutosBean {
 
     private Produto produto = new Produto();
@@ -47,14 +48,14 @@ public class ProdutosBean {
     }
 
     /* Insere quantidade de produtos(Ja cadastrados) no banco */
-    public String InserirProdutosNoEstoque() throws Exception {
+    public void InserirProdutosNoEstoque() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         try {
             produtos.InserirQuantidadeDeProdutoExistente(produto);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel incluir produtos no estoque.");
         }
-        return "Inserido no estoque";
+        
     }
 
     public void ExcluirProduto() throws Exception {
@@ -76,4 +77,18 @@ public class ProdutosBean {
         return ListaProdutos;
     }
 
+//    public Produto getProduto() {
+//        if (produto == null) {
+//            FacesContext fc = FacesContext.getCurrentInstance();
+//            Map<String, String> params = fc.getExternalContext()
+//                    .getRequestParameterMap();
+//            String id = params.get("id");
+//            if (id != null) {
+//                produto = service.obter(Long.parseLong(id));
+//            } else {
+//                produto = new Produto();
+//            }
+//        }
+//        return produto;
+//    }
 }

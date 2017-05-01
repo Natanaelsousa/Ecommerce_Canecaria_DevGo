@@ -71,4 +71,35 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         return quantidadeChamadosFila;
 
     }
+    
+    public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException {
+        
+        List<Contato> contato = new ArrayList<Contato>();
+
+        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = "+cod_fila+" AND STATUS_SOLICITACAO = 0 ";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(query);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Contato contatos = new Contato();
+
+            contatos.setCod_solicitacao(rs.getInt("COD_SOLICITACAO"));
+            contatos.setCod_tipo_solicitacao(rs.getInt("COD_TIPO_SOLICITACAO"));
+            contatos.setNome_completo(rs.getString("NOME_COMPLETO"));
+            contatos.setEmail_contato(rs.getString("EMAIL_CONTATO"));
+            contatos.setDescricao_contato(rs.getString("DESCRICAO_CONTATO"));
+            contatos.setStatus_solicitacao(rs.getInt("STATUS_SOLICITACAO"));
+
+            contato.add(contatos);
+        }
+
+        rs.close();
+        stmt.close();
+
+        return contato;
+
+    }
 }

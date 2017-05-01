@@ -6,12 +6,11 @@
       xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:c ="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-
     <h:head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Canecaria - Solicitações de atendimento</title>
+        <title>Canecaria - Situação das filas de solicitações</title>
         <meta name="description" content="Your Description Here" />
         <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
         <meta name="author" content="ThemeForces.Com" />
@@ -27,8 +26,10 @@
         <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
 
+        <!-- Stylesheet
+        ================================================== -->
         <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
-
+        <link rel="stylesheet" type="text/css"  href="css/FaleConosco.css" />
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
@@ -37,54 +38,74 @@
         <script src="js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <link href="css/AcompanhamentoFaleConosco.css" type="text/css" rel="stylesheet"></link>
         <script src="js/bootstrap.min.js"></script>
+
+
     </h:head>
-
     <h:body>
+        <div id="page">
 
-
-
-        <!-- Importando o cabecalho -->
-        <div id="header">
-            <ui:insert name="cabecalho">
-                <ui:include src="cabecalho.xhtml" />
-            </ui:insert>
-        </div>
-
-        <div class="space"></div>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="page-header">
-                        <h2>Filas de atendimento</h2>
-                    </div> 
-                </div>
-            </div><!-- end .row -->
-        </div><!-- end .container-fluid -->
-
-        <c:forEach var="SolicitacoesFaleConosco" items="#{ContatoBean.ListarSolicitacoesContatos()}">
-            <!-- Verifica se tem algum chamado pendente nas filas -->
-            <c:if test="${SolicitacoesFaleConosco == 'null' }">
-                <div class="col-md-2 col-md-push-1">
-                    <h4> Nao tem chamado</h4>
-                </div>
-            </c:if>
-            <div class="col-md-2 col-md-push-1">
-                <h4> Fila ${SolicitacoesFaleConosco.cod_tipo_solicitacao}</h4>
-                <h1> <span class="label label-primary">${ContatoBean.CountSolicitacaoChamadoContato(SolicitacoesFaleConosco.cod_tipo_solicitacao)}</span></h1>
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
             </div>
-        </c:forEach>
 
-        <!-- Importando o rodape -->
-        <div id="footer">
-            <ui:insert name="rodape" >
-                <ui:include src="rodape.xhtml" />
-            </ui:insert>
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="page-header">
+                                <h2>Filas de atendimento</h2>
+                            </div> 
+                        </div>
+                    </div><!-- end .row -->
+                </div><!-- end .container-fluid -->
+
+
+                <div class="space"></div>
+
+                <div class="row">
+                    <c:forEach var="TiposFilaSolicitacoes" items="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}">
+                        <div class="col-md-3 " >
+                            <h4> Fila "${TiposFilaSolicitacoes.tipo_solicitacao_nome}"</h4>
+                            <h1> <span class="label label-primary" >${ContatoBean.CountSolicitacaoChamadoContato(TiposFilaSolicitacoes.cod_tipo_solicitacao)}</span></h1>
+                        </div>
+                    </c:forEach>
+                </div>
+
+                <div class="space"></div>
+                <h:form>
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-md-8"  >
+                        <h:outputLabel  value="Escolha a fila que deseja atender:" />
+                        <h:selectOneMenu class="form-control" value="#{ContatoBean.contato.cod_tipo_solicitacao}" converter="javax.faces.Integer">
+                            <f:selectItem itemValue="" itemLabel="Selecione..."  />
+                            <f:selectItems  value="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.cod_tipo_solicitacao}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="space"></div>
+
+                    <div class="col-md-4"></div>
+                    <div class="form-group col-md-4"  >
+                        <h:commandButton  class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar solicitacao " action="RespondendoFaleConosco.xhtml">
+                        </h:commandButton>
+                        <f:param name="cod_tipo_solicitacao" value="#{contato.cod_tipo_solicitacao}" />
+                    </div><div class="col-md-4"></div>
+
+                    <div class="space"></div>
+                </h:form>
+            </div>
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
         </div>
     </h:body>
-
 </html>
 
 
