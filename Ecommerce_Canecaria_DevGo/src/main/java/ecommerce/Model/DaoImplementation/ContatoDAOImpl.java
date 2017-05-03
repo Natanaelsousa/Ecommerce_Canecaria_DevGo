@@ -14,18 +14,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author sibele
- */
+/* @author sibele */
 public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
    
 
      //Insere os dados do produto no banco
     public void CadastrarSolicitacaoContato(Contato contato) throws SQLException {
 
-        String query = "INSERT INTO CONTATO (COD_TIPO_SOLICITACAO, NOME_COMPLETO, EMAIL_CONTATO, DESCRICAO_CONTATO) VALUES (?,?,?,?)";
-        insert(query, contato.getCod_tipo_solicitacao(), contato.getNome_completo(), contato.getEmail_contato(), contato.getDescricao_contato());
+        String query = "INSERT INTO CONTATO (COD_TIPO_SOLICITACAO, NOME_COMPLETO, EMAIL_CONTATO, DESCRICAO_CONTATO,STATUS_SOLICITACAO) VALUES (?,?,?,?,?)";
+        
+        // Ao cadastrar uma nova solicitação, o status dele inicia por padrão como 0
+        contato.setStatus_solicitacao(0);
+        
+        insert(query, contato.getCod_tipo_solicitacao(), contato.getNome_completo(), contato.getEmail_contato(), contato.getDescricao_contato(),contato.getStatus_solicitacao());
 
     }
 
