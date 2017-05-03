@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
-
+    <f:view contentType="text/html" ></f:view>
 
 
     <h:head>
@@ -41,7 +41,7 @@
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'/>
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
 
-
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
     </h:head>
     <h:body>
         <!-- Menu -->
@@ -97,8 +97,8 @@
                 </div>
             </div>
 
-             <h:form id="formUm" prependId="false" enctype="multipart/form-data">
-            <h:messages errorStyle="color: red"/>
+            <h:form id="formUm" prependId="false" enctype="multipart/form-data">
+                <h:messages errorStyle="color: red"/>
                 <div class="col-md-6">
                     <!-- Espaço entre um  label e input -->
                     <div class="space"></div>
@@ -129,10 +129,10 @@
                         </div>
                     </div>
                 </div>
-        </h:form >
-        
+            </h:form >
+
             <h:form  id="formDois" prependId="false" enctype="multipart/form-data">
-               
+
                 <div class="col-md-6 col-md-push-1 ">
                     <!-- Espaço entre label e input -->
                     <div class="space"></div>
@@ -141,7 +141,7 @@
                         <div class="form-group col-md-10">
                             <label for="NomeCompleto">Nome completo</label>
                             <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}"
-                      pt:placeholder="Exemplo: João Alves Gomes"  onkeypress="return somenteLetras(event)"   required="true"/>
+                                         pt:placeholder="Exemplo: João Alves Gomes"  onkeypress="return somenteLetras(event)"   required="true"/>
                         </div>
 
                         <div class="form-group col-md-10">
