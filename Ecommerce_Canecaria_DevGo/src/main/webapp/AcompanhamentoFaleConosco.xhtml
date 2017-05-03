@@ -68,7 +68,7 @@
 
                 <div class="row">
                     <c:forEach var="TiposFilaSolicitacoes" items="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}">
-                        <div class="col-md-3 " >
+                        <div class="col-md-4  col-md-push-1 " >
                             <h4> Fila "${TiposFilaSolicitacoes.tipo_solicitacao_nome}"</h4>
                             <h1> <span class="label label-primary" >${ContatoBean.CountSolicitacaoChamadoContato(TiposFilaSolicitacoes.cod_tipo_solicitacao)}</span></h1>
                         </div>
