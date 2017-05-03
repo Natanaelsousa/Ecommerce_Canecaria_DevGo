@@ -8,11 +8,14 @@ package ecommerce.Model.Bean;
 import ecommerce.Model.Dao.ContatoDAO;
 import ecommerce.Model.DaoImplementation.ContatoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Contato;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /*  @author sibele */
 @ManagedBean(name = "ContatoBean")
+@RequestScoped
 public class ContatoBean  {
 
     private Contato contato = new Contato();
@@ -29,10 +32,14 @@ public class ContatoBean  {
     }
 
     /*Responsavel pelo insert dos formularios de solicitação*/
-    public String CadastrarSolicitacaoContato() throws Exception {
+    public void CadastrarSolicitacaoContato() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
+        try{
         contatos.CadastrarSolicitacaoContato(contato);
-        return "Solicitação de contato enviada";
+        }catch(SQLException erro){
+            System.err.println("Não foi possivel realizar solicitação");
+        }
+        contato = new Contato();
     }
 
     /* Verifica quantos chamados tem em cada fila */

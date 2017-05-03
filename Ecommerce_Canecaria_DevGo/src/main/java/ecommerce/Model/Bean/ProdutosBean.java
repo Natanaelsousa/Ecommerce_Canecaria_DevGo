@@ -2,7 +2,6 @@ package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.ProdutoDAO;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
-import ecommerce.Model.MetodosAcessores.Categoria;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,15 +28,16 @@ public class ProdutosBean {
     }
 
     /*Responsavel pelo cadastro do produto*/
-    public String CadastrarProduto() throws Exception {
+    public void CadastrarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         try {
             produtos.CadastrarProduto(produto);
         } catch (SQLException erro) {
             System.err.println("Este produto ja foi cadastrado.");
         }
+        produto = new Produto();
 
-        return "Cadastrado";
+        
     }
 
     /* Edita dados do produtos no banco */
@@ -55,7 +55,7 @@ public class ProdutosBean {
         } catch (SQLException erro) {
             System.err.println("Não foi possivel incluir produtos no estoque.");
         }
-        
+        produto = new Produto();
     }
 
     public void ExcluirProduto() throws Exception {
