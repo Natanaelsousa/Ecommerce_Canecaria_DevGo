@@ -6,12 +6,23 @@ import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Funcionario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /* @author Alessandra */
 @ManagedBean(name="FuncionarioBean")
-@RequestScoped
+@SessionScoped
 
 public class FuncionarioBean {
+    
+    private String cpf;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     private Funcionario funcionario = new Funcionario();
 
@@ -34,6 +45,21 @@ public class FuncionarioBean {
         FuncionarioDAO funcionarios = new FuncionarioDAOImpl();
         funcionarios.CadastrarFuncionario(funcionario);
         return "Cadastrado";
+    }
+     
+   public String EditarFuncionario() throws Exception {
+        FuncionarioDAO funcionarios = new FuncionarioDAOImpl();
+        funcionarios.EditarCadastroFuncionario(funcionario);
+        return "Alterado";
+    }
+   
+     
+     public String BuscarFuncionario() throws Exception {
+        FuncionarioDAO funcionarios = new FuncionarioDAOImpl();
+        funcionario = funcionarios.findByCPF(cpf);
+        
+        return "EditarCadastroFuncionario";
+        
     }
 
 }
