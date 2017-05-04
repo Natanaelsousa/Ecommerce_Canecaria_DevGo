@@ -123,15 +123,20 @@ and open the template in the editor.
                         </div>
             
 
-            <div class="row">
-                <div class="col-md-12">
-                    <hr />
-                    <h:commandButton value="Finalizar Cadastro" action = "#{FuncionarioBean.CadastrarFuncionario}" />
+          <div class="space"></div>
+                <hr />
+                <div class="row">
+                    <div class="form-group col-md-6">
 
-                    <h:commandButton p:type="reset"  value="Limpar tudo"/>
+                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" action="#{FuncionarioBean.CadastrarFuncionario}" >
+                        </h:commandButton>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" p:type="reset" value="Limpar tudo">
+                        </h:commandButton>
+                    </div>
                 </div>
-            </div>
-
 
         </h:form>
 
