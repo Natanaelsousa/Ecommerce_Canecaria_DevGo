@@ -94,43 +94,51 @@ and open the template in the editor.
         <h1>Editar Funcionário</h1>
         <hr/>
 
-        <h:form p:action="CadastrarFuncionario.xhtml">
+        <h:form >
 
 
-            <div class="form-group col-md-7">
+               <div class="form-group col-md-7">
                 <h:outputLabel for="NomeFuncionario" value="Nome do novo funcionario" />
-               <h:inputText p:type="text" class="form-control" id="NomeFuncionarioInput" p:placeholder="Digite o nome do funcionario" required="true" />
+                <h:inputText p:type="text" class="form-control" id="NomeFuncionarioInput" p:placeholder="Digite o nome do funcionario" value="#{FuncionarioBean.funcionario.nome_funcionario}" required="true" />
             </div>
 
             <div class="form-group col-md-3">
                 <h:outputLabel for="CPFFuncionario" value="CPF do Funcionário:" />
-                <h:inputText p:type="number" class="form-control" id="CPFFuncionarioInput" p:placeholder="000.000.000-00"   required="true" />
+                <h:inputText p:type="number" class="form-control" id="CPFFuncionarioInput" p:placeholder="000.000.000-00"  value="#{FuncionarioBean.funcionario.cpf_funcionario}" required="true" />
             </div>
 
                      <div class="form-group col-md-7">
                             <h:outputLabel for="LoginFuncionario" value="Login de acesso:" />
-                            <h:inputText p:type="text" class="form-control" id="LoginFuncionarioInput" required="true"/>
+                            <h:inputText p:type="text" class="form-control" id="LoginFuncionarioInput" value="#{FuncionarioBean.funcionario.login_funcionario}" required="true"/>
                         </div>
             
                         <div class="form-group col-md-7">
                             <h:outputLabel for="SenhaFuncionario" value="Senha de acesso:" />
-                            <h:inputText p:type="password" class="form-control" id="SenhaFuncionarioInput"  required="true"/>
+                            <h:inputText p:type="password" class="form-control" id="SenhaFuncionarioInput" value="#{FuncionarioBean.funcionario.senha_funcionario}" required="true"/>
                         </div>
             
                         <div class="form-group col-md-7">
                             <h:outputLabel for="DptoFuncionario" value="Digite o departamento:" />
-                            <h:inputText p:type="text" class="form-control" id="DptoFuncionarioInput"   required="true"/>
+                            <h:inputText p:type="text" class="form-control" id="DptoFuncionarioInput"  value="#{FuncionarioBean.funcionario.departamento_funcionario}" required="true"/>
                         </div>
             
 
-            <div class="row">
-                <div class="col-md-12">
-                    <hr />
-                    <h:commandButton value="Finalizar Cadastro"/>
+               <div class="space"></div>
+                <hr />
+                
+                
+                <div class="row">
+                    <div class="form-group col-md-6">
 
-                    <h:commandButton p:type="reset"  value="Limpar tudo"/>
+                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Alterar Dados" action="#{FuncionarioBean.EditarFuncionario()}" >
+                        </h:commandButton>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" p:type="reset" value="Limpar tudo">
+                        </h:commandButton>
+                    </div>
                 </div>
-            </div>
 
 
         </h:form>
