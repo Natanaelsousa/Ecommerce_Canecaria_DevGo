@@ -94,27 +94,30 @@ and open the template in the editor.
         <h1>Editar Funcionário</h1>
         <hr/>
 
-        <h:form p:action="EditarCadastroFuncionario.xhtml">
+        <h:form>
 
 
           
 
             <div class="form-group col-md-3">
                 <h:outputLabel for="CPFFuncionario" value=" Digite o CPF do Funcionário:" />
-                <h:inputText p:type="number" class="form-control" id="CPFFuncionarioInput" p:placeholder="000.000.000-00"   required="true" />
+                <h:inputText p:type="number" class="form-control" id="CPFFuncionarioInput" p:placeholder="000.000.000-00"   required="true" value="#{FuncionarioBean.cpf}" />
             </div>
 
             
             
 
-            <div class="row">
-                <div class="col-md-12">
+       <div class="space"></div>
                     <hr />
-                    <h:commandButton value="Buscar" />
+                    <div class="row">
+                        <div class="form-group col-md-3">
 
-                    <h:commandButton p:type="reset"  value="Limpar"/>
-                </div>
-            </div>
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Editar cadastro" action="#{FuncionarioBean.BuscarFuncionario()}" >
+                            </h:commandButton>
+                        </div>
+
+
+                    </div>
 
 
         </h:form>
