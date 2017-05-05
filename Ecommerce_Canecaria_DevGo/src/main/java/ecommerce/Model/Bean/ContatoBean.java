@@ -11,14 +11,16 @@ import ecommerce.Model.MetodosAcessores.Contato;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /*  @author sibele */
 @ManagedBean(name = "ContatoBean")
-@RequestScoped
-public class ContatoBean  {
+@SessionScoped
+public class ContatoBean {
 
     private Contato contato = new Contato();
+    private int id_contato;
+    
 
     public ContatoBean() {
     }
@@ -31,12 +33,22 @@ public class ContatoBean  {
         this.contato = contato;
     }
 
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+    
+    
+
     /*Responsavel pelo insert dos formularios de solicitação*/
     public void CadastrarSolicitacaoContato() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
-        try{
-        contatos.CadastrarSolicitacaoContato(contato);
-        }catch(SQLException erro){
+        try {
+            contatos.CadastrarSolicitacaoContato(contato);
+        } catch (SQLException erro) {
             System.err.println("Não foi possivel realizar solicitação");
         }
         contato = new Contato();
@@ -58,6 +70,28 @@ public class ContatoBean  {
 
         if (ListarSolicitacoesContatos.isEmpty()) {
             ListarSolicitacoesContatos = null;
+        }
+        return ListarSolicitacoesContatos;
+    }
+
+    public String encontrarFilaPorId() throws Exception {
+        ContatoDAO contatos = new ContatoDAOImpl();
+        List<Contato> ListarSolicitacoesContatos = null;
+        try {
+          ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel localizar fila");
+        }
+        return "RespondendoFaleConosco";
+    }
+    
+     public List<Contato> listEncontrarFilaPorId() throws Exception {
+        ContatoDAO contatos = new ContatoDAOImpl();
+        List<Contato> ListarSolicitacoesContatos = null;
+        try {
+          ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel localizar fila");
         }
         return ListarSolicitacoesContatos;
     }

@@ -49,66 +49,42 @@
                     <ui:include src="cabecalho.xhtml" />
                 </ui:insert>
             </div>
+            <div class="space"></div>
+
+            <div class="container">
+                <h2>Solicitações pendentes</h2>
+                <div class="space"></div>
+                <p>Chamados ${ContatoBean.id_contato}</p>            
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Nome do cliente</th>
+                            <th>E-mail</th>
+                            <th>Descrição</th>
+                            <th>Tipo de solicitação</th>
+                            <th>Finalizar chamado</th>
+                        </tr>
+                    </thead>
+                    <ui:repeat value="#{ContatoBean.listEncontrarFilaPorId()}" var="contato">
+                        <tbody>
+                            <tr>
+                                <td>#{contato.nome_completo}</td>
+                                <td>#{contato.email_contato}</td>
+                                <td>#{contato.descricao_contato}</td>
+                                <td>#{contato.cod_tipo_solicitacao}</td>
+                                <td><h:form> <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Concluido" > 
+                                        </p:commandButton>
+                                    </h:form> </td>
+                            </tr>
+                        </tbody>
+                    </ui:repeat>      
+                </table>
+
+            </div>
 
 
-            <h:form prependId="false">
 
-                <h:inputHidden value="#{ContatoBean.contato.cod_tipo_solicitacao}" />
-                <div>
-                    <h:outputLabel for="txtNome" value="Nome" />
-                    <h:inputText id="txtNome" value="#{ContatoBean.contato.cod_solicitacao}" />
-                </div>
-                <div>
-                    <h:outputLabel for="txtDescricao" value="Descrição" />
-                    <h:inputTextarea id="txtDescricao" value="#{ContatoBean.contato.descricao_contato}" />
-                </div>
-
-
-<!--                <h:commandButton value="Enviar" action="" />-->
-
-            </h:form>
-
-
-            <!--            <h:form>          
-            
-                            <p:dataTable id="basicDT" var="FilaEscolhidaMonitorar" value="#{ContatoBean.contato.cod_tipo_solicitacao}">
-                                <f:facet name="header">
-                                    Fila "${FilaEscolhidaMonitorar.tipo_solicitacao_nome}"
-                                </f:facet>
-                                <p:column headerText="Id">
-                                    <h:outputText value="Teste" />
-                                </p:column>
-                               
-                                <p:column style="width:32px;text-align: center">
-                                    <p:commandButton update=":form:carDetail" oncomplete="PF('carOP').show('#{component.clientId}')" icon="ui-icon-search" title="View">
-                                        <f:setPropertyActionListener value="#{car}" target="#{dtSelectionView.selectedCar}" />
-                                    </p:commandButton>
-                                </p:column>
-                            </p:dataTable>
-            
-                            <p:overlayPanel widgetVar="carOP" showEffect="fade" hideEffect="fade" dismissable="false" showCloseIcon="true">
-                                <p:outputPanel id="carDetail" style="text-align:center;">
-                                    <p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.selectedCar}" columnClasses="label,value">
-                                        <f:facet name="header">
-                                            <p:graphicImage name="demo/images/car/#{dtSelectionView.selectedCar.brand}-big.gif"/> 
-                                        </f:facet>
-            
-                                        <h:outputText value="Id:" />
-                                        <h:outputText value="#{dtSelectionView.selectedCar.id}" />
-            
-                                        <h:outputText value="Year" />
-                                        <h:outputText value="#{dtSelectionView.selectedCar.year}" />
-            
-                                        <h:outputText value="Color:" />
-                                        <h:outputText value="#{dtSelectionView.selectedCar.color}" style="color:#{dtSelectionView.selectedCar.color}"/>
-            
-                                        <h:outputText value="Price" />
-                                        <h:outputText value="$#{dtSelectionView.selectedCar.price}" />
-                                    </p:panelGrid>
-                                </p:outputPanel>
-                            </p:overlayPanel>
-            
-                        </h:form>-->
 
             <!-- Importando o rodape -->
             <div id="footer">

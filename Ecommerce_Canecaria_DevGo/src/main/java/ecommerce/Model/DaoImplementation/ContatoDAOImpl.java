@@ -16,17 +16,16 @@ import java.util.List;
 
 /* @author sibele */
 public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
-   
 
-     //Insere os dados do produto no banco
+    //Insere os dados do produto no banco
     public void CadastrarSolicitacaoContato(Contato contato) throws SQLException {
 
         String query = "INSERT INTO CONTATO (COD_TIPO_SOLICITACAO, NOME_COMPLETO, EMAIL_CONTATO, DESCRICAO_CONTATO,STATUS_SOLICITACAO) VALUES (?,?,?,?,?)";
-        
+
         // Ao cadastrar uma nova solicitação, o status dele inicia por padrão como 0
         contato.setStatus_solicitacao(0);
-        
-        insert(query, contato.getCod_tipo_solicitacao(), contato.getNome_completo(), contato.getEmail_contato(), contato.getDescricao_contato(),contato.getStatus_solicitacao());
+
+        insert(query, contato.getCod_tipo_solicitacao(), contato.getNome_completo(), contato.getEmail_contato(), contato.getDescricao_contato(), contato.getStatus_solicitacao());
 
     }
 
@@ -55,8 +54,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
- 
-     /* Verifica quantos chamados tem em cada fila */
+    /* Verifica quantos chamados tem em cada fila */
     public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException {
 
         String query = "select count(*) from contato where COD_TIPO_SOLICITACAO = " + cod_tipo_solicitacao + " and STATUS_SOLICITACAO = 0";
@@ -64,7 +62,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         ResultSet rs = getConnection().createStatement().executeQuery(query);
 
         while (rs.next()) {
-           quantidadeChamadosFila = rs.getInt(1);
+            quantidadeChamadosFila = rs.getInt(1);
         }
 
         rs.close();
@@ -72,12 +70,12 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         return quantidadeChamadosFila;
 
     }
-    
+
     public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException {
-        
+
         List<Contato> contato = new ArrayList<Contato>();
 
-        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = "+cod_fila+" AND STATUS_SOLICITACAO = 0 ";
+        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = " + cod_fila + " AND STATUS_SOLICITACAO = 0 ";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -102,5 +100,31 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
         return contato;
 
+    }
+
+    //encontrar funcionario atraves do CPF
+    public List<Contato> encontrarFilaPorId(int id_fila) throws SQLException {
+        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = " + id_fila + "";
+        List<Contato> contatos = new ArrayList<Contato>();
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(query);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Contato contato = new Contato();
+            contato.setCod_solicitacao(rs.getInt("COD_SOLICITACAO"));
+            contato.setCod_tipo_solicitacao(rs.getInt("COD_TIPO_SOLICITACAO"));
+            contato.setNome_completo(rs.getString("NOME_COMPLETO"));
+            contato.setEmail_contato(rs.getString("EMAIL_CONTATO"));
+            contato.setDescricao_contato(rs.getString("DESCRICAO_CONTATO"));
+            contato.setStatus_solicitacao(rs.getInt("STATUS_SOLICITACAO"));
+            contatos.add(contato);
+        }
+
+        rs.close();
+        stmt.close();
+        return contatos;
     }
 }
