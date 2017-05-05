@@ -56,12 +56,11 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
         String update = "update produto "
                 + "set QTDE_PRODUTO = (QTDE_PRODUTO+?) "
                 + "where COD_PROD = ?";
-        
-        update(update,produto.getCod_produto(),produto.getQtde_para_acrescentar());
-     
+
+        update(update, produto.getCod_produto(), produto.getQtde_para_acrescentar());
+
         System.out.println(produto.getCod_produto());
         System.out.println(produto.getQtde_para_acrescentar());
-        
 
     }
 
@@ -150,6 +149,31 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         while (rs.next()) {
             produto.setCod_produto(rs.getInt("COD_PRODUTO"));
+            produto.setCod_categoria(rs.getInt("COD_CATEGORIA"));
+            produto.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
+            produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+
+        }
+
+        rs.close();
+        stmt.close();
+        return produto;
+    }
+
+    //Localiza um produto especifico pelo ID
+    public Produto BuscarProdutoPorID(int id_produto) throws SQLException {
+
+        Produto produto = new Produto();
+        String query = "SELECT * FROM PRODUTO WHERE COD_PROD = " + id_produto + " ";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(query);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            produto.setCod_produto(rs.getInt("COD_PROD"));
             produto.setCod_categoria(rs.getInt("COD_CATEGORIA"));
             produto.setNome_produto(rs.getString("NOME_PRODUTO"));
             produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));

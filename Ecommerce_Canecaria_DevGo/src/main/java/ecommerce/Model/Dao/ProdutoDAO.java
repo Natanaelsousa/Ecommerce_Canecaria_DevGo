@@ -10,6 +10,8 @@ public interface ProdutoDAO {
 
     public void CadastrarProduto(Produto produto) throws SQLException;
 
+    public Produto BuscarProdutoPorID(int id_produto) throws SQLException;
+    
     public void ExclusaoDeCadastroProduto(Produto produto) throws SQLException;
 
     public void EditarCadastroProduto(Produto produto) throws SQLException;
