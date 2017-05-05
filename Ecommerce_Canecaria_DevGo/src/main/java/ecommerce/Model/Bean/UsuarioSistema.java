@@ -5,6 +5,9 @@
  */
 package ecommerce.Model.Bean;
 
+import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
+import ecommerce.Model.MetodosAcessores.Cliente;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,15 +20,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class UsuarioSistema {
     
- private static final Map<String, UsuarioSistema> USUARIOS_CADASTRADOS;
 
-  static {
-    USUARIOS_CADASTRADOS = new LinkedHashMap<>();
-    USUARIOS_CADASTRADOS.put("madruga", new UsuarioSistema("madruga",
-	    "Seu Madruga", "pagueoaluguel", new String[]{"BASICO"}));
-    USUARIOS_CADASTRADOS.put("bozo", new UsuarioSistema("bozo",
-	    "Palhaço Bozo", "abcd1234", new String[]{"BASICO", "ADMIN"}));
-  }
 
   private String usuario;
 
@@ -102,10 +97,12 @@ public boolean validaSenha (String senhaGravada, String senhaLogin) {
 	}
 
 
-  public static UsuarioSistema obterUsuario(String usuario, String senha) {
-    UsuarioSistema usuarioEncontrado = USUARIOS_CADASTRADOS.get(usuario);
-    if (usuarioEncontrado != null && BCrypt.checkpw(senha, usuarioEncontrado.getHashSenha())) {
-      return usuarioEncontrado;
+  public Cliente obterUsuario(String usuario, String senha) throws SQLException {
+     ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+     Cliente cliente;
+     cliente = daoValidar.EncontraUserCliente(usuario, senha);
+    if ( cliente != null && BCrypt.checkpw(senha, cliente.getSenha())) {
+      return cliente;
     }
     return null;
   }

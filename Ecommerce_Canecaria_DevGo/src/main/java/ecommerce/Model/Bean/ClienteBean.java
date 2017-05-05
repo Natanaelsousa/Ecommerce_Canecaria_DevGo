@@ -57,11 +57,10 @@ public class ClienteBean {
     public void validaLogin() throws SQLException, IOException {
             ClienteDAOImpl daoValidar = new ClienteDAOImpl();
         RequestContext context = RequestContext.getCurrentInstance();
-        criptoUser.setSenha(cliente.getSenha());
-        cliente.setSenha(criptoUser.getHashSenha());
+   
         String mensagem = "Erro ao se tentar se logar!";
         
-        if(daoValidar.EncontraUserCliente(cliente) != null){
+        if( criptoUser.obterUsuario(cliente.getEmail(), cliente.getSenha()) != null){
       FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteCliente.xhtml"); 
    }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
