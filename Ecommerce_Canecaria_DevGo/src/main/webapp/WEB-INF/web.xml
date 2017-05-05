@@ -19,6 +19,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>MinhaConta.xhtml</welcome-file>
+        <welcome-file>HomePage.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

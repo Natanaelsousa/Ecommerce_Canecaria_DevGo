@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <!-- Basic Page Needs
+       ================================================== -->
+        <meta charset="utf-8">
+            <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+            <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            <title>Canecaria - Home page</title></meta>
+        <meta name="description" content="Your Description Here"></meta>
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme"></meta>
+        <meta name="author" content="ThemeForces.Com"></meta>
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"></link>
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"></link>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"></link>
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"></link>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"></link>
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"></link>
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/style.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/responsive.css"></link>
+
+        <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'></link>
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'></link>
+
+    </h:head>
+
+    <h:body>
+        <div id="tf-home">
+             <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
+            </div>
+            
+            <div class="overlay">
+
+                <div id="sticky-anchor"></div>
+
+                <nav id="tf-menu" class="navbar navbar-default">
+                    <div class="container">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            
+                        </div>
+
+
+                       
+
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="content">
+                        <h1>Bem vindo a Canecaria</h1>
+                        <h3>Take a break to #Canecar</h3>
+
+                        <a  class="btn btn-primary my-btn" href="MinhaConta.html" >Acesse sua conta</a>
+                        <a href="Produtos.html" class="btn btn-primary my-btn2">Navegar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tf-service">
+            <div class="container">
+
+                <div class="col-md-4">
+
+                    <div class="media">
+                        <div class="media-left media-middle"></div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Precisa presentear alguem ?</h4>
+                            <p>Aqui na Canecaria você encontra os produtos mais diferentes do mercado. Canecas e copos personalizados, perfeitos
+                                para presentear alguem que você gosta.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <i class="fa fa-gears"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Take a break to #Canecar</h4>
+                            <p>Faça parte do nosso movimento, venha #Canecar conosco você tambem. Para saber mais sobre o nosso movimento #Canecas clique aqui. </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <i class="fa fa-heartbeat"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Fale conosco</h4>
+                            <p>Nós da Canecaria estamos disponiveis 24 horas por dia para melhor atende-lo. Nossa central 
+                                de atendimento conta com mais e 15 funcionarios para que seu atendimento possa ser o mais rapido possivel.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="space"></div>
+
+        <nav id="tf-footer">
+            <div class="container">
+                <div class="pull-left">
+                    <p>2017 © Canecaria. All Rights Reserved. Designed and Coded by <a href="https://dribbble.com/jennpereira">DevGo</a> for <a href="https://themeforces.com">	DevGo.Com</a></p>
+
+                </div>
+                <div class="pull-right"> 
+                    <ul class="social-media list-inline">
+                        <li><a href="#tf-footer">Visite tambem</a></li>
+                        <div class="space"></div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+
+        <!-- Javascripts
+        ================================================== -->
+        <script type="text/javascript" src="js/ToInterationHomeSobreEmpresa.js"></script>
+
+    </h:body>
+</html>
+
+
