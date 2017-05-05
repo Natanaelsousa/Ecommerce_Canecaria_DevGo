@@ -2,6 +2,7 @@ package ecommerce.Model.Dao;
 
 import ecommerce.Model.MetodosAcessores.Funcionario;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -12,6 +13,10 @@ public interface FuncionarioDAO {
     public void CadastrarFuncionario(Funcionario funcionario) throws SQLException;
 
     public void EditarCadastroFuncionario(Funcionario funcionario) throws SQLException;
-    
+
     public Funcionario findByCPF(String cpf) throws SQLException;
+
+    public void ExclusaoDeCadastroFuncionario(Funcionario funcionario) throws SQLException;
+    
+    public List<Funcionario> ListarProdutosPorIDeNome() throws SQLException;
 }

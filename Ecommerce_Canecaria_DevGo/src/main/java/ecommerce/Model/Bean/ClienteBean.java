@@ -33,8 +33,8 @@ public class ClienteBean {
      */
 
     public void CadastrarCliente() {
-        criptoUser.setSenha(cliente.getSenha());
-        cliente.setSenha(criptoUser.getHashSenha());
+        getCriptoUser().setSenha(cliente.getSenha());
+        cliente.setSenha(getCriptoUser().getHashSenha());
         ClienteDAOImpl daoCadastro = new ClienteDAOImpl();
         try {
             daoCadastro.CadastrarCliente(cliente);
@@ -57,11 +57,10 @@ public class ClienteBean {
     public void validaLogin() throws SQLException, IOException {
             ClienteDAOImpl daoValidar = new ClienteDAOImpl();
         RequestContext context = RequestContext.getCurrentInstance();
-        criptoUser.setSenha(cliente.getSenha());
-        cliente.setSenha(criptoUser.getHashSenha());
+   
         String mensagem = "Erro ao se tentar se logar!";
         
-        if(daoValidar.EncontraUserCliente(cliente) != null){
+        if( getCriptoUser().obterUsuario(cliente.getEmail(), cliente.getSenha()) != null){
       FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteCliente.xhtml"); 
    }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -84,6 +83,20 @@ public class ClienteBean {
      */
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    /**
+     * @return the criptoUser
+     */
+    public UsuarioSistema getCriptoUser() {
+        return criptoUser;
+    }
+
+    /**
+     * @param criptoUser the criptoUser to set
+     */
+    public void setCriptoUser(UsuarioSistema criptoUser) {
+        this.criptoUser = criptoUser;
     }
 
 }

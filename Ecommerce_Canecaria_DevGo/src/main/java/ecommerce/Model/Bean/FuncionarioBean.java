@@ -4,6 +4,7 @@ package ecommerce.Model.Bean;
 import ecommerce.Model.Dao.FuncionarioDAO;
 import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Funcionario;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -62,4 +63,19 @@ public class FuncionarioBean {
         
     }
 
+       public String ExcluirFuncionario() throws Exception {
+        FuncionarioDAO funcionarios = new FuncionarioDAOImpl();
+        funcionarios.ExclusaoDeCadastroFuncionario(funcionario);
+        return "Excluido";
+    }
+       
+           /* Lista os produtos cadastrados no banco */
+    public List<Funcionario> ListarProdutosIdENome() throws Exception {
+        FuncionarioDAO funcionariosDao = new FuncionarioDAOImpl();
+
+        List<Funcionario> ListaFuncionarios = funcionariosDao.ListarProdutosPorIDeNome();
+
+        return ListaFuncionarios;
+    }
+     
 }
