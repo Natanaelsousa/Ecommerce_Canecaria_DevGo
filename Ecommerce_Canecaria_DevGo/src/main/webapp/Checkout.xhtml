@@ -77,7 +77,7 @@
                                             <span>1</span>
                                         </div>
                                         <div class="title">
-                                            <h1>Endereço de entrega</h1>
+                                            <h2>Endereço de entrega</h2>
                                         </div>
                                         <!--<div class="modify">
                                             <i class="fa fa-plus-circle"></i>
@@ -88,37 +88,42 @@
                                         <h:form class="go-right" id="formDois" prependId="false" enctype="multipart/form-data">
                                             <div>
 
-                                                <label for="Cep">Cep</label>
+                                           
                                                 <h:inputText pt:type="number" class="form-control" id="CepInput"
                                                              required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
-
+                                                <label class="cep" for="CEP">CEP</label>
                                             </div>
 
                                             <div>
-                                                <label for="Rua">Rua</label>
+                                               
                                                 <h:inputText pt:type="text" class="form-control"
                                                              required="true" value = "#{ClienteBean.cliente.rua}" id="rua" pt:placeholder="Digite a rua" />
+                                                             <label class="Rua" for="Rua">Rua</label>
                                             </div>
                                             <div>
-                                                <label for="Numero">Numero</label>
+                                                <label for="Numero">Número</label>
                                                 <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
                                                              required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Digite o número" />
+                                            <label class="numero" for="numero">Número</label>
                                             </div>
                                             <div>
-                                                <label for="Bairro">Bairro</label>
+                                                
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
                                                              required="true" value = "#{ClienteBean.cliente.bairro}" id="bairro" />
+                                                <label class="bairro" for="bairro">Bairro</label>
                                             </div>
                                             <div>
-                                                <label for="Cidade">Cidade</label>
+                                             
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
                                                              required="true" value = "#{ClienteBean.cliente.cidade}" id="cidade" />
+                                                 <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
-                                                <label for="UF">uf</label>
+                                             
                                                 <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
                                                              required="true" value = "#{ClienteBean.cliente.estado}"    />
+                                                <label class="uf" for="uf">Estado</label>
                                             </div>
                                             
                                             
@@ -133,7 +138,7 @@
                                             <span>2</span>
                                         </div>
                                         <div class="title">
-                                            <h1>Forma de Pagamento</h1>
+                                            <h2>Forma de Pagamento</h2>
                                         </div>
                                         <!-- <div class="modify">
                                             <i class="fa fa-plus-circle"></i>
@@ -212,7 +217,7 @@
                                             <span>3</span>
                                         </div>
                                         <div class="title">
-                                            <h1>Resumo do pedido</h1>
+                                            <h2>Resumo do pedido</h2>
                                         </div>
                                        <!-- <div class="modify">
                                             <i class="fa fa-plus-circle"></i>
@@ -240,7 +245,7 @@
                                             </div>
                                         </div>	
                                         <div class="right" id="reviewed">
-                                            <div class="billing">
+                                            <!--<div class="billing">
                                                 <span class="title">Faturamento:</span>
                                                 <div class="address_reviewed">
                                                     <span class="name">John Smith</span>
@@ -248,7 +253,7 @@
                                                     <span class="location">Everytown, USA, 12345</span>
                                                     <span class="phone">(123)867-5309</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="shipping">
                                                 <span class="title">Remessa:</span>
                                                 <div class="address_reviewed">
@@ -279,7 +284,8 @@
 
                     </div>
                 </div>
-
+                
+                <hr />
                 <!-- Fim -->
             </div>
 
