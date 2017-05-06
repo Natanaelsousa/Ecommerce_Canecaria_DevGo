@@ -87,7 +87,7 @@ public class Projeto2Bean implements Serializable {
         return qtde_produto;
     }
 
-    public void setqtde_produto(Integer qtde_produto) {
+    public void setQtde_produto(Integer qtde_produto) {
         this.qtde_produto = qtde_produto;
     }
 

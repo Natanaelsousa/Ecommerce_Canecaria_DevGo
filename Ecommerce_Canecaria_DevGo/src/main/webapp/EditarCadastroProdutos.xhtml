@@ -103,6 +103,11 @@ and open the template in the editor.
                     <h:outputLabel for="DescricaoProduto" value="Descreva o produto:" />
                     <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{Produto2Bean.produto2.descricao_produto}" />
                 </div>
+                
+                <div class="form-group col-md-7">
+                    <h:outputLabel for="QuantidadeProduto" value="QuantidadeEstoque:" />
+                    <h:inputText p:type="number" class="form-control" id="QuantidadeInput" value="#{Produto2Bean.produto2.qtde_produto}" />
+                </div>
 
 
                 
