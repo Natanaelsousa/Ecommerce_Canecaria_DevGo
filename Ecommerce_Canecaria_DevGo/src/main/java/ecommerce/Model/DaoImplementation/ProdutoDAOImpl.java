@@ -44,7 +44,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
         String query = "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO,QTDE_PRODUTO, COD_CATEGORIA) VALUES (?,?,?,?,?)";
 
         // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
-        produto.setqtde_produto(0);
+        produto.setQtde_produto(0);
 
         insert(query, produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getQtde_produto(), produto.getCod_categoria());
 

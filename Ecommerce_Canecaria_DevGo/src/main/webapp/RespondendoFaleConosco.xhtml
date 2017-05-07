@@ -53,33 +53,33 @@
 
             <div class="container">
                 <h2>Solicitações pendentes</h2>
-                <div class="space"></div>
-                <p>Chamados ${ContatoBean.id_contato}</p>            
-
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Nome do cliente</th>
-                            <th>E-mail</th>
-                            <th>Descrição</th>
-                            <th>Tipo de solicitação</th>
-                            <th>Finalizar chamado</th>
-                        </tr>
-                    </thead>
-                    <ui:repeat value="#{ContatoBean.listEncontrarFilaPorId()}" var="contato">
-                        <tbody>
+                <div class="space"></div>    
+                <h:form>
+                    <table class="table table-condensed">
+                        <thead>
                             <tr>
-                                <td>#{contato.nome_completo}</td>
-                                <td>#{contato.email_contato}</td>
-                                <td>#{contato.descricao_contato}</td>
-                                <td>#{contato.cod_tipo_solicitacao}</td>
-                                <td><h:form> <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Concluido" > 
-                                        </p:commandButton>
-                                    </h:form> </td>
+                                <th>Nome do cliente</th>
+                                <th>E-mail</th>
+                                <th>Descrição</th>
+                                <th>Status</th>
+                                <th>Finalizar chamado</th>
                             </tr>
-                        </tbody>
-                    </ui:repeat>      
-                </table>
+                        </thead>
+                        <ui:repeat value="#{ContatoBean.listEncontrarFilaPorId()}" var="contato">
+                            <tbody>
+                                <tr>
+                                    <td>#{contato.nome_completo}</td>
+                                    <td>#{contato.email_contato}</td>
+                                    <td>#{contato.descricao_contato}</td>
+                                    <td>#{contato.status_solicitacao}</td>
+                                    <td> <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Concluido" action="#{ContatoBean.finalizandoChamado(contato.cod_solicitacao)}" > 
+                                        </p:commandButton>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </ui:repeat>      
+                    </table>
+                </h:form>
 
             </div>
 

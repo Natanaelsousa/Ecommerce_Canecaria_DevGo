@@ -20,7 +20,6 @@ public class ContatoBean {
 
     private Contato contato = new Contato();
     private int id_contato;
-    
 
     public ContatoBean() {
     }
@@ -40,8 +39,6 @@ public class ContatoBean {
     public void setId_contato(int id_contato) {
         this.id_contato = id_contato;
     }
-    
-    
 
     /*Responsavel pelo insert dos formularios de solicitação*/
     public void CadastrarSolicitacaoContato() throws Exception {
@@ -78,39 +75,33 @@ public class ContatoBean {
         ContatoDAO contatos = new ContatoDAOImpl();
         List<Contato> ListarSolicitacoesContatos = null;
         try {
-          ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+            ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
         return "RespondendoFaleConosco";
     }
-    
-     public List<Contato> listEncontrarFilaPorId() throws Exception {
+
+    public List<Contato> listEncontrarFilaPorId() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
         List<Contato> ListarSolicitacoesContatos = null;
         try {
-          ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+            ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
         return ListarSolicitacoesContatos;
     }
 
-    //    private Contato contato = null;
-    //    public Contato getContato() throws SQLException {
-//        ContatoDAO contatosDao = new ContatoDAOImpl();
-//        List<Contato> contatoList = null;
-//        if (contato == null) {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            Map<String, String> params = fc.getExternalContext()
-//                    .getRequestParameterMap();
-//            String cod_tipo_solicitacao = params.get("cod_tipo_solicitacao");
-//            if (cod_tipo_solicitacao != null) {
-//                contatoList = contatosDao.ListarSolicitacoesDeFila(Integer.parseInt(cod_tipo_solicitacao));
-//            } else {
-//                contatoList = new ArrayList<Contato>();
-//            }
-//        }
-//        return contato;
-//    }
+ 
+    public String finalizandoChamado(int cod_chamado) throws Exception {
+        ContatoDAO contatos = new ContatoDAOImpl();
+       try {
+            contatos.finalizarChamado(contato, cod_chamado);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel realizar solicitação");
+        }
+       return "AcompanhamentoFaleConosco";
+    }
+
 }

@@ -10,7 +10,6 @@ import ecommerce.Model.MetodosAcessores.Contato;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +28,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
+   //Lista os chamados por seus tipo de fila diferente
     public List<Contato> ListarSolicitacoesContatos() throws SQLException {
         List<Contato> contato = new ArrayList<Contato>();
 
@@ -54,7 +54,8 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
-    /* Verifica quantos chamados tem em cada fila */
+    //Verifica quantos chamados tem em cada fila 
+    @Override
     public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException {
 
         String query = "select count(*) from contato where COD_TIPO_SOLICITACAO = " + cod_tipo_solicitacao + " and STATUS_SOLICITACAO = 0";
@@ -71,6 +72,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
+    //Seleciona os chamados de um tipo de fila com status 0(em aberto)
     public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException {
 
         List<Contato> contato = new ArrayList<Contato>();
@@ -102,9 +104,9 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
-    //encontrar funcionario atraves do CPF
+    //Lista os chamados
     public List<Contato> encontrarFilaPorId(int id_fila) throws SQLException {
-        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = " + id_fila + "";
+        String query = "SELECT * FROM CONTATO WHERE COD_TIPO_SOLICITACAO = " + id_fila + " and STATUS_SOLICITACAO = 0 ";
         List<Contato> contatos = new ArrayList<Contato>();
 
         PreparedStatement stmt
@@ -126,5 +128,20 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         rs.close();
         stmt.close();
         return contatos;
+    }
+    
+    
+     //Encerrar chamado
+    @Override
+    public void finalizarChamado(Contato contato,int cod_chamado) throws SQLException {
+
+        String query = "UPDATE contato "
+                + "SET STATUS_SOLICITACAO = ? "
+                + " WHERE COD_SOLICITACAO = ? ";
+
+        contato.setCod_solicitacao(cod_chamado);
+        contato.setStatus_solicitacao(1);
+        update(query, contato.getCod_solicitacao(),contato.getStatus_solicitacao());
+
     }
 }
