@@ -146,11 +146,12 @@
                                         <div class="left">
                                             <form class="go-right">
                                                 
-                                                 <div class="form-group col-md-7" id="formaPagamento">
+                                                                                            
+                                                 <div class="form-group col-md-12" id="formaPagamento">
                                             
-                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
+                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}">
                                                     <f:selectItem itemValue="" itemLabel="Selecione..."  />
-                                                    <f:selectItems value="#{finalizarCompraBean.ListarTipoPagamento()}" var="categoria" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
+                                                    <f:selectItems value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
    
                                                 </h:selectOneMenu>
                                                 
