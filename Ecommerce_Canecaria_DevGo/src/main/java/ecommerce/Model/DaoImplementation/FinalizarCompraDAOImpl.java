@@ -10,10 +10,23 @@ import java.util.List;
  * @author Erik
  */
 public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements FinalizarCompraDAO {
-
+    
+    
     @Override
     public void CadastrarPedido(FinalizarCompra finalizaCompra) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+           String query = 
+                   "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO,QTDE_PRODUTO, COD_CATEGORIA) VALUES (?,?,?,?,?)";
+
+   
+
+        insert(query, 
+                finalizaCompra.getCodPagamento(),finalizaCompra.getCodCliente(), 
+                finalizaCompra.getCodStatus(), finalizaCompra.getCep(), 
+                finalizaCompra.getRua(), finalizaCompra.getNumero(), 
+                finalizaCompra.getBairro(), finalizaCompra.getCidade(), finalizaCompra.getEstado(), 
+                finalizaCompra.getCodFinalizacaoCompra(), finalizaCompra.getValorTotalCompra());
+       
     }
 
     @Override

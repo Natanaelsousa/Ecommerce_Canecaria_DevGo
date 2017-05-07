@@ -23,6 +23,34 @@ public class FinalizarCompra {
     private float valorTotalCompra;
     private Timestamp dataPedido;
 
+    
+    public FinalizarCompra(){
+        
+    }
+    
+    
+    
+      public FinalizarCompra(
+              
+              Integer codPagamento,
+              Integer codCliente,Integer codStatus, String cep, 
+              String rua, String numero, String bairro, 
+              String cidade,String estado, 
+              String codFinalizacaoCompra, float valorTotalCompra){
+          
+              this.codPagamento =codPagamento;
+              this.codCliente = codCliente;
+              this.codStatus = codStatus;
+              this.cep = cep;
+              this.rua = rua;
+              this.numero = numero;
+              this.bairro = bairro;
+              this.cidade = cidade;
+              this.estado = estado;
+              this.codFinalizacaoCompra = codFinalizacaoCompra;
+              this.valorTotalCompra = valorTotalCompra;
+    }
+    
     /**
      * @return the codPedido
      */
