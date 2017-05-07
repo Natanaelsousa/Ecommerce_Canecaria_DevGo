@@ -125,9 +125,7 @@
                                                              required="true" value = "#{ClienteBean.cliente.estado}"    />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
-                                            
-                                            
-   
+                                        
                                         </h:form>
                                        
                                     </div>
@@ -147,6 +145,17 @@
                                     <div class="content" id="payment">
                                         <div class="left">
                                             <form class="go-right">
+                                                
+                                                 <div class="form-group col-md-7" id="formaPagamento">
+                                            
+                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
+                                                    <f:selectItem itemValue="" itemLabel="Selecione..."  />
+                                                    <f:selectItems value="#{finalizarCompraBean.ListarTipoPagamento()}" var="categoria" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
+   
+                                                </h:selectOneMenu>
+                                                
+                                                </div>
+      
                                                 <div>
                                                     <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Card Number</label>
                                                 </div>
