@@ -90,7 +90,7 @@
 
                                            
                                                 <h:inputText pt:type="number" class="form-control" id="CepInput"
-                                                             required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite o CEP"
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
                                                 <label class="cep" for="CEP">CEP</label>
                                             </div>
@@ -98,34 +98,43 @@
                                             <div>
                                                
                                                 <h:inputText pt:type="text" class="form-control"
-                                                             required="true" value = "#{ClienteBean.cliente.rua}" id="rua" pt:placeholder="Digite a rua" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" pt:placeholder="Digite a rua" />
                                                              <label class="Rua" for="Rua">Rua</label>
                                             </div>
                                             <div>
                                                 <label for="Numero">Número</label>
                                                 <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
-                                                             required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Digite o número" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" />
                                             <label class="numero" for="numero">Número</label>
                                             </div>
                                             <div>
                                                 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
-                                                             required="true" value = "#{ClienteBean.cliente.bairro}" id="bairro" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" />
                                                 <label class="bairro" for="bairro">Bairro</label>
                                             </div>
                                             <div>
                                              
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
-                                                             required="true" value = "#{ClienteBean.cliente.cidade}" id="cidade" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" />
                                                  <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
                                              
                                                 <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
-                                                             required="true" value = "#{ClienteBean.cliente.estado}"    />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}"    />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
-                                        
+                                            
+                                            
+                                            <br></br>       
+                                       
+                                       
+                                      
+                        <div class="col-md-12" id="btn">
+                            <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                        </div>
+                                                                                    
                                         </h:form>
                                        
                                     </div>
@@ -149,7 +158,7 @@
                                                                                             
                                                  <div class="form-group col-md-12" id="formaPagamento">
                                             
-                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}">
+                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
                                                     <f:selectItem itemValue="" itemLabel="Selecione..."  />
                                                     <f:selectItems value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
    
@@ -280,10 +289,14 @@
                                                     <span class="number_hidden">xxxx-xxxx-xxxx-1111</span>
                                                 </div>
                                             </div>
+                                            
+                                            <h:form>    
                                             <div id="complete">
+                                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="cadastro"></h:commandButton>
                                                 <a class="big_button" id="complete" href="#">Finalizar Compra</a>
                                                 <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
                                             </div>
+                                            </h:form>    
                                         </div>
                                     </div>
 

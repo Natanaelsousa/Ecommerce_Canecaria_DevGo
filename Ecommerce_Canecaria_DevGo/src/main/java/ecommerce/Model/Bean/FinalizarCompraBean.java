@@ -55,15 +55,28 @@ public class FinalizarCompraBean {
     }
     
      /* Finalizar a compra do usario */
-    public void CadastrarPedido() throws Exception {
-        FinalizarCompraDAO finalizarCompra = new FinalizarCompraDAOImpl();
+    public void CadastrarCompra() throws Exception {
+        FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
         try {
-              finalizarCompra.CadastrarPedido(compra);
+            System.out.println("A444 "+compra.getCodPagamento());
+            System.out.println("A33 "+compra.getCep());
+              finalizar.CadastrarPedido(compra);
+              
         } catch (SQLException erro) {
+            
+            System.err.println("zzzzzz  "+ erro);
             
         }
         compra = new FinalizarCompra();
  
+    }
+    
+    
+    public void estado(){
+        
+        System.out.println("A444 "+compra.getCodPagamento());
+            System.out.println("A33 "+compra.getCep());
+        
     }
 
 

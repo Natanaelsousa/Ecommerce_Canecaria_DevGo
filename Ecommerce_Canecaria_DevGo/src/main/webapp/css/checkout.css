@@ -33,6 +33,8 @@ form > div {
     max-width:320px;
 
 }
+
+
 form input {
     width: 100%;
     max-width:320px;
@@ -47,10 +49,12 @@ form input {
 }
 form input:valid{
     background: white;
-}
+} 
 form input:focus{
     border-color:#80c0ff;
+    
 }
+
 form input:focus + label{
     background:#80c0ff;
     color: white;
@@ -545,5 +549,41 @@ span.method{
         width: 40%;
         padding-top: 5px;
     }
+
+
+ .zz{
+    display:block;
+    float:none;
+    background:#80c0ff;
+    width:200px;
+    border:0;
+    padding:5px 15px;
+    font-size:1.6em;
+    color:#FFF;
+    border-bottom:3px solid #4da7ff;
+    border-radius:2px;
+    clear:both;
+    text-align:center;
+    text-decoration: none;
+    margin:15px auto;
+}
+
+
+#btn {
+    display:block;
+    float:none;
+    background:#80c0ff !important;
+    width:200px;
+    border:0;
+    padding:5px 15px;
+    font-size:1.6em;
+    color:#FFF ;
+    border-bottom:3px solid #4da7ff;
+    border-radius:2px;
+    clear:both;
+    text-align:center;
+    text-decoration: none;
+    margin:15px auto;
+} 
 
 
