@@ -1,15 +1,11 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.FinalizarCompraDAO;
-import ecommerce.Model.Dao.PagamentoDAO;
 import ecommerce.Model.DaoImplementation.FinalizarCompraDAOImpl;
-import ecommerce.Model.DaoImplementation.PagamentoDAOImpl;
 import ecommerce.Model.MetodosAcessores.FinalizarCompra;
-import ecommerce.Model.MetodosAcessores.Pagamento;
 import java.sql.SQLException;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 
 /**
@@ -17,7 +13,7 @@ import javax.faces.bean.RequestScoped;
  * @author Erik
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class FinalizarCompraBean {
 
     private boolean renderedPagamento;
@@ -56,16 +52,21 @@ public class FinalizarCompraBean {
     
      /* Finalizar a compra do usario */
     public void CadastrarCompra() throws Exception {
+        
+         Integer cod = StatusPedido();
+         
+        compra.setCodCliente(1);
+        compra.setCodStatus(cod);
+                
         FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
+        
         try {
-            System.out.println("A444 "+compra.getCodPagamento());
-            System.out.println("A33 "+compra.getCep());
+            
               finalizar.CadastrarPedido(compra);
               
         } catch (SQLException erro) {
             
-            System.err.println("zzzzzz  "+ erro);
-            
+                  
         }
         compra = new FinalizarCompra();
  
@@ -76,6 +77,24 @@ public class FinalizarCompraBean {
         
         System.out.println("A444 "+compra.getCodPagamento());
             System.out.println("A33 "+compra.getCep());
+        
+    }
+    
+    public int StatusPedido(){
+        
+        int status;
+        
+        if(compra.getCodPagamento() == 1){
+            
+            status = 2;
+            
+        }else{
+            
+            status = 3;
+            
+        } 
+        
+        return status;
         
     }
 

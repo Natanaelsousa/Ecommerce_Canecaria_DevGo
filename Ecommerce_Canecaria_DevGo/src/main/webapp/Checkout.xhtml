@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
 
     <h:head>
         <meta charset="utf-8" />
@@ -88,7 +88,7 @@
                                         <h:form class="go-right" id="formDois" prependId="false" enctype="multipart/form-data">
                                             <div>
 
-                                           
+
                                                 <h:inputText pt:type="number" class="form-control" id="CepInput"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
@@ -96,47 +96,47 @@
                                             </div>
 
                                             <div>
-                                               
+
                                                 <h:inputText pt:type="text" class="form-control"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" pt:placeholder="Digite a rua" />
-                                                             <label class="Rua" for="Rua">Rua</label>
+                                                <label class="Rua" for="Rua">Rua</label>
                                             </div>
                                             <div>
                                                 <label for="Numero">Número</label>
                                                 <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" />
-                                            <label class="numero" for="numero">Número</label>
+                                                <label class="numero" for="numero">Número</label>
                                             </div>
                                             <div>
-                                                
+
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" />
                                                 <label class="bairro" for="bairro">Bairro</label>
                                             </div>
                                             <div>
-                                             
+
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" />
-                                                 <label class="cidade" for="cidade">Cidade</label>
+                                                <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
-                                             
+
                                                 <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}"    />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
-                                            
-                                            
+
+
                                             <br></br>       
-                                       
-                                       
-                                      
-                        <div class="col-md-12" id="btn">
-                            <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
-                        </div>
-                                                                                    
+
+
+
+                                            <div class="col-md-12" id="btn">
+                                                <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                            </div>
+
                                         </h:form>
-                                       
+
                                     </div>
                                 </div>
                                 <div class="column column2">
@@ -153,19 +153,19 @@
                                     </div>
                                     <div class="content" id="payment">
                                         <div class="left">
-                                            <form class="go-right">
-                                                
-                                                                                            
-                                                 <div class="form-group col-md-12" id="formaPagamento">
-                                            
-                                                     <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
-                                                    <f:selectItem itemValue="" itemLabel="Selecione..."  />
-                                                    <f:selectItems value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
-   
-                                                </h:selectOneMenu>
-                                                
+                                            <h:form class="go-right">
+
+
+                                                <div class="form-group col-md-12" id="formaPagamento">
+
+                                                    <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
+                                                        <f:selectItem itemValue="" itemLabel="Selecione..."  />
+                                                        <f:selectItems value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
+
+                                                    </h:selectOneMenu>
+
                                                 </div>
-      
+
                                                 <div>
                                                     <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Card Number</label>
                                                 </div>
@@ -211,8 +211,16 @@
                                                         <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change" data-validation-minlength="3" data-type="name" data-required="true" data-error-message="Enter Your Card Security Code"/><label for="ccv">Security Code</label>
                                                     </div>
                                                 </div>
-                                            </form>
+
+                                                <a  class="big_button" id="complete">
+                                                    <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                                </a>
+                                                
+                                            </h:form>
+                                            
+                                            
                                         </div>
+
                                         <div class="right">
                                             <div class="accepted">
                                                 <span><img src="img/Z5HVIOt.png"/></span>
@@ -227,7 +235,7 @@
                                                 <p class="security info">Os seus dados de pagamento estão seguros aqui, possuímos o certificado de segurança que a todo ano é renovado com intuíto de garantir que suas informações não sejam destinadas a terceiros. </p>
                                             </div>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                                 <div class="column column3">
@@ -238,9 +246,9 @@
                                         <div class="title">
                                             <h2>Resumo do pedido</h2>
                                         </div>
-                                       <!-- <div class="modify">
-                                            <i class="fa fa-plus-circle"></i>
-                                        </div> -->
+                                        <!-- <div class="modify">
+                                             <i class="fa fa-plus-circle"></i>
+                                         </div> -->
                                     </div>
                                     <div class="content" id="final_products">
                                         <div class="left" id="ordered">
@@ -289,13 +297,13 @@
                                                     <span class="number_hidden">xxxx-xxxx-xxxx-1111</span>
                                                 </div>
                                             </div>
-                                            
+
                                             <h:form>    
-                                            <div id="complete">
-                                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="cadastro"></h:commandButton>
-                                                <a class="big_button" id="complete" href="#">Finalizar Compra</a>
-                                                <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
-                                            </div>
+                                                <div id="complete">
+                                                    <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="cadastro"></h:commandButton>
+                                                    <a class="big_button" id="complete" href="#">Finalizar Compra</a>
+                                                    <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
+                                                </div>
                                             </h:form>    
                                         </div>
                                     </div>
@@ -307,7 +315,7 @@
 
                     </div>
                 </div>
-                
+
                 <hr />
                 <!-- Fim -->
             </div>
