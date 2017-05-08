@@ -47,9 +47,9 @@ form input {
     padding: 8px 12px;
     outline: 0;
 }
-/*form input:valid{
+ input#card_number:valid, input#ccv:valid{
     background: white;
-} */
+} 
 
 form label {
     background: white;
@@ -58,7 +58,7 @@ form label {
 }
 form input:focus{
     border-color:#80c0ff;
-    background: white;
+   /* background: white;*/
 }
 
 form input:focus + label{
@@ -534,14 +534,14 @@ span.method{
     }
     form input:focus + label, form textarea:focus + label {
         background:#80c0ff;
-        color: white;
+        /* color: white;*/
         font-size: 100%;
         padding: 1px 6px;
         z-index: 2;
         text-transform: uppercase;
     }
     form label {
-        /* transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s; */
+        transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
         position: absolute;
         color: #999;
         padding: 7px 6px;
