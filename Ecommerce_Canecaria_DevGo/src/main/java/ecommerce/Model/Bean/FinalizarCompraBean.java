@@ -1,42 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ecommerce.Model.Bean;
 
-import ecommerce.Model.Dao.PagamentoDAO;
-import ecommerce.Model.DaoImplementation.PagamentoDAOImpl;
-import ecommerce.Model.MetodosAcessores.Pagamento;
-import java.util.List;
+import ecommerce.Model.Dao.FinalizarCompraDAO;
+import ecommerce.Model.DaoImplementation.FinalizarCompraDAOImpl;
+import ecommerce.Model.MetodosAcessores.FinalizarCompra;
+import java.sql.SQLException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+
 
 /**
  *
  * @author Erik
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class FinalizarCompraBean {
 
-    private boolean renderedPagamento = true;
-    private int tipoPagamento;
+    private boolean renderedPagamento;
+    private FinalizarCompra compra = new FinalizarCompra();
+        
+        
 
     /**
      * Creates a new instance of FinalizarCompra
      */
     public FinalizarCompraBean() {
+
+    }
+    
+     public FinalizarCompra getFinalizarCompra() {
+        return compra;
     }
 
-    private Pagamento pagamento;
-
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
+    public void setFinalizarCompra(FinalizarCompra compra) {
+        this.compra = compra;
     }
 
     public boolean isRenderedPagamento() {
@@ -47,35 +44,61 @@ public class FinalizarCompraBean {
         this.renderedPagamento = renderedPagamento;
     }
 
-    public int getTipoPagamento() {
-        return tipoPagamento;
-    }
-
-    public void setTipoPagamento(int tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
-    }
-
     public void renderizar() {
 
-   
-           renderedPagamento = true;
-          
+        renderedPagamento = true;
 
     }
-
-    /* Lista as categorias cadastradas no banco */
- /* Lista as categorias cadastradas no banco */
-    public List<Pagamento> ListarTipoPagamento() throws Exception {
-        PagamentoDAO pagamentoDao = new PagamentoDAOImpl();
-
-        List<Pagamento> pagamentos = pagamentoDao.ListarPagamento();
-
-        return pagamentos;
-
-    }
-
- 
-
     
+     /* Finalizar a compra do usario */
+    public void CadastrarCompra() throws Exception {
+        
+         Integer cod = StatusPedido();
+         
+        compra.setCodCliente(1);
+        compra.setCodStatus(cod);
+                
+        FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
+        
+        try {
+            
+              finalizar.CadastrarPedido(compra);
+              
+        } catch (SQLException erro) {
+            
+                  
+        }
+        compra = new FinalizarCompra();
+ 
+    }
+    
+    
+    public void estado(){
+        
+        System.out.println("A444 "+compra.getCodPagamento());
+            System.out.println("A33 "+compra.getCep());
+        
+    }
+    
+    public int StatusPedido(){
+        
+        int status;
+        
+        if(compra.getCodPagamento() == 1){
+            
+            status = 2;
+            
+        }else{
+            
+            status = 3;
+            
+        } 
+        
+        return status;
+        
+    }
+
+
+   
 
 }
