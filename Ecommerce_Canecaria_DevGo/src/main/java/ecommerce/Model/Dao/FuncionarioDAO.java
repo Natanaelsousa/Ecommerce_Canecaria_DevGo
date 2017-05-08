@@ -16,7 +16,5 @@ public interface FuncionarioDAO {
 
     public Funcionario findByCPF(String cpf) throws SQLException;
 
-    public void ExclusaoDeCadastroFuncionario(Funcionario funcionario) throws SQLException;
-    
-    public List<Funcionario> ListarProdutosPorIDeNome() throws SQLException;
+ 
 }
