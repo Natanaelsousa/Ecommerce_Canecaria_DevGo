@@ -53,10 +53,11 @@ public class FinalizarCompraBean {
      /* Finalizar a compra do usario */
     public void CadastrarCompra() throws Exception {
         
-         Integer cod = StatusPedido();
+                
+         StatusPedido();
          
         compra.setCodCliente(1);
-        compra.setCodStatus(cod);
+        
                 
         FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
         
@@ -80,22 +81,21 @@ public class FinalizarCompraBean {
         
     }
     
-    public int StatusPedido(){
+    public void StatusPedido(){
         
         int status;
         
         if(compra.getCodPagamento() == 1){
             
-            status = 2;
+          compra.setCodStatus(2);
             
         }else{
             
-            status = 3;
+           compra.setCodStatus(3);
             
         } 
         
-        return status;
-        
+       
     }
 
 

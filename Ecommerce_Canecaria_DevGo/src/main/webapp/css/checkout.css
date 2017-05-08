@@ -47,12 +47,18 @@ form input {
     padding: 8px 12px;
     outline: 0;
 }
-form input:valid{
+/*form input:valid{
     background: white;
-} 
+} */
+
+form label {
+    background: white;
+    color: white;
+    
+}
 form input:focus{
     border-color:#80c0ff;
-    
+    background: white;
 }
 
 form input:focus + label{
@@ -201,6 +207,11 @@ img{
     text-decoration: none;
     margin:15px auto;
 }
+
+.content .continue input{
+    border: none;
+}
+
 #shipping,
 #email{
     border-bottom:1px dotted #ccc;
@@ -478,7 +489,9 @@ span.method{
         width:100%;
         margin-top:30px;
 
- 
+     .content .continue input{
+    border: none;
+}
 
     }
     @media(max-width:600px){
@@ -488,8 +501,12 @@ span.method{
             margin-top:30px;
         }
         
+    
+        
      
     }
+    
+
     form > div {
         position: relative;
         overflow: hidden;
@@ -509,9 +526,9 @@ span.method{
         padding: 8px 12px;
         outline: 0;
     }
-    form input:valid, form textarea:valid {
+    /*form input:valid, form textarea:valid {
         background: white;
-    }
+    } */
     form input:focus, form textarea:focus {
         border-color: #f06d06;
     }
@@ -550,40 +567,5 @@ span.method{
         padding-top: 5px;
     }
 
-
- .zz{
-    display:block;
-    float:none;
-    background:#80c0ff;
-    width:200px;
-    border:0;
-    padding:5px 15px;
-    font-size:1.6em;
-    color:#FFF;
-    border-bottom:3px solid #4da7ff;
-    border-radius:2px;
-    clear:both;
-    text-align:center;
-    text-decoration: none;
-    margin:15px auto;
 }
-
-
-#btn {
-    display:block;
-    float:none;
-    background:#80c0ff !important;
-    width:200px;
-    border:0;
-    padding:5px 15px;
-    font-size:1.6em;
-    color:#FFF ;
-    border-bottom:3px solid #4da7ff;
-    border-radius:2px;
-    clear:both;
-    text-align:center;
-    text-decoration: none;
-    margin:15px auto;
-} 
-
 

@@ -33,7 +33,6 @@
         <link rel="stylesheet" type="text/css"  href="css/cabecalho-rodape.css" />
         <link rel="stylesheet" type="text/css"  href="css/checkout.css" />
 
-        <script type="text/javascript" src="js/modernizr.custom.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>
 
 
@@ -86,9 +85,10 @@
                                     <div class="content" id="email">
 
                                         <h:form class="go-right" id="formDois" prependId="false" enctype="multipart/form-data">
+                                           
+                                            
                                             <div>
-
-
+ 
                                                 <h:inputText pt:type="number" class="form-control" id="CepInput"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
@@ -125,14 +125,10 @@
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}"    />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
+                                      
 
-
-                                            <br></br>       
-
-
-
-                                            <div class="col-md-12" id="btn">
-                                                <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                            <div class="continue" id="btn">
+                                                <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
                                             </div>
 
                                         </h:form>
@@ -153,7 +149,7 @@
                                     </div>
                                     <div class="content" id="payment">
                                         <div class="left">
-                                            <h:form class="go-right">
+                                           <h:form class="go-right" id="formtres" prependId="false" enctype="multipart/form-data">
 
 
                                                 <div class="form-group col-md-12" id="formaPagamento">
@@ -166,9 +162,14 @@
 
                                                 </div>
 
+
                                                 <div>
-                                                    <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Card Number</label>
+                                                    <label for="Numero">Número do Cartão</label>
+                                                    <h:inputText pt:type="text" class="form-control" id="numeroCartao" onkeypress="return somenteNumero(event)"
+                                                                 required="true" pt:placeholder="Digite o número do cartão" />
+                                                    <label class="numero" for="numero">Cartão</label>
                                                 </div>
+
                                                 <div>
                                                     <div class="expiry">	
                                                         <div class="month_select">
@@ -208,17 +209,22 @@
                                                 </div>
                                                 <div class="sec_num">
                                                     <div>
-                                                        <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change" data-validation-minlength="3" data-type="name" data-required="true" data-error-message="Enter Your Card Security Code"/><label for="ccv">Security Code</label>
+                                                        <label for="Numero">Código de Segurança</label>
+                                                        <h:inputText pt:type="text" class="form-control" id="codSeguranca" onkeypress="return somenteNumero(event)"
+                                                                     required="true" pt:placeholder="Digite o código de segurança" />
+                                                        <label class="numero" for="numero">Código</label>
                                                     </div>
                                                 </div>
 
-                                                <a  class="big_button" id="complete">
-                                                    <h:commandButton class="btn-primary" pt:type="submit" value="cadastro" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
-                                                </a>
-                                                
+                                                <div class="continue" id="btn">
+                                                <h:commandButton pt:type="submit" value="Continue" action="#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                            </div>
+
                                             </h:form>
                                             
-                                            
+                                            <br></br>
+
+
                                         </div>
 
                                         <div class="right">
@@ -254,7 +260,7 @@
                                         <div class="left" id="ordered">
                                             <div class="products">
                                                 <div class="product_image">
-                                                    <img src="img/lady.jpg"/>
+                                                    <img src="img/caneca.png"/>
                                                 </div>
                                                 <div class="product_details">
                                                     <span class="product_name">Cherry Bikini</span>
@@ -300,8 +306,11 @@
 
                                             <h:form>    
                                                 <div id="complete">
-                                                    <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="cadastro"></h:commandButton>
-                                                    <a class="big_button" id="complete" href="#">Finalizar Compra</a>
+                                                    
+                                                    <a class="continue">
+                                                    <h:commandButton pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="Finalizar Compra"></h:commandButton>
+                                                  
+                                                    </a>
                                                     <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
                                                 </div>
                                             </h:form>    
