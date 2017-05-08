@@ -9,6 +9,15 @@ public class Funcionario {
     private String login_funcionario;
     private String senha_funcionario;
     private String departamento_funcionario;
+    private String status_funcionario;
+
+    public String getStatus_funcionario() {
+        return status_funcionario;
+    }
+
+    public void setStatus_funcionario(String status_funcionario) {
+        this.status_funcionario = status_funcionario;
+    }
 
     public String getDepartamento_funcionario() {
         return departamento_funcionario;
