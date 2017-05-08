@@ -135,7 +135,7 @@
 
                                     </div>
                                 </div>
-                                <div class="column column2">
+                                     <div class="column column2">
                                     <div class="step" id="step2">
                                         <div class="number">
                                             <span>2</span>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="content" id="payment">
                                         <div class="left">
-                                           <h:form class="go-right" id="formtres" prependId="false" enctype="multipart/form-data">
+                                            <h:form class="go-right">
 
 
                                                 <div class="form-group col-md-12" id="formaPagamento">
@@ -162,14 +162,9 @@
 
                                                 </div>
 
-
                                                 <div>
-                                                    <label for="Numero">Número do Cartão</label>
-                                                    <h:inputText pt:type="text" class="form-control" id="numeroCartao" onkeypress="return somenteNumero(event)"
-                                                                 required="true" pt:placeholder="Digite o número do cartão" />
-                                                    <label class="numero" for="numero">Cartão</label>
+                                                    <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Card Number</label>
                                                 </div>
-
                                                 <div>
                                                     <div class="expiry">	
                                                         <div class="month_select">
@@ -209,22 +204,17 @@
                                                 </div>
                                                 <div class="sec_num">
                                                     <div>
-                                                        <label for="Numero">Código de Segurança</label>
-                                                        <h:inputText pt:type="text" class="form-control" id="codSeguranca" onkeypress="return somenteNumero(event)"
-                                                                     required="true" pt:placeholder="Digite o código de segurança" />
-                                                        <label class="numero" for="numero">Código</label>
+                                                        <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change" data-validation-minlength="3" data-type="name" data-required="true" data-error-message="Enter Your Card Security Code"/><label for="ccv">Security Code</label>
                                                     </div>
                                                 </div>
 
-                                                <div class="continue" id="btn">
-                                                <h:commandButton pt:type="submit" value="Continue" action="#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                             <div class="continue" id="btn">
+                                                <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
                                             </div>
-
+                                                
                                             </h:form>
                                             
-                                            <br></br>
-
-
+                                            
                                         </div>
 
                                         <div class="right">
