@@ -12,6 +12,157 @@ $sweet-monospaced: 'Oxygen Mono', monospace;
     color: #333;
 }
 
+.login-wrap {
+    
+    padding: 20px;
+
+}
+
+.login-form {
+
+    max-width: 350px;
+
+    margin: 200px auto 0;
+
+    background: #d5d7de; 
+
+
+    top: 100px;
+
+}
+
+
+.login-form{
+
+    border: 1px solid #B0B6BE;
+
+    background: rgba(213,215,222,0.7);
+
+}
+
+.login-form{
+
+    border: 1px solid #B0B6BE;
+
+    background: rgba(213,215,222,0.9);
+
+}
+
+.login-form a{
+
+    color: #688a7e !important;
+
+}
+
+.login-form .checkbox {
+
+    margin-bottom: 14px;
+
+}
+
+
+.login-form .checkbox {
+
+    font-weight: normal;    
+
+    font-weight: 300;
+
+    font-family: 'Lato', sans-serif;
+
+}
+
+.login-form .form-control {
+
+    position: relative;
+
+    font-size: 16px;
+
+    height: auto;
+
+    padding: 10px;
+
+    -webkit-box-sizing: border-box;
+
+    -moz-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+}
+
+
+.login-form .input-group{
+
+    padding-bottom: 15px;
+
+}
+
+.login-form .input-group-addon{
+
+    padding: 6px 12px;
+
+    font-size: 16px;
+
+    color: #8b9199;
+
+    font-weight: normal;
+
+    line-height: 1;
+
+    text-align: center;
+
+    background-color: #ffffff;
+
+    border: none;
+
+    border-radius: 0;
+
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {    
+
+    border: none;
+
+    box-shadow: none;
+
+    font-size: 16px;
+
+    border-radius: 0; 
+
+}
+/* Home Style */
+#tf-home{
+    background: url("../img/coffee.gif");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #cfcfcf;
+}
+
+#tf-home .overlay{
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.8)), color-stop(17%,rgba(0,0,0,0.73)), color-stop(35%,rgba(0,0,0,0.66)), color-stop(62%,rgba(0,0,0,0.55)), color-stop(100%,rgba(0,0,0,0.4))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+    height: auto;
+    background-attachment: fixed;
+}
+
+#tf-about .overlay{
+    height: auto;
+    background-attachment: fixed;
+    padding: 10% 0;
+}
+
+#tf-why-me .overlay{
+    height: auto;
+    background-attachment: fixed;
+    padding: 5% 0;
+}
+
 
 .carousel-control,
 .item {
@@ -398,6 +549,14 @@ hr.style4 {
     height: 100px;;
 }
 
+#tf-menu {
+    margin-bottom: 0;
+    background: transparent;
+    border: 0;
+    color: #fff !important;
+    padding: 2% 0;
+    transition: all 0.5s;
+}
 
 html {
     height: 100%;
