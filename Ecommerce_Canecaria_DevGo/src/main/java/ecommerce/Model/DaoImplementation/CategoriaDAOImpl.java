@@ -57,7 +57,7 @@ public class CategoriaDAOImpl extends GenericaDAOImpl implements CategoriaDAO {
     public List<Categoria> ListarCategorias() throws SQLException {
         List<Categoria> categorias = new ArrayList<Categoria>();
 
-        String select = "SELECT * FROM CATEGORIA";
+        String select = "SELECT * FROM CATEGORIA ORDER BY COD_CATEGORIA";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);

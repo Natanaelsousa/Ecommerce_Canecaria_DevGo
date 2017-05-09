@@ -87,50 +87,54 @@ and open the template in the editor.
 
             <h:form p:action="BuscarProdutoEditar.xhtml">
 
-                <h:inputHidden value="#{Produto2Bean.produto2.cod_produto}" />
-                
+
                 <div class="form-group col-md-7">
                     <h:outputLabel for="NomeProduto" value="Nome do novo produto:" />
-                    <h:inputText p:type="text" class="form-control" id="NomeProdutoInput" value="#{Produto2Bean.produto2.nome_produto}" p:placeholder="Digite o nome do produto"/>
+                    <h:inputText p:type="text" class="form-control" id="NomeProdutoInput" value="#{ProdutosBean.produto.nome_produto}" p:placeholder="Digite o nome do produto"/>
                 </div>
 
                 <div class="form-group col-md-3">
                     <h:outputLabel for="ValorProduto" value="Valor do produto:" />
-                    <h:inputText p:type="number" class="form-control" id="ValorProdutoInput" value="#{Produto2Bean.produto2.valor_produto}" p:placeholder="R$ 00,00"/>
+                    <h:inputText p:type="number" class="form-control" id="ValorProdutoInput" value="#{ProdutosBean.produto.valor_produto}" p:placeholder="R$ 00,00"/>
                 </div>
 
                 <div class="form-group col-md-7">
                     <h:outputLabel for="DescricaoProduto" value="Descreva o produto:" />
-                    <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{Produto2Bean.produto2.descricao_produto}" />
+                    <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{ProdutosBean.produto.descricao_produto}" />
                 </div>
-                
+
                 <div class="form-group col-md-7">
                     <h:outputLabel for="QuantidadeProduto" value="QuantidadeEstoque:" />
-                    <h:inputText p:type="number" class="form-control" id="QuantidadeInput" value="#{Produto2Bean.produto2.qtde_produto}" />
+                    <h:inputText p:type="number" class="form-control" id="QuantidadeInput" value="#{ProdutosBean.produto.qtde_produto}" />
                 </div>
 
 
-                
+
                 <div class="form-group col-md-7">
-                        <h:outputLabel value="Escolha a categoria:" />
-                        <h:selectOneMenu class="form-control" value="#{ProdutoBean2.produto2.cod_categoria}" >
-                            <f:selectItem itemValue="#{Produto2Bean.produto2.cod_categoria}" itemLabel="#{Produto2Bean.produto2.cod_categoria}"  />
-                            <f:selectItems value="#{CategoriasBean.ListarCategorias()}" var="categoria" itemLabel="#{categoria.cod_categoria} - #{categoria.nome_categoria}" itemValue="#{categoria.cod_categoria}"/>
-                        </h:selectOneMenu>
-                    </div>
+                    <h:outputLabel value="Escolha a categoria:" />
+                    <h:selectOneMenu class="form-control" value="#{ProdutosBean.produto.cod_categoria}" >
+                        <f:selectItems value="#{CategoriasBean.ListarCategorias()}" var="categoria" itemLabel="#{categoria.cod_categoria} - #{categoria.nome_categoria}" itemValue="#{categoria.cod_categoria}"/>
+                    </h:selectOneMenu>
+                </div>
 
                 <div class="space"></div>
 
-<!--                <div class="row">
-                    <div class="form-group col-md-6">
-
-                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" >
+                <!--                <div class="row">
+                                    <div class="form-group col-md-6">
+                
+                                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" >
+                                        </h:commandButton>
+                                    </div>
+                
+                
+                                </div>-->
+                <hr />
+              
+                    <div class="form-group col-md-7">
+                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar alteração" action="#{ProdutosBean.editarProduto}" >
                         </h:commandButton>
                     </div>
-
-
-                </div>-->
-
+               
             </h:form>
 
         </div>

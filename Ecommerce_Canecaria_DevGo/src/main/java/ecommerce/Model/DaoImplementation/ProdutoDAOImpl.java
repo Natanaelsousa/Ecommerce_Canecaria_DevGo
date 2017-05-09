@@ -12,10 +12,11 @@ import java.util.List;
 public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
     //Lista todos os produtos 
+    @Override
     public List<Produto> ListarProdutosPorIDeNome() throws SQLException {
         List<Produto> produto = new ArrayList<Produto>();
 
-        String query = "SELECT COD_PROD,NOME_PRODUTO FROM PRODUTO ";
+        String query = "SELECT COD_PROD,NOME_PRODUTO FROM PRODUTO ORDER BY cod_prod";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -65,12 +66,14 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     }
 
     // Exclui o produto
+    @Override
     public void ExclusaoDeCadastroProduto(Produto produto) throws SQLException {
         String query = "DELETE FROM PRODUTO WHERE COD_PROD = ?";
         delete(query, produto.getCod_produto());
     }
 
     //Editar os dados do produto no banco
+    @Override
     public void EditarCadastroProduto(Produto produto) throws SQLException {
 
         String query = "UPDATE produto "
@@ -81,6 +84,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     }
 
     //Localiza todos os produtos de uma determinada categoria
+    @Override
     public Produto BuscarProdutoPorCategoria(String codigo_categoria) throws SQLException {
 
         String sql = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_CATEGORIA =" + codigo_categoria;
@@ -137,31 +141,9 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
     }
 
-    //Localiza um produto especifico
-    public Produto BuscarUmProduto(Produto produto) throws SQLException {
-
-        String query = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_PROD = ? ";
-
-        PreparedStatement stmt
-                = getConnection().prepareStatement(query);
-
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            produto.setCod_produto(rs.getInt("COD_PRODUTO"));
-            produto.setCod_categoria(rs.getInt("COD_CATEGORIA"));
-            produto.setNome_produto(rs.getString("NOME_PRODUTO"));
-            produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
-            produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
-
-        }
-
-        rs.close();
-        stmt.close();
-        return produto;
-    }
-
+   
     //Localiza um produto especifico pelo ID
+    @Override
     public Produto BuscarProdutoPorID(int id_produto) throws SQLException {
 
         Produto produto = new Produto();

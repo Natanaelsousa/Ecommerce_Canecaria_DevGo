@@ -68,15 +68,27 @@
                     <div class="form-group col-md-4"></div>
                     <div class="form-group col-md-4">
 
-                        <ui:repeat value="#{ProdutosBean.ListarProdutosIdENome()}" var="produto">
-                            <h:form prependId="false">
-                                <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="#{produto.nome_produto}" action="EditarCadastroProdutos.xhtml"  >
-                                    <f:param name="id_produto" value="#{produto.cod_produto}" />
-                                </h:commandButton>
+                        <h:form >
 
-                            </h:form>
+                            <div class="form-group ">
+                                <h:outputLabel value="Editar produto... " />
+                                <h:selectOneMenu class="form-control" value="#{ProdutosBean.id_produto}" converter="javax.faces.Integer">
+                                    <f:selectItem itemValue="" itemLabel="Selecione o produto..." />
+                                    <f:selectItems value="#{ProdutosBean.ListarProdutosIdENome()}" var="produto" itemLabel="#{produto.cod_produto} - #{produto.nome_produto}" itemValue="#{produto.cod_produto}" />
+                                </h:selectOneMenu>
+                            </div>
 
-                        </ui:repeat>
+                            <div class="space"></div>
+
+                            <div class="row">
+                                <div class="form-group ">
+                                    <div class="col-md-12">
+                                        <h:commandButton  class="btn btn-primary btn-lg btn-block" p:type="submit" value="Acessar produto" action="#{ProdutosBean.buscandoProduto()}">
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
                     </div>
                     <div class="form-group col-md-4"></div>
                 </div>

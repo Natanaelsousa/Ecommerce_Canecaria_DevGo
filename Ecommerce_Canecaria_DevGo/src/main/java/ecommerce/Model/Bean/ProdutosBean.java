@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 public class ProdutosBean {
 
     private Produto produto = new Produto();
+    private int id_produto;
 
     public Produto getProduto() {
         return produto;
@@ -22,6 +23,14 @@ public class ProdutosBean {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public int getId_produto() {
+        return id_produto;
+    }
+
+    public void setId_produto(int id_produto) {
+        this.id_produto = id_produto;
     }
 
     public ProdutosBean() {
@@ -37,14 +46,24 @@ public class ProdutosBean {
         }
         produto = new Produto();
 
-        
+    }
+
+    /*Busca produto para em seguida edita-lo*/
+    public String buscandoProduto() throws Exception {
+        ProdutoDAO produtos = new ProdutoDAOImpl();
+        try {
+            produto = produtos.BuscarProdutoPorID(id_produto);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel localizar o produto");
+        }
+        return "EditarCadastroProdutos";
     }
 
     /* Edita dados do produtos no banco */
     public String EditarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produtos.EditarCadastroProduto(produto);
-        return "Editado";
+        return "EditarCadastroProduto";
     }
 
     /* Insere quantidade de produtos(Ja cadastrados) no banco */
@@ -58,14 +77,10 @@ public class ProdutosBean {
         produto = new Produto();
     }
 
+    /* Excluir produtos do banco (DEFINITIVAMENTE)*/
     public void ExcluirProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produtos.ExclusaoDeCadastroProduto(produto);
-    }
-
-    public void BuscandoProduto() throws Exception {
-        ProdutoDAO produtos = new ProdutoDAOImpl();
-        produtos.BuscarUmProduto(produto);
     }
 
     /* Lista os produtos cadastrados no banco */
@@ -77,18 +92,4 @@ public class ProdutosBean {
         return ListaProdutos;
     }
 
-//    public Produto getProduto() {
-//        if (produto == null) {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            Map<String, String> params = fc.getExternalContext()
-//                    .getRequestParameterMap();
-//            String id = params.get("id");
-//            if (id != null) {
-//                produto = service.obter(Long.parseLong(id));
-//            } else {
-//                produto = new Produto();
-//            }
-//        }
-//        return produto;
-//    }
 }
