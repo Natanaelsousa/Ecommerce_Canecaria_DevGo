@@ -51,16 +51,24 @@ public class ProdutosBean {
     /*Busca produto para em seguida edita-lo*/
     public String buscandoProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
+        String retorno = null;
         try {
             produto = produtos.BuscarProdutoPorID(id_produto);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar o produto");
         }
-        return "EditarCadastroProdutos";
+
+        // Verifica se algum produto foi escolhido
+        if (produto.getCod_produto() != null) {
+            retorno = "EditarCadastroProdutos";
+        } else {
+            retorno = "Produto nao selecionado";
+        }
+        return retorno;
     }
 
     /* Edita dados do produtos no banco */
-    public String EditarProduto() throws Exception {
+    public String editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produtos.EditarCadastroProduto(produto);
         return "EditarCadastroProduto";
