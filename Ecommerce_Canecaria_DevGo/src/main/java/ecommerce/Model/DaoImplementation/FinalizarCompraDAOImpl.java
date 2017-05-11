@@ -2,6 +2,8 @@ package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.Dao.FinalizarCompraDAO;
 import ecommerce.Model.MetodosAcessores.FinalizarCompra;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,6 +35,28 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
     @Override
     public List<FinalizarCompra> ListarPedidos(Integer codCliente) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double ValorTotal(Integer codCliente) throws SQLException {
+        
+        double totalCompra;
+
+        String query = "SELECT SUM(SUB_TOTAL) AS valorTotal FROM carrinho WHERE COD_PEDIDO = 0 AND COD_CLIENTE = "+codCliente;
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(query);
+
+        ResultSet rs = stmt.executeQuery();
+                
+        totalCompra = rs.getFloat("valorTotal");
+        
+       
+        rs.close();
+        stmt.close();
+
+        return totalCompra;
+        
     }
     
 }
