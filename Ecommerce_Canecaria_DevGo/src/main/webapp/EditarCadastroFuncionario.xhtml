@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"      
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
@@ -29,6 +30,8 @@
         ================================================== -->
         <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
         <link rel="stylesheet" type="text/css"  href="css/carrinho.css" />
+        <script type="text/javascript" src="js/funcoes.js"></script>
+        
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
@@ -48,86 +51,103 @@
             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
-                    <ui:include src="cabecalho.xhtml" />
+                    <ui:include src="cabecalhoFuncionario.xhtml" />
                 </ui:insert>
             </div>
 
             <!-- Fim -->
 
-            
+
             <!-- Conteudo da pagina -->
-            
-             <!-- Espaço entre o menu -->
-        <div class="space"></div>
-        <!-- Page Content -->
-        <div class="container">
 
-            <h1>Editar Funcionário</h1>
-            <hr/>
+            <!-- Espaço entre o menu -->
+            <div class="space"></div>
+            <!-- Page Content -->
+            <div class="container">
 
-            <h:form >
+                <h1>Editar Funcionário</h1>
+                <hr/>
 
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="NomeFuncionario" value="Nome do novo funcionario" />
-                    <h:inputText p:type="text" class="form-control" id="NomeFuncionarioInput" p:placeholder="Digite o nome do funcionario" value="#{FuncionarioBean.funcionario.nome_funcionario}" required="true" />
-                </div>
-
-                <div class="form-group col-md-5">
-                    <h:outputLabel for="CPFFuncionario" value="CPF do Funcionário:" />
-                    <h:inputText p:type="number" class="form-control" id="CPFFuncionarioInput" p:placeholder="000.000.000-00"  value="#{FuncionarioBean.funcionario.cpf_funcionario}" required="true" />
-                </div>
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="LoginFuncionario" value="Login de acesso:" />
-                    <h:inputText p:type="text" class="form-control" id="LoginFuncionarioInput" value="#{FuncionarioBean.funcionario.login_funcionario}" required="true"/>
-                </div>
-
-                <div class="form-group col-md-5">
-                    <h:outputLabel for="SenhaFuncionario" value="Senha de acesso:" />
-                    <h:inputText p:type="password" class="form-control" id="SenhaFuncionarioInput" value="#{FuncionarioBean.funcionario.senha_funcionario}" required="true"/>
-                </div>
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="DptoFuncionario" value="Digite o departamento:" />
-                    <h:inputText p:type="text" class="form-control" id="DptoFuncionarioInput"  value="#{FuncionarioBean.funcionario.departamento_funcionario}" required="true"/>
-                </div>
-
-                <div class="form-group col-md-5">
-                    <h:outputLabel value="Informe o status" />
-                    <h:selectOneMenu class="form-control" value="#{FuncionarioBean.funcionario.status_funcionario}" >
-                       
-                        <f:selectItem itemValue="ativo" itemLabel="Ativo"  />
-                        <f:selectItem itemValue="inativo" itemLabel="Inativo"  />
-
-                    </h:selectOneMenu>
-                </div>
-
-
-                <div class="space"></div>
-                <hr />
-
-
-                <div class="row">
+                <h:form prependId="false" enctype="multipart/form-data">
+ <div class="row">
+                    
+                    
                     <div class="form-group col-md-6">
+                        <h:outputLabel for="NomeFuncionario" value="Nome do novo funcionário" />
+                        <h:inputText pt:type="text" class="form-control" id="NomeFuncionarioInput" pt:placeholder="Digite o nome do funcionario"  required="true" value="#{FuncionarioBean.funcionario.nome_funcionario}" onkeypress="return somenteLetras(event)"  />
+                    </div>
 
-                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Alterar Dados" action="#{FuncionarioBean.EditarFuncionario()}" >
-                        </h:commandButton>
+
+
+                    <div class="form-group col-md-6">
+                        <h:outputLabel for="CPFFuncionario" value="CPF do Funcionário:" />
+                        <h:inputText pt:type="number" class="form-control" id="CPFFuncionarioInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
+                                     requiredMessage="CPF invalido ou já existe."
+                                     required="true" value = "#{FuncionarioBean.funcionario.cpf_funcionario}" 
+                                     pt:placeholder="Ex:00000000000">
+                            <f:validateLength maximum="11"/>
+                        </h:inputText>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" p:type="reset" value="Limpar tudo">
-                        </h:commandButton>
+                        <h:outputLabel for="DptoFuncionario" value="Digite o departamento:" />
+                        <h:inputText pt:type="text" class="form-control" id="DptoFuncionarioInput"  pt:placeholder="Ex.: TI, Administração"  value="#{FuncionarioBean.funcionario.departamento_funcionario}" required="true"/>
                     </div>
-                </div>
+                    <div class="form-group col-md-6">
+                        <h:outputLabel for="LoginFuncionario" value="Login de acesso:" />
+                        <h:inputText pt:type="text" class="form-control" id="LoginFuncionarioInput"  pt:placeholder="digite seu login de acesso" value="#{FuncionarioBean.funcionario.login_funcionario}" required="true"/>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <h:outputLabel for="SenhaFuncionario" value="Senha de acesso:" />
+                        <h:inputText pt:type="password" class="form-control" id="SenhaFuncionarioInput" 
+                                     pt:placeholder="Digite sua senha"  
+                                     onchange="Senha2.pattern = this.value;" required="true" value="#{FuncionarioBean.funcionario.senha_funcionario}"/>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <h:outputLabel for="Senha2" value="Repita a senha de acesso:" />
+                        <h:inputText pt:type="password" class="form-control" id="Senha2" pt:placeholder="Repita sua senha" 
+
+                                     onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')" required="true" value="#{FuncionarioBean.funcionario.senha_funcionario}"/>
+                    </div>
 
 
-            </h:form>
+                    <div class="form-group col-md-5">
+                        <h:outputLabel value="Informe o status" />
+                        <h:selectOneMenu class="form-control" value="#{FuncionarioBean.funcionario.status_funcionario}" >
 
-        </div>
-        <div class="space"></div>
+                            <f:selectItem itemValue="ativo" itemLabel="Ativo"  />
+                            <f:selectItem itemValue="inativo" itemLabel="Inativo"  />
 
-            
+                        </h:selectOneMenu>
+                    </div>
+
+
+                    <div class="space"></div>
+                    <hr />
+
+ </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Alterar Dados" action="#{FuncionarioBean.EditarFuncionario()}" >
+                            </h:commandButton>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" pt:type="reset" value="Limpar tudo">
+                            </h:commandButton>
+                        </div>
+                    </div>
+
+
+                </h:form>
+
+            </div>
+            <div class="space"></div>
+
+
             <!-- Fim -->
 
 
