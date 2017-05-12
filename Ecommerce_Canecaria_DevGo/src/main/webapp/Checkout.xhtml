@@ -85,10 +85,10 @@
                                     <div class="content" id="email">
 
                                         <h:form class="go-right" id="formDois" prependId="false" enctype="multipart/form-data">
-                                           
-                                            
+
+
                                             <div>
- 
+
                                                 <h:inputText pt:type="number" class="form-control" id="CepInput"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
@@ -125,7 +125,7 @@
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}"    />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
-                                      
+
 
                                             <div class="continue" id="btn">
                                                 <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
@@ -135,7 +135,7 @@
 
                                     </div>
                                 </div>
-                                     <div class="column column2">
+                                <div class="column column2">
                                     <div class="step" id="step2">
                                         <div class="number">
                                             <span>2</span>
@@ -208,13 +208,13 @@
                                                     </div>
                                                 </div>
 
-                                             <div class="continue" id="btn">
-                                                <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
-                                            </div>
-                                                
+                                                <div class="continue" id="btn">
+                                                    <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                                </div>
+
                                             </h:form>
-                                            
-                                            
+
+
                                         </div>
 
                                         <div class="right">
@@ -296,10 +296,10 @@
 
                                             <h:form>    
                                                 <div id="complete">
-                                                    
+
                                                     <a class="continue">
-                                                    <h:commandButton pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="Finalizar Compra"></h:commandButton>
-                                                  
+                                                        <h:commandButton pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="Finalizar"></h:commandButton>
+
                                                     </a>
                                                     <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
                                                 </div>

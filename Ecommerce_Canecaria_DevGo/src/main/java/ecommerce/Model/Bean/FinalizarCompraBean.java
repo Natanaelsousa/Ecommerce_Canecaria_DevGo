@@ -16,8 +16,11 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class FinalizarCompraBean {
 
-    private boolean renderedPagamento;
-    private FinalizarCompra compra = new FinalizarCompra();
+    FinalizarCompra compra = new FinalizarCompra();
+    
+    FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
+    
+    private double total;
         
         
 
@@ -35,41 +38,21 @@ public class FinalizarCompraBean {
     public void setFinalizarCompra(FinalizarCompra compra) {
         this.compra = compra;
     }
-
-    public boolean isRenderedPagamento() {
-        return renderedPagamento;
-    }
-
-    public void setRenderedPagamento(boolean renderedPagamento) {
-        this.renderedPagamento = renderedPagamento;
-    }
-
-    public void renderizar() {
-
-        renderedPagamento = true;
-
-    }
-    
-     /* Finalizar a compra do usuario */
+      
+    /* Finalizar a compra do usuario */
     public void CadastrarCompra() throws Exception {
         
-        FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
+        StatusPedido();
+        
+                
+        compra.setCodCliente(1);
         
           try {
-            
-            StatusPedido();
-            
-            //double total = finalizar.ValorTotal(1);
-            
-              //System.out.println("Testeeeeeeee "+total);
-         
-            compra.setCodCliente(1);
-            //compra.setValorTotalCompra(total);
-        
+              
+             
             finalizar.CadastrarPedido(compra);
               
         } catch (SQLException erro) {
-            
                   
         }
         compra = new FinalizarCompra();
@@ -80,7 +63,7 @@ public class FinalizarCompraBean {
     public void estado(){
         
         System.out.println("A444 "+compra.getCodPagamento());
-            System.out.println("A33 "+compra.getCep());
+        System.out.println("A33 "+compra.getCep());
         
     }
     
