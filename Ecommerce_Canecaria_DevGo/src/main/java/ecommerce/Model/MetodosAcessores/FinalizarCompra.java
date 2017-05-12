@@ -215,7 +215,7 @@ public class FinalizarCompra {
     /**
      * @param valorTotalCompra the valorTotalCompra to set
      */
-    public void setValorTotalCompra(float valorTotalCompra) {
+    public void setValorTotalCompra(double valorTotalCompra) {
         this.valorTotalCompra = valorTotalCompra;
     }
 

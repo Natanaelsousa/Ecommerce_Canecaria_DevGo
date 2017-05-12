@@ -41,19 +41,24 @@ public class FinalizarCompraBean {
       
     /* Finalizar a compra do usuario */
     public void CadastrarCompra() throws Exception {
-        
-        StatusPedido();
-        
-                
-        compra.setCodCliente(1);
-        
+                   
           try {
+              
+             StatusPedido();
+
+              compra.setCodCliente(1);
+              
+              total = finalizar.ValorTotal(1);
+              
+              
+              compra.setValorTotalCompra(total);
               
              
             finalizar.CadastrarPedido(compra);
               
         } catch (SQLException erro) {
-                  
+              
+              System.out.println("Erro "+erro);
         }
         compra = new FinalizarCompra();
  

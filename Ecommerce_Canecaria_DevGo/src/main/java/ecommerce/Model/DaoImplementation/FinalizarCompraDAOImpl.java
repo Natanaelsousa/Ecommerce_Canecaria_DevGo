@@ -40,7 +40,7 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
     @Override
     public double ValorTotal(Integer codCliente) throws SQLException {
         
-        double totalCompra;
+        double totalCompra = 0;
 
         String query = "SELECT SUM(SUB_TOTAL) AS valorTotal FROM carrinho WHERE COD_PEDIDO = 0 AND COD_CLIENTE = "+codCliente;
 
@@ -48,8 +48,12 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
                 = getConnection().prepareStatement(query);
 
         ResultSet rs = stmt.executeQuery();
-                
-        totalCompra = rs.getFloat("valorTotal");
+        
+              if(rs != null && rs.next()){
+                   
+              totalCompra = rs.getFloat("valorTotal");
+        
+              }
         
        
         rs.close();
