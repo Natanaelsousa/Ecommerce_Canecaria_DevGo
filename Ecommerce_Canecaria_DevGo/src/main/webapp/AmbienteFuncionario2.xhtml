@@ -1,84 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f = "http://java.sun.com/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Canecaria</title>
-        <meta name="description" content="Your Description Here"/>
-        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme"/>
-        <meta name="author" content="ThemeForces.Com"/>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Canecaria - Carrinho de Compras</title>
+        <meta name="description" content="Your Description Here" />
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
+        <meta name="author" content="ThemeForces.Com" />
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
-        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"/>
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"/>
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
 
         <!-- Stylesheet
         ================================================== -->
-        <link rel="stylesheet" type="text/css"  href="css/style.css"/>
-        <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
+        <link rel="stylesheet" type="text/css"  href="css/carrinho.css" />
 
-        <script type="text/javascript" src="js/modernizr.custom.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
 
-        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'/>
-        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
     </h:head>
-
     <h:body>
 
-        <!-- Menu -->
-        <div id="tf-home">
-            <div class="overlay">
-                <div id="sticky-anchor"></div>
-                <nav id="tf-menu" class="navbar navbar-default">
-                    <div class="container">
-
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand logo" href="Home.html">Canecaria</a>
-                        </div>
+        <div id="page">
 
 
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href=" " >Home</a></li>
-                                <li><a href="">Sobre a empresa</a></li>
-                                <li><a href="">Produtos</a></li>
-                                <li><a href="">Contato</a></li>
-                                <li>
-                                    <a href="MinhaConta.xhtml"><span class="glyphicon glyphicon-user"></span> Minha Conta</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </nav>
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalhoFuncionario.xhtml" />
+                </ui:insert>
             </div>
-        </div>
-        <!-- Espaço entre o menu -->
+
+            <!-- Fim -->
+
+            <!-- Conteudo da pagina -->
+               <!-- Espaço entre o menu -->
         <div class="space"></div>
         <!-- Page Content -->
         <div class="container">
@@ -107,7 +82,7 @@ and open the template in the editor.
 
 
             <div class="space"></div>
-            <hr />
+          
 
             <div class="space"></div>
           
@@ -115,41 +90,20 @@ and open the template in the editor.
 
 
         </div>
-        <div class="space"></div>
+            <!-- Fim -->
 
-        <nav id="tf-footer">
-            <div class="container">
-                <div class="pull-left">
-                    <p>2017 © Canecaria. All Rights Reserved. Designed and Coded by <a href="https://dribbble.com/jennpereira">DevGo</a> for <a href="https://themeforces.com">	DevGo.Com</a></p>
-                </div>
-                <div class="pull-right"> 
-                    <ul class="social-media list-inline">
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-pinterest"></span></a></li>
-                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                        <li><a href="#"><span class="fa fa-behance"></span></a></li>
-                    </ul>
-                </div>
+
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
             </div>
-        </nav>
+            <!-- Fim -->
 
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/chart.min.js"></script>
-        <script src="js/chart-data.js"></script>
-        <script src="js/easypiechart.js"></script>
-        <script src="js/easypiechart-data.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        </div>
 
     </h:body>
-
 </html>
-    
+
+
