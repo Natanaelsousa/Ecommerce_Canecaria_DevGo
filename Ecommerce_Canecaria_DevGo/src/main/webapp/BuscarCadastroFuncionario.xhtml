@@ -50,7 +50,7 @@
             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
-                    <ui:include src="cabecalho.xhtml" />
+                    <ui:include src="cabecalhoFuncionario.xhtml" />
                 </ui:insert>
             </div>
 
@@ -73,7 +73,7 @@
                           <div class="form-group col-md-4">
                         <h:outputLabel for="CPFFuncionario" value="CPF do Funcionário:" />
                         <h:inputText pt:type="number" class="form-control" id="CPFFuncionarioInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
-                                     required="true" value = "#{FuncionarioBean.funcionario.cpf_funcionario}" pt:placeholder="Ex:00000000000">
+                                      pt:placeholder="Ex:00000000000" value="#{FuncionarioBean.cpf}">
                             <f:validateLength maximum="11"/>
                         </h:inputText>
                     </div>

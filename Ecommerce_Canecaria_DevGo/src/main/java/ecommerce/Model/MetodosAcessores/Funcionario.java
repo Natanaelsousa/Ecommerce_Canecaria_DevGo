@@ -3,13 +3,20 @@ package ecommerce.Model.MetodosAcessores;
 /* @author sibele */
 public class Funcionario {
 
+ 
     private Integer cod_funcionario;
     private String nome_funcionario;
     private String cpf_funcionario;
     private String login_funcionario;
     private String senha_funcionario;
     private String departamento_funcionario;
-    private String status_funcionario;
+    private String status_funcionario = "ativo";
+    
+    
+  
+
+    public Funcionario() {
+    }
 
     public String getStatus_funcionario() {
         return status_funcionario;
@@ -26,7 +33,6 @@ public class Funcionario {
     public void setDepartamento_funcionario(String departamento_funcionario) {
         this.departamento_funcionario = departamento_funcionario;
     }
-    
 
     public Integer getCod_funcionario() {
         return cod_funcionario;
@@ -71,6 +77,5 @@ public class Funcionario {
     public void CadastrarFuncionario(Funcionario funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }
