@@ -58,11 +58,8 @@ public class FinalizarCompraBean {
             StatusPedido();
 
             compra.setCodCliente(1);
-            
-            total = finalizar.ValorTotal(1);
-       
-            compra.setValorTotalCompra(total);
-              
+         
+            compra.setValorTotalCompra(ValorTotalCompra());
              
             finalizar.CadastrarPedido(compra);
             
@@ -113,6 +110,15 @@ public class FinalizarCompraBean {
     }
 
    
+   public double ValorTotalCompra() throws SQLException{
+       
+       double total;
+       
+        total = finalizar.ValorTotal(1);
+        
+        return total;
+       
+   }
       
 
 }

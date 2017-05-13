@@ -253,25 +253,34 @@
                                                     <img src="img/caneca.png"/>
                                                 </div> -->
                                                
-                                               <ui:repeat value="#{finalizarCompraBean.ListarResumoPedidos()}"  var="ped" >
-                                                   <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
-                                                <div class="product_details">
-                                                    <span class="product_name"><h:outputText value="#{ped.nomeProduto}" /></span>
-                                                    <span class="quantity"><h:outputText value="#{ped.quantidadeProduto}" /></span>
-                                                    <span class="price"><h:outputText value="#{ped.subtotal}"> <f:convertNumber type="currency" locale="pt-BR" /> 
-                                                        </h:outputText></span>
-                                                </div>
-                                                       </div>
-                                                </ui:repeat>
-                                               
-                                            </div>
-                                            <div class="totals">
+                                               <ui:repeat value="#{finalizarCompraBean.ListarResumoPedidos()}" var="ped">
+                                                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                                                      <p:outputPanel>
+                                                        <h:panelGrid columns="2" cellpadding="5">
+                                                            <h:outputText value="Produto: " />
+                                                            <h:outputText value="#{ped.nomeProduto}" style="font-weight: bold"/>
+
+                                                            <h:outputText value="Quantidade: " />
+                                                            <h:outputText value="#{ped.quantidadeProduto}" style="font-weight: bold"/>
+
+                                                            <h:outputText value="Subtotal: " />
+                                                            <h:outputText value="#{ped.subtotal}" style="font-weight: bold"> <f:convertNumber type="currency" locale="pt-BR"  /> 
+                                                        </h:outputText> 
+                                                        </h:panelGrid>
+                                                    </p:outputPanel>
+                                                </h:panelGrid>
+                                                <hr />
+                                            </ui:repeat>
+ 
+                                           </div>
+                                            <!-- <div class="totals">
                                                 <span class="subtitle">Subtotal <span id="sub_price">R$45,00</span></span>
                                                 <span class="subtitle">Taxas <span id="sub_tax">R$2,00</span></span>
                                                 <span class="subtitle">Remessa <span id="sub_ship">$4,00</span></span>
-                                            </div>
+                                            </div> -->
                                             <div class="final">
-                                                <span class="title">Total <span id="calculated_total">R$51,00</span></span>
+                                                <span class="title">Total <span id="calculated_total"> <h:outputText value="#{finalizarCompraBean.ValorTotalCompra()}"> <f:convertNumber type="currency" locale="pt-BR"  /> 
+                                                        </h:outputText></span></span>
                                             </div>
                                         </div>	
                                         <div class="right" id="reviewed">
