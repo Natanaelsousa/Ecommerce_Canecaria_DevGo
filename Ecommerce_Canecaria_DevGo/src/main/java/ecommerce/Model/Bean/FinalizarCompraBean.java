@@ -1,8 +1,11 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.FinalizarCompraDAO;
+import ecommerce.Model.Dao.ResumoPedidoDAO;
 import ecommerce.Model.DaoImplementation.FinalizarCompraDAOImpl;
+import ecommerce.Model.DaoImplementation.ResumoPedidoDAOImpl;
 import ecommerce.Model.MetodosAcessores.FinalizarCompra;
+import ecommerce.Model.MetodosAcessores.ResumoPedido;
 import java.sql.SQLException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,12 +20,14 @@ import javax.faces.bean.ViewScoped;
 public class FinalizarCompraBean {
 
     FinalizarCompra compra = new FinalizarCompra();
-    
+    private ResumoPedido pedido = new ResumoPedido();
     FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
-    
+    ResumoPedidoDAO  pedidos = new ResumoPedidoDAOImpl(); 
     private double total;
         
-    public FinalizarCompraBean() {
+    public FinalizarCompraBean() throws SQLException {
+        
+        pedidos.ListarItensPedido(1);
 
     }
     
@@ -33,6 +38,14 @@ public class FinalizarCompraBean {
     public void setFinalizarCompra(FinalizarCompra compra) {
         this.compra = compra;
     }
+    
+     public ResumoPedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(ResumoPedido pedido) {
+        this.pedido = pedido;
+    }
       
     /* Finalizar a compra do usuario */
     public void CadastrarCompra() throws Exception {
@@ -42,10 +55,9 @@ public class FinalizarCompraBean {
             StatusPedido();
 
             compra.setCodCliente(1);
-              
+            
             total = finalizar.ValorTotal(1);
-              
-              
+       
             compra.setValorTotalCompra(total);
               
              
@@ -85,6 +97,9 @@ public class FinalizarCompraBean {
         } 
         
     }
+
+   
+   
 
 
    
