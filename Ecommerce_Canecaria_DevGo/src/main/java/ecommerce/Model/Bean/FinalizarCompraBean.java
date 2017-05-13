@@ -22,11 +22,6 @@ public class FinalizarCompraBean {
     
     private double total;
         
-        
-
-    /**
-     * Creates a new instance of FinalizarCompra
-     */
     public FinalizarCompraBean() {
 
     }
@@ -44,23 +39,26 @@ public class FinalizarCompraBean {
                    
           try {
               
-             StatusPedido();
+            StatusPedido();
 
-              compra.setCodCliente(1);
+            compra.setCodCliente(1);
               
-              total = finalizar.ValorTotal(1);
+            total = finalizar.ValorTotal(1);
               
               
-              compra.setValorTotalCompra(total);
+            compra.setValorTotalCompra(total);
               
              
             finalizar.CadastrarPedido(compra);
+            
+           System.out.println("DDDDDDDD "+finalizar.UltimoId());
               
         } catch (SQLException erro) {
               
               System.out.println("Erro "+erro);
         }
         compra = new FinalizarCompra();
+        
  
     }
     

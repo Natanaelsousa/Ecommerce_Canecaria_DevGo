@@ -16,5 +16,7 @@ public interface FinalizarCompraDAO {
     
     public double ValorTotal(Integer codCliente) throws SQLException;
     
+    public Integer UltimoId();
+    
 
 }

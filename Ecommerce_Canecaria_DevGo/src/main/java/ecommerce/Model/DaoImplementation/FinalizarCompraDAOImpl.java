@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +30,7 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
                 finalizaCompra.getRua(), finalizaCompra.getNumero(), 
                 finalizaCompra.getBairro(), finalizaCompra.getCidade(), finalizaCompra.getEstado(), 
                 finalizaCompra.getCodFinalizacaoCompra(), finalizaCompra.getValorTotalCompra());
-       
+   
     }
 
     @Override
@@ -62,5 +63,34 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
         return totalCompra;
         
     }
+
+    @Override
+    public Integer UltimoId() {
+        
+        Integer insertId = 0;
+        
+        try {
+            
+            String query = "SELECT LAST_INSERT_ID()";
+            
+            PreparedStatement stmt
+                    = getConnection().prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next())
+            {            
+                insertId = rs.getInt("last_insert_id()");
+            }
+        } catch (SQLException ex) {
+           
+        }
+        
+        return insertId;
+       
+    }
+    
+    
+    
     
 }
