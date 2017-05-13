@@ -5,8 +5,6 @@ import ecommerce.Model.MetodosAcessores.FinalizarCompra;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Logger;
 
 /**
  *
@@ -33,10 +31,6 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
    
     }
 
-    @Override
-    public List<FinalizarCompra> ListarPedidos(Integer codCliente) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public double ValorTotal(Integer codCliente) throws SQLException {
@@ -89,6 +83,7 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
         return insertId;
        
     }
+
     
     
     
