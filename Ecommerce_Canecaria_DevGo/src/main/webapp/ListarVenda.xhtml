@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -69,28 +70,42 @@
                 <!-- Menu Lateral -->
                 <div class="container">
 
-                    <div class="row">
+                    
 
 
-                        <p:dataTable var="car" value="#{dtBasicView.cars}">
-                            <p:column headerText="Id">
-                                <h:outputText value="#{car.id}" />
+                        <p:dataTable var="ven" value="#{vendaBean.ListarVendas()}">
+                            <p:column headerText="Código">
+                                <h:outputText value="#{ven.codPedido}" />
                             </p:column>
 
-                            <p:column headerText="Year">
-                                <h:outputText value="#{car.year}" />
+                            <p:column headerText="Nome Cliente">
+                                <h:outputText value="#{ven.nome}" />
                             </p:column>
 
-                            <p:column headerText="Brand">
-                                <h:outputText value="#{car.brand}" />
+                            <p:column headerText="CPF">
+                                <h:outputText value="#{ven.cpf}" />
                             </p:column>
 
-                            <p:column headerText="Color">
-                                <h:outputText value="#{car.color}" />
+                            <p:column headerText="Forma Pagamento">
+                                <h:outputText value="#{ven.formaPagamento}" />
+                                
                             </p:column>
+                            
+                            <p:column headerText="Valor Total">
+                                <h:outputText value="#{ven.valorTotal}" >
+                                <f:convertNumber type="currency" locale="pt-BR" /> 
+                                </h:outputText>
+                            </p:column>
+                            
+                            <p:column headerText="DataHora">
+                                <h:outputText value="#{ven.dataPedido}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy  HH:mm:ss" timeZone="America/Sao_Paulo"  />
+                                </h:outputText>
+                            </p:column>
+                            
                         </p:dataTable>
 
-                    </div>
+                    
 
                 </div>
 
