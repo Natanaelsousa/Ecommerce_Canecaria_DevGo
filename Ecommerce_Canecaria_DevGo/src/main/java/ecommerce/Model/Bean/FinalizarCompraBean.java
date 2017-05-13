@@ -7,6 +7,8 @@ import ecommerce.Model.DaoImplementation.ResumoPedidoDAOImpl;
 import ecommerce.Model.MetodosAcessores.FinalizarCompra;
 import ecommerce.Model.MetodosAcessores.ResumoPedido;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -20,14 +22,15 @@ import javax.faces.bean.ViewScoped;
 public class FinalizarCompraBean {
 
     FinalizarCompra compra = new FinalizarCompra();
-    private ResumoPedido pedido = new ResumoPedido();
+    ResumoPedido pedido = new ResumoPedido();
     FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
-    ResumoPedidoDAO  pedidos = new ResumoPedidoDAOImpl(); 
+    ResumoPedidoDAO  pedidoDao = new ResumoPedidoDAOImpl(); 
+    List<ResumoPedido> pedidos =  new ArrayList<>();
     private double total;
         
-    public FinalizarCompraBean() throws SQLException {
+    public FinalizarCompraBean() {
         
-        pedidos.ListarItensPedido(1);
+       
 
     }
     
@@ -82,6 +85,17 @@ public class FinalizarCompraBean {
         
     }
     
+    
+     /* Lista todos os pedidos */
+    public List<ResumoPedido> ListarResumoPedidos() throws Exception {
+      
+
+        pedidos = pedidoDao.ListarItensPedido(1);
+        
+        return pedidos;
+
+    }
+    
     public void StatusPedido(){
         
         int status;
@@ -99,9 +113,6 @@ public class FinalizarCompraBean {
     }
 
    
-   
-
-
-   
+      
 
 }

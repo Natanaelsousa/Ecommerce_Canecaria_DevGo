@@ -249,14 +249,21 @@
                                     <div class="content" id="final_products">
                                         <div class="left" id="ordered">
                                             <div class="products">
-                                                <div class="product_image">
+                                               <!-- <div class="product_image">
                                                     <img src="img/caneca.png"/>
-                                                </div>
+                                                </div> -->
+                                               
+                                               <ui:repeat value="#{finalizarCompraBean.ListarResumoPedidos()}"  var="ped" >
+                                                   <div class="col-xs-12 col-sm-6 col-md-12 col-lg-4">
                                                 <div class="product_details">
-                                                    <span class="product_name">Cherry Bikini</span>
-                                                    <span class="quantity">1 </span>
-                                                    <span class="price"> R$45,00</span>
+                                                    <span class="product_name"><h:outputText value="#{ped.nomeProduto}" /></span>
+                                                    <span class="quantity"><h:outputText value="#{ped.quantidadeProduto}" /></span>
+                                                    <span class="price"><h:outputText value="#{ped.subtotal}"> <f:convertNumber type="currency" locale="pt-BR" /> 
+                                                        </h:outputText></span>
                                                 </div>
+                                                       </div>
+                                                </ui:repeat>
+                                               
                                             </div>
                                             <div class="totals">
                                                 <span class="subtitle">Subtotal <span id="sub_price">R$45,00</span></span>
