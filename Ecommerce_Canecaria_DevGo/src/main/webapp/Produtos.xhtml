@@ -73,9 +73,9 @@
                         <div class="col-md-3 col-lg-3" id="categorias">
 
                             <ul class="nav nav-pills nav-stacked">
-                                
+
                                 <li class="active"><a><span class="glyphicon glyphicon-list-alt"></span>  CATEGORIAS</a></li>
-                    
+
                                 <ui:repeat value="#{CategoriasBean.ListarCategorias()}" var="categ" > 
 
                                     <h:form>
@@ -93,9 +93,9 @@
                                 </ui:repeat>
 
                             </ul>
-                            
+
                             <div class="space"></div>
-                            
+
                         </div>
 
 
@@ -170,12 +170,19 @@
                                                     </a>
                                                 </p>
 
-                                                <div class="captionProdutosList">
-                                                    <a class="pull-right"> <h:outputText value="#{prod.valor_produto}"> <f:convertNumber type="currency" locale="pt-BR" /> 
-                                                        </h:outputText></a>
-                                                    <a href="DetalharProduto.xhtml"><h:outputText value="#{prod.nome_produto}" /></a>
-                                                    <a style="width:95%; height:95%" href="#" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
-                                                </div>
+                                                <h:outputText value="#{prod.valor_produto}">
+                                                    <f:convertNumber type="currency" locale="pt-BR" />
+                                                </h:outputText>
+                                                
+                                                <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
+                                                    <f:param name="id" value="#{prod.cod_produto}" />
+                                                    Ver detalhes
+                                                </h:outputLink>
+                                                <h:form prependId="false">
+                                                    <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
+                                                                     value="Adicionar ao carrinho"
+                                                                     styleClass="btn btn-success btn-block" />
+                                                </h:form>
                                             </div>
 
 
