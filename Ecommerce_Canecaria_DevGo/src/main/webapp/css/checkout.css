@@ -509,7 +509,11 @@ span.method{
             margin-top:30px;
         }
         
+    #payment label.exp_date{
     
+        width: 30%;
+   
+   }
         
      
     }
