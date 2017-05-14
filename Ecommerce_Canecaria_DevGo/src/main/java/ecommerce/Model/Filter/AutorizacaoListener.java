@@ -27,7 +27,7 @@ public class AutorizacaoListener implements PhaseListener {
     FacesContext fc = event.getFacesContext();
     
     ClienteBean usuarioBean = fc.getApplication()
-	    .evaluateExpressionGet(fc, "#{clienteBean}", 
+	    .evaluateExpressionGet(fc, "#{ClienteBean}", 
 		    ClienteBean.class);
     
     String paginaAtual = fc.getViewRoot().getViewId();
