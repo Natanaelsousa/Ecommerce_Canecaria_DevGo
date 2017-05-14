@@ -69,7 +69,9 @@
                     <div class="row">	  
 
                         <div id="wrap">
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" />
                             <div id="grid">
+                                 
                                 <div class="column column1">
                                     <div class="step" id="step1">
                                         <div class="number">
@@ -83,52 +85,68 @@
                                         </div> -->
                                     </div>
                                     <div class="content" id="email">
-
+                                        
                                         <h:form class="go-right" id="formDois" prependId="false" enctype="multipart/form-data">
+                                            
+                                            <!--<h:panelGrid columns="2" style="margin-bottom:10px; font-size: 12px; background: white" cellpadding="5">
+                                                <h:outputText value="Entregar no meu endereço: " />
+                                                <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" />
+                                                
+                                            </h:panelGrid> -->
 
 
                                             <div>
 
-                                                <h:inputText pt:type="number" class="form-control" id="CepInput"
+                                                <h:inputText pt:type="number" class="form-control" id="CEP"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
-                                                             onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
+                                                             onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"
+                                                             style="margin-bottom:5px"
+                                                          
+                                                             />
+                                                
+                                                
                                                 <label class="cep" for="CEP">CEP</label>
+                                                
                                             </div>
 
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" pt:placeholder="Digite a rua" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" pt:placeholder="Digite a rua" style="margin-bottom:5px"/>
                                                 <label class="Rua" for="Rua">Rua</label>
+                                              
                                             </div>
+                                          
                                             <div>
                                                 <label for="Numero">Número</label>
                                                 <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px" />
                                                 <label class="numero" for="numero">Número</label>
                                             </div>
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" />
                                                 <label class="bairro" for="bairro">Bairro</label>
                                             </div>
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" style="margin-bottom:5px"/>
                                                 <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}"    />
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
 
 
                                             <div class="continue" id="btn">
-                                                <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}" ></h:commandButton>
+                                                <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}">
+                                                <!-- <f:ajax execute="@form" render="@form :resumo" /> -->
+                                                </h:commandButton>
                                             </div>
 
                                         </h:form>
@@ -154,9 +172,9 @@
 
                                                 <div class="form-group col-md-12" id="formaPagamento">
 
-                                                    <h:selectOneMenu class="form-control" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
+                                                    <h:selectOneMenu class="form-control" required="true" id="Pagamento" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
                                                         <f:selectItem itemValue="" itemLabel="Selecione..."  />
-                                                        <f:selectItems value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
+                                                        <f:selectItems  value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
 
                                                     </h:selectOneMenu>
 
@@ -254,17 +272,17 @@
                                                 </div> -->
                                                
                                                <ui:repeat value="#{finalizarCompraBean.ListarResumoPedidos()}" var="ped">
-                                                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                                                <h:panelGrid columns="2" style="width:100%"  columnClasses="logo,detail">
                                                       <p:outputPanel>
-                                                        <h:panelGrid columns="2" cellpadding="5">
-                                                            <h:outputText value="Produto: " />
-                                                            <h:outputText value="#{ped.nomeProduto}" style="font-weight: bold"/>
+                                                        <h:panelGrid columns="2" cellpadding="5" style="font-size:11px;color: #333" >
+                                                            <h:outputText value="Produto: "  />
+                                                            <h:outputText value="#{ped.nomeProduto}" />
 
-                                                            <h:outputText value="Quantidade: " />
-                                                            <h:outputText value="#{ped.quantidadeProduto}" style="font-weight: bold"/>
+                                                            <h:outputText value="Quantidade: "   />
+                                                            <h:outputText value="#{ped.quantidadeProduto}" />
 
-                                                            <h:outputText value="Subtotal: " />
-                                                            <h:outputText value="#{ped.subtotal}" style="font-weight: bold"> <f:convertNumber type="currency" locale="pt-BR"  /> 
+                                                            <h:outputText value="Subtotal: "  />
+                                                            <h:outputText value="#{ped.subtotal}" style="font-size:12px" > <f:convertNumber type="currency" locale="pt-BR"  /> 
                                                         </h:outputText> 
                                                         </h:panelGrid>
                                                     </p:outputPanel>
@@ -282,7 +300,11 @@
                                                 <span class="title">Total <span id="calculated_total"> <h:outputText value="#{finalizarCompraBean.ValorTotalCompra()}"> <f:convertNumber type="currency" locale="pt-BR"  /> 
                                                         </h:outputText></span></span>
                                             </div>
+                                            
                                         </div>	
+                                        
+                                          <h:form id="resumo"> 
+                                         
                                         <div class="right" id="reviewed">
                                             <!--<div class="billing">
                                                 <span class="title">Faturamento:</span>
@@ -293,11 +315,12 @@
                                                     <span class="phone">(123)867-5309</span>
                                                 </div>
                                             </div> -->
-                                            <div class="shipping">
+                                            
+                                            <!--<div class="shipping">
                                                 <span class="title">Remessa:</span>
                                                 <div class="address_reviewed">
-                                                    <span class="name">John Smith</span>
-                                                    <span class="address">123 Main Street</span>
+                                                     <span class="name">John Smith</span>
+                                                    <span class="address">#{finalizarCompraBean.finalizarCompra.cidade} </span>
                                                     <span class="location">Everytown, USA, 12345</span>
                                                     <span class="phone">(123)867-5309</span>
                                                 </div>
@@ -308,19 +331,20 @@
                                                     <span class="method">Visa</span>
                                                     <span class="number_hidden">xxxx-xxxx-xxxx-1111</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
-                                            <h:form>    
+                                             
                                                 <div id="complete">
-
+                                                    
                                                     <a class="continue">
                                                         <h:commandButton pt:type="submit" action="#{finalizarCompraBean.CadastrarCompra()}" value="Finalizar"></h:commandButton>
 
                                                     </a>
                                                     <span class="sub">Ao selecionar este botão, você concorda com a compra eo pagamento subsequente para este pedido.</span> 
                                                 </div>
-                                            </h:form>    
+                                               
                                         </div>
+                                        </h:form> 
                                     </div>
 
                                 </div>
