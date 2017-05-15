@@ -5,10 +5,7 @@ import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 /*  @author sibele */
 @ManagedBean(name = "ProdutosBean")
@@ -67,11 +64,16 @@ public class ProdutosBean {
         return retorno;
     }
 
-    /* Edita dados do produtos no banco */
-    public String editarProduto() throws Exception {
+    /* Edita dados, no banco, do produto selecionado*/
+    public String  editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
-        produtos.EditarCadastroProduto(produto);
-        return "EditarCadastroProduto";
+        try {
+            produtos.EditarCadastroProduto(produto,id_produto);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel alterar os dados deste produto.");
+        }
+
+        return "BuscarProdutoEditar";
     }
 
     /* Insere quantidade de produtos(Ja cadastrados) no banco */

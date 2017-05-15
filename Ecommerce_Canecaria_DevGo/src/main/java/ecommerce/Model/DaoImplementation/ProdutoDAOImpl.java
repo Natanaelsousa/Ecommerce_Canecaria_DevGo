@@ -74,12 +74,12 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
     //Editar os dados do produto no banco
     @Override
-    public void EditarCadastroProduto(Produto produto) throws SQLException {
+    public void EditarCadastroProduto(Produto produto, int id_prod) throws SQLException {
 
         String query = "UPDATE produto "
-                + "SET cod_categoria = ?,nome_produto = ?,valor_produto = ?,descricao_produto = ?,  "
-                + "WHERE cod_prod = ?";
-        update(query, produto.getCod_categoria(), produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getCod_produto());
+                + "SET cod_categoria = ?,nome_produto = ?,valor_produto = ?,descricao_produto = ?, QTDE_PRODUTO = ? WHERE cod_prod = ?";
+        produto.setCod_produto(id_prod);
+        update(query, produto.getCod_produto(),produto.getCod_categoria(), produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(),produto.getQtde_produto());
 
     }
 
