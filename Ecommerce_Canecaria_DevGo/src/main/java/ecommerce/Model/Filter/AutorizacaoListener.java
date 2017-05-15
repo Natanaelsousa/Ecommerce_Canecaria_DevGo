@@ -8,11 +8,13 @@ package ecommerce.Model.Filter;
 
 import ecommerce.Model.Bean.ClienteBean;
 import ecommerce.Model.Bean.UsuarioSistema;
+import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -25,7 +27,7 @@ public class AutorizacaoListener implements PhaseListener {
     FacesContext fc = event.getFacesContext();
     
     ClienteBean usuarioBean = fc.getApplication()
-	    .evaluateExpressionGet(fc, "#{usuarioBean}", 
+	    .evaluateExpressionGet(fc, "#{ClienteBean}", 
 		    ClienteBean.class);
     
     String paginaAtual = fc.getViewRoot().getViewId();
@@ -34,16 +36,20 @@ public class AutorizacaoListener implements PhaseListener {
     if (paginaAtual != null && paginaAtual.contains("/protegido")) {
       
       // Usuario não tem sessao ativa ou não se logou
-      if (usuarioBean == null || usuarioBean.getCriptoUser() == null) {
-	nh.handleNavigation(fc, null, "/login.xhtml?faces-redirect=true");
+      if ( usuarioBean == null) {
+	nh.handleNavigation(fc, null, "/MinhaConta.xhtml?faces-redirect=true");
 	return;
       }
       
       // Validar se usuario tem permissao para acessar a página,
       // através do papel e da página
-      if (!verificarAcesso(usuarioBean.getCriptoUser(), paginaAtual)) {
-	nh.handleNavigation(fc, null, "/erro-nao-autorizado.xhtml?faces-redirect=true");
-	return;
+      if (!verificarAcesso(usuarioBean, paginaAtual)) {
+           String mensagem = "Erro ao se tentar se logar!";
+           RequestContext context = RequestContext.getCurrentInstance();
+	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            context.addCallbackParam("loggedIn", mensagem);
       }
       
       // Se processamento chegar nese ponto, JSF prossegue com o 
@@ -62,13 +68,13 @@ public class AutorizacaoListener implements PhaseListener {
     return PhaseId.RESTORE_VIEW;
   }
   
-  private static boolean verificarAcesso(UsuarioSistema usuario,
+  private static boolean verificarAcesso(ClienteBean usuario,
 	  String paginaAcessada) {
-    if (paginaAcessada.lastIndexOf("pagina-admin.xhtml") > -1 
-	    && usuario.temPapel("BASICO")) {
+    if (paginaAcessada.lastIndexOf("AmbienteCliente.xhtml") > -1 
+	    && usuario.getCliente() != null) {
       return true;
-    } else if (paginaAcessada.lastIndexOf("formulario.xhtml") > -1
-	    && usuario.temPapel("ADMIN")) {
+    } else if (paginaAcessada.lastIndexOf("EditarCadastroCliente.xhtml") > -1
+	    &&  usuario.getCliente() != null) {
       return true;
     }
     // Outras condições...

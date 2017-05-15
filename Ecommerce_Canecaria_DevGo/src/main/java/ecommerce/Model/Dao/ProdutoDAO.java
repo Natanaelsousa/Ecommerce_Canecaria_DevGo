@@ -10,11 +10,11 @@ public interface ProdutoDAO {
 
     public void CadastrarProduto(Produto produto) throws SQLException;
 
-    public Produto BuscarProdutoPorID(int id_produto) throws SQLException;
+    public Produto BuscarProdutoPorID(int id_produto) throws SQLException ;
     
     public void ExclusaoDeCadastroProduto(Produto produto) throws SQLException;
 
-    public void EditarCadastroProduto(Produto produto) throws SQLException;
+    public void EditarCadastroProduto(Produto produto, int id_prod) throws SQLException ;
    
     public Produto BuscarProdutoPorCategoria(String codigo_categoria) throws SQLException;
 
@@ -24,5 +24,4 @@ public interface ProdutoDAO {
 
     public List<Produto> ListarProdutosCategoria(String categoria) throws SQLException;
 
-    public Produto BuscarUmProduto(Produto produto) throws SQLException;
 }

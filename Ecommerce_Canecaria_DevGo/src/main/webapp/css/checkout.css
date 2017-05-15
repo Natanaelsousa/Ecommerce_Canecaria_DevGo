@@ -365,7 +365,7 @@ img{
     font-style: italic;
     color:#aaa;
     width:70%;
-    margin-bottom:20px;px;
+    margin-bottom:20px;
 }
 .products{
     width:100%;
@@ -478,6 +478,14 @@ span.method{
     width:80%;
     margin:5px auto;
 }
+
+
+.product_details > .quantity{
+    padding-left:10px; 
+   
+}
+
+
 @media(max-width:768px){
     .column{
         width:49%;
@@ -501,7 +509,11 @@ span.method{
             margin-top:30px;
         }
         
+    #payment label.exp_date{
     
+        width: 30%;
+   
+   }
         
      
     }

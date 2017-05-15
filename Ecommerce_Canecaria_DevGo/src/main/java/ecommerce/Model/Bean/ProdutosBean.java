@@ -5,16 +5,14 @@ import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 /*  @author sibele */
 @ManagedBean(name = "ProdutosBean")
 public class ProdutosBean {
 
     private Produto produto = new Produto();
+    private int id_produto;
 
     public Produto getProduto() {
         return produto;
@@ -22,6 +20,14 @@ public class ProdutosBean {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public int getId_produto() {
+        return id_produto;
+    }
+
+    public void setId_produto(int id_produto) {
+        this.id_produto = id_produto;
     }
 
     public ProdutosBean() {
@@ -37,14 +43,37 @@ public class ProdutosBean {
         }
         produto = new Produto();
 
-        
     }
 
-    /* Edita dados do produtos no banco */
-    public String EditarProduto() throws Exception {
+    /*Busca produto para em seguida edita-lo*/
+    public String buscandoProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
-        produtos.EditarCadastroProduto(produto);
-        return "Editado";
+        String retorno = null;
+        try {
+            produto = produtos.BuscarProdutoPorID(id_produto);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel localizar o produto");
+        }
+
+        // Verifica se algum produto foi escolhido
+        if (produto.getCod_produto() != null) {
+            retorno = "EditarCadastroProdutos";
+        } else {
+            retorno = "Produto nao selecionado";
+        }
+        return retorno;
+    }
+
+    /* Edita dados, no banco, do produto selecionado*/
+    public String  editarProduto() throws Exception {
+        ProdutoDAO produtos = new ProdutoDAOImpl();
+        try {
+            produtos.EditarCadastroProduto(produto,id_produto);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel alterar os dados deste produto.");
+        }
+
+        return "BuscarProdutoEditar";
     }
 
     /* Insere quantidade de produtos(Ja cadastrados) no banco */
@@ -58,14 +87,10 @@ public class ProdutosBean {
         produto = new Produto();
     }
 
+    /* Excluir produtos do banco (DEFINITIVAMENTE)*/
     public void ExcluirProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produtos.ExclusaoDeCadastroProduto(produto);
-    }
-
-    public void BuscandoProduto() throws Exception {
-        ProdutoDAO produtos = new ProdutoDAOImpl();
-        produtos.BuscarUmProduto(produto);
     }
 
     /* Lista os produtos cadastrados no banco */
@@ -77,18 +102,4 @@ public class ProdutosBean {
         return ListaProdutos;
     }
 
-//    public Produto getProduto() {
-//        if (produto == null) {
-//            FacesContext fc = FacesContext.getCurrentInstance();
-//            Map<String, String> params = fc.getExternalContext()
-//                    .getRequestParameterMap();
-//            String id = params.get("id");
-//            if (id != null) {
-//                produto = service.obter(Long.parseLong(id));
-//            } else {
-//                produto = new Produto();
-//            }
-//        }
-//        return produto;
-//    }
 }

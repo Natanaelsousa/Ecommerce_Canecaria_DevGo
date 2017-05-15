@@ -11,10 +11,10 @@ import java.util.List;
 public interface FinalizarCompraDAO {
     
     public void CadastrarPedido(FinalizarCompra finalizaCompra) throws SQLException;
-    
-    public List<FinalizarCompra> ListarPedidos(Integer codCliente) throws SQLException;
-    
+       
     public double ValorTotal(Integer codCliente) throws SQLException;
+    
+    public Integer UltimoId();
     
 
 }

@@ -5,7 +5,6 @@ import ecommerce.Model.MetodosAcessores.FinalizarCompra;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -29,18 +28,14 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
                 finalizaCompra.getRua(), finalizaCompra.getNumero(), 
                 finalizaCompra.getBairro(), finalizaCompra.getCidade(), finalizaCompra.getEstado(), 
                 finalizaCompra.getCodFinalizacaoCompra(), finalizaCompra.getValorTotalCompra());
-       
+   
     }
 
-    @Override
-    public List<FinalizarCompra> ListarPedidos(Integer codCliente) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public double ValorTotal(Integer codCliente) throws SQLException {
         
-        double totalCompra;
+        double totalCompra = 0;
 
         String query = "SELECT SUM(SUB_TOTAL) AS valorTotal FROM carrinho WHERE COD_PEDIDO = 0 AND COD_CLIENTE = "+codCliente;
 
@@ -48,8 +43,12 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
                 = getConnection().prepareStatement(query);
 
         ResultSet rs = stmt.executeQuery();
-                
-        totalCompra = rs.getFloat("valorTotal");
+        
+              if(rs != null && rs.next()){
+                   
+              totalCompra = rs.getFloat("valorTotal");
+        
+              }
         
        
         rs.close();
@@ -58,5 +57,35 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
         return totalCompra;
         
     }
+
+    @Override
+    public Integer UltimoId() {
+        
+        Integer insertId = 0;
+        
+        try {
+            
+            String query = "SELECT LAST_INSERT_ID()";
+            
+            PreparedStatement stmt
+                    = getConnection().prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next())
+            {            
+                insertId = rs.getInt("last_insert_id()");
+            }
+        } catch (SQLException ex) {
+           
+        }
+        
+        return insertId;
+       
+    }
+
+    
+    
+    
     
 }
