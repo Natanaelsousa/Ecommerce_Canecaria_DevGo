@@ -1,9 +1,14 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.FinalizarCompraDAO;
+import ecommerce.Model.Dao.ResumoPedidoDAO;
 import ecommerce.Model.DaoImplementation.FinalizarCompraDAOImpl;
+import ecommerce.Model.DaoImplementation.ResumoPedidoDAOImpl;
 import ecommerce.Model.MetodosAcessores.FinalizarCompra;
+import ecommerce.Model.MetodosAcessores.ResumoPedido;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,15 +21,16 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class FinalizarCompraBean {
 
-    private boolean renderedPagamento;
-    private FinalizarCompra compra = new FinalizarCompra();
+    FinalizarCompra compra = new FinalizarCompra();
+    ResumoPedido pedido = new ResumoPedido();
+    FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
+    ResumoPedidoDAO  pedidoDao = new ResumoPedidoDAOImpl(); 
+    List<ResumoPedido> pedidos =  new ArrayList<>();
+    private double total;
         
-        
-
-    /**
-     * Creates a new instance of FinalizarCompra
-     */
     public FinalizarCompraBean() {
+        
+       
 
     }
     
@@ -35,40 +41,36 @@ public class FinalizarCompraBean {
     public void setFinalizarCompra(FinalizarCompra compra) {
         this.compra = compra;
     }
-
-    public boolean isRenderedPagamento() {
-        return renderedPagamento;
-    }
-
-    public void setRenderedPagamento(boolean renderedPagamento) {
-        this.renderedPagamento = renderedPagamento;
-    }
-
-    public void renderizar() {
-
-        renderedPagamento = true;
-
-    }
     
-     /* Finalizar a compra do usario */
+     public ResumoPedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(ResumoPedido pedido) {
+        this.pedido = pedido;
+    }
+      
+    /* Finalizar a compra do usuario */
     public void CadastrarCompra() throws Exception {
-        
-         Integer cod = StatusPedido();
+                   
+          try {
+              
+            StatusPedido();
+
+            compra.setCodCliente(1);
          
-        compra.setCodCliente(1);
-        compra.setCodStatus(cod);
-                
-        FinalizarCompraDAO finalizar = new FinalizarCompraDAOImpl();
-        
-        try {
+            compra.setValorTotalCompra(ValorTotalCompra());
+             
+            finalizar.CadastrarPedido(compra);
             
-              finalizar.CadastrarPedido(compra);
+           System.out.println("DDDDDDDD "+finalizar.UltimoId());
               
         } catch (SQLException erro) {
-            
-                  
+              
+              System.out.println("Erro "+erro);
         }
         compra = new FinalizarCompra();
+        
  
     }
     
@@ -76,29 +78,51 @@ public class FinalizarCompraBean {
     public void estado(){
         
         System.out.println("A444 "+compra.getCodPagamento());
-            System.out.println("A33 "+compra.getCep());
+        System.out.println("A33 "+compra.getCep());
         
     }
     
-    public int StatusPedido(){
+    
+     /* Lista todos os pedidos */
+    public List<ResumoPedido> ListarResumoPedidos() throws Exception {
+      
+
+        pedidos = pedidoDao.ListarItensPedido(1);
+        
+        return pedidos;
+
+    }
+    
+    public void StatusPedido(){
         
         int status;
         
         if(compra.getCodPagamento() == 1){
             
-            status = 2;
+          compra.setCodStatus(2);
             
         }else{
             
-            status = 3;
+           compra.setCodStatus(3);
             
         } 
         
-        return status;
-        
     }
 
-
    
+   public double ValorTotalCompra() throws SQLException{
+       
+       double total;
+       
+        total = finalizar.ValorTotal(1);
+        
+        return total;
+       
+   }
+      
+  
+   
+     
+      
 
 }

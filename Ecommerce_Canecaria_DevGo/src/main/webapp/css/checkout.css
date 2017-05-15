@@ -47,12 +47,18 @@ form input {
     padding: 8px 12px;
     outline: 0;
 }
-form input:valid{
+ input#card_number:valid, input#ccv:valid{
     background: white;
 } 
+
+form label {
+    background: white;
+    color: white;
+    
+}
 form input:focus{
     border-color:#80c0ff;
-    
+   /* background: white;*/
 }
 
 form input:focus + label{
@@ -201,6 +207,11 @@ img{
     text-decoration: none;
     margin:15px auto;
 }
+
+.content .continue input{
+    border: none;
+}
+
 #shipping,
 #email{
     border-bottom:1px dotted #ccc;
@@ -354,7 +365,7 @@ img{
     font-style: italic;
     color:#aaa;
     width:70%;
-    margin-bottom:20px;px;
+    margin-bottom:20px;
 }
 .products{
     width:100%;
@@ -467,6 +478,14 @@ span.method{
     width:80%;
     margin:5px auto;
 }
+
+
+.product_details > .quantity{
+    padding-left:10px; 
+   
+}
+
+
 @media(max-width:768px){
     .column{
         width:49%;
@@ -478,7 +497,9 @@ span.method{
         width:100%;
         margin-top:30px;
 
- 
+     .content .continue input{
+    border: none;
+}
 
     }
     @media(max-width:600px){
@@ -488,8 +509,16 @@ span.method{
             margin-top:30px;
         }
         
+    #payment label.exp_date{
+    
+        width: 30%;
+   
+   }
+        
      
     }
+    
+
     form > div {
         position: relative;
         overflow: hidden;
@@ -509,22 +538,22 @@ span.method{
         padding: 8px 12px;
         outline: 0;
     }
-    form input:valid, form textarea:valid {
+    /*form input:valid, form textarea:valid {
         background: white;
-    }
+    } */
     form input:focus, form textarea:focus {
         border-color: #f06d06;
     }
     form input:focus + label, form textarea:focus + label {
         background:#80c0ff;
-        color: white;
+        /* color: white;*/
         font-size: 100%;
         padding: 1px 6px;
         z-index: 2;
         text-transform: uppercase;
     }
     form label {
-        /* transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s; */
+        transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
         position: absolute;
         color: #999;
         padding: 7px 6px;
@@ -550,40 +579,5 @@ span.method{
         padding-top: 5px;
     }
 
-
- .zz{
-    display:block;
-    float:none;
-    background:#80c0ff;
-    width:200px;
-    border:0;
-    padding:5px 15px;
-    font-size:1.6em;
-    color:#FFF;
-    border-bottom:3px solid #4da7ff;
-    border-radius:2px;
-    clear:both;
-    text-align:center;
-    text-decoration: none;
-    margin:15px auto;
 }
-
-
-#btn {
-    display:block;
-    float:none;
-    background:#80c0ff !important;
-    width:200px;
-    border:0;
-    padding:5px 15px;
-    font-size:1.6em;
-    color:#FFF ;
-    border-bottom:3px solid #4da7ff;
-    border-radius:2px;
-    clear:both;
-    text-align:center;
-    text-decoration: none;
-    margin:15px auto;
-} 
-
 

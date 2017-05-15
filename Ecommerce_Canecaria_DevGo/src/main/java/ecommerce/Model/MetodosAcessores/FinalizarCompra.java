@@ -20,7 +20,7 @@ public class FinalizarCompra {
     private String cidade;
     private String estado;
     private String codFinalizacaoCompra;
-    private float valorTotalCompra;
+    private double valorTotalCompra;
     private Timestamp dataPedido;
 
     
@@ -208,14 +208,14 @@ public class FinalizarCompra {
     /**
      * @return the valorTotalCompra
      */
-    public float getValorTotalCompra() {
+    public double getValorTotalCompra() {
         return valorTotalCompra;
     }
 
     /**
      * @param valorTotalCompra the valorTotalCompra to set
      */
-    public void setValorTotalCompra(float valorTotalCompra) {
+    public void setValorTotalCompra(double valorTotalCompra) {
         this.valorTotalCompra = valorTotalCompra;
     }
 
