@@ -21,4 +21,11 @@
     <welcome-file-list>
         <welcome-file>HomePage.xhtml</welcome-file>
     </welcome-file-list>
+<!--    <navigation-rule>
+        <navigation-case>   
+            <from-outcome>EditarCadastroFuncionario</from-outcome>
+            <to-view-id>/EditarCadastroFuncionario.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>-->
+    
 </web-app>

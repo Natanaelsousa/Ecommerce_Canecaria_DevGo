@@ -57,9 +57,8 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
         return funcionario;
     }
     
-   public Funcionario EncontraUserFuncionario(Funcionario funcionario) throws SQLException {
-        String select = "SELECT * FROM FUNCIONARIO WHERE LOGIN ='" + funcionario.getLogin_funcionario()+
-                "' and senha = '" + funcionario.getSenha_funcionario()+ "'";
+   public Funcionario EncontraUserFuncionario(String login, String senha) throws SQLException {
+        String select = "SELECT * FROM FUNCIONARIO WHERE LOGIN ='" +login+ "'";
         Funcionario funcionario1 = null;
         
         PreparedStatement stmt

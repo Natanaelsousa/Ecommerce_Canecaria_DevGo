@@ -68,11 +68,12 @@
                 <hr/>
 
                 <h:form id="formDois" prependId="false" enctype="multipart/form-data">
+                      <h:messages errorStyle="color: red"/>
                     <div class="row">
 
                         <div class="form-group col-md-6">
                             <h:outputLabel for="NomeFuncionario" value="Nome do novo funcionário" />
-                            <h:inputText pt:type="text" class="form-control" id="NomeFuncionarioInput" pt:placeholder="Digite o nome do funcionario"  required="true" value="#{FuncionarioBean.funcionario.nome_funcionario}" onkeypress="return somenteLetras(event)"  />
+                            <h:inputText pt:type="text" class="form-control" id="NomeFuncionarioInput" pt:placeholder="Digite o nome do funcionario"  required="true"  requiredMessage="O campo deve ser preenchido" value="#{FuncionarioBean.funcionario.nome_funcionario}" onkeypress="return somenteLetras(event)"  />
                         </div>
 
 

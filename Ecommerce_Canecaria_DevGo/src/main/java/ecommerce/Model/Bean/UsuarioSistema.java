@@ -6,7 +6,9 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
+import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Cliente;
+import ecommerce.Model.MetodosAcessores.Funcionario;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -106,5 +108,17 @@ public boolean validaSenha (String senhaGravada, String senhaLogin) {
     }
     return null;
   }
+  
+  
+  public Funcionario obterUsuarioFunc (String login, String senha) throws SQLException {
+     FuncionarioDAOImpl daoValidarFunc = new FuncionarioDAOImpl();
+     Funcionario funcionario;
+     funcionario = daoValidarFunc.EncontraUserFuncionario(login, senha);
+    if ( funcionario != null && BCrypt.checkpw(senha, funcionario.getSenha_funcionario())) {
+      return funcionario;
+    }
+    return null;
+  }
+  
 
 }

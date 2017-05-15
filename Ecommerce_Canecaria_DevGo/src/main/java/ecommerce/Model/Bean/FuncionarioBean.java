@@ -57,7 +57,7 @@ public class FuncionarioBean {
 
     FuncionarioDAOImpl funcionarioDao = new FuncionarioDAOImpl();
 
-    public String CadastrarFuncionario() throws Exception {
+    public void CadastrarFuncionario() throws Exception {
 
         getCriptoUserFunc().setSenha(funcionario.getSenha_funcionario());
         funcionario.setSenha_funcionario(getCriptoUserFunc().getHashSenha());
@@ -71,10 +71,10 @@ public class FuncionarioBean {
 
         funcionario = new Funcionario();
 
-        return "Cadastrado";
+       
     }
 
-    public String EditarFuncionario() throws Exception {
+    public void EditarFuncionario() throws Exception {
         getCriptoUserFunc().setSenha(funcionario.getSenha_funcionario());
         funcionario.setSenha_funcionario(getCriptoUserFunc().getHashSenha());
         FuncionarioDAO funcionarios = new FuncionarioDAOImpl();
@@ -87,7 +87,7 @@ public class FuncionarioBean {
 
         funcionario = new Funcionario();
 
-        return "Alterado";
+       
 
     }
 
@@ -99,21 +99,22 @@ public class FuncionarioBean {
 
     }
 
-    public void validaLogin() throws SQLException, IOException {
-        FuncionarioDAOImpl daoValidar = new FuncionarioDAOImpl();
+ 
+    
+        public void validaLogin() throws SQLException, IOException {
+            FuncionarioDAOImpl daoValidarFunc = new FuncionarioDAOImpl();
         RequestContext context = RequestContext.getCurrentInstance();
-        criptoUserFunc.setSenha(funcionario.getSenha_funcionario());
-        funcionario.setSenha_funcionario(criptoUserFunc.getHashSenha());
+   
         String mensagem = "Erro ao se tentar se logar!";
-
-        if (daoValidar.EncontraUserFuncionario(funcionario) != null) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteFuncionario.xhtml");
-        } else {
+        
+        if( getCriptoUserFunc().obterUsuarioFunc(funcionario.getLogin_funcionario(), funcionario.getSenha_funcionario()) != null && funcionario.getStatus_funcionario().equals("ativo")){
+      FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteFuncionario.xhtml"); 
+   }else{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Usuário ou senha inválidos", "Usuário ou senha inválidos");
             FacesContext.getCurrentInstance().addMessage(null, message);
             context.addCallbackParam("loggedIn", mensagem);
-        }
+   }
         funcionario = new Funcionario();
     }
 
