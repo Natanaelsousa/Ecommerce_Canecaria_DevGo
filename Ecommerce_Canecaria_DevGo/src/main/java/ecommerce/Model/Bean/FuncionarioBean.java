@@ -5,12 +5,11 @@ import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Funcionario;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
