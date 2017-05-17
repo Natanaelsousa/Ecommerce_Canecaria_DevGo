@@ -102,6 +102,10 @@ and open the template in the editor.
                         <h:outputLabel for="DescricaoProduto" value="Descreva o produto:" />
                         <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{ProdutosBean.produto.descricao_produto}" required="true"/>
                     </div>
+                    <div class="form-group col-md-3">
+                        <h:outputLabel for="txtImagem" value="Imagem do produto:" />
+                        <h:inputFile id="txtImagem" value="#{ProdutosBean.produto.imagem}" />
+                    </div>
 
                     <div class="form-group col-md-7">
                         <h:outputLabel value="Escolha a categoria:" />
@@ -110,14 +114,10 @@ and open the template in the editor.
                             <f:selectItems value="#{CategoriasBean.ListarCategorias()}" var="categoria" itemLabel="#{categoria.nome_categoria}" itemValue="#{categoria.cod_categoria}"/>
                         </h:selectOneMenu>
                     </div>
+
+
+                    
                 </div>
-
-                <!--
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="ImagemProduto" value="Imagem do produto:" />
-                    <h:inputText p:type="image" id="ImagemProdutoInput" p:src=" " p:width="50" />
-                </div>-->
-
                 <div class="space"></div>
                 <hr />
                 <div class="row">

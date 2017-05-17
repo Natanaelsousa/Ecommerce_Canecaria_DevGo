@@ -3,9 +3,17 @@ package ecommerce.Model.Bean;
 import ecommerce.Model.Dao.ProdutoDAO;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Produto;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
+import javax.servlet.http.Part;
 
 /* @author sibele */
 @ManagedBean(name = "ProdutosBean")
@@ -32,11 +40,53 @@ public class ProdutosBean {
 
     public ProdutosBean() {
     }
+private Part imagem;
+
+    public Part getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Part imagem) {
+        this.imagem = imagem;
+    }
 
     /*Responsavel pelo cadastro do produto*/
     public void CadastrarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         try {
+            if (imagem != null) {
+      String partHeader = imagem.getHeader("content-disposition");
+      System.out.println("***** partHeader: " + partHeader);
+      for (String content : partHeader.split(";")) {
+	if (content.trim().startsWith("filename")) {
+	  System.out.println("***** content: " + content);
+	  String nomeArquivo = content.substring(content.indexOf('=') + 1);
+	  System.out.println("***** nomeArquivo 1: " + nomeArquivo);
+	  nomeArquivo = nomeArquivo.trim().replace("\"", "");
+	  int lastFilePart = nomeArquivo.lastIndexOf("\\");
+	  if (lastFilePart > 0) {
+	    nomeArquivo = nomeArquivo.substring(lastFilePart, nomeArquivo.length());
+	  }
+	  String destino = "C:\\desenv\\imagens\\";
+	  File arquivo = new File(destino + nomeArquivo);
+	  System.out.println("***** arquivo: " + arquivo.getAbsolutePath());
+
+	  try (InputStream inputStream = imagem.getInputStream();
+		  OutputStream outputStream
+		  = new FileOutputStream(arquivo)) {
+	    int read = 0;
+	    final byte[] imgBytes = new byte[1024];
+	    while ((read = inputStream.read(imgBytes)) != -1) {
+	      outputStream.write(imgBytes, 0, read);
+	    }
+
+	  } catch (IOException ex) {
+	    Logger.getLogger(ProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
+	  }
+
+	}
+      }
+    }
             produtos.CadastrarProduto(produto);
         } catch (SQLException erro) {
             System.err.println("Este produto ja foi cadastrado.");

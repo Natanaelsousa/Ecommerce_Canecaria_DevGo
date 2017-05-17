@@ -1,6 +1,7 @@
 package ecommerce.Model.MetodosAcessores;
 
 import java.sql.Timestamp;
+import javax.servlet.http.Part;
 
 /* @author sibele */
 public class Produto {
@@ -13,6 +14,15 @@ public class Produto {
     private float valor_produto;
     private String descricao_produto;
     private Timestamp data_inclusao;
+    private Part imagem;
+
+    public Part getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Part imagem) {
+        this.imagem = imagem;
+    }
 
     public Timestamp getData_inclusao() {
         return data_inclusao;
