@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 
-/*  @author sibele */
+/* @author sibele */
 @ManagedBean(name = "ProdutosBean")
 public class ProdutosBean {
 

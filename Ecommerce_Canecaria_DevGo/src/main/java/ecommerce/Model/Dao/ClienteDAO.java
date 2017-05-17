@@ -14,6 +14,9 @@ import java.sql.SQLException;
  */
 public interface ClienteDAO {
 
+    // Responsavel por buscar um cliente pelo ID
+    public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException;
+
     public void CadastrarCliente(Cliente cliente) throws SQLException;
 
     public void EditarCadastroCliente(Cliente cliente) throws SQLException;

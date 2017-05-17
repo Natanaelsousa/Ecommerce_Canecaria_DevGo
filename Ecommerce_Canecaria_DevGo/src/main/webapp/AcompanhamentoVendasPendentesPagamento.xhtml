@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Canecaria - Vendas</title>
+        <meta name="description" content="Your Description Here" />
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
+        <meta name="author" content="ThemeForces.Com" />
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
+        <link rel="stylesheet" type="text/css"  href="css/FaleConosco.css" />
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </h:head>
+
+    <h:body>
+        <div id="page">
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalhoFuncionario.xhtml" />
+                </ui:insert>
+            </div>
+            <div class="space"></div>
+
+            <div class="container-fluid">
+                <h2>Vendas pendentes de pagamento</h2>
+                <hr/>
+                <p:commandButton class="btn btn-primary btn-xs col-md-2  col-md-push-10 " p:type="submit" value="Voltar" action="AreaDeVendas.xhtml"> 
+                </p:commandButton>
+                <div class="space"></div>    
+                <h:form>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Código do pedido</th>
+                                <th>Código da compra</th>
+                                <th>Nome do cliente</th>
+                                <th>Data da compra</th>
+                                <th>Valor da compra</th>
+                                <th>Forma de pagamento</th>
+                                <th>Situação da compra</th>
+                            </tr>
+                        </thead>
+                        <ui:repeat value="#{PedidosBean.listEncontrarVendasPeloStatus()}" var="pedido">
+                            <tbody>
+                                <tr>
+                                    <td>#{pedido.cod_pedido}</td>
+                                    <td>A AJUSTAR</td>
+                                    <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
+                                    <td>#{pedido.data_pedido}</td>
+                                    <td>#{pedido.valor_a_pagar}</td>
+                                    <td>#{PagamentoBean.buscarPagamentoPorId(pedido.cod_pagamento)}</td>
+                                    <td>Aguardando pagamento</td>
+
+                                </tr>
+                            </tbody>
+                        </ui:repeat>      
+                    </table>
+                </h:form>
+                <p:commandButton class="btn btn-primary btn-xs col-md-2  col-md-push-10 " p:type="submit" value="Voltar" action="AreaDeVendas.xhtml"> 
+                </p:commandButton>
+
+            </div>
+
+
+
+
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+</html>
+
+

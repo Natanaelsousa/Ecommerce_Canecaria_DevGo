@@ -17,7 +17,7 @@ public class PagamentoDAOImpl extends GenericaDAOImpl implements PagamentoDAO {
 //    Busca uma determinada forma de pagamento
     public Pagamento BuscarFormaPagamento(int cod_pagamento) throws SQLException {
 
-        String sql = "SELECT * FROM PAGAMENTO WHERE COD_PAGAMENTO =" + cod_pagamento;
+        String sql = "SELECT * FROM PAGAMENTO WHERE COD_PAGAMENTO =" + cod_pagamento+" ";
 
         Pagamento pagamento = new Pagamento();
 

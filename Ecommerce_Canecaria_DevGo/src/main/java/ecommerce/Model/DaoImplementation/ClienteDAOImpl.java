@@ -105,4 +105,39 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         return clientes;
     }
+     
+     
+     // Responsavel por buscar um cliente pelo ID
+     public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException {
+        Cliente cliente = new Cliente();
+        String select = "SELECT * FROM CLIENTE WHERE COD_CLIENTE = "+cod_cliente+" ";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(select);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            cliente.setCidade(rs.getString("CIDADE"));
+            cliente.setCod_cliente(rs.getInt("COD_CLIENTE"));
+            cliente.setData_nascimento(rs.getDate("DATA_NASCIMENTO"));
+            cliente.setCelular(rs.getString("CELULAR"));
+            cliente.setEstado(rs.getString("ESTADO"));
+            cliente.setNumero(rs.getString("NUMERO"));
+            cliente.setSenha(rs.getString("SENHA"));
+            cliente.setNome(rs.getString("NOME"));
+            cliente.setRua(rs.getNString("RUA"));
+            cliente.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
+            cliente.setCep(rs.getString("CEP"));
+            cliente.setEmail(rs.getNString("EMAIL"));
+            cliente.setBairro(rs.getNString("BAIRRO"));
+            cliente.setSexo(rs.getNString("SEXO"));
+            cliente.setCpf(rs.getNString("CPF"));
+        }
+
+        rs.close();
+        stmt.close();
+
+        return cliente;
+    }
 }
