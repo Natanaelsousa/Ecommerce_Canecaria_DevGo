@@ -78,4 +78,9 @@ public class PedidosBean {
         }
         return listarVendas;
     }
+
+    public String RedirecionandoParaTelaVendas() throws Exception {
+
+        return "AreaDeVendas";
+    }
 }

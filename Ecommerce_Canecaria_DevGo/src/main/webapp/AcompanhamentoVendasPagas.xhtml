@@ -52,8 +52,7 @@
             <div class="container-fluid">
                 <h2>Vendas quitadas</h2>
                 <hr/>
-                <p:commandButton class="btn btn-primary btn-xs col-md-2  col-md-push-10 " p:type="submit" value="Voltar" action="AreaDeVendas.xhtml"> 
-                </p:commandButton>
+
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
@@ -93,14 +92,10 @@
                         </ui:repeat>      
                     </table>
                 </h:form>
-                <p:commandButton class="btn btn-primary btn-xs col-md-2  col-md-push-10 " p:type="submit" value="Voltar" action="AreaDeVendas.xhtml"> 
+                <p:commandButton class="btn btn-success btn-xs btn-block" p:type="submit" value="Despachar pedido" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
                 </p:commandButton>
-
             </div>
-
-
-
-
+            
             <!-- Importando o rodape -->
             <div id="footer">
                 <ui:insert name="rodape" >
