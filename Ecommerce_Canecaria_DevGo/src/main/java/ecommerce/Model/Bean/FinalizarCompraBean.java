@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 
 /**
@@ -18,7 +18,8 @@ import javax.faces.bean.ViewScoped;
  * @author Erik
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
+//@ViewScoped
 public class FinalizarCompraBean {
 
     FinalizarCompra compra = new FinalizarCompra();
@@ -27,6 +28,7 @@ public class FinalizarCompraBean {
     ResumoPedidoDAO  pedidoDao = new ResumoPedidoDAOImpl(); 
     List<ResumoPedido> pedidos =  new ArrayList<>();
     private double total;
+    private Integer codCompra;
         
     public FinalizarCompraBean() {
         
@@ -63,6 +65,9 @@ public class FinalizarCompraBean {
              
             finalizar.CadastrarPedido(compra);
             
+            setCodCompra(finalizar.UltimoId());
+            
+                    
            System.out.println("DDDDDDDD "+finalizar.UltimoId());
               
         } catch (SQLException erro) {
@@ -121,6 +126,14 @@ public class FinalizarCompraBean {
    }
       
   
+    public Integer getCodCompra() {
+        return codCompra;
+    }
+
+   
+    public void setCodCompra(Integer codCompra) {
+        this.codCompra = codCompra;
+    }
    
      
       

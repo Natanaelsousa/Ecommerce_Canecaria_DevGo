@@ -241,6 +241,25 @@ h4 a{
 	font-size: 16px;
 	
 }
+.novo.panel-footer {
+  padding: 10px 15px;
+  color: #FFFFFF;
+  background-color:   #66afe9;
+  border-top: 1px solid #ddd;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.novo.panel-footer:hover {
+  padding: 10px 15px;
+  color: black;
+  background-color:   #66afe9;
+  border-top: 1px solid #ddd;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+
 
 .item > img {
     max-width: 100%;
