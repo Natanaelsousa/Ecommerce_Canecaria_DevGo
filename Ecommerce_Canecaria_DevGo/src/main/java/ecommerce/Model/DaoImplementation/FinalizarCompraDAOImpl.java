@@ -17,8 +17,8 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
     public void CadastrarPedido(FinalizarCompra finalizaCompra) throws SQLException {
         
            String query = 
-                   "INSERT INTO PEDIDO (COD_PAGAMENTO, COD_CLIENTE,COD_STATUS, CEP,RUA, NUMERO, BAIRRO, CIDADE, ESTADO, COD_FINALIZACAO_COMPRA, VALOR_TOTAL_COMPRA) "
-                   + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                   "INSERT INTO PEDIDO (COD_PAGAMENTO, COD_CLIENTE,COD_STATUS, CEP,RUA, NUMERO, BAIRRO, CIDADE, ESTADO, VALOR_TOTAL_COMPRA) "
+                   + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
    
 
@@ -27,7 +27,7 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
                 finalizaCompra.getCodStatus(), finalizaCompra.getCep(), 
                 finalizaCompra.getRua(), finalizaCompra.getNumero(), 
                 finalizaCompra.getBairro(), finalizaCompra.getCidade(), finalizaCompra.getEstado(), 
-                finalizaCompra.getCodFinalizacaoCompra(), finalizaCompra.getValorTotalCompra());
+                finalizaCompra.getValorTotalCompra());
    
     }
 

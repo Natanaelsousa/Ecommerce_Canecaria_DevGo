@@ -19,7 +19,6 @@ public class FinalizarCompra {
     private String bairro;
     private String cidade;
     private String estado;
-    private String codFinalizacaoCompra;
     private double valorTotalCompra;
     private Timestamp dataPedido;
 
@@ -47,7 +46,6 @@ public class FinalizarCompra {
               this.bairro = bairro;
               this.cidade = cidade;
               this.estado = estado;
-              this.codFinalizacaoCompra = codFinalizacaoCompra;
               this.valorTotalCompra = valorTotalCompra;
     }
     
@@ -189,20 +187,6 @@ public class FinalizarCompra {
      */
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    /**
-     * @return the codFinalizacaoCompra
-     */
-    public String getCodFinalizacaoCompra() {
-        return codFinalizacaoCompra;
-    }
-
-    /**
-     * @param codFinalizacaoCompra the codFinalizacaoCompra to set
-     */
-    public void setCodFinalizacaoCompra(String codFinalizacaoCompra) {
-        this.codFinalizacaoCompra = codFinalizacaoCompra;
     }
 
     /**

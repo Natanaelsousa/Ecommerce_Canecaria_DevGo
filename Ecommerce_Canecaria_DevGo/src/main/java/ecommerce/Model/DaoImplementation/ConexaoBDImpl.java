@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /* @author sibele */
 public class ConexaoBDImpl {
 
-    private static final String URL = "jdbc:mysql://10.135.109.18:3306/ECOMMERCE"; //url de conexao
+    private static final String URL = "jdbc:mysql://localhost:3306/ECOMMERCE"; //url de conexao
     private static final String DRIVER = "com.mysql.jdbc.Driver"; //driver mysql
     private static final String USUARIO = "root"; //nome do usuário do banco de dados
     private static final String SENHA = ""; //senha do usuário do banco de dados
