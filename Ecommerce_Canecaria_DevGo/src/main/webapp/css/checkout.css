@@ -57,12 +57,12 @@ form label {
     
 }
 form input:focus{
-    border-color:#80c0ff;
+    border-color:#333;
    /* background: white;*/
 }
 
 form input:focus + label{
-    background:#80c0ff;
+    background:#333;
     color: white;
     font-size: 1em;
     padding: 1px 6px;
@@ -118,7 +118,7 @@ img{
 .number{
     width:50px;
     height:50px;
-    background:#80c0ff;
+    background:#333;
     color:#FFF;
     font-size:36px;
     text-align: center;
@@ -130,7 +130,7 @@ img{
 .step {
     width: 100%;
     height: auto;
-    color: #80c0ff;
+    color: #333;
     padding-left: 1%;
     padding-top: 20px;
     float: left;
@@ -140,7 +140,7 @@ img{
     content:'';
     width:80%;
     height:3px;
-    background:#80c0ff;
+    background:#333;
     position:absolute;
     bottom:0;
     right:0;
@@ -181,7 +181,7 @@ img{
     display:block;
     float:none;
     margin:5px auto;
-    background:#80c0ff;
+    background:#333;
     width:200px;
     border:0;
     padding:5px 15px;
@@ -194,7 +194,7 @@ img{
 .content .continue{
     display:block;
     float:none;
-    background:#80c0ff;
+    background:#333;
     width:200px;
     border:0;
     padding:5px 15px;
@@ -246,7 +246,7 @@ img{
     width: 40%;
     top:5px;
     bottom:3px;
-    background:#80c0ff;
+    background:#333;
     color: white;
     font-size: 1em;
     padding: 4px 6px;
@@ -296,7 +296,7 @@ img{
     width: 40%;
     top:7px;
     bottom:3px;
-    background:#80c0ff;
+    background:#333;
     color: white;
     font-size: 1em;
     padding: 4px 6px;
@@ -463,7 +463,7 @@ span.method{
     color:#fff;
     font-size:2em;
     text-decoration: none;
-    background:#80c0ff;
+    background:#333;
     text-align:center;
     border-bottom: 3px solid #4da7ff;
     border-radius: 2px;
@@ -545,7 +545,7 @@ span.method{
         border-color: #f06d06;
     }
     form input:focus + label, form textarea:focus + label {
-        background:#80c0ff;
+        background:#333;
         /* color: white;*/
         font-size: 100%;
         padding: 1px 6px;
