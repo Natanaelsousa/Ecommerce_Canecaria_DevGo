@@ -12,6 +12,8 @@ h2{margin-bottom:10px;font-size:22px;line-height:40px}
     margin-top: 50px;
 }
 
+
+
 /*
 Author: DavieB
 */
@@ -26,13 +28,13 @@ body{
     box-sizing:border-box;
     -webkit-box-sizing:border-box;
 }
-form > div {
+/*form > div {
     position: relative;
     overflow: hidden;
     width:100%;
     max-width:320px;
 
-}
+} */
 
 
 form input {
@@ -44,7 +46,7 @@ form input {
     top: 0;
     left: 0;
     z-index: 1;
-    padding: 8px 12px;
+    padding: 10px 14px;
     outline: 0;
 }
  input#card_number:valid, input#ccv:valid{
@@ -61,20 +63,20 @@ form input:focus{
    /* background: white;*/
 }
 
-form input:focus + label{
+ form input:focus + label{
     background:#333;
     color: white;
     font-size: 1em;
     padding: 1px 6px;
     z-index: 2;
     text-transform: uppercase;
-}
+} 
 form label {
     transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
     font-size:1em;
      position: absolute;
     color: #999;
-     padding: 7px 6px; 
+     padding: 10px 9px; 
 }
 form textarea {
     display: block;
@@ -265,7 +267,7 @@ img{
     display:block;
     font-size:1.0em;
     padding:0;
-    margin-bottom:15px;
+    margin-bottom:25px; 
     top:3px;
     right: 100%;
     margin-right:-100%;
@@ -290,19 +292,19 @@ img{
 #payment .expiry{
     margin-top:7px;
 }
-#payment label.exp_date{
-    right: 0;
+ #payment label.exp_date{
+    /* right: 0;
     margin-right: 0;
     width: 40%;
     top:7px;
-    bottom:3px;
+    bottom:3px; */
     background:#333;
     color: white;
     font-size: 1em;
     padding: 4px 6px;
     z-index: 2;
     text-transform: uppercase;
-}
+} 
 #payment .month_select,
 #payment .year_select{
     width: 38%;
@@ -541,17 +543,17 @@ span.method{
     /*form input:valid, form textarea:valid {
         background: white;
     } */
-    form input:focus, form textarea:focus {
+     form input:focus, form textarea:focus {
         border-color: #f06d06;
     }
-    form input:focus + label, form textarea:focus + label {
+   /****** form input:focus + label, form textarea:focus + label {
         background:#333;
-        /* color: white;*/
+        
         font-size: 100%;
         padding: 1px 6px;
         z-index: 2;
         text-transform: uppercase;
-    }
+    } */
     form label {
         transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
         position: absolute;
@@ -563,7 +565,7 @@ span.method{
         resize: vertical;
     }
 
-    form.go-right label {
+  form.go-right label {
         top: 2px;
         right: 100%;
         width: 100%;
@@ -571,7 +573,9 @@ span.method{
         bottom: 2px;
         border-bottom-right-radius:3px;
         border-top-right-radius:3px;
-    }
+    } 
+   
+   
     form.go-right input:focus + label, form.go-right textarea:focus + label {
         right: 0;
         margin-right: 0;
