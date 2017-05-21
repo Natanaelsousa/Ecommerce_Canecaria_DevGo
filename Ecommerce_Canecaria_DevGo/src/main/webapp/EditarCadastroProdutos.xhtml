@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://primefaces.org/ui"> 
     <h:head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,67 +56,67 @@
             <!-- Fim -->
 
             <!-- Conteudo da pagina -->
-             <!-- Espaço entre o menu -->
-        <div class="space"></div>
-        <!-- Page Content -->
-        <div class="container">
-            <h1>Editar informações do produto</h1>
-            <hr/>
+            <!-- Espaço entre o menu -->
+            <div class="space"></div>
+            <!-- Page Content -->
+            <div class="container">
+                <h1>Editar informações do produto</h1>
+                <hr/>
 
-            <h:form >
-
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="NomeProduto" value="Nome do novo produto:" />
-                    <h:inputText p:type="text" class="form-control" id="NomeProdutoInput" value="#{ProdutosBean.produto.nome_produto}" p:placeholder="Digite o nome do produto"/>
-                </div>
-
-                <div class="form-group col-md-3">
-                    <h:outputLabel for="ValorProduto" value="Valor do produto:" />
-                    <h:inputText p:type="number" class="form-control" id="ValorProdutoInput" value="#{ProdutosBean.produto.valor_produto}" p:placeholder="R$ 00,00"/>
-                </div>
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="DescricaoProduto" value="Descreva o produto:" />
-                    <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{ProdutosBean.produto.descricao_produto}" />
-                </div>
-
-                <div class="form-group col-md-7">
-                    <h:outputLabel for="QuantidadeProduto" value="QuantidadeEstoque:" />
-                    <h:inputText p:type="number" class="form-control" id="QuantidadeInput" value="#{ProdutosBean.produto.qtde_produto}" />
-                </div>
+                <h:form >
 
 
+                    <div class="form-group col-md-7">
+                        <h:outputLabel for="NomeProduto" value="Nome do novo produto:" />
+                        <h:inputText p:type="text" class="form-control" id="NomeProdutoInput" value="#{ProdutosBean.produto.nome_produto}" p:placeholder="Digite o nome do produto"/>
+                    </div>
 
-                <div class="form-group col-md-7">
-                    <h:outputLabel value="Escolha a categoria:" />
-                    <h:selectOneMenu class="form-control" value="#{ProdutosBean.produto.cod_categoria}" >
-                        <f:selectItems value="#{CategoriasBean.ListarCategorias()}" var="categoria" itemLabel="#{categoria.cod_categoria} - #{categoria.nome_categoria}" itemValue="#{categoria.cod_categoria}"/>
-                    </h:selectOneMenu>
-                </div>
+                    <div class="form-group col-md-3">
+                        <h:outputLabel for="ValorProduto" value="Valor do produto:" />
+                        <h:inputText p:type="number" class="form-control" id="ValorProdutoInput" value="#{ProdutosBean.produto.valor_produto}" p:placeholder="R$ 00,00"/>
+                    </div>
 
-                <div class="space"></div>
+                    <div class="form-group col-md-7">
+                        <h:outputLabel for="DescricaoProduto" value="Descreva o produto:" />
+                        <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{ProdutosBean.produto.descricao_produto}" />
+                    </div>
 
-                <!--                <div class="row">
-                                    <div class="form-group col-md-6">
-                
-                                        <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" >
-                                        </h:commandButton>
-                                    </div>
-                
-                
-                                </div>-->
-                <hr />
-              
+                    <pt:panelGrid columns="5" style="margin-top:20px;margin-bottom:20px;background-color: white;font-size: 25px">
+                        <f:facet name="header" >
+                         
+                            <span><img src="/imagens/#{ProdutosBean.produto.imagem_produto}"/></span>
+                        </f:facet>
+                    </pt:panelGrid>
+                    
+                    <div class="form-group col-md-7">
+                        <h:outputLabel value="Escolha a categoria:" />
+                        <h:selectOneMenu class="form-control" value="#{ProdutosBean.produto.cod_categoria}" >
+                            <f:selectItems value="#{CategoriasBean.ListarCategorias()}" var="categoria" itemLabel="#{categoria.cod_categoria} - #{categoria.nome_categoria}" itemValue="#{categoria.cod_categoria}"/>
+                        </h:selectOneMenu>
+                    </div>
+
+                    <div class="space"></div>
+
+                    <!--                <div class="row">
+                                        <div class="form-group col-md-6">
+                    
+                                            <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" >
+                                            </h:commandButton>
+                                        </div>
+                    
+                    
+                                    </div>-->
+                    <hr />
+
                     <div class="form-group col-md-7">
                         <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar Alteração" action="#{ProdutosBean.editarProduto()}" >
                         </h:commandButton>
                     </div>
-               
-            </h:form>
 
-        </div>
-        <div class="space"></div>
+                </h:form>
+
+            </div>
+            <div class="space"></div>
 
             <!-- Fim -->
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.Part;
 
 /* @author sibele */
 public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
@@ -40,15 +41,13 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     }
 
     //Insere os dados do produto no banco
-    @Override
-    public void CadastrarProduto(Produto produto) throws SQLException {
-        String query = "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO,QTDE_PRODUTO, COD_CATEGORIA) VALUES (?,?,?,?,?)";
+    public void CadastrarProduto(Produto produto, String caminhoImagem) throws SQLException {
+        String query = "INSERT INTO PRODUTO (NOME_PRODUTO, VALOR_PRODUTO, DESCRICAO_PRODUTO,QTDE_PRODUTO, COD_CATEGORIA,IMAGEM_PRODUTO) VALUES (?,?,?,?,?,?)";
 
         // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
         produto.setQtde_produto(0);
-
-        insert(query, produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getQtde_produto(), produto.getCod_categoria());
-
+        produto.setImagem_produto(caminhoImagem);
+        insert(query, produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getQtde_produto(), produto.getCod_categoria(), produto.getImagem_produto());
     }
 
     //Soma a quantidade de produtos ja existentem com a que sera inserida
@@ -77,9 +76,9 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     public void EditarCadastroProduto(Produto produto, int id_prod) throws SQLException {
 
         String query = "UPDATE produto "
-                + "SET cod_categoria = ?,nome_produto = ?,valor_produto = ?,descricao_produto = ?, QTDE_PRODUTO = ? WHERE cod_prod = ?";
-        produto.setCod_produto(id_prod);
-        update(query, produto.getCod_produto(),produto.getCod_categoria(), produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(),produto.getQtde_produto());
+                + "SET cod_nome_produto = ?,valor_produto = ?,descricao_produto = ?,categoria = ?, QTDE_PRODUTO = ? WHERE cod_prod = ?";
+//        produto.setCod_produto(id_prod);
+        update(query, produto.getCod_produto(), produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getCod_categoria(), produto.getQtde_produto(), produto.getCod_produto());
 
     }
 
@@ -87,7 +86,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     @Override
     public Produto BuscarProdutoPorCategoria(String codigo_categoria) throws SQLException {
 
-        String sql = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO FROM PRODUTO WHERE COD_CATEGORIA =" + codigo_categoria;
+        String sql = "SELECT COD_PRODUTO,COD_CATEGORIA,NOME_PRODUTO,VALOR_PRODUTO,DESCRICAO_PRODUTO,IMAGEM_PRODUTO FROM PRODUTO WHERE COD_CATEGORIA =" + codigo_categoria;
 
         Produto produto = new Produto();
 
@@ -103,6 +102,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
             produto.setNome_produto(rs.getString("NOME_PRODUTO"));
             produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
             produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+            produto.setImagem_produto(rs.getString("imagem_produto"));
 
         }
 
@@ -141,7 +141,6 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
     }
 
-   
     //Localiza um produto especifico pelo ID
     @Override
     public Produto BuscarProdutoPorID(int id_produto) throws SQLException {
@@ -161,6 +160,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
             produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
             produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
             produto.setQtde_produto(rs.getInt("QTDE_PRODUTO"));
+             produto.setImagem_produto(rs.getString("imagem_produto"));
 
         }
 

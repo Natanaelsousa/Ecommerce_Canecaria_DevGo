@@ -14,14 +14,14 @@ public class Produto {
     private float valor_produto;
     private String descricao_produto;
     private Timestamp data_inclusao;
-    private Part imagem;
+    private String imagem_produto;
 
-    public Part getImagem() {
-        return imagem;
+    public String getImagem_produto() {
+        return imagem_produto;
     }
 
-    public void setImagem(Part imagem) {
-        this.imagem = imagem;
+    public void setImagem_produto(String imagem_produto) {
+        this.imagem_produto = imagem_produto;
     }
 
     public Timestamp getData_inclusao() {
@@ -72,8 +72,6 @@ public class Produto {
         this.qtde_para_acrescentar = qtde_para_acrescentar;
     }
 
-    
-    
     public float getValor_produto() {
         return valor_produto;
     }

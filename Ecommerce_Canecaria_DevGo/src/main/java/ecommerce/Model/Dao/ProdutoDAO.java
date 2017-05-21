@@ -3,19 +3,20 @@ package ecommerce.Model.Dao;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
+import javax.servlet.http.Part;
 
 
 /*@author sibele.nsantos*/
 public interface ProdutoDAO {
 
-    public void CadastrarProduto(Produto produto) throws SQLException;
+    public void CadastrarProduto(Produto produto, String caminhoImagem) throws SQLException;
 
-    public Produto BuscarProdutoPorID(int id_produto) throws SQLException ;
-    
+    public Produto BuscarProdutoPorID(int id_produto) throws SQLException;
+
     public void ExclusaoDeCadastroProduto(Produto produto) throws SQLException;
 
-    public void EditarCadastroProduto(Produto produto, int id_prod) throws SQLException ;
-   
+    public void EditarCadastroProduto(Produto produto, int id_prod) throws SQLException;
+
     public Produto BuscarProdutoPorCategoria(String codigo_categoria) throws SQLException;
 
     public void InserirQuantidadeDeProdutoExistente(Produto produto) throws SQLException;

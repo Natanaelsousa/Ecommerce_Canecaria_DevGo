@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.servlet.http.Part;
 
@@ -21,6 +19,7 @@ public class ProdutosBean {
 
     private Produto produto = new Produto();
     private int id_produto;
+    private Part imagem;
 
     public Produto getProduto() {
         return produto;
@@ -40,7 +39,6 @@ public class ProdutosBean {
 
     public ProdutosBean() {
     }
-private Part imagem;
 
     public Part getImagem() {
         return imagem;
@@ -50,44 +48,49 @@ private Part imagem;
         this.imagem = imagem;
     }
 
-    /*Responsavel pelo cadastro do produto*/
+
     public void CadastrarProduto() throws Exception {
+
         ProdutoDAO produtos = new ProdutoDAOImpl();
+        byte[] imgBytes = null;
+        String nomeArquivo = null;
         try {
-            if (imagem != null) {
-      String partHeader = imagem.getHeader("content-disposition");
-      System.out.println("***** partHeader: " + partHeader);
-      for (String content : partHeader.split(";")) {
-	if (content.trim().startsWith("filename")) {
-	  System.out.println("***** content: " + content);
-	  String nomeArquivo = content.substring(content.indexOf('=') + 1);
-	  System.out.println("***** nomeArquivo 1: " + nomeArquivo);
-	  nomeArquivo = nomeArquivo.trim().replace("\"", "");
-	  int lastFilePart = nomeArquivo.lastIndexOf("\\");
-	  if (lastFilePart > 0) {
-	    nomeArquivo = nomeArquivo.substring(lastFilePart, nomeArquivo.length());
-	  }
-	  String destino = "C:\\desenv\\imagens\\";
-	  File arquivo = new File(destino + nomeArquivo);
-	  System.out.println("***** arquivo: " + arquivo.getAbsolutePath());
+            try {
+                if (imagem != null) {
+                    String partHeader = imagem.getHeader("content-disposition");
+                    System.out.println("***** partHeader: " + partHeader);
+                    for (String content : partHeader.split(";")) {
+                        if (content.trim().startsWith("filename")) {
+                            System.out.println("***** content: " + content);
+                             nomeArquivo = content.substring(content.indexOf('=') + 1);
+                            System.out.println("***** nomeArquivo 1: " + nomeArquivo);
+                            nomeArquivo = nomeArquivo.trim().replace("\"", "");
+                            int lastFilePart = nomeArquivo.lastIndexOf("\\");
+                            if (lastFilePart > 0) {
+                                nomeArquivo = nomeArquivo.substring(lastFilePart, nomeArquivo.length());
+                            }
+                            String destino = "C:\\desenv\\imagens\\";
+                            File arquivo = new File(destino + nomeArquivo);
+                            System.out.println("***** arquivo: " + arquivo.getAbsolutePath());
 
-	  try (InputStream inputStream = imagem.getInputStream();
-		  OutputStream outputStream
-		  = new FileOutputStream(arquivo)) {
-	    int read = 0;
-	    final byte[] imgBytes = new byte[1024];
-	    while ((read = inputStream.read(imgBytes)) != -1) {
-	      outputStream.write(imgBytes, 0, read);
-	    }
+                            try (InputStream inputStream = imagem.getInputStream();
+                                    OutputStream outputStream
+                                    = new FileOutputStream(arquivo)) {
+                                int read = 0;
+                                imgBytes = new byte[1024];
+                                while ((read = inputStream.read(imgBytes)) != -1) {
+                                    outputStream.write(imgBytes, 0, read);
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (IOException ex) {
 
-	  } catch (IOException ex) {
-	    Logger.getLogger(ProdutosBean.class.getName()).log(Level.SEVERE, null, ex);
-	  }
+            }
+//            produto.setImagem(imgBytes);
+            produtos.CadastrarProduto(produto, nomeArquivo);
 
-	}
-      }
-    }
-            produtos.CadastrarProduto(produto);
         } catch (SQLException erro) {
             System.err.println("Este produto ja foi cadastrado.");
         }
@@ -101,6 +104,7 @@ private Part imagem;
         String retorno = null;
         try {
             produto = produtos.BuscarProdutoPorID(id_produto);
+            
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar o produto");
         }
@@ -115,10 +119,10 @@ private Part imagem;
     }
 
     /* Edita dados, no banco, do produto selecionado*/
-    public String  editarProduto() throws Exception {
+    public String editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         try {
-            produtos.EditarCadastroProduto(produto,id_produto);
+            produtos.EditarCadastroProduto(produto, id_produto);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel alterar os dados deste produto.");
         }
