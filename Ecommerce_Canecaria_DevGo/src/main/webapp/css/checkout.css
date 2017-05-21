@@ -49,11 +49,22 @@ form input {
     padding: 10px 14px;
     outline: 0;
 }
+form input:focus + label{
+
+ background:#333;
+    color: white;
+    font-size: 1em;
+    padding: 4px 6px;
+    z-index: 2;
+    text-transform: uppercase;
+    
+    }
+    
  input#card_number:valid, input#ccv:valid{
     background: white;
 } 
 
-form label {
+form #email > label {
     background: white;
     color: white;
     
@@ -63,7 +74,7 @@ form input:focus{
    /* background: white;*/
 }
 
- form input:focus + label{
+ form #email > input:focus + form #email > label{
     background:#333;
     color: white;
     font-size: 1em;
@@ -71,14 +82,14 @@ form input:focus{
     z-index: 2;
     text-transform: uppercase;
 } 
-form label {
+form #email > label {
     transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
     font-size:1em;
      position: absolute;
     color: #999;
      padding: 10px 9px; 
 }
-form textarea {
+form #email > textarea {
     display: block;
     resize: vertical;
 }
@@ -240,6 +251,7 @@ img{
     border: 0;
     border-radius:0;
     height: 40px;
+    
 }
 #address .state_options label,
 #address .country_options label.country{
@@ -293,17 +305,18 @@ img{
     margin-top:7px;
 }
  #payment label.exp_date{
-    /* right: 0;
+     right: 0;
     margin-right: 0;
-    width: 40%;
+    width: 100%;
     top:7px;
-    bottom:3px; */
+    bottom:3px;
     background:#333;
     color: white;
     font-size: 1em;
     padding: 4px 6px;
     z-index: 2;
     text-transform: uppercase;
+    display: block;
 } 
 #payment .month_select,
 #payment .year_select{
@@ -513,9 +526,9 @@ span.method{
         
     #payment label.exp_date{
     
-        width: 30%;
+        width: 80%;
    
-   }
+   } 
         
      
     }
@@ -544,6 +557,7 @@ span.method{
         background: white;
     } */
      form input:focus, form textarea:focus {
+         
         border-color: #f06d06;
     }
    /****** form input:focus + label, form textarea:focus + label {
@@ -554,10 +568,10 @@ span.method{
         z-index: 2;
         text-transform: uppercase;
     } */
-    form label {
+    form #email label {
         transition: background 0.2s, color 0.2s, top 0.2s, bottom 0.2s, right 0.2s, left 0.2s;
         position: absolute;
-        color: #999;
+        color: white;
         padding: 7px 6px;
     }
     form textarea {
@@ -565,7 +579,7 @@ span.method{
         resize: vertical;
     }
 
-  form.go-right label {
+ /* form #email  label{
         top: 2px;
         right: 100%;
         width: 100%;
@@ -573,7 +587,7 @@ span.method{
         bottom: 2px;
         border-bottom-right-radius:3px;
         border-top-right-radius:3px;
-    } 
+    } */
    
    
     form.go-right input:focus + label, form.go-right textarea:focus + label {
@@ -581,6 +595,7 @@ span.method{
         margin-right: 0;
         width: 40%;
         padding-top: 5px;
+        display: block;
     }
 
 }

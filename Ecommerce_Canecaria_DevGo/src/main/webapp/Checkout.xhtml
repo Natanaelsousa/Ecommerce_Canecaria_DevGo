@@ -105,48 +105,55 @@
 
                                             <div>
 
+
+
                                                 <h:inputText pt:type="number" class="form-control" id="CEP"
                                                              required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"
-                                                             style="margin-bottom:25px"
+                                                             style="margin-bottom:5px"
 
                                                              />
 
-
                                                 <label class="cep" for="CEP">CEP</label>
+
 
                                             </div>
 
                                             <div>
 
+
                                                 <h:inputText pt:type="text" class="form-control"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" pt:placeholder="Digite a rua" style="margin-bottom:25px"/>
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="Rua" pt:placeholder="Digite a rua" style="margin-bottom:5px"/>
                                                 <label class="Rua" for="Rua">Rua</label>
 
                                             </div>
 
                                             <div>
-                                                <label for="Numero">Número</label>
-                                                <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:25px" />
+
+                                                <h:inputText pt:type="text" class="form-control" id="Numero" onkeypress="return somenteNumero(event)"
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px"/>
+
                                                 <label class="numero" for="numero">Número</label>
                                             </div>
+                                            
                                             <div>
 
+
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:25px" />
-                                                <label class="bairro" for="bairro">Bairro</label>
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" />
+                                                <label class="bairro" for="Bairro">Bairro</label>
                                             </div>
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" style="margin-bottom:25px"/>
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="Cidade" style="margin-bottom:5px"/>
                                                 <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
 
-                                                <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:25px"   />
+
+                                                <h:inputText pt:type="text" class="form-control" id="UF" pt:placeholder="Ex:SP"
+                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
 
@@ -187,6 +194,8 @@
 
                                                     </h:selectOneMenu>
 
+
+
                                                 </div>
 
                                                 <div>
@@ -209,39 +218,40 @@
                                                                 <option value = "11">11 (Nov)</option>
                                                                 <option value = "12">12 (Dec)</option>
                                                             </select>
+
                                                         </div>
                                                         <div class="year_select">
                                                             <select name="exp_year" value="" id="exp_year" placeholder="" data-trigger="change" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Expiration Date">
-                                                                <option value = "1">14 </option>
-                                                                <option value = "2">15 (Feb)</option>
-                                                                <option value = "3">16 (Mar)</option>
-                                                                <option value = "4">17 (Apr)</option>
-                                                                <option value = "5">18 (May)</option>
-                                                                <option value = "6">19 (Jun)</option>
-                                                                <option value = "7">20 (Jul)</option>
-                                                                <option value = "8">22 (Aug)</option>
-                                                                <option value = "9">23 (Sep)</option>
-                                                                <option value = "10">24 (Oct)</option>
-                                                                <option value = "11">25 (Nov)</option>
-                                                                <option value = "12">26 (Dec)</option>
+                                                                <option value = "1">17</option>
+                                                                <option value = "2">18</option>
+                                                                <option value = "3">19</option>
+                                                                <option value = "4">20</option>
+                                                                <option value = "5">21</option>
+                                                                <option value = "6">22</option>
+                                                                <option value = "7">23</option>
+                                                                <option value = "8">24</option>
+                                                                <option value = "9">25</option>
+                                                                <option value = "10">26</option>
+                                                                <option value = "11">27</option>
+                                                                <option value = "12">28</option>
                                                             </select>
                                                         </div>
-                                                        <label class="exp_date" for="Exp_Date">Exp Date</label>
+                                                        <label class="exp_date" for="Exp_Date">Expiração</label>
                                                     </div>
                                                 </div>
                                                 <div class="sec_num">
                                                     <div>
-                                                        <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change" data-validation-minlength="3" data-type="name" data-required="true" data-error-message="Enter Your Card Security Code"/><label for="ccv">Security Code</label>
+                                                        <input type="text" name="ccv" value="" id="ccv" placeholder="123" data-trigger="change" data-validation-minlength="3" data-type="name" data-required="true" data-error-message="Enter Your Card Security Code"/><label for="ccv">Código de Segurança</label>
                                                     </div>
                                                 </div>
 
-                                               <!-- <div class="continue" id="btn">
-                                                    <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}">
-                                                        <f:ajax execute="@form" render="@form :resumo" />
-                                                    </h:commandButton>
-                                                </div>
-                                               
-                                               -->
+                                                <!-- <div class="continue" id="btn">
+                                                     <h:commandButton pt:type="submit" value="Continue" action = "#{finalizarCompraBean.estado()}">
+                                                         <f:ajax execute="@form" render="@form :resumo" />
+                                                     </h:commandButton>
+                                                 </div>
+                                                
+                                                -->
 
                                                 <!-- </h:form> -->
 
