@@ -8,17 +8,11 @@ package ecommerce.Model.Bean;
 import ecommerce.Model.Dao.ClienteDAO;
 import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
 import ecommerce.Model.MetodosAcessores.Cliente;
-import java.io.IOException;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -26,8 +20,7 @@ import org.primefaces.context.RequestContext;
  */
 @ManagedBean(name = "ClienteBean")
 @RequestScoped
-@SessionScoped
-public class ClienteBean implements Serializable {
+public class ClienteBean {
 
     private Cliente cliente = new Cliente();
     private UsuarioSistema criptoUser = new UsuarioSistema();
@@ -47,33 +40,19 @@ public class ClienteBean implements Serializable {
         cliente = new Cliente();
     }
 
-    public void editarCliente() {
+    public boolean editarCliente(Cliente cliente) {
         ClienteDAOImpl daoEditar = new ClienteDAOImpl();
+        getCriptoUser().setSenha(cliente.getSenha());
+        cliente.setSenha(getCriptoUser().getHashSenha());
+        boolean resp = false;
         try {
             daoEditar.EditarCadastroCliente(cliente);
+            resp = true;
         } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
+           resp = false;
         }
-        cliente = new Cliente();
-    }
-
-    public String validaLogin() throws SQLException, IOException {
-        ClienteDAOImpl daoValidar = new ClienteDAOImpl();
-        RequestContext context = RequestContext.getCurrentInstance();
-
-        String mensagem = "Erro ao se tentar se logar!";
-
-        if (getCriptoUser().obterUsuario(cliente.getEmail(), cliente.getSenha()) != null) {
-            return "/protegido/AmbienteCliente.xhtml?faces-redirect=true";
-        } else {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            context.addCallbackParam("loggedIn", mensagem);
-
-            return "MinhaConta.xhtml?faces-redirect=true";
-        }
-
+     return resp;   
     }
 
     // Responsavel por buscar um cliente pelo ID

@@ -24,11 +24,15 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
     //Editar os dados do cliente no banco
     public void EditarCadastroCliente(Cliente cliente) throws SQLException {
+        Cliente cliente2 = cliente;
         String query = "UPDATE CLIENTE "
                 + "SET NOME = ?, DATA_NASCIMENTO = ?,SEXO = ?, CEP = ?,RUA = ?,NUMERO = ?,BAIRRO = ?,CIDADE = ?, ESTADO = ?, "
-                + "TELEFONE_RESIDENCIAL = ?,CELULAR = ?,EMAIL = ?, SENHA = ? "
-                + "WHERE CPF = ?";
-        update(query, cliente.getNome(), cliente.getCpf(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(), cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha());
+                + "TELEFONE_RESIDENCIAL = ?,CELULAR = ?,EMAIL = ?, SENHA = ?, CPF = ? "
+                + "WHERE COD_CLIENTE = ?";
+        update(query, cliente.getNome(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(),
+                cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(),
+                cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha(),
+                cliente.getCpf(), cliente.getCod_cliente());
     }
 
     //Pela regra de negocio, o cliente tem o direito de excluir seu cadastro, se informar seu CPF e Senha de acesso corretamente
@@ -38,15 +42,15 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
     }
 
     public Cliente EncontraUserCliente(String email, String senha) throws SQLException {
-        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + email+"'" ;
-                
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + email + "'";
+
         Cliente cliente = null;
-        
+
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);
-        
+
         ResultSet rs = stmt.executeQuery();
-        
+
         while (rs.next()) {
             cliente = new Cliente();
             cliente.setCidade(rs.getString("CIDADE"));
@@ -65,12 +69,13 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
             cliente.setSexo(rs.getString("SEXO"));
             cliente.setCpf(rs.getString("CPF"));
         }
-        
+
         rs.close();
         stmt.close();
         return cliente;
     }
-     public List<Cliente> BuscaClientes() throws SQLException {
+
+    public List<Cliente> BuscaClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList<Cliente>();
         Cliente cliente = null;
         String select = "SELECT * FROM CLIENTE";
@@ -105,12 +110,11 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         return clientes;
     }
-     
-     
-     // Responsavel por buscar um cliente pelo ID
-     public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException {
+
+    // Responsavel por buscar um cliente pelo ID
+    public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException {
         Cliente cliente = new Cliente();
-        String select = "SELECT * FROM CLIENTE WHERE COD_CLIENTE = "+cod_cliente+" ";
+        String select = "SELECT * FROM CLIENTE WHERE COD_CLIENTE = " + cod_cliente + " ";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);

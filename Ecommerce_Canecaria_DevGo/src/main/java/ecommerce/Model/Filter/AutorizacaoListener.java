@@ -7,6 +7,7 @@ package ecommerce.Model.Filter;
 
 
 import ecommerce.Model.Bean.ClienteBean;
+import ecommerce.Model.Bean.LoginBean;
 import ecommerce.Model.Bean.UsuarioSistema;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
@@ -26,9 +27,9 @@ public class AutorizacaoListener implements PhaseListener {
   public void afterPhase(PhaseEvent event) {
     FacesContext fc = event.getFacesContext();
     
-    ClienteBean usuarioBean = fc.getApplication()
-	    .evaluateExpressionGet(fc, "#{ClienteBean}", 
-		    ClienteBean.class);
+    LoginBean usuarioBean = fc.getApplication()
+	    .evaluateExpressionGet(fc, "#{LoginBean}", 
+		    LoginBean.class);
     
     String paginaAtual = fc.getViewRoot().getViewId();
     NavigationHandler nh = fc.getApplication().getNavigationHandler();
@@ -68,7 +69,7 @@ public class AutorizacaoListener implements PhaseListener {
     return PhaseId.RESTORE_VIEW;
   }
   
-  private static boolean verificarAcesso(ClienteBean usuario,
+  private static boolean verificarAcesso(LoginBean usuario,
 	  String paginaAcessada) {
     if (paginaAcessada.lastIndexOf("AmbienteCliente.xhtml") > -1 
 	    && usuario.getCliente() != null) {
