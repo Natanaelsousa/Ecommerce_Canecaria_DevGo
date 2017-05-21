@@ -81,13 +81,17 @@
                         <h:inputTextarea p:type="text" class="form-control" id="DescricaoProdutoInput" cols="35" rows="8" value="#{ProdutosBean.produto.descricao_produto}" />
                     </div>
 
-                    <pt:panelGrid columns="5" style="margin-top:20px;margin-bottom:20px;background-color: white;font-size: 25px">
-                        <f:facet name="header" >
-                         
-                            <span><img src="/imagens/#{ProdutosBean.produto.imagem_produto}"/></span>
-                        </f:facet>
-                    </pt:panelGrid>
-                    
+                    <div class="form-group col-md-3">
+                        <h:outputLabel for="txtImagem" value="Imagem do produto:" />
+                        <h:inputFile value="#{ProdutosBean.imagem}" />
+                        <pt:panelGrid columns="5" style="margin-top:20px;margin-bottom:20px;background-color: white;font-size: 25px">
+                            <f:facet name="header" >
+
+                                <span><img src="/imagens/#{ProdutosBean.produto.imagem_produto}"/></span>
+                            </f:facet>
+                        </pt:panelGrid>
+                    </div>
+
                     <div class="form-group col-md-7">
                         <h:outputLabel value="Escolha a categoria:" />
                         <h:selectOneMenu class="form-control" value="#{ProdutosBean.produto.cod_categoria}" >
@@ -97,15 +101,7 @@
 
                     <div class="space"></div>
 
-                    <!--                <div class="row">
-                                        <div class="form-group col-md-6">
-                    
-                                            <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Finalizar cadastro" >
-                                            </h:commandButton>
-                                        </div>
-                    
-                    
-                                    </div>-->
+
                     <hr />
 
                     <div class="form-group col-md-7">
