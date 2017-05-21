@@ -42,41 +42,27 @@
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
 
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+         <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
     </h:head>
-    <h:body>
-        <!-- Menu -->
-        <div id="tf-home">
-            <div class="overlay">
-                <div id="sticky-anchor"></div>
-                <nav id="tf-menu" class="navbar navbar-default">
-                    <div class="container">
+  <h:body>
 
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand logo" href="Home.html">Canecaria</a>
-                        </div>
+        <div id="page">
 
 
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="Home.xhtml" >Home</a></li>
-                                <li><a href="SobreEmpresa.xhtml">Sobre a empresa</a></li>
-                                <li><a href="Produtos.xhtml">Produtos</a></li>
-                                <li><a href="Contato.xhtml">Contato</a></li>
-                                <li>
-                                    <a href="MinhaConta.xhtml"><span class="glyphicon glyphicon-user"></span> Minha Conta</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- /.container-fluid -->
-                </nav>
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalho.xhtml" />
+                </ui:insert>
             </div>
-        </div>
+
+            <!-- Fim -->
+               <div class="space"></div>
+                <div class="space"></div>
         <!-- Espaço entre o menu -->
         <div class="space"></div>
         <div class="space"></div>
@@ -262,33 +248,21 @@
                     </div>
                 </div>
             </h:form>
+          </div>
+            <div class="space"></div>
+            <!-- Fim -->
+
+
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
+            <!-- Fim -->
+
         </div>
 
-        <div class="space"></div>
-
-        <nav id="tf-footer">
-            <div class="container">
-                <div class="pull-left">
-                    <p>2017 © Canecaria. All Rights Reserved. Designed and Coded by <a href="https://dribbble.com/jennpereira">DevGo</a> for <a href="https://themeforces.com">	DevGo.Com</a></p>
-                </div>
-                <div class="pull-right">
-                    <ul class="social-media list-inline">
-                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li><a href="#"><span class="fa fa-pinterest"></span></a></li>
-                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                        <li><a href="#"><span class="fa fa-behance"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
     </h:body>
 </html>
 
