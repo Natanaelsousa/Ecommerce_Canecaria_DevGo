@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -161,34 +162,32 @@
                             <div class="space"></div>
 
                             <div class="row">
-                                <h:form id="atualizar">
-                                    <ui:repeat value="#{produtoNavigationControllerBean.ListarProdutosPorCategoria()}"  var="prod" >
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                <p> <a href="DetalharProduto.xhtml">
-                                                        <img title="Imagem do Produto" alt="Imagem do Produto" src="imagem" width="180" height="180" />
-                                                    </a>
-                                                </p>
+                                
+                                
+                                <c:forEach begin="1" end="6" var="num">
+                                    <h:form>
+                                        <h:commandButton action="#{testeBean.adicionar(num)}" value="Teste" />
+                                    </h:form>
+                                </c:forEach>
+                                
+                               
+                                <ui:repeat value="#{produtoNavigationControllerBean.numeros}" var="prod">
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                        <div class="thumbnail">
 
-                                                <h:outputText value="#{prod.valor_produto}">
-                                                    <f:convertNumber type="currency" locale="pt-BR" />
-                                                </h:outputText>
-                                                
-                                                <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
-                                                    <f:param name="id" value="#{prod.cod_produto}" />
-                                                    Ver detalhes
-                                                </h:outputLink>
-                                                <h:form prependId="false">
-                                                    <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
-                                                                     value="Adicionar ao carrinho"
-                                                                     styleClass="btn btn-success btn-block" />
-                                                </h:form>
-                                            </div>
-
-
+                                            <h:form>
+                                                <h:inputHidden value="#{prod}" id="selectedId"  />
+                                                <h:commandButton action="#{testeBean.adicionar()}" 
+                                                                 value="Adicionar ao carrinho"
+                                                                 styleClass="btn btn-success btn-block" />
+                                            </h:form>
                                         </div>
-                                    </ui:repeat>
-                                </h:form>
+
+                                    </div>
+
+                                </ui:repeat>
+                                <div>Produtos: <h:outputText value="#{testeBean.id}" /></div>
+                               
                             </div>
 
                         </div>

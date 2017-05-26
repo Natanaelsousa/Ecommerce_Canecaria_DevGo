@@ -1,10 +1,11 @@
 package ecommerce.Model.MetodosAcessores;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.servlet.http.Part;
 
 /* @author sibele */
-public class Produto {
+public class Produto implements Serializable {
 
     private Integer cod_produto;
     private Integer cod_categoria; //Atributo estrangeiro
@@ -41,6 +42,10 @@ public class Produto {
     }
 
     public Integer getCod_produto() {
+        return cod_produto;
+    }
+    
+    public Integer getCod() {
         return cod_produto;
     }
 
