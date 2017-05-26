@@ -54,7 +54,7 @@
             <div class="container">
                 <h2>Solicitações pendentes</h2>
                 <div class="space"></div>    
-                <h:form>
+                <h:form p:action="AcompanhamentoFaleConosco.xhtml">
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -71,7 +71,7 @@
                                     <td>#{contato.nome_completo}</td>
                                     <td>#{contato.email_contato}</td>
                                     <td>#{contato.descricao_contato}</td>
-                                    <td>#{contato.status_solicitacao}</td>
+                                    <td>Em aberto</td>
                                     <td> <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Concluido" action="#{ContatoBean.finalizandoChamado(contato.cod_solicitacao)}" > 
                                         </p:commandButton>
                                     </td>

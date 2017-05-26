@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.ContatoDAO;
@@ -73,13 +68,19 @@ public class ContatoBean {
 
     public String encontrarFilaPorId() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
+        String retorno = null;
         List<Contato> ListarSolicitacoesContatos = null;
         try {
             ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
-        return "RespondendoFaleConosco";
+          if(id_contato == 1 || id_contato== 2 || id_contato== 3 || id_contato == 4 || id_contato == 5 ||id_contato == 6){
+           retorno = "RespondendoFaleConosco";
+       } else{
+           retorno = "AcompanhamentoFaleConosco";
+       }
+        return retorno;
     }
 
     public List<Contato> listEncontrarFilaPorId() throws Exception {
@@ -101,6 +102,7 @@ public class ContatoBean {
         } catch (SQLException erro) {
             System.err.println("Não foi possivel realizar solicitação");
         }
+       
        return "AcompanhamentoFaleConosco";
     }
 
