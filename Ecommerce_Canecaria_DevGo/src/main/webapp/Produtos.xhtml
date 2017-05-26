@@ -163,23 +163,25 @@
 
                             <div class="row">
                                 
-                                
+                                <ui:remove> <!-- Esconde os botoes de testes -->
                                 <c:forEach begin="1" end="6" var="num">
                                     <h:form>
                                         <h:commandButton action="#{testeBean.adicionar(num)}" value="Teste" />
                                     </h:form>
                                 </c:forEach>
+                                </ui:remove>
                                 
                                
-                                <ui:repeat value="#{produtoNavigationControllerBean.numeros}" var="prod">
+                                <ui:repeat value="#{produtoNavigationControllerBean.produtos}" var="prod">
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail">
 
                                             <h:form>
-                                                <h:inputHidden value="#{prod}" id="selectedId"  />
-                                                <h:commandButton action="#{testeBean.adicionar()}" 
+                                                <h:commandButton action="#{testeBean.adicionar(prod.cod_produto)}" 
                                                                  value="Adicionar ao carrinho"
-                                                                 styleClass="btn btn-success btn-block" />
+                                                                 styleClass="btn btn-success btn-block">
+                                                    <f:param name="cat" value="#{produtoNavigationControllerBean.categoria}" />
+                                                </h:commandButton>
                                             </h:form>
                                         </div>
 
