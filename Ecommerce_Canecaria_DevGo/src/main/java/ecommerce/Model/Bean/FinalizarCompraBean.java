@@ -108,7 +108,7 @@ public class FinalizarCompraBean {
             
         }else{
             
-           compra.setCodStatus(3);
+           compra.setCodStatus(2);
             
         } 
         

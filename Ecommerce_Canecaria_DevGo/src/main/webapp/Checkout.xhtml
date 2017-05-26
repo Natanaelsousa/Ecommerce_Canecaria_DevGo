@@ -76,8 +76,10 @@
 
 
                             <div id="wrap">
-                                <p:messages id="messages" showDetail="true" autoUpdate="true" />
+                                
                                 <div id="grid">
+                                    
+                                    <p:messages id="messages" showDetail="true" autoUpdate="true" />
 
 
                                     <div class="column column1">
@@ -108,7 +110,7 @@
 
 
                                                 <h:inputText pt:type="number" class="form-control" id="CEP"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
+                                                             required="true" requiredMessage="O campo CEP é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.cep}" pt:placeholder="Digite o CEP"
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"
                                                              style="margin-bottom:5px"
 
@@ -123,7 +125,7 @@
 
 
                                                 <h:inputText pt:type="text" class="form-control"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="Rua" pt:placeholder="Digite a rua" style="margin-bottom:5px"/>
+                                                             required="true" requiredMessage="O campo Rua é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" onkeypress="return somenteLetras(event)" pt:placeholder="Digite a rua" style="margin-bottom:5px"/>
                                                 <label class="Rua" for="Rua">Rua</label>
 
                                             </div>
@@ -131,7 +133,7 @@
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" id="Numero" onkeypress="return somenteNumero(event)"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px"/>
+                                                             required="true" requiredMessage="O campo Número é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px"/>
 
                                                 <label class="numero" for="numero">Número</label>
                                             </div>
@@ -139,21 +141,21 @@
                                             <div>
 
 
-                                                <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" />
+                                                <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro" onkeypress="return somenteLetras(event)"
+                                                             required="true" requiredMessage="O campo Bairro é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" />
                                                 <label class="bairro" for="Bairro">Bairro</label>
                                             </div>
                                             <div>
 
-                                                <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="Cidade" style="margin-bottom:5px"/>
+                                                <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade" onkeypress="return somenteLetras(event)"
+                                                             required="true" requiredMessage="O campo Cidade é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" style="margin-bottom:5px"/>
                                                 <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
 
 
-                                                <h:inputText pt:type="text" class="form-control" id="UF" pt:placeholder="Ex:SP"
-                                                             required="true" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   />
+                                                <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP" onkeypress="return somenteLetras(event)"
+                                                             required="true" requiredMessage="O campo Estado é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   />
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
 
@@ -188,7 +190,7 @@
 
                                                 <div class="form-group col-md-12" id="formaPagamento">
 
-                                                    <h:selectOneMenu class="form-control" required="true" id="Pagamento" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
+                                                    <h:selectOneMenu class="form-control" required="true" requiredMessage="Selecione a forma de pagamento!" id="Pagamento" value="#{finalizarCompraBean.finalizarCompra.codPagamento}" converter="javax.faces.Integer">
                                                         <f:selectItem itemValue="" itemLabel="Selecione..."  />
                                                         <f:selectItems  value="#{PagamentoBean.ListarTipoPagamento()}" var="pagamento" itemLabel="#{pagamento.forma_pagamento}" itemValue="#{pagamento.cod_pagamento}"/>
 
@@ -332,10 +334,9 @@
                                             <!-- <h:form id="resumo"> --> 
 
                                             <div class="right" id="reviewed">
-                                                <div class="billing">
+                                               <!-- <div class="billing">
                                                     <h5> Entrega  </h5>
-                                                    <!--<span class="title">Faturamento:</span>-->
-                                                    <!-- <div class="address_reviewed"> -->
+                                                  
 
                                                     <h:panelGrid columns="2" style="width:100%"  columnClasses="logo,detail">
                                                         <p:outputPanel>
@@ -358,8 +359,8 @@
                                                     </h:panelGrid>
 
                                                     <hr />
-                                                    <!-- </div> -->
-                                                </div>
+                                                    </div>
+                                                </div> -->
                                                 <hr />
 
 
@@ -374,15 +375,13 @@
                                                 </div>-->
 
 
-                                                <div class="payment">
+                                                <!--<div class="payment">
 
 
-                                                    <!--<span class="title">Pagamento:</span></div>-->
-                                                    <!--<div class="payment_reviewed">-->
+                                                    
 
                                                     <h5> Pagamento </h5>
-                                                    <!--<span class="title">Faturamento:</span>-->
-                                                    <!-- <div class="address_reviewed"> -->
+                                                    
 
                                                     <h:panelGrid columns="2" style="width:100%"  columnClasses="logo,detail">
                                                         <p:outputPanel>
@@ -399,8 +398,8 @@
                                                         </p:outputPanel>
                                                     </h:panelGrid>
                                                     <hr />
-                                                    <!-- </div>-->
-                                                </div> 
+                                                     </div>
+                                                </div> -->
 
 
 
