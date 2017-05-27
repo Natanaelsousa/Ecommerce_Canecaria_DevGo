@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /*  @author sibele */
 @ManagedBean(name = "ContatoBean")
@@ -75,11 +76,11 @@ public class ContatoBean {
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
-          if(id_contato == 1 || id_contato== 2 || id_contato== 3 || id_contato == 4 || id_contato == 5 ||id_contato == 6){
-           retorno = "RespondendoFaleConosco";
-       } else{
-           retorno = "AcompanhamentoFaleConosco";
-       }
+        if (id_contato == 1 || id_contato == 2 || id_contato == 3 || id_contato == 4 || id_contato == 5 || id_contato == 6) {
+            retorno = "RespondendoFaleConosco";
+        } else {
+            retorno = "AcompanhamentoFaleConosco";
+        }
         return retorno;
     }
 
@@ -94,16 +95,15 @@ public class ContatoBean {
         return ListarSolicitacoesContatos;
     }
 
- 
     public String finalizandoChamado(int cod_chamado) throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
-       try {
+        try {
             contatos.finalizarChamado(contato, cod_chamado);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel realizar solicitação");
         }
-       
-       return "AcompanhamentoFaleConosco";
+FacesContext.getCurrentInstance().getExternalContext().redirect("AcompanhamentoFaleConosco.xhtml");
+        return "OK";
     }
 
 }
