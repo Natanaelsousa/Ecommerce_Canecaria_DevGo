@@ -161,23 +161,29 @@
                             <div class="space"></div>
 
                             <div class="row">
-                                <h:form id="atualizar">
-                                    <ui:repeat value="#{produtoNavigationControllerBean.ListarProdutosPorCategoria()}"  var="prod" >
+                              
+                                    <ui:repeat value="#{produtoNavigationControllerBean.listaProdutos}"  var="prod" >
                                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                             <div class="thumbnail">
                                                 <p> <a href="DetalharProduto.xhtml">
                                                         <img title="Imagem do Produto" alt="Imagem do Produto" src="imagem" width="180" height="180" />
                                                     </a>
                                                 </p>
+                                                
+                                                
 
+                                                 <h:outputText value="#{prod.nome_produto}">
+                                                    <f:convertNumber type="currency" locale="pt-BR" />
+                                                </h:outputText><br/>
                                                 <h:outputText value="#{prod.valor_produto}">
                                                     <f:convertNumber type="currency" locale="pt-BR" />
                                                 </h:outputText>
-                                                
+                                               
                                                 <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
                                                     <f:param name="id" value="#{prod.cod_produto}" />
                                                     Ver detalhes
                                                 </h:outputLink>
+                                                
                                                 <h:form prependId="false">
                                                     <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
                                                                      value="Adicionar ao carrinho"
@@ -188,7 +194,7 @@
 
                                         </div>
                                     </ui:repeat>
-                                </h:form>
+                               
                             </div>
 
                         </div>
