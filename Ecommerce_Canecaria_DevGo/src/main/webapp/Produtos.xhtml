@@ -162,42 +162,42 @@
                             <div class="space"></div>
 
                             <div class="row">
-                              
-                                    <ui:repeat value="#{produtoNavigationControllerBean.listaProdutos}"  var="prod" >
-                                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                            <div class="thumbnail">
-                                                
-                                                <p> <a>
-                                                        <p:graphicImage value="../imagens/#{prod.imagem_produto}" alt="Imagem do Produto" />
-                                                       <!--<p:graphicImage value="../imagens/caneca1.jpg"  name="Imagem do Produto" alt="Imagem do Produto" />  -->
-                                                    </a>
-                                                </p>
-                                                
-                                                
 
-                                                 <h:outputText value="#{prod.nome_produto}">
-                                                    <f:convertNumber type="currency" locale="pt-BR" />
-                                                </h:outputText><br/>
-                                                <h:outputText value="#{prod.valor_produto}">
-                                                    <f:convertNumber type="currency" locale="pt-BR" />
-                                                </h:outputText>
-                                               
-                                                <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
-                                                    <f:param name="id" value="#{prod.cod_produto}" />
-                                                    Ver detalhes
-                                                </h:outputLink>
-                                                
-                                                <h:form prependId="false">
-                                                    <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
-                                                                     value="Adicionar ao carrinho"
-                                                                     styleClass="btn btn-success btn-block" />
-                                                </h:form>
-                                            </div>
+                                <ui:repeat value="#{produtoNavigationControllerBean.listaProdutos}"  var="prod" >
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                        <div class="thumbnail">
+
+                                            <p> <a title="#{detalharProdutoBean.produto.nome_produto}">
+                                                    <p:graphicImage value="../imagens/#{prod.imagem_produto}" alt="#{detalharProdutoBean.produto.nome_produto}" />
+                                                    
+                                                </a>
+                                            </p>
 
 
+
+                                            <h:outputText value="#{prod.nome_produto}">
+                                                <f:convertNumber type="currency" locale="pt-BR" />
+                                            </h:outputText><br/>
+                                            <h:outputText value="#{prod.valor_produto}">
+                                                <f:convertNumber type="currency" locale="pt-BR" />
+                                            </h:outputText>
+
+                                            <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
+                                                <f:param name="produtoId" value="#{prod.cod_produto}" />
+                                                Ver detalhes
+                                            </h:outputLink>
+
+                                            <h:form prependId="false">
+                                                <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
+                                                                 value="Adicionar ao carrinho"
+                                                                 styleClass="btn btn-success btn-block" />
+                                            </h:form>
                                         </div>
-                                    </ui:repeat>
-                               
+
+
+                                    </div>
+                                </ui:repeat>
+
                             </div>
 
                         </div>
