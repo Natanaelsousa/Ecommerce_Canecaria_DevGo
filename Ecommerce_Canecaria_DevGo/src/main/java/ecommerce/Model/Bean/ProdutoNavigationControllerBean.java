@@ -4,6 +4,7 @@ import ecommerce.Model.Dao.ProdutoDAO;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
@@ -19,7 +20,36 @@ import javax.faces.context.FacesContext;
 public class ProdutoNavigationControllerBean implements Serializable {
     
  private String categoria;
-  
+  ProdutoDAO produtosDao = new ProdutoDAOImpl();
+ List<Produto> listaProdutos ;
+
+    public ProdutoNavigationControllerBean() throws SQLException {
+        this.listaProdutos = produtosDao.ListarProdutos();
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public ProdutoDAO getProdutosDao() {
+        return produtosDao;
+    }
+
+    public void setProdutosDao(ProdutoDAO produtosDao) {
+        this.produtosDao = produtosDao;
+    }
+
+    public List<Produto> getListaProdutos() {
+        return listaProdutos;
+    }
+
+    public void setListaProdutos(List<Produto> listaProdutos) {
+        this.listaProdutos = listaProdutos;
+    }
    
    
    private String getCategoria( FacesContext context ){
@@ -38,11 +68,11 @@ public class ProdutoNavigationControllerBean implements Serializable {
            
          setCategoria();
         
-        ProdutoDAO produtosDao = new ProdutoDAOImpl();
+        ProdutoDAO Dao = new ProdutoDAOImpl();
 
-        List<Produto> ListaProdutos = produtosDao.ListarProdutosCategoria(categoria);
+        listaProdutos = Dao.ListarProdutosCategoria(categoria);
     
-        return ListaProdutos;
+        return listaProdutos;
     }
 }
 
