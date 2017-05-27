@@ -17,7 +17,7 @@ import java.util.List;
 public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     //Insere os dados do produto no banco
-    public void CadastrarSolicitacaoContato(Contato contato) throws SQLException {
+    public void cadastrarSolicitacaoContato(Contato contato) throws SQLException {
 
         String query = "INSERT INTO CONTATO (COD_TIPO_SOLICITACAO, NOME_COMPLETO, EMAIL_CONTATO, DESCRICAO_CONTATO,STATUS_SOLICITACAO) VALUES (?,?,?,?,?)";
 
@@ -29,7 +29,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
     }
 
    //Lista os chamados por seus tipo de fila diferente
-    public List<Contato> ListarSolicitacoesContatos() throws SQLException {
+    public List<Contato> listarSolicitacoesContatos() throws SQLException {
         List<Contato> contato = new ArrayList<Contato>();
 
         String query = "SELECT DISTINCT COD_TIPO_SOLICITACAO FROM CONTATO";
@@ -56,7 +56,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     //Verifica quantos chamados tem em cada fila 
     @Override
-    public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException {
+    public int countSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException {
 
         String query = "select count(*) from contato where COD_TIPO_SOLICITACAO = " + cod_tipo_solicitacao + " and STATUS_SOLICITACAO = 0";
         int quantidadeChamadosFila = 0;

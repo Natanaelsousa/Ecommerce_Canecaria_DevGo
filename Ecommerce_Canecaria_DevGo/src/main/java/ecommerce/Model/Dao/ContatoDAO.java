@@ -15,16 +15,16 @@ import java.util.List;
  */
 public interface ContatoDAO {
 
-    public void CadastrarSolicitacaoContato(Contato contato) throws SQLException;
+    public void cadastrarSolicitacaoContato(Contato contato) throws SQLException;
 
     public List<Contato> encontrarFilaPorId(int id_fila) throws SQLException;
 
     /* Verifica quantos chamados tem em cada fila */
-    public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException;
+    public int countSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws SQLException;
 
     public void finalizarChamado(Contato contado,int cod_chamado) throws SQLException;
 
-    public List<Contato> ListarSolicitacoesContatos() throws Exception;
+    public List<Contato> listarSolicitacoesContatos() throws Exception;
 
     /* Traz as solicitações pendentes de uma determinada fila */
     public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException;

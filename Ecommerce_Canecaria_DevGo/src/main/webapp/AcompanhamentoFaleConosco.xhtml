@@ -67,10 +67,10 @@
                 <div class="space"></div>
 
                 <div class="row">
-                    <c:forEach var="TiposFilaSolicitacoes" items="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}">
+                    <c:forEach var="TiposFilaSolicitacoes" items="#{TipoSolicitacaoBean.listarTiposDeSolicitacoes()}">
                         <div class="col-md-4  col-md-push-1 " >
                             <h4> Fila "${TiposFilaSolicitacoes.tipo_solicitacao_nome}"</h4>
-                            <h1> <span class="label label-primary" >${ContatoBean.CountSolicitacaoChamadoContato(TiposFilaSolicitacoes.cod_tipo_solicitacao)}</span></h1>
+                            <h1> <span class="label label-primary" >${ContatoBean.countSolicitacaoChamadoContato(TiposFilaSolicitacoes.cod_tipo_solicitacao)}</span></h1>
                         </div>
                     </c:forEach>
                 </div>
@@ -82,7 +82,7 @@
                         <h:outputLabel  value="Escolha a fila que deseja atender:" />
                         <h:selectOneMenu class="form-control" value="#{ContatoBean.id_contato}" converter="javax.faces.Integer">
                             <f:selectItem itemValue="" itemLabel="Selecione..."  />
-                            <f:selectItems  value="#{TipoSolicitacaoBean.ListarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.cod_tipo_solicitacao}" />
+                            <f:selectItems  value="#{TipoSolicitacaoBean.listarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.cod_tipo_solicitacao}" />
                         </h:selectOneMenu>
                     </div>
                     <div class="col-md-2"></div>

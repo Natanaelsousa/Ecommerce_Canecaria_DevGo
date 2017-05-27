@@ -12,7 +12,7 @@ import java.util.List;
 public class TipoSolicitacaoDAOImpl extends GenericaDAOImpl implements TipoSolicitacaoDAO {
 
     //Lista todos os tipos de solicitações possiveis
-    public List<TipoSolicitacao> ListarTiposDeSolicitacoes() throws SQLException {
+    public List<TipoSolicitacao> listarTiposDeSolicitacoes() throws SQLException {
         List<TipoSolicitacao> tiposSolicitacoes = new ArrayList<TipoSolicitacao>();
 
         String query = "SELECT * FROM TIPOSOLICITACAO";

@@ -23,10 +23,10 @@ public class TipoSolicitacaoBean {
    
    
    /* Lista os tipos de solicitações cadastrados no banco */
-    public List<TipoSolicitacao> ListarTiposDeSolicitacoes() throws Exception {
+    public List<TipoSolicitacao> listarTiposDeSolicitacoes() throws Exception {
         TipoSolicitacaoDAO tipoSolicitacaoDAO = new TipoSolicitacaoDAOImpl();
 
-        List<TipoSolicitacao> listarFilasSolicitacoes = tipoSolicitacaoDAO.ListarTiposDeSolicitacoes();
+        List<TipoSolicitacao> listarFilasSolicitacoes = tipoSolicitacaoDAO.listarTiposDeSolicitacoes();
        
      
         return listarFilasSolicitacoes;

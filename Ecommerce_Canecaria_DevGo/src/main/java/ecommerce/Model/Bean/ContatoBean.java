@@ -37,10 +37,10 @@ public class ContatoBean {
     }
 
     /*Responsavel pelo insert dos formularios de solicitação*/
-    public void CadastrarSolicitacaoContato() throws Exception {
+    public void cadastrarSolicitacaoContato() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
         try {
-            contatos.CadastrarSolicitacaoContato(contato);
+            contatos.cadastrarSolicitacaoContato(contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel realizar solicitação");
         }
@@ -48,31 +48,31 @@ public class ContatoBean {
     }
 
     /* Verifica quantos chamados tem em cada fila */
-    public int CountSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws Exception {
+    public int countSolicitacaoChamadoContato(int cod_tipo_solicitacao) throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
-        int quantidadeChamados = contatos.CountSolicitacaoChamadoContato(cod_tipo_solicitacao);
+        int quantidadeChamados = contatos.countSolicitacaoChamadoContato(cod_tipo_solicitacao);
 
         return quantidadeChamados;
     }
 
     /* Lista os produtos cadastrados no banco */
-    public List<Contato> ListarSolicitacoesContatos() throws Exception {
+    public List<Contato> listarSolicitacoesContatos() throws Exception {
         ContatoDAO contatosDao = new ContatoDAOImpl();
-        List<Contato> ListarSolicitacoesContatos = null;
-        ListarSolicitacoesContatos = contatosDao.ListarSolicitacoesContatos();
+        List<Contato> listarSolicitacoesContatos = null;
+        listarSolicitacoesContatos = contatosDao.listarSolicitacoesContatos();
 
-        if (ListarSolicitacoesContatos.isEmpty()) {
-            ListarSolicitacoesContatos = null;
+        if (listarSolicitacoesContatos.isEmpty()) {
+            listarSolicitacoesContatos = null;
         }
-        return ListarSolicitacoesContatos;
+        return listarSolicitacoesContatos;
     }
 
     public String encontrarFilaPorId() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
         String retorno = null;
-        List<Contato> ListarSolicitacoesContatos = null;
+        List<Contato> listarSolicitacoesContatos = null;
         try {
-            ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+            listarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
@@ -86,13 +86,13 @@ public class ContatoBean {
 
     public List<Contato> listEncontrarFilaPorId() throws Exception {
         ContatoDAO contatos = new ContatoDAOImpl();
-        List<Contato> ListarSolicitacoesContatos = null;
+        List<Contato> listarSolicitacoesContatos = null;
         try {
-            ListarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
+            listarSolicitacoesContatos = contatos.encontrarFilaPorId(id_contato);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar fila");
         }
-        return ListarSolicitacoesContatos;
+        return listarSolicitacoesContatos;
     }
 
     public String finalizandoChamado(int cod_chamado) throws Exception {

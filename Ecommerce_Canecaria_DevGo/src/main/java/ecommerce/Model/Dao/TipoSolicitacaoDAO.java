@@ -7,5 +7,5 @@ import java.util.List;
 /*  @author sibele */
 public interface TipoSolicitacaoDAO {
 
-    public List<TipoSolicitacao> ListarTiposDeSolicitacoes() throws SQLException;
+    public List<TipoSolicitacao> listarTiposDeSolicitacoes() throws SQLException;
 }
