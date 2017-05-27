@@ -13,7 +13,7 @@ import java.util.List;
 public class StatusDAOImpl extends GenericaDAOImpl implements StatusDAO{
     
     //Lista os possiveis status das vendas
-    public List<Status> ListarStatusDasVenda() throws SQLException {
+    public List<Status> listarStatusDasVenda() throws SQLException {
         List<Status> statusVenda = new ArrayList<Status>();
 
         String query = "SELECT * FROM STATUS";

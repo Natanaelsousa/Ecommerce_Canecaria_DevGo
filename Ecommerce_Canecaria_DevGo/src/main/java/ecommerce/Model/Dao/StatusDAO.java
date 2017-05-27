@@ -14,5 +14,5 @@ import java.util.List;
  * @author sibele
  */
 public interface StatusDAO {
-     public List<Status> ListarStatusDasVenda() throws SQLException ;
+     public List<Status> listarStatusDasVenda() throws SQLException ;
 }

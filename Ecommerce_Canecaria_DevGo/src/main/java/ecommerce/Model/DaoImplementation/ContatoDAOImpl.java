@@ -73,7 +73,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
     }
 
     //Seleciona os chamados de um tipo de fila com status 0(em aberto)
-    public List<Contato> ListarSolicitacoesDeFila(int cod_fila) throws SQLException {
+    public List<Contato> listarSolicitacoesDeFila(int cod_fila) throws SQLException {
 
         List<Contato> contato = new ArrayList<Contato>();
 

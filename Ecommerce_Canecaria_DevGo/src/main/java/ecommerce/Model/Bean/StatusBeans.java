@@ -21,7 +21,7 @@ public class StatusBeans {
     public List<Status> listarStatusVenda() throws Exception {
         StatusDAO statusDAO = new StatusDAOImpl();
 
-        List<Status> listarTiposDeStatus = statusDAO.ListarStatusDasVenda();
+        List<Status> listarTiposDeStatus = statusDAO.listarStatusDasVenda();
        
      
         return listarTiposDeStatus;
