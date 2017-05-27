@@ -52,10 +52,12 @@
             <div class="container-fluid">
                 <h2>Vendas despachadas</h2>
                 <hr/>
-                
+
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
+                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                        </p:commandButton>
                         <thead>
                             <tr>
                                 <th>Código da compra</th>
@@ -87,8 +89,10 @@
                             </tbody>
                         </ui:repeat>      
                     </table>
+                    <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                    </p:commandButton>
                 </h:form>
-               
+
             </div>
 
             <!-- Importando o rodape -->

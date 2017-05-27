@@ -56,6 +56,8 @@
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
+                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                        </p:commandButton>
                         <thead>
                             <tr>
                                 <th>Código da compra</th>
@@ -92,10 +94,10 @@
                         </ui:repeat>      
                     </table>
                 </h:form>
-                <p:commandButton class="btn btn-success btn-xs btn-block" p:type="submit" value="Despachar pedido" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
                 </p:commandButton>
             </div>
-            
+
             <!-- Importando o rodape -->
             <div id="footer">
                 <ui:insert name="rodape" >

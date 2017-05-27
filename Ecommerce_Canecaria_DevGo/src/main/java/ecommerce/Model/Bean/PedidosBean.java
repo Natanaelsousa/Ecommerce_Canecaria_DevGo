@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /* @author sibele */
 @ManagedBean(name = "PedidosBean")
@@ -79,8 +80,8 @@ public class PedidosBean {
         return listarVendas;
     }
 
-    public String RedirecionandoParaTelaVendas() throws Exception {
-
-        return "AreaDeVendas";
+    public String redirecionandoParaTelaVendas() throws Exception {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("AreaDeVendas.xhtml");
+        return "OK";
     }
 }

@@ -52,10 +52,12 @@
             <div class="container-fluid">
                 <h2>Vendas pendentes de pagamento</h2>
                 <hr/>
-              
+
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
+                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                        </p:commandButton>
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
@@ -82,8 +84,10 @@
                             </tbody>
                         </ui:repeat>      
                     </table>
+                    <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
+                    </p:commandButton>
                 </h:form>
-              
+
 
             </div>
 
