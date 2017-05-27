@@ -102,7 +102,13 @@ public class ContatoBean {
         } catch (SQLException erro) {
             System.err.println("Não foi possivel realizar solicitação");
         }
-FacesContext.getCurrentInstance().getExternalContext().redirect("AcompanhamentoFaleConosco.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("AcompanhamentoFaleConosco.xhtml");
+        return "OK";
+    }
+    
+     public String voltando() throws Exception {
+    
+        FacesContext.getCurrentInstance().getExternalContext().redirect("AcompanhamentoFaleConosco.xhtml");
         return "OK";
     }
 
