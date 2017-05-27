@@ -24,5 +24,7 @@ public interface ProdutoDAO {
     public List<Produto> ListarProdutosPorIDeNome() throws SQLException;
 
     public List<Produto> ListarProdutosCategoria(String categoria) throws SQLException;
+    
+    public List<Produto> ListarProdutos() throws SQLException;
 
 }
