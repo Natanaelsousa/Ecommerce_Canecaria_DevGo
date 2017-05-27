@@ -188,6 +188,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
             produto.setNome_produto(rs.getString("NOME_PRODUTO"));
             produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
             produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+            produto.setImagem_produto(rs.getString("IMAGEM_PRODUTO"));
 
             produtos.add(produto);
         }
