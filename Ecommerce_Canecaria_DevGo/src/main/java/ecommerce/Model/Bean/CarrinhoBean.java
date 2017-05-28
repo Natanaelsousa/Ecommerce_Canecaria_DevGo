@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
@@ -36,21 +37,43 @@ public class CarrinhoBean implements Serializable {
 
     public String adicionar(int produto) throws SQLException {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
+        int qtdeEstoque = prod.getQtde_produto();
         prod.setQtde_produto(1);
-        for(int i = 0; i < produtos.size(); i++){
-            if (produtos.get(i).getNome_produto().equals(prod.getNome_produto()) ) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
                 prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
                 prod.setQtde_produto(produtos.get(i).getQtde_produto() + 1);
-                
+
                 produtos.remove(produtos.get(i));
-                
+
             }
         }
 
-        produtos.add(prod);
-        this.valorTotal += prod.getValor_produto();
+        if (qtdeEstoque >= prod.getQtde_produto()) {
+            produtos.add(prod);
+            this.valorTotal += prod.getValor_produto();
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Falta do produto em estoque!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
 
-        return "Produtos";
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+            return "Produtos.xhtml?faces-redirect=true";
+        }
+        FacesContext.getCurrentInstance().addMessage(
+                null, new FacesMessage("Produto adicionado com sucesso!"));
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash().setKeepMessages(true);
+
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getFlash().setKeepMessages(true);
+        return "Produtos.xhtml?faces-redirect=true";
     }
 
     public double getValorTotal() {
