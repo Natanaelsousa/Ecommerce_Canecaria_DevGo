@@ -169,28 +169,29 @@
 
                                             <p> <a title="#{detalharProdutoBean.produto.nome_produto}">
                                                     <p:graphicImage value="../imagens/#{prod.imagem_produto}" alt="#{detalharProdutoBean.produto.nome_produto}" />
-                                                    
+
                                                 </a>
                                             </p>
 
 
 
-                                            <h:outputText value="#{prod.nome_produto}">
-                                                <f:convertNumber type="currency" locale="pt-BR" />
-                                            </h:outputText><br/>
-                                            <h:outputText value="#{prod.valor_produto}">
+                                            <h:outputText value="#{prod.nome_produto}" style="display: block; margin-bottom:5px">
+
+                                            </h:outputText>
+
+                                            <h:outputText value="#{prod.valor_produto}" style="display: block; margin-bottom:3px">
                                                 <f:convertNumber type="currency" locale="pt-BR" />
                                             </h:outputText>
 
-                                            <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-block">
+                                            <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-link" style="display: block; margin-bottom:3px" >
                                                 <f:param name="produtoId" value="#{prod.cod_produto}" />
-                                                Ver detalhes
+                                                Ver detalhes 
                                             </h:outputLink>
 
                                             <h:form prependId="false">
                                                 <h:commandButton action="#{carrinhoBean.adicionar(prod.cod_produto)}" 
                                                                  value="Adicionar ao carrinho"
-                                                                 styleClass="btn btn-success btn-block" />
+                                                                 styleClass="btn btn-success btn-block" style="display: block;margin-bottom:5px" />
                                             </h:form>
                                         </div>
 
