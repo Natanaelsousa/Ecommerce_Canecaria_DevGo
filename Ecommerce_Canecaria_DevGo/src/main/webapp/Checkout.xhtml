@@ -5,8 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:head>
@@ -52,7 +51,7 @@
         <div id="page">
 
 
-             <!-- Importando o cabecalho -->
+            <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
                     <ui:include src="cabecalhoViewCliente.xhtml" />
@@ -76,11 +75,10 @@
 
 
                             <div id="wrap">
-                                
-                                <div id="grid">
-                                    
-                                    <p:messages id="messages" showDetail="true" autoUpdate="true" />
 
+                                <div id="grid">
+
+                                    <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />
 
                                     <div class="column column1">
                                         <div class="step" id="step1">
@@ -114,7 +112,11 @@
                                                              onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"
                                                              style="margin-bottom:5px"
 
-                                                             />
+                                                             validatorMessage="O campo CEP deve ter no máximo 8 digitos!">
+
+                                                    <f:validateLength maximum="8"  />
+
+                                                </h:inputText>
 
                                                 <label class="cep" for="CEP">CEP</label>
 
@@ -125,7 +127,12 @@
 
 
                                                 <h:inputText pt:type="text" class="form-control"
-                                                             required="true" requiredMessage="O campo Rua é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" onkeypress="return somenteLetras(event)" pt:placeholder="Digite a rua" style="margin-bottom:5px"/>
+                                                             required="true" requiredMessage="O campo Rua é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.rua}" id="rua" onkeypress="return somenteLetras(event)" pt:placeholder="Digite a rua" style="margin-bottom:5px" validatorMessage="O campo Rua deve ter no máximo 200 caracteres!">
+
+                                                    <f:validateLength maximum="200"  />
+
+                                                </h:inputText>
+
                                                 <label class="Rua" for="Rua">Rua</label>
 
                                             </div>
@@ -133,29 +140,47 @@
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" id="Numero" onkeypress="return somenteNumero(event)"
-                                                             required="true" requiredMessage="O campo Número é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px"/>
+                                                             required="true" requiredMessage="O campo Número é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.numero}" pt:placeholder="Digite o número" style="margin-bottom:5px" validatorMessage="O campo Número deve ter no máximo 20 digitos!">
+
+                                                    <f:validateLength maximum="20"  />
+
+                                                </h:inputText>
 
                                                 <label class="numero" for="numero">Número</label>
                                             </div>
-                                            
+
                                             <div>
 
 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite o bairro" onkeypress="return somenteLetras(event)"
-                                                             required="true" requiredMessage="O campo Bairro é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" />
+                                                             required="true" requiredMessage="O campo Bairro é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.bairro}" id="bairro" style="margin-bottom:5px" validatorMessage="O campo Bairro deve ter no máximo 100 caracteres!">
+
+                                                    <f:validateLength maximum="100"  />
+
+                                                </h:inputText>
                                                 <label class="bairro" for="Bairro">Bairro</label>
                                             </div>
                                             <div>
 
                                                 <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite a cidade" onkeypress="return somenteLetras(event)"
-                                                             required="true" requiredMessage="O campo Cidade é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" style="margin-bottom:5px"/>
+                                                             required="true" requiredMessage="O campo Cidade é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.cidade}" id="cidade" style="margin-bottom:5px" validatorMessage="O campo Cidade deve ter no máximo 100 caracteres!">
+
+                                                    <f:validateLength maximum="100"  />
+
+                                                </h:inputText>
+
                                                 <label class="cidade" for="cidade">Cidade</label>
                                             </div>
                                             <div>
 
 
                                                 <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP" onkeypress="return somenteLetras(event)"
-                                                             required="true" requiredMessage="O campo Estado é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   />
+                                                             required="true" requiredMessage="O campo Estado é obrigatório!" value = "#{finalizarCompraBean.finalizarCompra.estado}" style="margin-bottom:5px"   validatorMessage="O campo Estado deve ter no máximo 30 caracteres!">
+
+                                                    <f:validateLength maximum="30"  />
+
+                                                </h:inputText>
+
                                                 <label class="uf" for="uf">Estado</label>
                                             </div>
 
@@ -334,33 +359,33 @@
                                             <!-- <h:form id="resumo"> --> 
 
                                             <div class="right" id="reviewed">
-                                               <!-- <div class="billing">
-                                                    <h5> Entrega  </h5>
-                                                  
-
-                                                    <h:panelGrid columns="2" style="width:100%"  columnClasses="logo,detail">
-                                                        <p:outputPanel>
-                                                            <h:panelGrid columns="2" cellpadding="5" style="font-size:11px;color: #333" >
-                                                                <h:outputText value="Cidade: "  />
-                                                                <h:outputText value="#{finalizarCompraBean.finalizarCompra.cidade}" />
-
-                                                                <h:outputText value="CEP: "   />
-                                                                <h:outputText value="#{finalizarCompraBean.finalizarCompra.cep}" />
-
-                                                                <h:outputText value="Rua: "   />
-                                                                <h:outputText value="#{finalizarCompraBean.finalizarCompra.rua}" />
-
-                                                                <h:outputText value="Número: "   />
-                                                                <h:outputText value="#{finalizarCompraBean.finalizarCompra.numero}" />
-
-
-                                                            </h:panelGrid>
-                                                        </p:outputPanel>
-                                                    </h:panelGrid>
-
-                                                    <hr />
-                                                    </div>
-                                                </div> -->
+                                                <!-- <div class="billing">
+                                                     <h5> Entrega  </h5>
+                                                   
+ 
+                                                     <h:panelGrid columns="2" style="width:100%"  columnClasses="logo,detail">
+                                                         <p:outputPanel>
+                                                             <h:panelGrid columns="2" cellpadding="5" style="font-size:11px;color: #333" >
+                                                                 <h:outputText value="Cidade: "  />
+                                                                 <h:outputText value="#{finalizarCompraBean.finalizarCompra.cidade}" />
+ 
+                                                                 <h:outputText value="CEP: "   />
+                                                                 <h:outputText value="#{finalizarCompraBean.finalizarCompra.cep}" />
+ 
+                                                                 <h:outputText value="Rua: "   />
+                                                                 <h:outputText value="#{finalizarCompraBean.finalizarCompra.rua}" />
+ 
+                                                                 <h:outputText value="Número: "   />
+                                                                 <h:outputText value="#{finalizarCompraBean.finalizarCompra.numero}" />
+ 
+ 
+                                                             </h:panelGrid>
+                                                         </p:outputPanel>
+                                                     </h:panelGrid>
+ 
+                                                     <hr />
+                                                     </div>
+                                                 </div> -->
                                                 <hr />
 
 

@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.ProdutoDAO;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,7 +24,7 @@ public class DetalharProdutoBean {
     }
 
     @PostConstruct
-    public void initialize() {
+    public void iniciar() {
         try {
             detalharProduto();
         } catch (Exception ex) {
