@@ -71,66 +71,73 @@
                 <div class="container">		
 
                     <div class="row cart-row">
-                        <ui:repeat value="#{carrinhoBean.produtos}"  var="prod" >
-                            <div class="col-xs-12 col-sm-2">
-                                <div class="pull-left">
-                                    <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">-->
+                        <h:panelGrid columns="2">
+                            <ui:repeat value="#{carrinhoBean.produtos}"  var="prod" >
+                                <div class="col-xs-12">
+                                    <div class="pull-left">
+                                        <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">-->
 
+                                    </div>
+                                  
                                 </div>
-                                <!-- <a href="{{ item.url | within: collections.all }}"> -->
-                                <p> <a title="#{detalharProdutoBean.produto.nome_produto}">
-                                        <p:graphicImage value="../imagens/#{prod.imagem_produto}"  />
 
-                                    </a>
-                                </p>
-                            </div>
+                                <div class="col-xs-12 col-sm-4" id="p">
+                                    <!-- <h3><a href="DetalharProduto.html">Canecão Marvel</a></h3>-->
+                                      <p> <a title="#{detalharProdutoBean.produto.nome_produto}">
+                                            <p:graphicImage value="../imagens/#{prod.imagem_produto}" alt="#{detalharProdutoBean.produto.nome_produto}" />
 
-                            <div class="col-xs-12 col-sm-4" id="p">
-                                <!-- <h3><a href="DetalharProduto.html">Canecão Marvel</a></h3>-->
-                                <h:outputText value="#{prod.nome_produto}">
-                                    <f:convertNumber type="currency" locale="pt-BR" />
-                                </h:outputText><br/>
-                                <small>Nome do Produto</small>
-                            </div>			
-
-                            <div class="col-xs-7 col-sm-2">
-                                <div class="form-group">
-                                    <h:outputText value="#{prod.qtde_produto}">
+                                        </a>
+                                    </p>
+                                    <h:outputText value="#{prod.nome_produto}">
+                                        <f:convertNumber type="currency" locale="pt-BR" />
+                                    </h:outputText><br/>
+                                      <!-- <a href="{{ item.url | within: collections.all }}"> -->
                                    
-                                </h:outputText>
-                                    <small>Quantidade</small>
-                                </div>
-                            </div>
+                                   
+                                </div>			
 
-                            <div class="col-xs-12 col-sm-2">
-                                <h3 class="h3-price">
-                                    <h:outputText value="#{prod.valor_produto}">
-                                    <f:convertNumber type="currency" locale="pt-BR" />
-                                </h:outputText>
-                                </h3>
-                                <small>Total Item</small>
-                            </div>
-                        </ui:repeat>  
+                                <div class="col-xs-7 col-sm-2">
+                                    <div class="form-group">
+                                        <h:outputText value="#{prod.qtde_produto}">
+
+                                        </h:outputText>
+                                        <small>Quantidade</small>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2">
+                                    <h3 class="h3-price">
+                                        <h:outputText value="#{prod.valor_produto}">
+                                            <f:convertNumber type="currency" locale="pt-BR" />
+                                        </h:outputText>
+                                    </h3>
+                                    <small>Total Item</small>
+                                </div>
+                            </ui:repeat> 
+
+
+                        </h:panelGrid>
+
                     </div><!-- end .row.cart-row --> 
 
+                    <div class="col-xs-12 col-sm-12" >
+
+
+                        <form action="Checkout.xhtml">
+                            <button  type="submit" class="btn btn-success" id="finalizar"> 
+                                Finalizar Compra <span class="glyphicon glyphicon-play"></span>
+                            </button>
+                        </form>
+
+
+                        <button type="button" class="btn btn-default" id="continuarCompra">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar
+                        </button>
+
+                    </div>
                 </div><!-- end .row.cart-row --> 
 
 
-                <div class="col-xs-12 col-sm-12" >
-
-
-                    <form action="Checkout.xhtml">
-                        <button  type="submit" class="btn btn-success" id="finalizar"> 
-                            Finalizar Compra <span class="glyphicon glyphicon-play"></span>
-                        </button>
-                    </form>
-
-
-                    <button type="button" class="btn btn-default" id="continuarCompra">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Continuar
-                    </button>
-
-                </div>
 
             </div><!-- /.container -->
         </div>
