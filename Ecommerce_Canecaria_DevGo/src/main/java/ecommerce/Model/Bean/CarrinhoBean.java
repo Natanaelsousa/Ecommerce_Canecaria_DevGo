@@ -34,22 +34,28 @@ public class CarrinhoBean implements Serializable {
     public CarrinhoBean() {
 
     }
+    // Metodo que add produto no carrinho e valida se tem disponivel no estoque by: Natanael Santos
 
     public String adicionar(int produto) throws SQLException {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
         int qtdeEstoque = prod.getQtde_produto();
         prod.setQtde_produto(1);
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
-                prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
-                prod.setQtde_produto(produtos.get(i).getQtde_produto() + 1);
+        String nomeProdTeste = "";
 
-                produtos.remove(produtos.get(i));
+            for (int i = 0; i < produtos.size(); i++) {
+                nomeProdTeste = produtos.get(i).getNome_produto();
+                if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
+                   if(qtdeEstoque >= produtos.get(i).getQtde_produto()+1){
+                    prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
+                    prod.setQtde_produto(produtos.get(i).getQtde_produto() + 1);
 
+                    produtos.remove(produtos.get(i));
+                   }
+                }
             }
-        }
-
-        if (qtdeEstoque >= prod.getQtde_produto()) {
+            
+        // Logica errada na condição abaixo by Natanael Santos
+        if (produtos.isEmpty() || prod.getNome_produto() != nomeProdTeste) {
             produtos.add(prod);
             this.valorTotal += prod.getValor_produto();
         } else {
