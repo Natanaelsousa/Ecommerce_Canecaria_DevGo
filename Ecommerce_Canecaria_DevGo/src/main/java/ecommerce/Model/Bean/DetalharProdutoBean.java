@@ -40,10 +40,7 @@ public class DetalharProdutoBean {
         this.id = id;
     }
 
-    public void loadData() {
-        System.out.println("Id: " + getId());
-    }
-    
+   
     /*Detalhar o Produto*/
     public void detalharProduto() throws Exception {
         
