@@ -15,7 +15,7 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
     public void CadastrarFuncionario(Funcionario funcionario) throws SQLException {
         String query = "INSERT INTO funcionario(nome,senha,cpf,login,depto,status) "
                 + "VALUES(?,?,?,?,?,?)";
-        insert(query, funcionario.getNome_funcionario(), funcionario.getSenha_funcionario(), funcionario.getCpf_funcionario(), funcionario.getLogin_funcionario(), funcionario.getDepartamento_funcionario(),funcionario.getStatus_funcionario());
+        insert(query, funcionario.getNome_funcionario(), funcionario.getSenha_funcionario(), funcionario.getCpf_funcionario(), funcionario.getLogin_funcionario(), funcionario.getDepartamento_funcionario(), funcionario.getStatus_funcionario());
 
     }
 
@@ -25,7 +25,6 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
         String query = "UPDATE funcionario "
                 + "SET nome = ?,senha = ?, cpf = ?,login = ?,depto = ?, status = ? "
                 + "WHERE cpf = ?";
-
         update(query, funcionario.getCpf_funcionario(), funcionario.getNome_funcionario(), funcionario.getSenha_funcionario(), funcionario.getCpf_funcionario(), funcionario.getLogin_funcionario(), funcionario.getDepartamento_funcionario(), funcionario.getStatus_funcionario());
 
     }
@@ -56,16 +55,16 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
         stmt.close();
         return funcionario;
     }
-    
-   public Funcionario EncontraUserFuncionario(String login, String senha) throws SQLException {
-        String select = "SELECT * FROM FUNCIONARIO WHERE LOGIN ='" +login+ "'";
+
+    public Funcionario EncontraUserFuncionario(String login, String senha) throws SQLException {
+        String select = "SELECT * FROM FUNCIONARIO WHERE LOGIN ='" + login + "'";
         Funcionario funcionario1 = null;
-        
+
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);
-        
+
         ResultSet rs = stmt.executeQuery();
-        
+
         while (rs.next()) {
             funcionario1 = new Funcionario();
             funcionario1.setNome_funcionario(rs.getString("nome"));
@@ -76,10 +75,10 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
             funcionario1.setStatus_funcionario(rs.getString("status"));
             funcionario1.setCod_funcionario(rs.getInt("cod_funcionario"));
         }
-        
+
         rs.close();
         stmt.close();
         return funcionario1;
     }
-   
+
 }

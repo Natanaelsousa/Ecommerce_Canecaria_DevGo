@@ -121,8 +121,44 @@ public class ProdutosBean {
     /* Edita dados, no banco, do produto selecionado*/
     public String editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
+        produto.setCod_produto(id_produto);
+        byte[] imgBytes = null;
+        String nomeArquivo = null;
         try {
-            produtos.EditarCadastroProduto(produto, id_produto);
+            try {
+                if (imagem != null) {
+                    String partHeader = imagem.getHeader("content-disposition");
+                    System.out.println("***** partHeader: " + partHeader);
+                    for (String content : partHeader.split(";")) {
+                        if (content.trim().startsWith("filename")) {
+                            System.out.println("***** content: " + content);
+                             nomeArquivo = content.substring(content.indexOf('=') + 1);
+                            System.out.println("***** nomeArquivo 1: " + nomeArquivo);
+                            nomeArquivo = nomeArquivo.trim().replace("\"", "");
+                            int lastFilePart = nomeArquivo.lastIndexOf("\\");
+                            if (lastFilePart > 0) {
+                                nomeArquivo = nomeArquivo.substring(lastFilePart, nomeArquivo.length());
+                            }
+                            String destino = "C:\\desenv\\imagens\\";
+                            File arquivo = new File(destino + nomeArquivo);
+                            System.out.println("***** arquivo: " + arquivo.getAbsolutePath());
+
+                            try (InputStream inputStream = imagem.getInputStream();
+                                    OutputStream outputStream
+                                    = new FileOutputStream(arquivo)) {
+                                int read = 0;
+                                imgBytes = new byte[1024];
+                                while ((read = inputStream.read(imgBytes)) != -1) {
+                                    outputStream.write(imgBytes, 0, read);
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+
+            }
+            produtos.EditarCadastroProduto(produto, nomeArquivo);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel alterar os dados deste produto.");
         }
