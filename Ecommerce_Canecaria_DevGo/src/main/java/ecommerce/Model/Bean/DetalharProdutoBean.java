@@ -18,7 +18,9 @@ import javax.faces.bean.ViewScoped;
 public class DetalharProdutoBean {
 
     private int id;
+    private int quantidade;
     private Produto produto = new Produto();
+    ProdutoDAO produtos = new ProdutoDAOImpl();
 
     public DetalharProdutoBean() {
     }
@@ -43,12 +45,9 @@ public class DetalharProdutoBean {
    
     /*Detalhar o Produto*/
     public void detalharProduto() throws Exception {
-        
-        ProdutoDAO produtos = new ProdutoDAOImpl();
-       
-        try {
+           try {
             setProduto(produtos.BuscarProdutoPorID(getId()));
-            
+            setQuantidade(produtos.quantidadeEstoque(getId()));
         } catch (SQLException erro) {
             System.err.println("Erro");
         }
@@ -63,6 +62,13 @@ public class DetalharProdutoBean {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+ 
+    
+    public int getQuantidade() {
+        return quantidade;
+    }
 
-
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 }

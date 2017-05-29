@@ -198,4 +198,39 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         return produtos;
     }
+    
+    @Override
+    public int quantidadeEstoque(int id_produto) {
+
+        
+        int quantidade = 0;
+        
+        try {
+            
+            
+            String query = "SELECT QTDE_PRODUTO FROM produto WHERE COD_PROD =" + id_produto;
+            
+            PreparedStatement stmt
+                    = getConnection().prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs != null && rs.next()) {
+                
+                quantidade = rs.getInt("QTDE_PRODUTO");
+                
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            
+        } catch (SQLException ex) {
+            
+            System.err.println(ex);
+        }
+        
+         return quantidade;
+    }
+    
 }
