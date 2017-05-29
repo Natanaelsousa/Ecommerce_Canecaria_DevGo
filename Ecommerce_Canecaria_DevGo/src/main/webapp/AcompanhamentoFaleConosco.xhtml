@@ -77,23 +77,24 @@
 
                 <div class="space"></div>
                 <h:form>
-                    <div class="col-md-2"></div>
-                    <div class="form-group col-md-8"  >
+                    <div class="col-md-3"></div>
+                    <div class="form-group col-md-6"  >
                         <h:outputLabel  value="Escolha a fila que deseja atender:" />
                         <h:selectOneMenu class="form-control" value="#{ContatoBean.id_contato}" converter="javax.faces.Integer">
                             <f:selectItem itemValue="" itemLabel="Selecione..."  />
                             <f:selectItems  value="#{TipoSolicitacaoBean.listarTiposDeSolicitacoes()}" var="contato" itemLabel="#{contato.tipo_solicitacao_nome}" itemValue="#{contato.cod_tipo_solicitacao}" />
                         </h:selectOneMenu>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-3"></div>
+                    
                     <div class="space"></div>
 
-                    <div class="col-md-4"></div>
+                    <div class="col-md-3"></div>
                     <div class="form-group col-md-4"  >
                         <h:commandButton  class="btn btn-primary btn-lg btn-block" p:type="submit" value="Verificar fila" action="#{ContatoBean.encontrarFilaPorId()}">
                         </h:commandButton>
-                       
-                    </div><div class="col-md-4"></div>
+                    </div>
+                    <div class="col-md-5"></div>
 
                     <div class="space"></div>
                 </h:form>
