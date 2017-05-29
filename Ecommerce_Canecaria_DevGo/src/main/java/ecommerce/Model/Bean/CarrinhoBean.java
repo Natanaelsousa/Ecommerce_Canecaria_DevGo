@@ -41,39 +41,54 @@ public class CarrinhoBean implements Serializable {
         int qtdeEstoque = prod.getQtde_produto();
         prod.setQtde_produto(1);
 
-            for (int i = 0; i < produtos.size(); i++) {
-                if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
-                   if(qtdeEstoque >= produtos.get(i).getQtde_produto()+1){
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
+                if (qtdeEstoque >= produtos.get(i).getQtde_produto() + 1) {
                     prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
                     prod.setQtde_produto(produtos.get(i).getQtde_produto() + 1);
 
                     produtos.remove(produtos.get(i));
-                   }
                 }
             }
-            
-        // Logica errada na condição abaixo by Natanael Santos
-        int i=0;
-        while( i <= produtos.size()){
-        if (produtos.isEmpty() 
-            ||  !prod.getNome_produto().equals(produtos.get(i).getNome_produto())) {
-            produtos.add(prod);
-            this.valorTotal += prod.getValor_produto();
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null, new FacesMessage("Falta do produto em estoque!"));
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .getFlash().setKeepMessages(true);
+        }
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .getFlash().setKeepMessages(true);
-            return "Produtos.xhtml?faces-redirect=true";
+        // Logica errada na condição abaixo by Natanael Santos
+        int i = 0;
+        while (i <= produtos.size()) {
+
+            if (produtos.isEmpty()
+                    || !prod.getNome_produto().equals(produtos.get(i).getNome_produto())) {
+                if (qtdeEstoque != 0) {
+                    produtos.add(prod);
+                    this.valorTotal += prod.getValor_produto();
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(
+                            null, new FacesMessage("Falta do produto em estoque!"));
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+                    return "Produtos.xhtml?faces-redirect=true";
+                }
+            } else {
+                FacesContext.getCurrentInstance().addMessage(
+                        null, new FacesMessage("Falta do produto em estoque!"));
+                FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getFlash().setKeepMessages(true);
+
+                FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getFlash().setKeepMessages(true);
+                return "Produtos.xhtml?faces-redirect=true";
+            }
+            i++;
+            break;
         }
-        i++;
-        break;
-        }
+
         FacesContext.getCurrentInstance().addMessage(
                 null, new FacesMessage("Produto adicionado com sucesso!"));
         FacesContext.getCurrentInstance()
