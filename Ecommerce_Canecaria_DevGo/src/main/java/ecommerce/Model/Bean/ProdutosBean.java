@@ -48,7 +48,6 @@ public class ProdutosBean {
         this.imagem = imagem;
     }
 
-
     public void CadastrarProduto() throws Exception {
 
         ProdutoDAO produtos = new ProdutoDAOImpl();
@@ -62,7 +61,7 @@ public class ProdutosBean {
                     for (String content : partHeader.split(";")) {
                         if (content.trim().startsWith("filename")) {
                             System.out.println("***** content: " + content);
-                             nomeArquivo = content.substring(content.indexOf('=') + 1);
+                            nomeArquivo = content.substring(content.indexOf('=') + 1);
                             System.out.println("***** nomeArquivo 1: " + nomeArquivo);
                             nomeArquivo = nomeArquivo.trim().replace("\"", "");
                             int lastFilePart = nomeArquivo.lastIndexOf("\\");
@@ -104,7 +103,7 @@ public class ProdutosBean {
         String retorno = null;
         try {
             produto = produtos.BuscarProdutoPorID(id_produto);
-            
+
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar o produto");
         }
@@ -122,6 +121,7 @@ public class ProdutosBean {
     public String editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produto.setCod_produto(id_produto);
+
         byte[] imgBytes = null;
         String nomeArquivo = null;
         try {
@@ -132,7 +132,7 @@ public class ProdutosBean {
                     for (String content : partHeader.split(";")) {
                         if (content.trim().startsWith("filename")) {
                             System.out.println("***** content: " + content);
-                             nomeArquivo = content.substring(content.indexOf('=') + 1);
+                            nomeArquivo = content.substring(content.indexOf('=') + 1);
                             System.out.println("***** nomeArquivo 1: " + nomeArquivo);
                             nomeArquivo = nomeArquivo.trim().replace("\"", "");
                             int lastFilePart = nomeArquivo.lastIndexOf("\\");
@@ -156,9 +156,14 @@ public class ProdutosBean {
                     }
                 }
             } catch (IOException ex) {
-
+                ex.printStackTrace();
             }
-            produtos.EditarCadastroProduto(produto, nomeArquivo);
+            if (imagem != null) {
+                produto.setImagem_produto(nomeArquivo);
+            }else{
+                System.out.println(produto.getImagem_produto());
+            }
+            produtos.EditarCadastroProduto(produto);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel alterar os dados deste produto.");
         }
