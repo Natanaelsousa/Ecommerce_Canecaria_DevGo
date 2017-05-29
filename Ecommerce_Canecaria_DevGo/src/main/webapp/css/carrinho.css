@@ -98,3 +98,7 @@ $sweet-monospaced: 'Oxygen Mono', monospace;*/
   background-color: #d3d3d3;
 }
 
+#removerCarrinho :hover{
+cursor:pointer;
+
+}
