@@ -38,6 +38,8 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="js/funcoes.js"></script>
 
     </h:head>
     <h:body>
@@ -45,7 +47,6 @@
         <div id="page">
 
 
-            <!-- Importando o cabecalho -->
             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
@@ -68,56 +69,111 @@
                     </div><!-- end .row -->
                 </div><!-- end .container-fluid -->
 
-                <div class="container">		
+                <div class="container">	
+
+                    <ui:repeat value="#{carrinhoBean.produtos}"  var="prod" >
+
+                        <div  class="row cart-row" id="item">
+                            <div class="col-xs-12 col-sm-2">
+                                <div class="pull-left">
+
+                                    <a  id="removerCarrinho" data-toggle="tooltip" title="Remover item do carrinho!" onClick="removerItemCarrinho();"> 
+                                        <span 
+                                            class="glyphicon glyphicon-remove-sign" 
+                                            aria-hidden="true"
+                                            ></span>
+                                    </a>
+                                </div>
+
+
+                                <a title="#{detalharProdutoBean.produto.nome_produto}">
+                                    <p:graphicImage value="../imagens/#{prod.imagem_produto}" style="width:65%" alt="#{detalharProdutoBean.produto.nome_produto}" />
+                                </a>
+
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4" id="p">
+                                
+                                
+                               
+                                <h3>
+                                
+                                 <h:outputLink value="DetalharProduto.xhtml" styleClass="btn btn-link" style="display: block; margin-bottom:3px;font-weight: bold" >
+                                                <f:param name="produtoId" value="#{prod.cod_produto}" />
+                                                #{prod.nome_produto} 
+                                </h:outputLink> </h3>
+                                <small>Nome do Produto</small>
+                            </div>			
+
+                            <!--<div class="col-xs-5 col-sm-2">
+                                <h3 class="h3-price">
+                                    R$39,50
+                                </h3>
+                                <small>Preço Unitário</small>
+                            </div> -->
+
+                            <div class="col-xs-7 col-sm-2">
+                                <div class="form-group">
+                                    <input readonly="true"
+                                        id="idITem" 
+                                        value="#{prod.qtde_produto}" 
+                                        class="cart-qty-input" 
+                                        />
+                                    <small>Quantidade</small>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-5 col-sm-2">
+                                <h3 class="h3-price">
+                                   <h:outputText value="#{prod.valor_produto}">
+                                                <f:convertNumber type="currency" locale="pt-BR" />
+                                    </h:outputText>
+                                </h3>
+                                <small>Total Item</small>
+                            </div>
+                        </div><!-- end .row.cart-row --> 
+
+                 </ui:repeat> 
+
+
 
                     <div class="row cart-row">
-                        <h:panelGrid columns="2">
-                            <ui:repeat value="#{carrinhoBean.produtos}"  var="prod" >
-                                <div class="col-xs-12">
-                                    <div class="pull-left">
-                                        <!--<a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">-->
+                        <div class="col-xs-12 col-sm-2">
+                            <div class="pull-left">
+                               
+                                <a href="">
 
-                                    </div>
-                                  
-                                </div>
+                                </a>
+                            </div>
 
-                                <div class="col-xs-12 col-sm-4" id="p">
-                                    <!-- <h3><a href="DetalharProduto.html">Canecão Marvel</a></h3>-->
-                                      <p> <a title="#{detalharProdutoBean.produto.nome_produto}">
-                                            <p:graphicImage value="../imagens/#{prod.imagem_produto}" alt="#{detalharProdutoBean.produto.nome_produto}" />
+                        </div>
 
-                                        </a>
-                                    </p>
-                                    <h:outputText value="#{prod.nome_produto}">
-                                        <f:convertNumber type="currency" locale="pt-BR" />
-                                    </h:outputText><br/>
-                                      <!-- <a href="{{ item.url | within: collections.all }}"> -->
-                                   
-                                   
-                                </div>			
+                        <div class="col-xs-12 col-sm-4" id="p">
 
-                                <div class="col-xs-7 col-sm-2">
-                                    <div class="form-group">
-                                        <h:outputText value="#{prod.qtde_produto}">
+                        </div>			
 
-                                        </h:outputText>
-                                        <small>Quantidade</small>
-                                    </div>
-                                </div>
+                        <!--<div class="col-xs-5 col-sm-2">
+                            <h3 class="h3-price">
 
-                                <div class="col-xs-12 col-sm-2">
-                                    <h3 class="h3-price">
-                                        <h:outputText value="#{prod.valor_produto}">
-                                            <f:convertNumber type="currency" locale="pt-BR" />
-                                        </h:outputText>
-                                    </h3>
-                                    <small>Total Item</small>
-                                </div>
-                            </ui:repeat> 
+                            </h3>
 
+                        </div> -->
 
-                        </h:panelGrid>
+                        <div class="col-xs-7 col-sm-2">
+                            <div class="form-group">
 
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-2">
+                            <h3 class="h3-price">
+                                <h:outputText value="#{carrinhoBean.valorTotal}">
+                                                <f:convertNumber type="currency" locale="pt-BR" />
+                                </h:outputText>
+                            </h3>
+                            <h3>Total</h3>
+                        </div>
                     </div><!-- end .row.cart-row --> 
 
                     <div class="col-xs-12 col-sm-12" >
@@ -135,26 +191,22 @@
                         </button>
 
                     </div>
-                </div><!-- end .row.cart-row --> 
+
+                       
+                </div><!-- /.container -->
+            </div>
+            <!-- Fim -->
 
 
+            <!-- Importando o rodape -->
+            <div id="footer">
+                <ui:insert name="rodape" >
+                    <ui:include src="rodape.xhtml" />
+                </ui:insert>
+            </div>
+            <!-- Fim -->
 
-            </div><!-- /.container -->
         </div>
-        <!-- Fim -->
-
-
-        <!-- Importando o rodape -->
-        <div id="footer">
-            <ui:insert name="rodape" >
-                <ui:include src="rodape.xhtml" />
-            </ui:insert>
-        </div>
-        <!-- Fim -->
-
-
 
     </h:body>
 </html>
-
-

@@ -320,3 +320,13 @@ function retira_acentos(palavra) {
     }
     return nova;
 }
+
+
+function removerItemCarrinho() {
+
+var node = document.getElementById("item");
+if (node.parentNode) {
+  node.parentNode.removeChild(node);
+  
+}
+}
