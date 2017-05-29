@@ -6,9 +6,7 @@
 package ecommerce.Model.Filter;
 
 
-import ecommerce.Model.Bean.ClienteBean;
 import ecommerce.Model.Bean.LoginBean;
-import ecommerce.Model.Bean.UsuarioSistema;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
@@ -45,12 +43,7 @@ public class AutorizacaoListener implements PhaseListener {
       // Validar se usuario tem permissao para acessar a página,
       // através do papel e da página
       if (!verificarAcesso(usuarioBean, paginaAtual)) {
-           String mensagem = "Erro ao se tentar se logar!";
-           RequestContext context = RequestContext.getCurrentInstance();
-	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            context.addCallbackParam("loggedIn", mensagem);
+         
       }
       
       // Se processamento chegar nese ponto, JSF prossegue com o 
@@ -77,6 +70,10 @@ public class AutorizacaoListener implements PhaseListener {
     } else if (paginaAcessada.lastIndexOf("EditarCadastroCliente.xhtml") > -1
 	    &&  usuario.getCliente() != null) {
       return true;
+    } else if ((paginaAcessada.lastIndexOf("HomePage.xhtml") > -1) 
+            && usuario.getCliente() != null){
+        usuario = new LoginBean ();
+        return true;
     }
     // Outras condições...
     return false;

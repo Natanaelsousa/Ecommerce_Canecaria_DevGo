@@ -40,10 +40,8 @@ public class CarrinhoBean implements Serializable {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
         int qtdeEstoque = prod.getQtde_produto();
         prod.setQtde_produto(1);
-        String nomeProdTeste = "";
 
             for (int i = 0; i < produtos.size(); i++) {
-                nomeProdTeste = produtos.get(i).getNome_produto();
                 if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
                    if(qtdeEstoque >= produtos.get(i).getQtde_produto()+1){
                     prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
@@ -55,7 +53,10 @@ public class CarrinhoBean implements Serializable {
             }
             
         // Logica errada na condição abaixo by Natanael Santos
-        if (produtos.isEmpty() || prod.getNome_produto() != nomeProdTeste) {
+        int i=0;
+        while( i <= produtos.size()){
+        if (produtos.isEmpty() 
+            ||  !prod.getNome_produto().equals(produtos.get(i).getNome_produto())) {
             produtos.add(prod);
             this.valorTotal += prod.getValor_produto();
         } else {
@@ -69,6 +70,9 @@ public class CarrinhoBean implements Serializable {
                     .getExternalContext()
                     .getFlash().setKeepMessages(true);
             return "Produtos.xhtml?faces-redirect=true";
+        }
+        i++;
+        break;
         }
         FacesContext.getCurrentInstance().addMessage(
                 null, new FacesMessage("Produto adicionado com sucesso!"));
