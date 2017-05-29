@@ -45,8 +45,6 @@
     </h:head>
     <h:body>
         <div id="page">
-
-
             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
@@ -54,9 +52,7 @@
                 </ui:insert>
             </div>
 
-
-
-            <!-- Conteudo da pagina -->
+            <!-- Titulo apresentativo da pagina -->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
@@ -67,11 +63,11 @@
                 </div>
             </div>
 
-
+            <!-- Conteudo da pagina formulario+dados de localização -->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="form-group col-md-12 col-md-push-1">
+                        <div class="form-group col-md-12 col-md-push-1 col-lg-12 col-lg-push-1 col-sm-12 col-xs-12 ">
                             <h:form id="FaleConoscoSolicitacao" prependId="false" enctype="multipart/form-data">
                                 <!-- Preencher formulario de solicitação -->
                                 <h3>Preencha os dados e entre em contato conosco</h3>
@@ -117,34 +113,38 @@
                 <!--FIM  Preencher formulario de solicitação -->
 
                 <!-- Mapa e contatos -->
-                <div class="col-md-6">
+                <div class="col-lg-6  col-md-6  col-sm-12 col-xs-12">
                     <section id="contact">                    
                         <div class="row">
-                            <div class="col-md-3 col-md-push-1">
+                            <div class="col-lg-7 col-md-7 col-sm-10 col-xs-10">
                                 <div class="info">
 
                                     <!--Espaço para o mapa informando localização-->
-                                    <h:form>
-                                        <p:gmap center="-23.6698066,-46.6997591" zoom="15" type="ROADMAP"  style="width:600px;height:400px" />
-                                        <h:messages id="msgerro"></h:messages>
-                                    </h:form>
-
-                                    <div class="space"></div>
-                                    <div >
-                                        <i class="fa fa-map-marker"></i>
-                                        <p>Av. Eng. Eusébio Stevaux, 823 <br></br> ,São Paulo</p>
+                                    <div class="col-sm-5 col-xs-8">
+                                        <h:form>
+                                            <p:gmap center="-23.6698066,-46.6997591" zoom="15" type="ROADMAP"  style="width:600px;height:400px" />
+                                            <h:messages id="msgerro"></h:messages>
+                                        </h:form>
                                     </div>
 
-                                    <div>
-                                        <i class="fa fa-envelope"></i>
-                                        <p>canecaria@canecariaCanecas.com</p>
-                                    </div>
+                                    <div class="col-sm-11 col-xs-8">
+                                        <div class="space"></div>
 
-                                    <div>
-                                        <i class="fa fa-phone"></i>
-                                        <p>11 5662-7926</p>
-                                    </div>
+                                        <div>
+                                            <i class="fa fa-map-marker"></i>
+                                            <p>Av. Eng. Eusébio Stevaux, 823 <br></br> ,São Paulo</p>
+                                        </div>
 
+                                        <div>
+                                            <i class="fa fa-envelope"></i>
+                                            <p>canecaria@canecariaCanecas.com</p>
+                                        </div>
+
+                                        <div>
+                                            <i class="fa fa-phone"></i>
+                                            <p>11 5662-7926</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -153,9 +153,8 @@
                 <!--FIM  Mapa e contatos -->
             </div>
         </div>
-        
         <div class="space"></div>
-        
+
         <!-- Importando o rodape -->
         <div id="footer">
             <ui:insert name="rodape" >
