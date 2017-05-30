@@ -7,6 +7,7 @@ import ecommerce.Model.MetodosAcessores.Venda;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import java.util.List;
 public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
     @Override
-    public List<Venda> ListarVendas() throws SQLException {
+    
+    // periodooo
+    public List<Venda> ListarVendas(Timestamp dataInicial , Timestamp dataFinal) throws SQLException {
 
         List<Venda> venda = new ArrayList<Venda>();
 

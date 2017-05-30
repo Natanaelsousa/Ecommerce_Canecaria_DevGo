@@ -15,6 +15,7 @@ public class Venda {
     private double valorTotal;
     private Timestamp dataPedido;
     private String estadoCompra;
+   
 
     /**
      * @return the codPedido
