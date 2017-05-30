@@ -5,8 +5,11 @@
  */
 package ecommerce.Model.Bean;
 
+import ecommerce.Model.Dao.CarrinhoDAO;
 import ecommerce.Model.Dao.ProdutoDAO;
+import ecommerce.Model.DaoImplementation.CarrinhoDAOImpl;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
+import ecommerce.Model.MetodosAcessores.Carrinho;
 import ecommerce.Model.MetodosAcessores.Produto;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -16,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 
 /**
  *
@@ -30,6 +32,26 @@ public class CarrinhoBean implements Serializable {
     ProdutoDAO produtosDao = new ProdutoDAOImpl();
     private double valorTotal = 0.00;
     private int qtde = 0;
+    private int cod_pedido;
+    private  List<Carrinho> listarItensCarrinho = new ArrayList<Carrinho>();
+
+    public List<Carrinho> getListarItensCarrinho() {
+        return listarItensCarrinho;
+    }
+
+    public void setListarItensCarrinho(List<Carrinho> listarItensCarrinho) {
+        this.listarItensCarrinho = listarItensCarrinho;
+    }
+    
+
+    public int getCod_pedido() {
+        return cod_pedido;
+    }
+
+    public void setCod_pedido(int cod_pedido) {
+        this.cod_pedido = cod_pedido;
+    }
+    
 
     public CarrinhoBean() {
 
@@ -42,18 +64,18 @@ public class CarrinhoBean implements Serializable {
         prod.setQtde_produto(1);
         String nomeProdTeste = "";
 
-            for (int i = 0; i < produtos.size(); i++) {
-                nomeProdTeste = produtos.get(i).getNome_produto();
-                if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
-                   if(qtdeEstoque >= produtos.get(i).getQtde_produto()+1){
+        for (int i = 0; i < produtos.size(); i++) {
+            nomeProdTeste = produtos.get(i).getNome_produto();
+            if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
+                if (qtdeEstoque >= produtos.get(i).getQtde_produto() + 1) {
                     prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
                     prod.setQtde_produto(produtos.get(i).getQtde_produto() + 1);
 
                     produtos.remove(produtos.get(i));
-                   }
                 }
             }
-            
+        }
+
         // Logica errada na condição abaixo by Natanael Santos
         if (produtos.isEmpty() || prod.getNome_produto() != nomeProdTeste) {
             produtos.add(prod);
@@ -80,6 +102,21 @@ public class CarrinhoBean implements Serializable {
                 .getExternalContext()
                 .getFlash().setKeepMessages(true);
         return "Produtos.xhtml?faces-redirect=true";
+    }
+
+    public String listarCarrinhoPorPedido(int pedido) throws SQLException {
+        CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
+       
+        try {
+            listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
+            setCod_pedido(pedido);
+        } catch (SQLException erro) {
+            System.out.println("Nao foi possivel listar os itens do carrinho");
+        }
+        
+        
+        return "listarItensPedidosEmpresa";
+
     }
 
     public double getValorTotal() {

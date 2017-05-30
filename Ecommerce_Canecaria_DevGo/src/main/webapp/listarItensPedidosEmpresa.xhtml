@@ -50,51 +50,33 @@
             <div class="space"></div>
 
             <div class="container-fluid">
-                <h2>Vendas quitadas</h2>
+                <h2>Itens do pedido</h2>
                 <hr/>
 
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
-                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                        </p:commandButton>
+                        
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
-                                <th>Nome do cliente</th>
-                                <th>Valor da compra</th>
-                                <th>Pagamento</th>
-                                <th>Cep</th>
-                                <th>Rua e numero</th>
-                                <th>Bairro</th>
-                                <th>Cidade</th>
-                                <th>UF</th>
-                                <th>Situação da compra</th>
+                                <th>Codigo do Produto</th>
+                                <th>Quantidade do produto</th>
+                              
                             </tr>
                         </thead>
-                        <ui:repeat value="#{PedidosBean.listEncontrarVendasPeloStatus()}" var="pedido">
+                        <ui:repeat value="#{carrinhoBean.listarItensCarrinho}" var="itens">
                             <tbody>
                                 <tr>
-                                    <td>#{pedido.cod_pedido}</td>
-                                    <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
-                                    <td>#{pedido.valor_a_pagar}</td>
-                                    <td>#{PagamentoBean.buscarPagamentoPorId(pedido.cod_pagamento)}</td>
-                                    <td>#{pedido.cep}</td>
-                                    <td>#{pedido.rua}-#{pedido.numero} </td>
-                                    <td>#{pedido.bairro}</td>
-                                    <td>#{pedido.cidade}</td>
-                                    <td>#{pedido.estado}</td>
-                                    <td>Pago</td>
-                                    <td> <p:commandButton class="btn btn-success btn-xs btn-block" p:type="submit" value="Verificar produtos" action="#{carrinhoBean.listarCarrinhoPorPedido(pedido.cod_pedido)}"> 
-                                        </p:commandButton>
-                                    </td>
+                                    <td>#{itens.cod_pedido}</td>
+                                    <td>#{itens.cod_cliente}</td>
+                                    <td>#{itens.qtde_produto}</td>
+                                   
                                 </tr>
                             </tbody>
                         </ui:repeat>      
                     </table>
                 </h:form>
-                <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                </p:commandButton>
             </div>
 
             <!-- Importando o rodape -->

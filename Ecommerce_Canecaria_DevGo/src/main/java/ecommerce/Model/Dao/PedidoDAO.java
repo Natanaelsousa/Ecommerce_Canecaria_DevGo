@@ -18,8 +18,11 @@ public interface PedidoDAO {
     // Responsavel por cadastrar a compra do cliente
     public void CadastrarPedido(Pedido pedido) throws SQLException;
 
-   // Responsavel por localizar vendas de acordo com o status
+    // Responsavel por localizar vendas de acordo com o status
     public List<Pedido> encontrarVendasPeloStatus(int id_status) throws SQLException;
+
+    //Atualiza um pedido para pago
+    public void atualizarPedidoParaPago(Pedido pedido) throws SQLException;
 
     public void EditarPedido(Pedido pedido) throws SQLException;
 }
