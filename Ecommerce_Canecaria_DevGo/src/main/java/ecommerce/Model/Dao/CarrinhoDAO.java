@@ -12,4 +12,7 @@ import java.util.List;
 public interface CarrinhoDAO {
     
     public List<Carrinho> ListarPedidosCarrinho() throws SQLException;
+    
+        // Responsavel por cadastrar a compra do cliente
+    public void CadastrarPedido(Carrinho carrinho) throws SQLException;
 }

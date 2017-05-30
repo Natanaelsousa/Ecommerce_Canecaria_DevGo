@@ -39,6 +39,7 @@ public class CarrinhoBean implements Serializable {
     public String adicionar(int produto) throws SQLException {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
         int qtdeEstoque = prod.getQtde_produto();
+        double valorQueEntra =  prod.getValor_produto();
         prod.setQtde_produto(1);
 
         for (int i = 0; i < produtos.size(); i++) {
@@ -60,7 +61,7 @@ public class CarrinhoBean implements Serializable {
                     || !prod.getNome_produto().equals(produtos.get(i).getNome_produto())) {
                 if (qtdeEstoque != 0) {
                     produtos.add(prod);
-                    this.valorTotal += prod.getValor_produto();
+                    this.valorTotal += valorQueEntra;
                 } else {
                     FacesContext.getCurrentInstance().addMessage(
                             null, new FacesMessage("Falta do produto em estoque!"));
@@ -99,6 +100,10 @@ public class CarrinhoBean implements Serializable {
                 .getExternalContext()
                 .getFlash().setKeepMessages(true);
         return "Produtos.xhtml?faces-redirect=true";
+    }
+    
+    public void finalizarVenda (){
+        
     }
 
     public double getValorTotal() {
