@@ -6,6 +6,15 @@ public class Categoria {
 
     private Integer cod_categoria;
     private  String nome_categoria;
+    private Integer quant;
+
+    public Integer getQuant() {
+        return quant;
+    }
+
+    public void setQuant(Integer quant) {
+        this.quant = quant;
+    }
 
     public Integer getCod_categoria() {
         return cod_categoria;

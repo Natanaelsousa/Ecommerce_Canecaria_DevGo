@@ -27,7 +27,10 @@ public class AutorizacaoListener implements PhaseListener {
     
     LoginBean usuarioBean = fc.getApplication()
 	    .evaluateExpressionGet(fc, "#{LoginBean}", 
-		    LoginBean.class);
+		    LoginBean.class);    
+  
+        
+
     
     String paginaAtual = fc.getViewRoot().getViewId();
     NavigationHandler nh = fc.getApplication().getNavigationHandler();
@@ -35,8 +38,11 @@ public class AutorizacaoListener implements PhaseListener {
     if (paginaAtual != null && paginaAtual.contains("/protegido")) {
       
       // Usuario não tem sessao ativa ou não se logou
-      if ( usuarioBean == null) {
-	nh.handleNavigation(fc, null, "/MinhaConta.xhtml?faces-redirect=true");
+      if ( usuarioBean.getCliente() == null) {
+	nh.handleNavigation(fc, null, "MinhaConta.xhtml?faces-redirect=true");
+	return;
+      } else if (usuarioBean.getFuncionario() == null){
+          nh.handleNavigation(fc, null, "LoginEmpresa.xhtml?faces-redirect=true");
 	return;
       }
       

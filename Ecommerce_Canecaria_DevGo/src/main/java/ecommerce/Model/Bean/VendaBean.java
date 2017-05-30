@@ -45,24 +45,7 @@ public class VendaBean {
         return vendas;
 
     }
-/*Listar Produtos mais vendidos*/
-       public List<Produto> ListarProduto() throws Exception {
-      
 
-        produtos = vendaDao.ListarProduto();
-        
-        return produtos;
-
-    }
-    /*Listar Categoria*/
-         public List<Categoria> ListarCategoria() throws Exception {
-      
-
-        categorias = vendaDao.ListarCategoria();
-        
-        return categorias;
-
-    }
     
     
    

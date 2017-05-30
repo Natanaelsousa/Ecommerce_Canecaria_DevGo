@@ -73,7 +73,7 @@
                     
 
 
-                        <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{vendaBean.ListarCategoria()}">
+                    <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{relatoriosBean.ListarCategoria()}">
                             <p:column headerText="Nome da Categoria">
                                 <h:outputText value="#{ven.nome_categoria}" />
                             </p:column>
@@ -81,7 +81,8 @@
                            
 
                             <p:column headerText="Quantidade">
-                               
+                                
+                                <h:outputText value="#{ven.quant}" />
                                 
                             </p:column>
                             

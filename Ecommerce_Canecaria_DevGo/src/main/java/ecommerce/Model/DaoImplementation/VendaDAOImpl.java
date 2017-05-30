@@ -60,7 +60,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
                 + "INNER JOIN produto b ON (a.COD_PROD = b.COD_PROD)\n"
                 + "INNER JOIN pedido c ON (a.COD_PEDIDO = c.COD_PEDIDO)\n"
                 + "WHERE (a.COD_PEDIDO <> 0) AND (c.COD_STATUS = 3) OR (c.COD_STATUS = 4) AND (DATE(c.DATA_PEDIDO) \n"
-                + "BETWEEN '2017-05-21' AND '2017-05-21')GROUP BY b.NOME_PRODUTO ORDER BY QUANTIDADE DESC LIMIT 10";
+                + "BETWEEN DATE (NOW()) AND DATE_ADD(DATE(NOW()),INTERVAL -10 DAY))GROUP BY b.NOME_PRODUTO ORDER BY QUANTIDADE DESC LIMIT 10";
 
           PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -69,10 +69,11 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
         while (rs.next()) {
             Produto produtos = new Produto();
-
-           
+                      
            
             produtos.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produtos.setQuantRelatorio(rs.getInt("QUANTIDADE"));
+            
         
             
 
@@ -91,11 +92,11 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
         List<Categoria> categoria = new ArrayList<Categoria>();
 
-        String query = "SELECT d.NOME_CATEGORIA, COUNT(*) AS VOL FROM carrinho a INNER JOIN produto b ON "
+        String query = "SELECT d.NOME_CATEGORIA, COUNT(*) AS QUANTIDADE FROM carrinho a INNER JOIN produto b ON "
                 + "(a.COD_PROD = b.COD_PROD)INNER JOIN pedido c ON (a.COD_PEDIDO = c.COD_PEDIDO)"
                 + "INNER JOIN categoria d ON (b.COD_CATEGORIA = d.COD_CATEGORIA)WHERE (a.COD_PEDIDO <> 0) "
-                + "AND (c.COD_STATUS = 3) OR (c.COD_STATUS = 4) AND (DATE(c.DATA_PEDIDO) BETWEEN '2017-05-21' "
-                + "AND '2017-05-21')GROUP BY d.NOME_CATEGORIA ORDER BY d.NOME_CATEGORIA ASC";
+                + "AND (c.COD_STATUS = 3) OR (c.COD_STATUS = 4) AND (DATE(c.DATA_PEDIDO) BETWEEN DATE (NOW()) "
+                + "AND DATE_ADD(DATE(NOW()),INTERVAL -10 DAY))GROUP BY d.NOME_CATEGORIA ORDER BY d.NOME_CATEGORIA ASC";
 
           PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -108,7 +109,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
            
            
             categorias.setNome_categoria(rs.getString("NOME_CATEGORIA"));
-        
+            categorias.setQuant(rs.getInt("QUANTIDADE"));
             
 
             categoria.add(categorias);

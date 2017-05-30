@@ -15,6 +15,15 @@ public class Produto {
     private String descricao_produto;
     private Timestamp data_inclusao;
     private String imagem_produto;
+    private Integer quantRelatorio;
+
+    public Integer getQuantRelatorio() {
+        return quantRelatorio;
+    }
+
+    public void setQuantRelatorio(Integer quantRelatorio) {
+        this.quantRelatorio = quantRelatorio;
+    }
 
     public String getImagem_produto() {
         return imagem_produto;

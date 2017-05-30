@@ -13,6 +13,16 @@ import javax.faces.model.SelectItem;
 public class CategoriasBean {
 
     private Categoria categoria = new Categoria();
+    
+       private Integer quant;
+
+    public Integer getQuant() {
+        return quant;
+    }
+
+    public void setQuant(Integer quant) {
+        this.quant = quant;
+    }
 
     public Categoria getCategoria() {
         return categoria;
