@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 /**
  *
@@ -51,7 +53,6 @@ public class CarrinhoBean implements Serializable {
     public void setCod_pedido(int cod_pedido) {
         this.cod_pedido = cod_pedido;
     }
-    
 
     public CarrinhoBean() {
 
@@ -61,11 +62,10 @@ public class CarrinhoBean implements Serializable {
     public String adicionar(int produto) throws SQLException {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
         int qtdeEstoque = prod.getQtde_produto();
+        double valorQueEntra =  prod.getValor_produto();
         prod.setQtde_produto(1);
-        String nomeProdTeste = "";
 
         for (int i = 0; i < produtos.size(); i++) {
-            nomeProdTeste = produtos.get(i).getNome_produto();
             if (produtos.get(i).getNome_produto().equals(prod.getNome_produto())) {
                 if (qtdeEstoque >= produtos.get(i).getQtde_produto() + 1) {
                     prod.setValor_produto(produtos.get(i).getValor_produto() + prod.getValor_produto());
@@ -77,21 +77,42 @@ public class CarrinhoBean implements Serializable {
         }
 
         // Logica errada na condição abaixo by Natanael Santos
-        if (produtos.isEmpty() || prod.getNome_produto() != nomeProdTeste) {
-            produtos.add(prod);
-            this.valorTotal += prod.getValor_produto();
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null, new FacesMessage("Falta do produto em estoque!"));
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .getFlash().setKeepMessages(true);
+        int i = 0;
+        while (i <= produtos.size()) {
 
-            FacesContext.getCurrentInstance()
-                    .getExternalContext()
-                    .getFlash().setKeepMessages(true);
-            return "Produtos.xhtml?faces-redirect=true";
+            if (produtos.isEmpty()
+                    || !prod.getNome_produto().equals(produtos.get(i).getNome_produto())) {
+                if (qtdeEstoque != 0) {
+                    produtos.add(prod);
+                    this.valorTotal += valorQueEntra;
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(
+                            null, new FacesMessage("Falta do produto em estoque!"));
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+                    return "Produtos.xhtml?faces-redirect=true";
+                }
+            } else {
+                FacesContext.getCurrentInstance().addMessage(
+                        null, new FacesMessage("Falta do produto em estoque!"));
+                FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getFlash().setKeepMessages(true);
+
+                FacesContext.getCurrentInstance()
+                        .getExternalContext()
+                        .getFlash().setKeepMessages(true);
+                return "Produtos.xhtml?faces-redirect=true";
+            }
+            i++;
+            break;
         }
+
         FacesContext.getCurrentInstance().addMessage(
                 null, new FacesMessage("Produto adicionado com sucesso!"));
         FacesContext.getCurrentInstance()
@@ -103,20 +124,20 @@ public class CarrinhoBean implements Serializable {
                 .getFlash().setKeepMessages(true);
         return "Produtos.xhtml?faces-redirect=true";
     }
-
+    
     public String listarCarrinhoPorPedido(int pedido) throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
        
-        try {
-            listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
-            setCod_pedido(pedido);
-        } catch (SQLException erro) {
-            System.out.println("Nao foi possivel listar os itens do carrinho");
-        }
+        listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
+        setCod_pedido(pedido);
         
         
         return "listarItensPedidosEmpresa";
 
+    }
+    
+    public void finalizarVenda (){
+        
     }
 
     public double getValorTotal() {

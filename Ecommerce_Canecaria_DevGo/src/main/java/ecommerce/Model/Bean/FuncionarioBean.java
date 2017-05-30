@@ -97,23 +97,6 @@ public class FuncionarioBean {
 
     }
 
- 
-    
-        public void validaLogin() throws SQLException, IOException {
-            FuncionarioDAOImpl daoValidarFunc = new FuncionarioDAOImpl();
-        RequestContext context = RequestContext.getCurrentInstance();
-   
-        String mensagem = "Erro ao se tentar se logar!";
-        
-        if( getCriptoUserFunc().obterUsuarioFunc(funcionario.getLogin_funcionario(), funcionario.getSenha_funcionario()) != null && funcionario.getStatus_funcionario().equals("ativo")){
-      FacesContext.getCurrentInstance().getExternalContext().redirect("AmbienteFuncionario.xhtml"); 
-   }else{
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            context.addCallbackParam("loggedIn", mensagem);
-   }
-        funcionario = new Funcionario();
-    }
+
 
 }

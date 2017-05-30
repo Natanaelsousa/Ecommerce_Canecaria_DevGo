@@ -15,11 +15,11 @@ import java.sql.SQLException;
 public interface ClienteDAO {
 
     // Responsavel por buscar um cliente pelo ID
-    public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException;
+    public Cliente buscaClientesPorId(int cod_cliente) throws SQLException;
 
-    public void CadastrarCliente(Cliente cliente) throws SQLException;
+    public void cadastrarCliente(Cliente cliente) throws SQLException;
 
-    public void EditarCadastroCliente(Cliente cliente) throws SQLException;
+    public void editarCadastroCliente(Cliente cliente) throws SQLException;
 
-    public void ExclusaoDeCadastroCliente(Cliente cliente, String cpf_cliente, String senha) throws SQLException;
+    public void exclusaoDeCadastroCliente(Cliente cliente, String cpf_cliente, String senha) throws SQLException;
 }

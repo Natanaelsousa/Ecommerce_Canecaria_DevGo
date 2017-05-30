@@ -6,9 +6,7 @@
 package ecommerce.Model.Filter;
 
 
-import ecommerce.Model.Bean.ClienteBean;
 import ecommerce.Model.Bean.LoginBean;
-import ecommerce.Model.Bean.UsuarioSistema;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
@@ -29,7 +27,10 @@ public class AutorizacaoListener implements PhaseListener {
     
     LoginBean usuarioBean = fc.getApplication()
 	    .evaluateExpressionGet(fc, "#{LoginBean}", 
-		    LoginBean.class);
+		    LoginBean.class);    
+  
+        
+
     
     String paginaAtual = fc.getViewRoot().getViewId();
     NavigationHandler nh = fc.getApplication().getNavigationHandler();
@@ -37,20 +38,18 @@ public class AutorizacaoListener implements PhaseListener {
     if (paginaAtual != null && paginaAtual.contains("/protegido")) {
       
       // Usuario não tem sessao ativa ou não se logou
-      if ( usuarioBean == null) {
-	nh.handleNavigation(fc, null, "/MinhaConta.xhtml?faces-redirect=true");
+      if ( usuarioBean.getCliente() == null) {
+	nh.handleNavigation(fc, null, "MinhaConta.xhtml?faces-redirect=true");
+	return;
+      } else if (usuarioBean.getFuncionario() == null){
+          nh.handleNavigation(fc, null, "LoginEmpresa.xhtml?faces-redirect=true");
 	return;
       }
       
       // Validar se usuario tem permissao para acessar a página,
       // através do papel e da página
       if (!verificarAcesso(usuarioBean, paginaAtual)) {
-           String mensagem = "Erro ao se tentar se logar!";
-           RequestContext context = RequestContext.getCurrentInstance();
-	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Usuário ou senha inválidos", "Usuário ou senha inválidos");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            context.addCallbackParam("loggedIn", mensagem);
+         
       }
       
       // Se processamento chegar nese ponto, JSF prossegue com o 
@@ -77,6 +76,10 @@ public class AutorizacaoListener implements PhaseListener {
     } else if (paginaAcessada.lastIndexOf("EditarCadastroCliente.xhtml") > -1
 	    &&  usuario.getCliente() != null) {
       return true;
+    } else if ((paginaAcessada.lastIndexOf("HomePage.xhtml") > -1) 
+            && usuario.getCliente() != null){
+        usuario = new LoginBean ();
+        return true;
     }
     // Outras condições...
     return false;

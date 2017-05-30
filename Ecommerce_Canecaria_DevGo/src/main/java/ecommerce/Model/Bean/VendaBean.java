@@ -10,6 +10,7 @@ import ecommerce.Model.DaoImplementation.VendaDAOImpl;
 import ecommerce.Model.MetodosAcessores.Categoria;
 import ecommerce.Model.MetodosAcessores.Produto;
 import ecommerce.Model.MetodosAcessores.Venda;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -31,38 +32,40 @@ public class VendaBean {
   List<Categoria> categorias = new ArrayList<>();
   List<Venda> vendas =  new ArrayList<>();
   VendaDAO vendaDao = new VendaDAOImpl();
+  
+   private Timestamp dataInicial;
+    private Timestamp dataFinal;
+
+    public Timestamp getDataInicial() {
+        return dataInicial;
+    }
+
+    public void setDataInicial(Timestamp dataInicial) {
+        this.dataInicial = dataInicial;
+    }
+
+    public Timestamp getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Timestamp dataFinal) {
+        this.dataFinal = dataFinal;
+    }
         
     public VendaBean() {
 
     }
     
       /* Lista as categorias cadastradas no banco */
-    public List<Venda> ListarVendas() throws Exception {
+    public List<Venda> ListarVendas( Timestamp dataInicial , Timestamp dataFinal ) throws Exception {
       
 
-        vendas = vendaDao.ListarVendas();
+        vendas = vendaDao.ListarVendas(dataInicial ,  dataFinal);
         
         return vendas;
 
     }
-/*Listar Produtos mais vendidos*/
-       public List<Produto> ListarProduto() throws Exception {
-      
 
-        produtos = vendaDao.ListarProduto();
-        
-        return produtos;
-
-    }
-    /*Listar Categoria*/
-         public List<Categoria> ListarCategoria() throws Exception {
-      
-
-        categorias = vendaDao.ListarCategoria();
-        
-        return categorias;
-
-    }
     
     
    

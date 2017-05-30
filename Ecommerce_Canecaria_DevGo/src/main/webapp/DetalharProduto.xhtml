@@ -94,12 +94,13 @@
                             <form class="form-horizontal qtyFrm">
                                 <div class="control-group">
                                     <label class="control-label">
-                                        <h:outputText value="#{detalharProdutoBean.produto.valor_produto}" style="font-size: 17px;"> 
+                                        <h:outputText value="#{detalharProdutoBean.produto.valor_produto}" style="font-size: 17px;margin-bottom:6px;display: block"> 
                                             <f:convertNumber type="currency" locale="pt-BR"  /> 
                                             </h:outputText>
                                       </label>
                                     <div class="controls">
-                                        <input type="number" class="span1" placeholder="Quantidade."/>
+                                        <h:outputLabel style="display: block;margin-bottom:6px"> Quantidade disponível</h:outputLabel>
+                                        <input type="number" readonly="true" value="#{detalharProdutoBean.quantidade}" class="span1" placeholder="Quantidade estoque"/>
                                         <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
                                     </div>
                                 </div>

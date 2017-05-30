@@ -6,8 +6,6 @@
 package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.Dao.CarrinhoDAO;
-import ecommerce.Model.Dao.PedidoDAO;
-import static ecommerce.Model.DaoImplementation.ConexaoBDImpl.getConnection;
 import ecommerce.Model.MetodosAcessores.Carrinho;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,8 +47,17 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
     }
 
     public List<Carrinho> ListarPedidosCarrinho() throws SQLException {
-List<Carrinho> teste = null;
-return teste;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void CadastrarPedido(Carrinho carrinho) throws SQLException {
+        String query = "INSERT INTO CARRINHO (QTDE_PRODUTO, COD_PEDIDO, COD_CLIENTE,COD_PROD,) VALUES (?,?,?,?)";
+
+        // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
+        carrinho.setCod_pedido(0);
+        insert(query, carrinho.getQtde_produto(), carrinho.getCod_pedido(), carrinho.getCod_cliente(),
+                carrinho.getCod_produto());
     }
 
 }

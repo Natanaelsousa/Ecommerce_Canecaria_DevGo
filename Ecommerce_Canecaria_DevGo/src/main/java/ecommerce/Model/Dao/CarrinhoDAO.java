@@ -14,4 +14,7 @@ public interface CarrinhoDAO {
     public List<Carrinho> listarCarrinhoPorPedido(int pedido) throws SQLException;
 
     public List<Carrinho> ListarPedidosCarrinho() throws SQLException;
+    
+        // Responsavel por cadastrar a compra do cliente
+    public void CadastrarPedido(Carrinho carrinho) throws SQLException;
 }

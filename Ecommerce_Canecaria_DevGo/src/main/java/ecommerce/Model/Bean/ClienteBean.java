@@ -11,8 +11,10 @@ import ecommerce.Model.MetodosAcessores.Cliente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -28,14 +30,46 @@ public class ClienteBean {
     /**
      * Creates a new instance of CadastroCliente
      */
-    public void CadastrarCliente() {
+    public void cadastrarCliente() throws SQLException {
         getCriptoUser().setSenha(cliente.getSenha());
         cliente.setSenha(getCriptoUser().getHashSenha());
         ClienteDAOImpl daoCadastro = new ClienteDAOImpl();
+        String usuarioJaRegistrado = daoCadastro.buscaClientesPorEmail(cliente.getEmail());
+        if(!cliente.getEmail().equalsIgnoreCase(usuarioJaRegistrado)){
         try {
-            daoCadastro.CadastrarCliente(cliente);
+            daoCadastro.cadastrarCliente(cliente);
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Cadastro realizado com sucesso!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+            
         } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Falha ao cadastrar!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+        }
+        }else{
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Login já existe!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
         }
         cliente = new Cliente();
     }
@@ -46,7 +80,7 @@ public class ClienteBean {
         cliente.setSenha(getCriptoUser().getHashSenha());
         boolean resp = false;
         try {
-            daoEditar.EditarCadastroCliente(cliente);
+            daoEditar.editarCadastroCliente(cliente);
             resp = true;
         } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +94,7 @@ public class ClienteBean {
         ClienteDAO clienteDAO = new ClienteDAOImpl();
         Cliente clienteEncontrado = null;
         try {
-            clienteEncontrado = clienteDAO.BuscaClientesPorId(cod_cliente);
+            clienteEncontrado = clienteDAO.buscaClientesPorId(cod_cliente);
         } catch (SQLException erro) {
             System.err.println("Não foi possivel localizar as vendas");
         }

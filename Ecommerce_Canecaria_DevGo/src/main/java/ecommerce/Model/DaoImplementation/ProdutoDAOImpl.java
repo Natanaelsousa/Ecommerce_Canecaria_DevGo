@@ -174,7 +174,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     public List<Produto> ListarProdutos() throws SQLException {
      List<Produto> produtos = new ArrayList<Produto>();
 
-        String query = "SELECT * FROM PRODUTO ";
+        String query = "SELECT * FROM PRODUTO WHERE QTDE_PRODUTO <> 0 ";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -187,6 +187,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
             produto.setCod_produto(rs.getInt("COD_PROD"));
             produto.setCod_categoria(rs.getInt("COD_CATEGORIA"));
             produto.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produto.setQtde_produto(rs.getInt("QTDE_PRODUTO"));
             produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
             produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
             produto.setImagem_produto(rs.getString("IMAGEM_PRODUTO"));
@@ -199,4 +200,39 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         return produtos;
     }
+    
+    @Override
+    public int quantidadeEstoque(int id_produto) {
+
+        
+        int quantidade = 0;
+        
+        try {
+            
+            
+            String query = "SELECT QTDE_PRODUTO FROM produto WHERE COD_PROD =" + id_produto;
+            
+            PreparedStatement stmt
+                    = getConnection().prepareStatement(query);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs != null && rs.next()) {
+                
+                quantidade = rs.getInt("QTDE_PRODUTO");
+                
+            }
+            
+            rs.close();
+            stmt.close();
+            
+            
+        } catch (SQLException ex) {
+            
+            System.err.println(ex);
+        }
+        
+         return quantidade;
+    }
+    
 }

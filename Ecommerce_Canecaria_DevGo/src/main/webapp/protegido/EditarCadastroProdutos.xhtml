@@ -1,3 +1,4 @@
+
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -53,6 +54,7 @@
                 </ui:insert>
             </div>
 
+           
             <div class="space"></div>
             <div class="container">
                 <h1>Editar informações do produto</h1>
@@ -78,10 +80,11 @@
 
                     <div class="form-group col-md-3">
                         <h:outputLabel for="txtImagem" value="Imagem do produto:" />
-                        <!--<h:inputFile value="#{ProdutosBean.imagem}" />-->
+                        <h:inputFile value="#{ProdutosBean.imagem}" />
                         <pt:panelGrid columns="5" style="margin-top:20px;margin-bottom:20px;background-color: white;font-size: 25px">
                             <f:facet name="header" >
-                                <span ><img width="280px" height="280px"  src="/imagens/#{ProdutosBean.produto.imagem_produto}" required="true" /></span>
+
+                                <span><img width="280px" height="280px"  src="/imagens/#{ProdutosBean.produto.imagem_produto}" required="true" /></span>
                             </f:facet>
                         </pt:panelGrid>
                     </div>
@@ -123,5 +126,3 @@
 
     </h:body>
 </html>
-
-

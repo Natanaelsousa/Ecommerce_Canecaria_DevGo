@@ -12,7 +12,7 @@ import java.util.List;
 public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
     //Insere os dados do cliente no banco
-    public void CadastrarCliente(Cliente cliente) throws SQLException {
+    public void cadastrarCliente(Cliente cliente) throws SQLException {
         String query = "INSERT INTO CLIENTE(NOME ,CPF,DATA_NASCIMENTO, SEXO,CEP,RUA,"
                 + "NUMERO,BAIRRO,CIDADE,ESTADO,TELEFONE_RESIDENCIAL,CELULAR,EMAIL,SENHA) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -23,7 +23,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
     }
 
     //Editar os dados do cliente no banco
-    public void EditarCadastroCliente(Cliente cliente) throws SQLException {
+    public void editarCadastroCliente(Cliente cliente) throws SQLException {
         Cliente cliente2 = cliente;
         String query = "UPDATE CLIENTE "
                 + "SET NOME = ?, DATA_NASCIMENTO = ?,SEXO = ?, CEP = ?,RUA = ?,NUMERO = ?,BAIRRO = ?,CIDADE = ?, ESTADO = ?, "
@@ -36,7 +36,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
     }
 
     //Pela regra de negocio, o cliente tem o direito de excluir seu cadastro, se informar seu CPF e Senha de acesso corretamente
-    public void ExclusaoDeCadastroCliente(Cliente cliente, String cpf_cliente, String senha) throws SQLException {
+    public void exclusaoDeCadastroCliente(Cliente cliente, String cpf_cliente, String senha) throws SQLException {
         String query = "DELETE * FROM CLIENTE WHERE COD_CLIENTE = " + cpf_cliente + " and SENHA = " + senha;
         delete(query, cliente.getNome(), cliente.getCpf(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(), cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(), cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha());
     }
@@ -75,7 +75,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
         return cliente;
     }
 
-    public List<Cliente> BuscaClientes() throws SQLException {
+    public List<Cliente> buscaClientes() throws SQLException {
         List<Cliente> clientes = new ArrayList<Cliente>();
         Cliente cliente = null;
         String select = "SELECT * FROM CLIENTE";
@@ -112,7 +112,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
     }
 
     // Responsavel por buscar um cliente pelo ID
-    public Cliente BuscaClientesPorId(int cod_cliente) throws SQLException {
+    public Cliente buscaClientesPorId(int cod_cliente) throws SQLException {
         Cliente cliente = new Cliente();
         String select = "SELECT * FROM CLIENTE WHERE COD_CLIENTE = " + cod_cliente + " ";
 
@@ -143,5 +143,26 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
         stmt.close();
 
         return cliente;
+    }
+
+    public String buscaClientesPorEmail(String email) throws SQLException {
+        String emailGravado = "";
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='"+email+"'";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(select);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            emailGravado = rs.getString("EMAIL");
+
+        }
+
+        rs.close();
+        stmt.close();
+
+        return emailGravado;
     }
 }

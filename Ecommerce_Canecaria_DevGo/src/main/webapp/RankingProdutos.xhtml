@@ -41,73 +41,75 @@
 
     </h:head>
     <h:body>
+       
+            
 
-        <div id="page">
+                <div id="page">
 
 
-             <!-- Importando o cabecalho -->
-            <div id="header">
-                <ui:insert name="cabecalho">
-                    <ui:include src="cabecalhoViewEmpresa.xhtml" />
-                </ui:insert>
-            </div>
+                    <!-- Importando o cabecalho -->
+                    <div id="header">
+                        <ui:insert name="cabecalho">
+                            <ui:include src="cabecalhoViewEmpresa.xhtml" />
+                        </ui:insert>
+                    </div>
 
-            <!-- Fim -->
+                    <!-- Fim -->
 
-            <!-- Conteudo da pagina -->
-            <div id="content">
+                    <!-- Conteudo da pagina -->
+                    <div id="content">
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="page-header">
-                                <h3>Ranking dos Produtos mais vendidos</h3>
-                            </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="page-header">
+                                        <h3>Ranking dos Produtos mais vendidos</h3>
+                                    </div>
+                                </div>
+                            </div><!-- end .row -->
+                        </div><!-- end .container-fluid -->
+
+                        <!-- Menu Lateral -->
+                        <div class="container">
+
+
+
+
+                            <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{relatoriosBean.ListarProduto()}">
+                                <p:column headerText="Nome do Produto">
+                                    <h:outputText value="#{ven.nome_produto}" />
+                                </p:column>
+
+
+
+                                <p:column headerText="Quantidade">
+                                    <h:outputText value="#{ven.quantRelatorio}" />
+
+                                </p:column>
+
+
+
+                            </p:dataTable>
+
+
+
                         </div>
-                    </div><!-- end .row -->
-                </div><!-- end .container-fluid -->
 
-                <!-- Menu Lateral -->
-                <div class="container">
-
-                    
+                    </div>
+                    <!-- Fim -->
 
 
-                        <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{vendaBean.ListarProduto()}">
-                            <p:column headerText="Nome do Produto">
-                                <h:outputText value="#{ven.nome_produto}" />
-                            </p:column>
-
-                           
-
-                            <p:column headerText="Quantidade">
-                               
-                                
-                            </p:column>
-                            
-                           
-                            
-                        </p:dataTable>
-
-                    
+                    <!-- Importando o rodape -->
+                    <div id="footer">
+                        <ui:insert name="rodape" >
+                            <ui:include src="rodape.xhtml" />
+                        </ui:insert>
+                    </div>
+                    <!-- Fim -->
 
                 </div>
 
-            </div>
-            <!-- Fim -->
-
-
-            <!-- Importando o rodape -->
-            <div id="footer">
-                <ui:insert name="rodape" >
-                    <ui:include src="rodape.xhtml" />
-                </ui:insert>
-            </div>
-            <!-- Fim -->
-
-        </div>
-
-    </h:body>
-</html>
+                </h:body>
+                </html>
 
 
