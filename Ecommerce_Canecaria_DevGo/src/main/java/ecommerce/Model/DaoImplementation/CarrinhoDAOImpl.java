@@ -21,7 +21,7 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
 
     //Lista de vendas por status
     public List<Carrinho> listarCarrinhoPorPedido(int pedido) throws SQLException {
-        String query = "SELECT * CARRINHO WHERE PEDIDO = " + pedido + " ";
+        String query = "SELECT * FROM CARRINHO WHERE COD_PEDIDO = " + pedido + " ";
         List<Carrinho> carrinho = new ArrayList<Carrinho>();
 
         PreparedStatement stmt
@@ -34,9 +34,9 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
             carrinhoPedido.setCod_pedido(rs.getInt("COD_PEDIDO"));
             carrinhoPedido.setCod_carrinho(rs.getInt("COD_CARRINHO"));
             carrinhoPedido.setCod_cliente(rs.getInt("COD_CLIENTE"));
-            carrinhoPedido.setCod_produto(rs.getInt("COD_PRODUTO"));
+            carrinhoPedido.setCod_produto(rs.getInt("COD_PROD"));
             carrinhoPedido.setQtde_produto(rs.getInt("QTDE_PRODUTO"));
-            carrinhoPedido.setSubtotal(rs.getInt("SUB_TOTAL"));
+            carrinhoPedido.setSubtotal(rs.getDouble("SUB_TOTAL"));
 
             carrinho.add(carrinhoPedido);
         }

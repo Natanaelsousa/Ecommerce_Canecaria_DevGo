@@ -3,12 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Canecaria - Vendas</title>
+        <title>Canecaria - Editar Cadastro Funcionário</title>
         <meta name="description" content="Your Description Here" />
         <meta name="keywords" content="bootstrap themes, portfolio, responsive theme" />
         <meta name="author" content="ThemeForces.Com" />
@@ -27,7 +29,8 @@
         <!-- Stylesheet
         ================================================== -->
         <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
-        <link rel="stylesheet" type="text/css"  href="css/FaleConosco.css" />
+        <link rel="stylesheet" type="text/css"  href="css/carrinho.css" />
+        <script type="text/javascript" src="js/funcoes.js"></script>
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
@@ -37,51 +40,74 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
-    </h:head>
 
+    </h:head>
     <h:body>
+
         <div id="page">
-            <!-- Importando o cabecalho -->
+
+
+             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
                     <ui:include src="cabecalhoViewEmpresa.xhtml" />
                 </ui:insert>
             </div>
+
+            <!-- Fim -->
+
+            <!-- Conteudo da pagina -->
+            <!-- Espaço entre o menu -->
             <div class="space"></div>
+            <!-- Page Content -->
+            <div class="container">
 
-            <div class="container-fluid">
-                <h2>Itens do pedido</h2>
+                <h1>Editar Funcionário</h1>
                 <hr/>
-                <div class="space"></div>    
-                <h:form>
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Código do pedido</th>
-                                <th>Codigo do Produto</th>
-                                <th>Quantidade do produto</th>
-                            </tr>
-                        </thead>
-                        <ui:repeat value="#{carrinhoBean.listarItensCarrinho}" var="itens">
-                            <tbody>
-                                <tr>
-                                    <td>#{itens.cod_pedido}</td>
-                                    <td>#{itens.cod_cliente}</td>
-                                    <td>#{itens.qtde_produto}</td>
-                                </tr>
-                            </tbody>
-                        </ui:repeat>      
-                    </table>
-                </h:form>
-            </div>
 
-            <!-- Importando o rodape -->
-            <div id="footer">
-                <ui:insert name="rodape" >
-                    <ui:include src="rodape.xhtml" />
-                </ui:insert>
-            </div>
+                <h:form>
+
+                  
+
+                    <div class="row">
+                          <div class="form-group col-md-4">
+                        <h:outputLabel for="CPFFuncionario" value="CPF do Funcionário:" />
+                        <h:inputText pt:type="number" class="form-control" id="CPFFuncionarioInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
+                                      pt:placeholder="Ex:00000000000" value="#{FuncionarioBean.cpf}">
+                            <f:validateLength maximum="11"/>
+                        </h:inputText>
+                    </div>
+                          </div>
+
+                         <div class="row">
+                        <div class="form-group col-md-4">
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Editar cadastro" action="#{FuncionarioBean.BuscarFuncionario()}" >
+                            </h:commandButton>
+                        </div>
+                    </div>
+
+
+            
+
+
+            </h:form>
+
         </div>
+        <div class="space"></div>
+
+        <!-- Fim -->
+
+
+        <!-- Importando o rodape -->
+        <div id="footer">
+            <ui:insert name="rodape" >
+                <ui:include src="rodape.xhtml" />
+            </ui:insert>
+        </div>
+        <!-- Fim -->
+
+        </div>
+
     </h:body>
 </html>
 

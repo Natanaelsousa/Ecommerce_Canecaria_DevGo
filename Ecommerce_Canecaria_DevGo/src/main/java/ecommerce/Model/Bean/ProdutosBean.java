@@ -171,6 +171,7 @@ public class ProdutosBean {
         return "BuscarProdutoEditar";
     }
 
+
     /* Insere quantidade de produtos(Ja cadastrados) no banco */
     public void InserirProdutosNoEstoque() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();

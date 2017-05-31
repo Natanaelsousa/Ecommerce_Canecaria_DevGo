@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -127,10 +126,13 @@ public class CarrinhoBean implements Serializable {
     
     public String listarCarrinhoPorPedido(int pedido) throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
-       
+       try{
         listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
         setCod_pedido(pedido);
-        
+       }catch(SQLException ec){
+           System.out.println("Nao foi possivel listar os itens do pedido");
+           
+       }
         
         return "listarItensPedidosEmpresa";
 
