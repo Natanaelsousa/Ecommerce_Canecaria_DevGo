@@ -94,4 +94,7 @@ public class PedidosBean {
             System.err.println("Não foi atualizar o satus do pedido");
         }
     }
+    
+    
+    
 }

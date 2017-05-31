@@ -197,5 +197,22 @@ public class ProdutosBean {
 
         return ListaProdutos;
     }
+    
+    
+    
+    //Atualiza um pedido para pago
+    public String buscarProdutoPorIdComParametro(int idProduto) throws SQLException {
+        ProdutoDAO produtoDAO = new ProdutoDAOImpl();
+        Produto produtoEncontrado = null;
+        try {
+           produtoEncontrado =  produtoDAO.BuscarProdutoPorID(idProduto);
+        } catch (SQLException erro) {
+            System.err.println("Não foi atualizar o satus do pedido");
+        }
+        String retornoNomeProduto = produtoEncontrado.getNome_produto();
+        
+        return retornoNomeProduto;
+    }
+    
 
 }

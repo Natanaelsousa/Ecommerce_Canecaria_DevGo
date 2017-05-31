@@ -66,7 +66,7 @@
                             <tbody>
                                 <tr>
                                     <td>#{itens.cod_pedido}</td>
-                                    <td>#{itens.cod_cliente}</td>
+                                    <td>#{ProdutosBean.buscarProdutoPorIdComParametro(itens.cod_produto)}</td>
                                     <td>#{itens.qtde_produto}</td>
                                 </tr>
                             </tbody>

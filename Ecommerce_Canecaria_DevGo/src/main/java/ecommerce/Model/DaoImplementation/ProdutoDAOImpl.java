@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.Part;
 
 /* @author sibele */
 public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {

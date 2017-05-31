@@ -12,6 +12,7 @@ import java.util.List;
 public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
 
     //Insere os dados do pedido realizado pelo cliente no banco
+    @Override
     public void CadastrarPedido(Pedido pedido) throws SQLException {
         String query = "INSERT INTO pedido(cod_cliente,cod_pagamento,valor_a_pagar,data_pedido,cod_status) "
                 + "VALUES()";
@@ -19,6 +20,7 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
     }
 
     //Edita os dados do pedido feito
+    @Override
     public void EditarPedido(Pedido pedido) throws SQLException {
         String query = "UPDATE pedido "
                 + "SET cod_cliente = ?, cod_pagamento = ? ,valor_a_pagar =?,cod_status = ?"
@@ -27,8 +29,20 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
     }
 
     //Lista de vendas por status
+    @Override
     public List<Pedido> encontrarVendasPeloStatus(int id_status) throws SQLException {
-        String query = "SELECT * FROM PEDIDO WHERE COD_STATUS = " + id_status + " ";
+        String queryPedidoPago = "SELECT * FROM PEDIDO WHERE COD_STATUS = " + id_status + " ";
+        String queryPedidoSemPagamento = "SELECT * FROM PEDIDO WHERE COD_STATUS = " + id_status + " AND DATA_PEDIDO BETWEEN TIMESTAMP(DATE_SUB(NOW(), INTERVAL 3 day)) AND NOW() ";
+        String queryPedidoEnviadosEcancelados = "SELECT * FROM PEDIDO WHERE COD_STATUS = " + id_status + " AND DATA_PEDIDO BETWEEN TIMESTAMP(DATE_SUB(NOW(), INTERVAL 30 day)) AND NOW() ";
+        String query = null;
+
+        if (id_status == 3) {
+            query = queryPedidoPago;
+        } else if (id_status == 2) {
+            query = queryPedidoSemPagamento;
+        } else if (id_status == 1 || id_status == 4) {
+            query = queryPedidoEnviadosEcancelados;
+        }
         List<Pedido> pedidos = new ArrayList<Pedido>();
 
         PreparedStatement stmt
@@ -57,6 +71,7 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
         stmt.close();
         return pedidos;
     }
+
     
     //Atualiza um pedido para pago
     public void atualizarPedidoParaPago(Pedido pedido) throws SQLException {
