@@ -56,8 +56,11 @@
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
-                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                        </p:commandButton>
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2">
+                            <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                            </p:commandButton>
+                        </div>
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
@@ -85,7 +88,7 @@
                                     <td>#{pedido.cidade}</td>
                                     <td>#{pedido.estado}</td>
                                     <td>Pago</td>
-                                    <td> <p:commandButton class="btn btn-success btn-xs btn-block" p:type="submit" value="Verificar produtos" action="#{carrinhoBean.listarCarrinhoPorPedido(pedido.cod_pedido)}"> 
+                                    <td> <p:commandButton class="btn btn-success btn-sm glyphicon glyphicon-list-alt" p:type="submit" value="Listar itens" action="#{carrinhoBean.listarCarrinhoPorPedido(pedido.cod_pedido)}"> 
                                         </p:commandButton>
                                     </td>
                                 </tr>
@@ -93,8 +96,11 @@
                         </ui:repeat>      
                     </table>
                 </h:form>
-                <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                </p:commandButton>
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left" p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                    </p:commandButton>
+                </div>
             </div>
 
             <!-- Importando o rodape -->
