@@ -37,6 +37,12 @@
 
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
 
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
@@ -69,37 +75,44 @@
                     </div>
                 </div>
 
+
+
+
+
+             
+
                 <div class="space"></div>
                 <h:form id="form">
-                    
-                        
-                <div class="row">
 
-                    <div class="form-group col-md-4">
+                    <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />
+                     <div class="space"></div>
+                    <div class="row">
 
-                        <p:outputLabel  value="Data Inicial:" />
-                        <p:calendar  value="#{vendaBean.dataInicial}">                       
-                        </p:calendar>
+                        <div class="form-group col-md-4">
+
+                            <p:outputLabel  value="Data Inicial:" />
+                            <p:calendar  value="#{vendaBean.dataInicial}">                       
+                            </p:calendar>
+                        </div>
+
+
+
+                        <div class="form-group col-md-4">
+
+
+                            <p:outputLabel for="event" value="Data Final:" />
+                            <p:calendar id="event" value="#{vendaBean.dataFinal}">                       
+                            </p:calendar>
+                        </div>
+
+                        <div class="form-group col-md-4">
+
+                            <h:commandButton class="btn btn-primary btn-md " p:type="submit" value="Pesquisar" action="#{vendaBean.ListarVendas()}" >
+                            </h:commandButton>
+                        </div>
                     </div>
 
-
-
-                    <div class="form-group col-md-4">
-
-
-                        <p:outputLabel for="event" value="Data Final:" />
-                        <p:calendar id="event" value="#{vendaBean.dataFinal}">                       
-                        </p:calendar>
-                    </div>
-
-                    <div class="form-group col-md-4">
-
-                        <h:commandButton class="btn btn-primary btn-lg " p:type="submit" value="Pesquisar" action="#{vendaBean.listarVendas( dataInicial ,  dataFinal)}" >
-                        </h:commandButton>
-                    </div>
-                </div>
-
-</h:form>
+                </h:form>
 
 
             </div>

@@ -110,7 +110,7 @@ public boolean validaSenha (String senhaGravada, String senhaLogin) {
   }
   
   
-  public Funcionario obterUsuarioFunc (String login, String senha) throws SQLException {
+public Funcionario obterUsuarioFunc (String login, String senha) throws SQLException {
      FuncionarioDAOImpl daoValidarFunc = new FuncionarioDAOImpl();
      Funcionario funcionario;
      funcionario = daoValidarFunc.EncontraUserFuncionario(login, senha);
@@ -118,7 +118,7 @@ public boolean validaSenha (String senhaGravada, String senhaLogin) {
       return funcionario;
     }
     return null;
-  }
+}
   
 
 }
