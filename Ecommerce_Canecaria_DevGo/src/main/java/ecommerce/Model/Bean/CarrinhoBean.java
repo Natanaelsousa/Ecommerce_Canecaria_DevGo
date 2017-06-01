@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 
 /**
  *
@@ -35,6 +34,10 @@ public class CarrinhoBean implements Serializable {
     private int qtde = 0;
     private int cod_pedido;
     private List<Carrinho> listarItensCarrinho = new ArrayList<Carrinho>();
+    FacesContext fc = FacesContext.getCurrentInstance();
+    LoginBean usuario = fc.getApplication()
+	    .evaluateExpressionGet(fc, "#{LoginBean}", 
+		    LoginBean.class); 
 
     public List<Carrinho> getListarItensCarrinho() {
         return listarItensCarrinho;
@@ -149,7 +152,13 @@ public class CarrinhoBean implements Serializable {
 
     }
 
-    public void finalizarVenda() {
+      public String finalizarPedido() throws SQLException {
+        CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
+
+        int codCliente = usuario.getCliente().getCod_cliente();
+        carrinhoDao.CadastrarPedido(produtos, codCliente);
+
+        return "Checkout.xhtml?faces-redirect=true";
 
     }
 

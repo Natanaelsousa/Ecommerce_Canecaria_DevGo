@@ -1,6 +1,7 @@
 package ecommerce.Model.Dao;
 
 import ecommerce.Model.MetodosAcessores.Carrinho;
+import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface CarrinhoDAO {
     public List<Carrinho> ListarPedidosCarrinho() throws SQLException;
 
     // Responsavel por cadastrar a compra do cliente
-    public void CadastrarPedido(Carrinho carrinho) throws SQLException;
+    public void CadastrarPedido(List<Produto> produtos, int pedido) throws SQLException;
 }
