@@ -5,6 +5,7 @@ import ecommerce.Model.MetodosAcessores.Produto;
 import ecommerce.Model.MetodosAcessores.Venda;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface VendaDAO {
 
-    public List<Venda> ListarVendas(Timestamp dataInicial , Timestamp dataFinal) throws SQLException;
+    public List<Venda> ListarVendas(Date dataInicial , Date dataFinal) throws SQLException;
 
     public List<Produto> ListarProduto() throws SQLException;
 
