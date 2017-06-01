@@ -20,7 +20,7 @@ public class ProdutoCategoriaBean {
         
     }
     private String categoria;
-    ProdutoDAO produtosDao = new ProdutoDAOImpl();
+    private ProdutoDAO produtosDao = new ProdutoDAOImpl();
     List<Produto> listaProdutos ;
 
     @PostConstruct
@@ -53,13 +53,21 @@ public class ProdutoCategoriaBean {
      /* Buscar os produtos de acordo com a categoria */
     public List<Produto> buscaProdutosPorCategoria() throws Exception {
         
-                 
-        ProdutoDAO Dao = new ProdutoDAOImpl();
-
-        listaProdutos = Dao.ListarProdutosCategoria(categoria);
-    
+             
+        listaProdutos = produtosDao.ListarProdutosPorCategoria(categoria);
+                
         return listaProdutos;
         
+    }
+
+   
+    public ProdutoDAO getProdutosDao() {
+        return produtosDao;
+    }
+
+   
+    public void setProdutosDao(ProdutoDAO produtosDao) {
+        this.produtosDao = produtosDao;
     }
     
 }
