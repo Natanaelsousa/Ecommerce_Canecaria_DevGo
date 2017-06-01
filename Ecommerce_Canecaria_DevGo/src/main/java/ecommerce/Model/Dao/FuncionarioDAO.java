@@ -14,7 +14,9 @@ public interface FuncionarioDAO {
 
     public void EditarCadastroFuncionario(Funcionario funcionario) throws SQLException;
 
-    public Funcionario findByCPF(String cpf) throws SQLException;
+    public Funcionario findByCPF(String cpf) throws SQLException; 
+    
+    public String buscaFuncionarioCPF(String cpf)  throws SQLException; 
 
  
 }

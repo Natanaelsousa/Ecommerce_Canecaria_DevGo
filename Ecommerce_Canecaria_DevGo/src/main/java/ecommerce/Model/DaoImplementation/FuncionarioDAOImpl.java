@@ -80,5 +80,26 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
         stmt.close();
         return funcionario1;
     }
+    
+        public String buscaFuncionarioCPF(String cpf) throws SQLException {
+        String cpfGravado = "";
+        String select = "SELECT * FROM FUNCIONARIO WHERE CPF ='"+cpf+"'";
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(select);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            cpfGravado = rs.getString("CPF");
+
+        }
+
+        rs.close();
+        stmt.close();
+
+        return cpfGravado;
+    }
 
 }

@@ -6,12 +6,15 @@
 package ecommerce.Model.Filter;
 
 
+import ecommerce.Model.Bean.FuncionarioBean;
 import ecommerce.Model.Bean.LoginBean;
+import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -27,6 +30,9 @@ public class AutorizacaoListener implements PhaseListener {
 	    .evaluateExpressionGet(fc, "#{LoginBean}", 
 		    LoginBean.class);    
   
+    FuncionarioBean usuaBean = fc.getApplication()
+	    .evaluateExpressionGet(fc, "#{FuncionarioBean}", 
+		    FuncionarioBean.class); 
         
 
     
@@ -39,15 +45,15 @@ public class AutorizacaoListener implements PhaseListener {
       if ( usuarioBean.getCliente() == null) {
 	nh.handleNavigation(fc, null, "MinhaConta.xhtml?faces-redirect=true");
 	return;
-      } else if (usuarioBean.getFuncionario() == null){
+      } else if (usuaBean.getFuncionario() == null){
           nh.handleNavigation(fc, null, "LoginEmpresa.xhtml?faces-redirect=true");
 	return;
       }
       
       // Validar se usuario tem permissao para acessar a página,
       // através do papel e da página
-      if (verificarAcesso(usuarioBean, paginaAtual) == false) {
-           nh.handleNavigation(fc, null, "MinhaConta_RedirecionaVenda.xhtml?faces-redirect=true");
+      if (!verificarAcesso(usuarioBean, paginaAtual)) {
+         
       }
       
       // Se processamento chegar nese ponto, JSF prossegue com o 
@@ -69,7 +75,7 @@ public class AutorizacaoListener implements PhaseListener {
   private static boolean verificarAcesso(LoginBean usuario,
 	  String paginaAcessada) {
     if (paginaAcessada.lastIndexOf("AmbienteCliente.xhtml") > -1 
-	    && usuario.getCliente() != null ) {
+	    && usuario.getCliente() != null) {
       return true;
     } else if (paginaAcessada.lastIndexOf("EditarCadastroCliente.xhtml") > -1
 	    &&  usuario.getCliente() != null) {
@@ -78,11 +84,7 @@ public class AutorizacaoListener implements PhaseListener {
             && usuario.getCliente() != null){
         usuario = new LoginBean ();
         return true;
-    }else if ((paginaAcessada.lastIndexOf("Checkout.xhtml") > -1) 
-            && usuario.getCliente() != null){
-        return true;
     }
-     
     // Outras condições...
     return false;
   }
