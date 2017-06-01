@@ -121,49 +121,9 @@ public class ProdutosBean {
     public String editarProduto() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         produto.setCod_produto(id_produto);
-
-        byte[] imgBytes = null;
-        String nomeArquivo = null;
         try {
-            try {
-                if (imagem != null) {
-                    String partHeader = imagem.getHeader("content-disposition");
-                    System.out.println("***** partHeader: " + partHeader);
-                    for (String content : partHeader.split(";")) {
-                        if (content.trim().startsWith("filename")) {
-                            System.out.println("***** content: " + content);
-                            nomeArquivo = content.substring(content.indexOf('=') + 1);
-                            System.out.println("***** nomeArquivo 1: " + nomeArquivo);
-                            nomeArquivo = nomeArquivo.trim().replace("\"", "");
-                            int lastFilePart = nomeArquivo.lastIndexOf("\\");
-                            if (lastFilePart > 0) {
-                                nomeArquivo = nomeArquivo.substring(lastFilePart, nomeArquivo.length());
-                            }
-                            String destino = "C:\\desenv\\imagens\\";
-                            File arquivo = new File(destino + nomeArquivo);
-                            System.out.println("***** arquivo: " + arquivo.getAbsolutePath());
-
-                            try (InputStream inputStream = imagem.getInputStream();
-                                    OutputStream outputStream
-                                    = new FileOutputStream(arquivo)) {
-                                int read = 0;
-                                imgBytes = new byte[1024];
-                                while ((read = inputStream.read(imgBytes)) != -1) {
-                                    outputStream.write(imgBytes, 0, read);
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            if (imagem != null) {
-                produto.setImagem_produto(nomeArquivo);
-            }else{
-                System.out.println(produto.getImagem_produto());
-            }
             produtos.EditarCadastroProduto(produto);
+
         } catch (SQLException erro) {
             System.err.println("Não foi possivel alterar os dados deste produto.");
         }
@@ -197,22 +157,19 @@ public class ProdutosBean {
 
         return ListaProdutos;
     }
-    
-    
-    
+
     //Atualiza um pedido para pago
     public String buscarProdutoPorIdComParametro(int idProduto) throws SQLException {
         ProdutoDAO produtoDAO = new ProdutoDAOImpl();
         Produto produtoEncontrado = null;
         try {
-           produtoEncontrado =  produtoDAO.BuscarProdutoPorID(idProduto);
+            produtoEncontrado = produtoDAO.BuscarProdutoPorID(idProduto);
         } catch (SQLException erro) {
             System.err.println("Não foi atualizar o satus do pedido");
         }
         String retornoNomeProduto = produtoEncontrado.getNome_produto();
-        
+
         return retornoNomeProduto;
     }
-    
 
 }

@@ -75,10 +75,10 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
     public void EditarCadastroProduto(Produto produto) throws SQLException {
 
         String query = "UPDATE produto "
-                + "SET nome_produto = ?,valor_produto = ?,descricao_produto = ?,cod_categoria = ?,imagem_produto = ?"
+                + "SET nome_produto = ?,valor_produto = ?,descricao_produto = ?,cod_categoria = ?"
                 + " WHERE cod_prod = ? ";
        
-        update(query,produto.getCod_produto(),produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getCod_categoria(),produto.getImagem_produto());
+        update(query,produto.getCod_produto(),produto.getNome_produto(), produto.getValor_produto(), produto.getDescricao_produto(), produto.getCod_categoria());
 
     }
 
