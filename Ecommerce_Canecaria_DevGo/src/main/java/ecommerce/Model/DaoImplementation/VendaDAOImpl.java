@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
     @Override
     
     // periodooo
-    public List<Venda> ListarVendas(Timestamp dataInicial , Timestamp dataFinal) throws SQLException {
+    public List<Venda> ListarVendas(Date dataInicial , Date dataFinal) throws SQLException {
 
         List<Venda> venda = new ArrayList<Venda>();
 
@@ -28,7 +29,8 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
                 + "FROM pedido a "
                 + "INNER JOIN cliente b ON (a.COD_CLIENTE = b.COD_CLIENTE) "
                 + "INNER JOIN pagamento c ON (a.COD_PAGAMENTO = c.COD_PAGAMENTO) "
-                + "INNER JOIN status  d ON (a.COD_STATUS = d.COD_STATUS)";
+                + "INNER JOIN status  d ON (a.COD_STATUS = d.COD_STATUS)"
+                + "BETWEEN  '"+dataInicial+"' AND'"+dataFinal+"'" ;
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
