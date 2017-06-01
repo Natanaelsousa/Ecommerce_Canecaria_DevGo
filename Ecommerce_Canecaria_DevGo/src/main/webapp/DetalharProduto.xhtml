@@ -100,7 +100,7 @@
                                       </label>
                                     <div class="controls">
                                         <h:outputLabel style="display: block;margin-bottom:6px"> Quantidade disponível</h:outputLabel>
-                                        <input type="number" readonly="true" value="#{detalharProdutoBean.quantidade}" class="span1" placeholder="Quantidade estoque"/>
+                                        <input type="number" readonly="true" value="#{detalharProdutoBean.quantidade}" class="span1" style="margin-bottom:8px" placeholder="Quantidade estoque"/>
                                          <h:form prependId="false">
                                              <h:commandButton action="#{carrinhoBean.adicionar(detalharProdutoBean.id)}" 
                                                                  value="Adicionar ao carrinho"

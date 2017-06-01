@@ -233,5 +233,38 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
         
          return quantidade;
     }
+
+    @Override
+    public List<Produto> ListarProdutosPorCategoria(String codigo_categoria) throws SQLException {
+        
+        List<Produto> produtos = new ArrayList<Produto>();
+
+        String query = "SELECT * FROM PRODUTO WHERE QTDE_PRODUTO <> 0 AND COD_CATEGORIA ="+codigo_categoria;
+
+        PreparedStatement stmt
+                = getConnection().prepareStatement(query);
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Produto produto = new Produto();
+
+            produto.setCod_produto(rs.getInt("COD_PROD"));
+            produto.setCod_categoria(rs.getInt("COD_CATEGORIA"));
+            produto.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produto.setQtde_produto(rs.getInt("QTDE_PRODUTO"));
+            produto.setValor_produto(rs.getFloat("VALOR_PRODUTO"));
+            produto.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+            produto.setImagem_produto(rs.getString("IMAGEM_PRODUTO"));
+
+            produtos.add(produto);
+        }
+
+        rs.close();
+        stmt.close();
+
+        return produtos;
+        
+    }
     
 }

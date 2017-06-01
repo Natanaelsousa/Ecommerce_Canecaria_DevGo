@@ -324,7 +324,7 @@ function retira_acentos(palavra) {
 
 function removerItemCarrinho() {
 
-var node = document.getElementById("item");
+var node = document.getElementById(this);
 if (node.parentNode) {
   node.parentNode.removeChild(node);
   

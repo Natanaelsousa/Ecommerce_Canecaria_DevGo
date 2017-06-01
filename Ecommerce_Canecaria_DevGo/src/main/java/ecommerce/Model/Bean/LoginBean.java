@@ -22,7 +22,7 @@ import org.primefaces.context.RequestContext;
  *
  * @author natan
  */
-@ManagedBean(name = "LoginBean")
+@ManagedBean(name="LoginBean", eager=true)
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -66,6 +66,22 @@ public class LoginBean implements Serializable {
          cliente =  criptoUser.obterUsuario(cliente.getEmail(),cliente.getSenha());
         if (cliente != null) {
             return "/protegido/AmbienteCliente.xhtml?faces-redirect=true";
+        } else {
+          
+
+            return "MinhaConta.xhtml?faces-redirect=true";
+        }
+
+    }
+      
+      public String validaLoginParaFecharCompra() throws SQLException, IOException {
+        ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+        RequestContext context = RequestContext.getCurrentInstance();
+
+        String mensagem = "Erro ao se tentar se logar!";
+         cliente =  criptoUser.obterUsuario(cliente.getEmail(),cliente.getSenha());
+        if (cliente != null) {
+            return "Checkout.xhtml?faces-redirect=true";
         } else {
           
 

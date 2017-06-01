@@ -7,7 +7,6 @@ package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.Dao.CarrinhoDAO;
 import ecommerce.Model.MetodosAcessores.Carrinho;
-import ecommerce.Model.MetodosAcessores.Pedido;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,16 +51,6 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void CadastrarPedido(Carrinho carrinho) throws SQLException {
-        String query = "INSERT INTO CARRINHO (QTDE_PRODUTO, COD_PEDIDO, COD_CLIENTE,COD_PROD,) VALUES (?,?,?,?)";
-
-        // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
-        carrinho.setCod_pedido(0);
-        insert(query, carrinho.getQtde_produto(), carrinho.getCod_pedido(), carrinho.getCod_cliente(),
-                carrinho.getCod_produto());
-    }
-
     //Retira produtos do estoque e atualiza o status do pedido para 5
     @Override
     public void retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
@@ -75,5 +64,16 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
         String update = "update pedido set COD_STATUS = 4 where COD_PEDIDO = ? ";
         update(update, carrinho.getCod_pedido());
 
+    }
+      @Override
+    public void CadastrarPedido(List<Produto> produtos , int cod_cliente) throws SQLException {
+        String query = "INSERT INTO CARRINHO (QTDE_PRODUTO, COD_PEDIDO, COD_CLIENTE,COD_PROD) VALUES (?,?,?,?)";
+
+        // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
+        int codPedido  = 0;
+        for(int i=0; i<produtos.size(); i++){
+        insert(query, produtos.get(i).getQtde_produto(), codPedido, cod_cliente,
+              produtos.get(i).getCod_produto());
+        }
     }
 }
