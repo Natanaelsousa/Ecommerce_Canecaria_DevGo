@@ -80,4 +80,7 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
                 + "WHERE cod_pedido = ?";
         update(update, pedido.getCod_status());
     }
+    
+    
+    
 }

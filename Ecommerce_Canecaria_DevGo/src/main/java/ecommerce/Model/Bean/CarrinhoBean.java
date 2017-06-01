@@ -34,7 +34,7 @@ public class CarrinhoBean implements Serializable {
     private double valorTotal = 0.00;
     private int qtde = 0;
     private int cod_pedido;
-    private  List<Carrinho> listarItensCarrinho = new ArrayList<Carrinho>();
+    private List<Carrinho> listarItensCarrinho = new ArrayList<Carrinho>();
 
     public List<Carrinho> getListarItensCarrinho() {
         return listarItensCarrinho;
@@ -43,7 +43,6 @@ public class CarrinhoBean implements Serializable {
     public void setListarItensCarrinho(List<Carrinho> listarItensCarrinho) {
         this.listarItensCarrinho = listarItensCarrinho;
     }
-    
 
     public int getCod_pedido() {
         return cod_pedido;
@@ -61,7 +60,7 @@ public class CarrinhoBean implements Serializable {
     public String adicionar(int produto) throws SQLException {
         Produto prod = produtosDao.BuscarProdutoPorID(produto);
         int qtdeEstoque = prod.getQtde_produto();
-        double valorQueEntra =  prod.getValor_produto();
+        double valorQueEntra = prod.getValor_produto();
         prod.setQtde_produto(1);
 
         for (int i = 0; i < produtos.size(); i++) {
@@ -123,23 +122,35 @@ public class CarrinhoBean implements Serializable {
                 .getFlash().setKeepMessages(true);
         return "Produtos.xhtml?faces-redirect=true";
     }
-    
+
     public String listarCarrinhoPorPedido(int pedido) throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
-       try{
-        listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
-        setCod_pedido(pedido);
-       }catch(SQLException ec){
-           System.out.println("Nao foi possivel listar os itens do pedido");
-           
-       }
-        
+        try {
+            listarItensCarrinho = carrinhoDao.listarCarrinhoPorPedido(pedido);
+            setCod_pedido(pedido);
+        } catch (SQLException ec) {
+            System.out.println("Nao foi possivel listar os itens do pedido");
+
+        }
+
         return "listarItensPedidosEmpresa";
 
     }
-    
-    public void finalizarVenda (){
-        
+
+    public String retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
+        CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
+        try {
+            carrinhoDao.retirarProdutoDoEstoque(itensCarrinho);
+        } catch (SQLException ec) {
+            System.out.println("Nao foi possivel listar os itens do pedido");
+
+        }
+         return "AcompanhamentoVendasPagas";
+
+    }
+
+    public void finalizarVenda() {
+
     }
 
     public double getValorTotal() {

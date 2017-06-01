@@ -7,6 +7,8 @@ package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.Dao.CarrinhoDAO;
 import ecommerce.Model.MetodosAcessores.Carrinho;
+import ecommerce.Model.MetodosAcessores.Pedido;
+import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,4 +62,18 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
                 carrinho.getCod_produto());
     }
 
+    //Retira produtos do estoque e atualiza o status do pedido para 5
+    @Override
+    public void retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
+        Carrinho carrinho = new Carrinho();
+        for (int i = 0; i < itensCarrinho.size(); i++) {
+          
+            carrinho = itensCarrinho.get(i);
+            String update = "update produto set QTDE_PRODUTO = QTDE_PRODUTO - ? where COD_PROD = ? ";
+            update(update, carrinho.getCod_produto(), carrinho.getQtde_produto());
+        }
+        String update = "update pedido set COD_STATUS = 4 where COD_PEDIDO = ? ";
+        update(update, carrinho.getCod_pedido());
+
+    }
 }
