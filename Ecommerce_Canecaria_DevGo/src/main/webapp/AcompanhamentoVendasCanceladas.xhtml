@@ -15,7 +15,7 @@
 
         <!-- Favicons
         ================================================== -->
-          <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
         <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
@@ -56,8 +56,11 @@
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
-                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                        </p:commandButton>
+                        <div class="col-md-3">
+                            <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                            </p:commandButton>
+                        </div>
+                        <div class="col-md-9"></div>
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
@@ -77,16 +80,16 @@
                                     <td>#{pedido.data_pedido}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
                                     <td>Pedido cancelado</td>
-
                                 </tr>
                             </tbody>
                         </ui:repeat>      
                     </table>
-                    <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                    </p:commandButton>
+                    <div class="col-md-3">
+                        <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                        </p:commandButton>
+                    </div>
+                    <div class="col-md-9"></div>
                 </h:form>
-
-
             </div>
 
 

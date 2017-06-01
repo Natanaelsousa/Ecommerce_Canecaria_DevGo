@@ -72,8 +72,11 @@
                             </tbody>
                         </ui:repeat>      
                     </table>
-                    <p:commandButton class="btn btn-success btn-sm glyphicon glyphicon-list-alt" p:type="submit" value="Listar itens" action="#{carrinhoBean.retirarProdutoDoEstoque(carrinhoBean.listarItensCarrinho)}"> 
-                                        </p:commandButton>
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <p:commandButton class="btn btn-primary btn-sm " p:type="submit" value="Despachar itens" action="#{carrinhoBean.retirarProdutoDoEstoque(carrinhoBean.listarItensCarrinho)}"> 
+                        </p:commandButton>
+                    </div>
                 </h:form>
             </div>
 

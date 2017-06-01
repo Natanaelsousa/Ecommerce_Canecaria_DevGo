@@ -41,7 +41,7 @@
 
     <h:body>
         <div id="page">
-             <!-- Importando o cabecalho -->
+            <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
                     <ui:include src="cabecalhoViewEmpresa.xhtml" />
@@ -56,8 +56,11 @@
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
-                        <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                        </p:commandButton>
+                        <div class="col-md-3">
+                            <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                            </p:commandButton>
+                        </div>
+                        <div class="col-md-9"></div>
                         <thead>
                             <tr>
                                 <th>Código da compra</th>
@@ -89,8 +92,11 @@
                             </tbody>
                         </ui:repeat>      
                     </table>
-                    <p:commandButton class="btn btn-primary btn-xs btn-block" p:type="submit" value="Retornar" action="#{PedidosBean.redirecionandoParaTelaVendas()}"> 
-                    </p:commandButton>
+                    <div class="col-md-3">
+                        <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                        </p:commandButton>
+                    </div>
+                    <div class="col-md-9"></div>
                 </h:form>
 
             </div>

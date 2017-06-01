@@ -22,17 +22,19 @@ public class TipoSolicitacaoDAOImpl extends GenericaDAOImpl implements TipoSolic
 
         ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            TipoSolicitacao solicitacoes = new TipoSolicitacao();
-            solicitacoes.setCod_tipo_solicitacao(rs.getInt("COD_TIPO_SOLICITACAO"));
-            solicitacoes.setTipo_solicitacao_nome(rs.getString("TIPO_SOLICIACAO_NOME"));
+        try {
+            while (rs.next()) {
+                TipoSolicitacao solicitacoes = new TipoSolicitacao();
+                solicitacoes.setCod_tipo_solicitacao(rs.getInt("COD_TIPO_SOLICITACAO"));
+                solicitacoes.setTipo_solicitacao_nome(rs.getString("TIPO_SOLICIACAO_NOME"));
 
-            tiposSolicitacoes.add(solicitacoes);
+                tiposSolicitacoes.add(solicitacoes);
+            }
+        } finally {
+
+            rs.close();
+            stmt.close();
         }
-
-        rs.close();
-        stmt.close();
-
         return tiposSolicitacoes;
 
     }

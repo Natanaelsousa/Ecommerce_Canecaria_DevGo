@@ -28,7 +28,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
     }
 
-   //Lista os chamados por seus tipo de fila diferente
+    //Lista os chamados por seus tipo de fila diferente
     public List<Contato> listarSolicitacoesContatos() throws SQLException {
         List<Contato> contato = new ArrayList<Contato>();
 
@@ -129,19 +129,19 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         stmt.close();
         return contatos;
     }
-    
-    
-     //Encerrar chamado
+
+    //Encerrar chamado
     @Override
-    public void finalizarChamado(Contato contato,int cod_chamado) throws SQLException {
+    public void finalizarChamado(Contato contato, int cod_chamado) throws SQLException {
 
         String query = "UPDATE contato "
                 + "SET STATUS_SOLICITACAO = ? "
                 + " WHERE COD_SOLICITACAO = ? ";
-
+        PreparedStatement pstmt
+                = getConnection().prepareStatement(query);
         contato.setCod_solicitacao(cod_chamado);
         contato.setStatus_solicitacao(1);
-        update(query, contato.getCod_solicitacao(),contato.getStatus_solicitacao());
-
+        update(query, contato.getCod_solicitacao(), contato.getStatus_solicitacao());
+        pstmt.close();
     }
 }

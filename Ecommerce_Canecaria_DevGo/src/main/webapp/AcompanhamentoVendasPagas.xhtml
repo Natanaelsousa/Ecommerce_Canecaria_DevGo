@@ -56,11 +56,11 @@
                 <div class="space"></div>    
                 <h:form>
                     <table class="table table-condensed">
-                        <div class="col-md-10"></div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
                             </p:commandButton>
                         </div>
+                        <div class="col-md-9"></div>
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
@@ -88,27 +88,27 @@
                                     <td>#{pedido.cidade}</td>
                                     <td>#{pedido.estado}</td>
                                     <td>Pago</td>
-                                    <td> <p:commandButton class="btn btn-success btn-sm glyphicon glyphicon-list-alt" p:type="submit" value="Listar itens" action="#{carrinhoBean.listarCarrinhoPorPedido(pedido.cod_pedido)}"> 
+                                    <td> <p:commandButton class="btn btn-success btn-md" p:type="submit" value="Listar itens" action="#{carrinhoBean.listarCarrinhoPorPedido(pedido.cod_pedido)}"> 
                                         </p:commandButton>
                                     </td>
                                 </tr>
                             </tbody>
                         </ui:repeat>      
                     </table>
+                    <div class="col-md-3">
+                        <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                        </p:commandButton>
+                    </div>
+                    <div class="col-md-9"></div>
                 </h:form>
-                <div class="col-md-10"></div>
-                <div class="col-md-2">
-                    <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left" p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
-                    </p:commandButton>
-                </div>
             </div>
+        </div>
 
-            <!-- Importando o rodape -->
-            <div id="footer">
-                <ui:insert name="rodape" >
-                    <ui:include src="rodape.xhtml" />
-                </ui:insert>
-            </div>
+        <!-- Importando o rodape -->
+        <div id="footer">
+            <ui:insert name="rodape" >
+                <ui:include src="rodape.xhtml" />
+            </ui:insert>
         </div>
     </h:body>
 </html>
