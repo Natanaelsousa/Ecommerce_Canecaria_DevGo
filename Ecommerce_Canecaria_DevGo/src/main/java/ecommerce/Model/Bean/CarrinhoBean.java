@@ -157,6 +157,8 @@ public class CarrinhoBean implements Serializable {
 
         int codCliente = usuario.getCliente().getCod_cliente();
         carrinhoDao.CadastrarPedido(produtos, codCliente);
+        produtos.clear();
+        valorTotal=0;
 
         return "Checkout.xhtml?faces-redirect=true";
 
