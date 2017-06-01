@@ -70,6 +70,11 @@
                 <!-- Menu Lateral -->
                 <div class="container">
 
+                    <f:metadata>
+                        <f:viewParam name="categoriaId" value="#{produtoCategoriaBean.categoria}" />
+                        <f:event type="preRenderView" listener="#{produtoCategoriaBean.iniciar}"/>
+                    </f:metadata>
+
                     <div class="row">
                         <div class="col-md-3 col-lg-3" id="categorias">
 
@@ -86,12 +91,11 @@
                                                     <!--<h:commandLink  value="#{categ.nome_categoria}">
                                                         <f:param name="cat" value="#{categ.cod_categoria}" />
                                                     </h:commandLink>-->
-                                                    
+
                                                     <h:outputLink value="ProdutosCategoria.xhtml" >
                                                         <f:param name="categoriaId" value="#{categ.cod_categoria}" />
                                                         #{categ.nome_categoria} 
                                                     </h:outputLink>
-                                                    
                                                 </span>
                                             </a> 
                                         </li>
@@ -171,7 +175,7 @@
 
                             <div class="row">
 
-                                <ui:repeat value="#{produtoNavigationControllerBean.listaProdutos}"  var="prod" >
+                                <ui:repeat value="#{produtoCategoriaBean.listaProdutos}"  var="prod" >
                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail">
 
