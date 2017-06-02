@@ -34,6 +34,7 @@ public class TipoSolicitacaoDAOImpl extends GenericaDAOImpl implements TipoSolic
 
             rs.close();
             stmt.close();
+            closeConnetion();
         }
         return tiposSolicitacoes;
 

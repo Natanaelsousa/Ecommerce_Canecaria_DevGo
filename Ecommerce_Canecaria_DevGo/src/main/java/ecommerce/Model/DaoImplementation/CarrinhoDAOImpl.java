@@ -44,6 +44,7 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
         return carrinho;
     }
 
