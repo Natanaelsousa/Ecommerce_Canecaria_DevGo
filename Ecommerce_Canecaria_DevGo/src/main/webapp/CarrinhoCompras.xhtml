@@ -77,13 +77,18 @@
                         <div  class="row cart-row" id="item">
                             <div class="col-xs-12 col-sm-2">
                                 <div class="pull-left">
+                                    
+                                    
+                                    <h:form>                                  
+                                             <h:commandButton pt:type="submit" action="CarrinhoCompras.xhtml" actionListener="#{carrinhoBean.remover(prod.cod_produto)}"   style="color: red;font-weight: bold; background: none;"  value="X"></h:commandButton>
+                                    </h:form>
 
-                                    <a  id="removerCarrinho" data-toggle="tooltip" title="Remover item do carrinho!" onClick="removerItemCarrinho();"> 
+                                    <!--<a  id="removerCarrinho" data-toggle="tooltip" title="Remover item do carrinho!" onClick="removerItemCarrinho();"> 
                                         <span 
                                             class="glyphicon glyphicon-remove-sign" 
                                             aria-hidden="true"
                                             ></span>
-                                    </a>
+                                    </a>-->
                                 </div>
 
 
@@ -182,14 +187,14 @@
 
                         <h:form id="formDois"  enctype="multipart/form-data">
                        
-                            <h:commandButton class="btn btn-success btn-lg" pt:type="submit"
+                            <h:commandButton class="btn btn-success btn-lg" pt:type="submit" style="float: right;margin-bottom: 10px;"
                                              action="#{carrinhoBean.finalizarPedido}" value="Finalizar Compra"></h:commandButton>
                         
 
-
-                        <button type="button" class="btn btn-default" id="continuarCompra">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar
-                        </button>
+                                             <h:commandButton class="btn btn-info btn-lg" pt:type="submit" style="float: right;margin-right:  10px"
+                                             action="Produtos.xhtml" value="Continuar Compras"></h:commandButton>                 
+                                             
+                        
                          </h:form>
                     </div>
 

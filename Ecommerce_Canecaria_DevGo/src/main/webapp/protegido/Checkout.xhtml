@@ -19,31 +19,31 @@
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+        <link rel="shortcut icon" href="../img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png" />
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../fonts/font-awesome/css/font-awesome.css" />
 
         <!-- Stylesheet
         ================================================== -->
-        <link rel="stylesheet" type="text/css"  href="css/cabecalho-rodape.css" />
-        <link rel="stylesheet" type="text/css"  href="css/checkout.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/cabecalho-rodape.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/checkout.css" />
 
-        <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="../js/funcoes.js"></script>
 
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
 
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <script src="../js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
 
     </h:head>
     <h:body>
@@ -52,11 +52,11 @@
 
 
             <!-- Importando o cabecalho -->
-            <div id="header">
+           <!-- <div id="header">
                 <ui:insert name="cabecalho">
-                    <ui:include src="cabecalhoViewCliente.xhtml" />
+                    <ui:include src="../cabecalhoViewCliente.xhtml" />
                 </ui:insert>
-            </div>
+            </div> -->
 
             <!-- Fim -->
 
@@ -226,7 +226,7 @@
                                                 </div>
 
                                                 <div>
-                                                    <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Card Number</label>
+                                                    <input type="text" name="card_number" value="" id="card_number" placeholder="xxxx-xxxx-xxxx-xxxx" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Credit Card Number"/><label for="card_number">Número do Cartão</label>
                                                 </div>
                                                 <div>
                                                     <div class="expiry">	
@@ -287,15 +287,15 @@
 
                                             <div class="right">
                                                 <div class="accepted">
-                                                    <span><img src="img/Z5HVIOt.png"/></span>
-                                                    <span><img src="img/Le0Vvgx.png"/></span>
-                                                    <span><img src="img/Boleto1.jpg"/></span>
-                                                    <span><img src="img/Pu4e7AT.png"/></span>
-                                                    <span><img src="img/ewMjaHv.png"/></span>
-                                                    <span><img src="img/3LmmFFV.png"/></span>
+                                                    <span><img src="../img/Z5HVIOt.png"/></span>
+                                                    <span><img src="../img/Le0Vvgx.png"/></span>
+                                                    <span><img src="../img/Boleto1.jpg"/></span>
+                                                    <span><img src="../img/Pu4e7AT.png"/></span>
+                                                    <span><img src="../img/ewMjaHv.png"/></span>
+                                                    <span><img src="../img/3LmmFFV.png"/></span>
                                                 </div>
                                                 <div class="secured">
-                                                    <img class="lock" src="img/lock.png"/>
+                                                    <img class="lock" src="../img/lock.png"/>
                                                     <p class="security info">Os seus dados de pagamento estão seguros aqui, possuímos o certificado de segurança que a todo ano é renovado com intuíto de garantir que suas informações não sejam destinadas a terceiros. </p>
                                                 </div>
                                             </div>
@@ -467,7 +467,7 @@
             <!-- Importando o rodape -->
             <div id="footer">
                 <ui:insert name="rodape" >
-                    <ui:include src="rodape.xhtml" />
+                    <ui:include src="../rodape.xhtml" />
                 </ui:insert>
             </div>
             <!-- Fim -->
