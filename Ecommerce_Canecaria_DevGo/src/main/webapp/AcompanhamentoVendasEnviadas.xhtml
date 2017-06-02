@@ -63,7 +63,7 @@
                         <div class="col-md-9"></div>
                         <thead>
                             <tr>
-                                <th>Código da compra</th>
+                                <th>Código do pedido</th>
                                 <th>Nome do cliente</th>
                                 <th>Valor da compra</th>
                                 <th>Pagamento</th>
@@ -78,7 +78,7 @@
                         <ui:repeat value="#{PedidosBean.listEncontrarVendasPeloStatus()}" var="pedido">
                             <tbody>
                                 <tr>
-                                    <td>A AJUSTAR</td>
+                                    <td>#{pedido.cod_pedido}</td>
                                     <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
                                     <td>#{PagamentoBean.buscarPagamentoPorId(pedido.cod_pagamento)}</td>

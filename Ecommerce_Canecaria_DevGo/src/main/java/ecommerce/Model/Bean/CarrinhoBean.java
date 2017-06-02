@@ -6,8 +6,10 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.Dao.CarrinhoDAO;
+import ecommerce.Model.Dao.PedidoDAO;
 import ecommerce.Model.Dao.ProdutoDAO;
 import ecommerce.Model.DaoImplementation.CarrinhoDAOImpl;
+import ecommerce.Model.DaoImplementation.PedidoDAOImpl;
 import ecommerce.Model.DaoImplementation.ProdutoDAOImpl;
 import ecommerce.Model.MetodosAcessores.Carrinho;
 import ecommerce.Model.MetodosAcessores.Produto;
@@ -142,10 +144,14 @@ public class CarrinhoBean implements Serializable {
 
     public String retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
+       PedidoDAO pedidoDao = new PedidoDAOImpl();
         try {
             carrinhoDao.retirarProdutoDoEstoque(itensCarrinho);
+            int codpedido= itensCarrinho.get(0).getCod_pedido();
+            pedidoDao.atualizarPedidoParaPagoPorCodpedido(codpedido);
+            
         } catch (SQLException ec) {
-            System.out.println("Nao foi possivel listar os itens do pedido");
+            System.out.println("Nao foi atualizar status do pedido ou não retirar o produto do estoque");
 
         }
          return "AcompanhamentoVendasPagas";

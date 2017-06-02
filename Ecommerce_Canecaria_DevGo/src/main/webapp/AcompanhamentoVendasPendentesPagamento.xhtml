@@ -65,7 +65,6 @@
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
-                                <th>Código da compra</th>
                                 <th>Nome do cliente</th>
                                 <th>Data da compra</th>
                                 <th>Valor da compra</th>
@@ -77,7 +76,6 @@
                             <tbody>
                                 <tr>
                                     <td>#{pedido.cod_pedido}</td>
-                                    <td>A AJUSTAR</td>
                                     <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
                                     <td>#{pedido.data_pedido}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
