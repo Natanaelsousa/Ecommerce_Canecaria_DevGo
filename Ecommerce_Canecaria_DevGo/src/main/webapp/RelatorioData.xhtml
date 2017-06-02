@@ -91,8 +91,8 @@
                         <div class="form-group col-md-4">
 
                             <p:outputLabel  value="Data Inicial:" />
-                            <p:calendar  value="#{vendaBean.dataInicial}">                       
-                            </p:calendar>
+                            <p:calendar pattern="dd/MM/yyyy" locale="pt_BR" value="#{vendaBean.dataInicial}"></p:calendar>                   
+                        
                         </div>
 
 
@@ -100,9 +100,8 @@
                         <div class="form-group col-md-4">
 
 
-                            <p:outputLabel for="event" value="Data Final:" />
-                            <p:calendar id="event" value="#{vendaBean.dataFinal}">                       
-                            </p:calendar>
+                            <p:outputLabel value="Data Final:" />
+                            <p:calendar pattern="dd/MM/yyyy" locale="pt_BR" value="#{vendaBean.dataFinal}"></p:calendar>
                         </div>
 
                         <div class="form-group col-md-4">

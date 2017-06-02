@@ -6,9 +6,7 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
-import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Cliente;
-import ecommerce.Model.MetodosAcessores.Funcionario;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -40,13 +38,9 @@ public class LoginBean implements Serializable {
     public LoginBean() {
     }
 
-    public String editarUsuarioLogado() {
-        boolean resp = user.editarCliente(cliente);
-        if (resp == true) {
-            return "../AmbienteCliente.xhtml?faces-redirect=true";
-        } else {
-            return "EditarCadastroCliente.xhtml?faces-redirect=true";
-        }
+    public void editarUsuarioLogado() {
+       user.editarCliente(cliente);
+       
     }
 
     public String validaLogin() throws SQLException, IOException {
@@ -57,6 +51,21 @@ public class LoginBean implements Serializable {
         cliente = criptoUser.obterUsuario(cliente.getEmail(), cliente.getSenha());
         if (cliente != null) {
             return "/protegido/AmbienteCliente.xhtml?faces-redirect=true";
+        } else {
+
+            return "MinhaConta.xhtml?faces-redirect=true";
+        }
+
+    }
+    
+       public String validaLoginFecharVenda() throws SQLException, IOException {
+        ClienteDAOImpl daoValidar = new ClienteDAOImpl();
+        RequestContext context = RequestContext.getCurrentInstance();
+
+        String mensagem = "Erro ao se tentar se logar!";
+        cliente = criptoUser.obterUsuario(cliente.getEmail(), cliente.getSenha());
+        if (cliente != null) {
+            return "CarrinhoCompras.xhtml?faces-redirect=true";
         } else {
 
             return "MinhaConta.xhtml?faces-redirect=true";

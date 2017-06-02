@@ -72,8 +72,9 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
 
         // Ao cadastrar um produto, a quantidade dele inicia por padrão como 0
         int codPedido  = 0;
+        int codClienteV = (int)cod_cliente;
         for(int i=0; i<produtos.size(); i++){
-        insert(query, produtos.get(i).getQtde_produto(), codPedido, cod_cliente,
+        insert(query, produtos.get(i).getQtde_produto(), codPedido, codClienteV,
               produtos.get(i).getCod_produto());
         }
     }

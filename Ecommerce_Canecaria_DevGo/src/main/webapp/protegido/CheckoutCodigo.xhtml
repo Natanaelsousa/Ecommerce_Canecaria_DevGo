@@ -16,28 +16,28 @@
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+        <link rel="shortcut icon" href="../img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png" />
 
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../fonts/font-awesome/css/font-awesome.css" />
 
         <!-- Stylesheet
         ================================================== -->
-        <link rel="stylesheet" type="text/css"  href="css/estilo.css" />
-        <link rel="stylesheet" type="text/css"  href="css/carrinho.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/estilo.css" />
+        <link rel="stylesheet" type="text/css"  href="../css/carrinho.css" />
 
         <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css' />
         <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
 
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <script src="../js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
 
     </h:head>
     <h:body>
@@ -48,7 +48,7 @@
             <!-- Importando o cabecalho -->
             <div id="header">
                 <ui:insert name="cabecalho">
-                    <ui:include src="cabecalhoViewCliente.xhtml" />
+                    <ui:include src="../cabecalhoViewCliente_Logado.xhtml" />
                 </ui:insert>
             </div>
 
@@ -77,7 +77,7 @@
                       
                     <p:panelGrid columns="2" style="margin-top:20px;margin-bottom:20px;background-color: white;font-size: 25px">
                         <f:facet name="header" >
-                            <span><img src="img/SucessoCompra.jpg"/></span>
+                            <span><img src="../img/SucessoCompra.jpg"/></span>
                            
                         </f:facet>
 
@@ -97,7 +97,7 @@
             <!-- Importando o rodape -->
             <div id="footer">
                 <ui:insert name="rodape" >
-                    <ui:include src="rodape.xhtml" />
+                    <ui:include src="../rodape.xhtml" />
                 </ui:insert>
             </div>
             <!-- Fim -->

@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html" ></f:view>
+
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Canecaria</title>
+        <meta name="description" content="Your Description Here"/>
+        <meta name="keywords" content="bootstrap themes, portfolio, responsive theme"/>
+        <meta name="author" content="ThemeForces.Com"/>
+
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="img/caneca.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"/>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css"  href="css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css"/>
+
+        <!-- Stylesheet
+        ================================================== -->
+        <link rel="stylesheet" type="text/css"  href="css/estilo.css"/>
+        <link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+
+        <script type="text/javascript" src="js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="js/funcoes.js"></script>
+
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'/>
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+    </h:head>
+    <h:body>
+
+        <div id="page">
+
+
+            <!-- Importando o cabecalho -->
+            <div id="header">
+                <ui:insert name="cabecalho">
+                    <ui:include src="cabecalhoViewCliente_Logado.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+
+        <!-- Fim -->
+        <div class="space"></div>
+        <div class="space"></div>
+
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-md-pull-1">
+                    <h2>Já tem cadastro na loja?</h2>
+                    <h4>Caso você já tenha seu cadastro na loja, informe seu email e sua senha de acesso à loja.</h4>
+                </div>
+
+                <div class="col-md-6 col-md-push-1">
+                    <h2>Criar novo cadastro</h2>
+                    <h4>Use o formulário abaixo para cadastrar-se na loja. É rápido e fácil.</h4>
+                </div>
+            </div>
+
+            <h:form id="formUm" prependId="false" enctype="multipart/form-data">
+               <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />
+                <div class="col-md-6">
+                    <!-- Espaço entre um  label e input -->
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-md-pull-2">
+                            <div class=" form-group col-md-10 ">
+                                <label for="EmailContaCliente">E-mail</label>
+                                <h:inputText pt:type="email" class="form-control" id="LogarEmail"
+                                             value ="#{LoginBean.cliente.email}" required="true"  pt:placeholder="Digite seu E-mail"/>
+                            </div>
+
+                            <!-- Espaço entre um input e outro -->
+                            <div class="space"></div>
+                            <div class="space"></div>
+                            <div class="col-md-10">
+                                <label for="SenhaContaCliente">Senha</label>
+                                <h:inputText pt:type="password" class="form-control" id="LogarSenha"
+                                             value="#{LoginBean.cliente.senha}"  required="true"     pt:placeholder="Digite sua senha"/>
+                            </div>
+
+                            <!-- Espaço entre um input e os botões -->
+                            <div class="space"></div>
+                            <div class="space"></div>
+                            <div class="form-group col-md-9">
+                                <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" action="#{LoginBean.validaLoginFecharVenda()}" value="Logar"></h:commandButton>
+                                <h:commandButton class="btn btn-info btn-lg btn-block" id="Limpar" pt:type="reset" value="Limpar"> </h:commandButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form >
+
+            <h:form  id="formDois" prependId="false" enctype="multipart/form-data">
+
+                <div class="col-md-6 col-md-push-1 ">
+                    <!-- Espaço entre label e input -->
+                    <div class="space"></div>
+
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="NomeCompleto">Nome completo</label>
+                            <h:inputText pt:type="text" class="form-control" id="nome" value="#{ClienteBean.cliente.nome}"
+                                         pt:placeholder="Exemplo: João Alves Gomes"  onkeypress="return somenteLetras(event)"   required="true"/>
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <label for="cpf">CPF</label>
+                            <h:inputText pt:type="number" class="form-control" id="CPFInput" onblur="return TestaCPF(this.value)" onkeypress="return somenteNumero(event)" 
+                                         required="true" value = "#{ClienteBean.cliente.cpf}" pt:placeholder="Ex:00000000000">
+                                <f:validateLength maximum="11"/>
+                            </h:inputText>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="DataNascimento">Data de nascimento</label>
+                            <p:inputMask class="form-control" id="DataNascimentoInput" mask="99/99/9999" placeholder="Dia/Mês/Ano"
+                                         value="#{ClienteBean.cliente.data_nascimento}"
+                                         requiredMessage="Campo data de nascimente é obrigatório."
+                                         required="true">
+
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>
+                            </p:inputMask>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="Sexo">Sexo</label><br/>
+                            <h:selectOneRadio value = "#{ClienteBean.cliente.sexo}"> 
+                                <f:selectItem itemValue = "M" itemLabel="Masculino" />
+                                <f:selectItem itemValue = "F" itemLabel="Feminino" />
+                            </h:selectOneRadio>   
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+                            <label for="Cep">Cep</label>
+                            <h:inputText pt:type="number" class="form-control" id="CepInput"
+                                         required="true" value = "#{ClienteBean.cliente.cep}" pt:placeholder="Digite aqui seu CEP"
+                                         onblur="pesquisacep(this.value);" onkeypress="return somenteNumero(event)"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="Rua">Rua</label>
+                            <h:inputText pt:type="text" class="form-control"
+                                         required="true" value = "#{ClienteBean.cliente.rua}" id="rua" pt:placeholder="Ex: Rua Manoel Joaquim" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="Numero">Numero</label>
+                            <h:inputText pt:type="text" class="form-control" id="NumeroComplementoInput" onkeypress="return somenteNumero(event)"
+                                         required="true" value = "#{ClienteBean.cliente.numero}" pt:placeholder="Numero" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="Bairro">Bairro</label>
+                            <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite seu bairro"
+                                         required="true" value = "#{ClienteBean.cliente.bairro}" id="bairro" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="Cidade">Cidade</label>
+                            <h:inputText pt:type="text" class="form-control" pt:placeholder="Digite sua cidade"
+                                         required="true" value = "#{ClienteBean.cliente.cidade}" id="cidade" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="UF">uf</label>
+                            <h:inputText pt:type="text" class="form-control" id="uf" pt:placeholder="Ex:SP"
+                                         required="true" value = "#{ClienteBean.cliente.estado}"    />
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+                            <label for="Telefone">Telefone residencial</label>
+                            <h:inputText pt:type="number" class="form-control" id="TelefoneInput" pt:placeholder="(11) 5555-5555"
+                                         onkeypress="return somenteNumero(event)" required="true" value = "#{ClienteBean.cliente.telefone_residencial}"/>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Celular">Celular</label>
+                            <h:inputText pt:type="number" class="form-control" id="CelularInput" pt:placeholder="(11) 95555-5555"
+                                         onkeypress="return somenteNumero(event)"  required="true" value = "#{ClienteBean.cliente.celular}" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-md-10">
+                            <label for="Email">Email</label>
+                            <h:inputText pt:type="email" class="form-control" id="EmailInput"
+                                         required="true" value = "#{ClienteBean.cliente.email}"   pt:placeholder="seuemail@email.com"/>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Senha</label>
+                            <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="exampleInputEmail1"
+                                         onchange="Senha2.pattern = this.value;" required="true" value="#{ClienteBean.cliente.senha}"  />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Confirmação</label>
+                            <h:inputText pt:type="password"  pt:placeholder="Digite sua senha" class="form-control" id="Senha2"
+                                         onchange="this.setCustomValidity(this.validity.patternMismatch ? 'As senhas não conferem' : '')"
+                                         required="true" value="#{ClienteBean.cliente.senha}" />
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Finalizar cadastro" action = "#{ClienteBean.cadastrarCliente}">
+                            </h:commandButton>
+                        </div>
+                        <div class="col-md-6">
+                            <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" pt:type="reset" value="Limpar tudo">
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+
+        <div class="space"></div>
+        <!-- Fim -->
+
+
+        <!-- Importando o rodape -->
+        <div id="footer">
+            <ui:insert name="rodape" >
+                <ui:include src="rodape.xhtml" />
+            </ui:insert>
+        </div>
+        <!-- Fim -->
+
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </h:body>
+</html>
+

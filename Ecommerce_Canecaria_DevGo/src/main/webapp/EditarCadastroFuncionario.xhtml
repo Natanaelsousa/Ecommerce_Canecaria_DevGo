@@ -69,6 +69,7 @@
                 <hr/>
 
                 <h:form prependId="false" enctype="multipart/form-data">
+                   <p:messages id="messages" showDetail="true" showSummary="false" autoUpdate="true" />   
  <div class="row">
                     
                     
@@ -128,17 +129,16 @@
                     <hr />
 
  </div>
+                   
+                      <div class="space"></div>
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
 
-                            <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Alterar Dados" action="#{FuncionarioBean.EditarFuncionario()}" >
+                            <h:commandButton class="btn btn-primary btn-lg btn-block" pt:type="submit" value="Finalizar Alteração" action="#{FuncionarioBean.EditarFuncionario()}" >
                             </h:commandButton>
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <h:commandButton class="btn btn-info btn-lg btn-block" id="botaoLimpar" pt:type="reset" value="Limpar tudo">
-                            </h:commandButton>
-                        </div>
+                      
                     </div>
 
 
