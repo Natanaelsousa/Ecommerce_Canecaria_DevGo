@@ -49,6 +49,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return contato;
 
@@ -67,6 +68,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         }
 
         rs.close();
+        closeConnetion();
 
         return quantidadeChamadosFila;
 
@@ -99,6 +101,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return contato;
 
@@ -127,6 +130,7 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
         return contatos;
     }
 
@@ -142,6 +146,6 @@ public class ContatoDAOImpl extends GenericaDAOImpl implements ContatoDAO {
         contato.setCod_solicitacao(cod_chamado);
         contato.setStatus_solicitacao(1);
         update(query, contato.getCod_solicitacao(), contato.getStatus_solicitacao());
-        pstmt.close();
+        
     }
 }
