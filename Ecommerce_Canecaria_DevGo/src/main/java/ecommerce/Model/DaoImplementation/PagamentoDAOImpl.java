@@ -34,6 +34,8 @@ public class PagamentoDAOImpl extends GenericaDAOImpl implements PagamentoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
+        
         return pagamento;
     }
     
@@ -60,6 +62,7 @@ public class PagamentoDAOImpl extends GenericaDAOImpl implements PagamentoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return pagamento;
     }

@@ -57,13 +57,13 @@
                 <h:form>
                     <table class="table table-condensed">
                         <div class="col-md-3">
-                            <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                            <p:commandButton class="btn btn-primary btn-md" style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
                             </p:commandButton>
                         </div>
                         <div class="col-md-9"></div>
                         <thead>
                             <tr>
-                                <th>Código da compra</th>
+                                <th>Código do pedido</th>
                                 <th>Nome do cliente</th>
                                 <th>Valor da compra</th>
                                 <th>Pagamento</th>
@@ -78,7 +78,7 @@
                         <ui:repeat value="#{PedidosBean.listEncontrarVendasPeloStatus()}" var="pedido">
                             <tbody>
                                 <tr>
-                                    <td>A AJUSTAR</td>
+                                    <td>#{pedido.cod_pedido}</td>
                                     <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
                                     <td>#{PagamentoBean.buscarPagamentoPorId(pedido.cod_pagamento)}</td>
@@ -93,7 +93,7 @@
                         </ui:repeat>      
                     </table>
                     <div class="col-md-3">
-                        <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                        <p:commandButton class="btn btn-primary btn-md" style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
                         </p:commandButton>
                     </div>
                     <div class="col-md-9"></div>

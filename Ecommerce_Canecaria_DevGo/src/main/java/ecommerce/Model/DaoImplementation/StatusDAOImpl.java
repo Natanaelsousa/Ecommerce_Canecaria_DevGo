@@ -34,6 +34,7 @@ public class StatusDAOImpl extends GenericaDAOImpl implements StatusDAO{
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return statusVenda;
 

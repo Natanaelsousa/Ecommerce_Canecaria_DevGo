@@ -58,14 +58,13 @@
                     <table class="table table-condensed">
 
                         <div class="col-md-3">
-                            <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                            <p:commandButton class="btn btn-primary btn-md" style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
                             </p:commandButton>
                         </div>
                         <div class="col-md-9"></div>
                         <thead>
                             <tr>
                                 <th>Código do pedido</th>
-                                <th>Código da compra</th>
                                 <th>Nome do cliente</th>
                                 <th>Data da compra</th>
                                 <th>Valor da compra</th>
@@ -77,7 +76,6 @@
                             <tbody>
                                 <tr>
                                     <td>#{pedido.cod_pedido}</td>
-                                    <td>A AJUSTAR</td>
                                     <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
                                     <td>#{pedido.data_pedido}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
@@ -90,7 +88,7 @@
                     </table>
 
                     <div class="col-md-3">
-                        <p:commandButton class="btn btn-primary btn-md glyphicon glyphicon-hand-left " style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
+                        <p:commandButton class="btn btn-primary btn-md" style=" " p:type="submit"  action="#{PedidosBean.redirecionandoParaTelaVendas()}" value="Retornar">
                         </p:commandButton>
                     </div>
                     <div class="col-md-9"></div>

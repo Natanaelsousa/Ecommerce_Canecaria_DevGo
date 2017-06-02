@@ -25,6 +25,10 @@ public abstract class GenericaDAOImpl {
     protected Connection getConnection() {
         return connection;
     }
+    protected void closeConnetion() throws SQLException {
+        connection.close();
+    }
+    
 
     protected void insert(String insertSql, Object... parametros) throws SQLException {
         PreparedStatement pstmt = 
@@ -36,6 +40,7 @@ public abstract class GenericaDAOImpl {
 
         pstmt.execute();
         pstmt.close();
+        closeConnetion();
     }
 
     protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
@@ -48,6 +53,7 @@ public abstract class GenericaDAOImpl {
         pstmt.setObject(parametros.length + 1, id);
         pstmt.execute();
         pstmt.close();
+        closeConnetion();
     }
 
     protected void delete(String deleteSql, Object... parametros) throws SQLException {
@@ -60,5 +66,6 @@ public abstract class GenericaDAOImpl {
 
         pstmt.execute();
         pstmt.close();
+        closeConnetion();
     }
  }

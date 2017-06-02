@@ -69,6 +69,7 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
         return pedidos;
     }
 
@@ -81,6 +82,16 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
         update(update, pedido.getCod_status());
     }
     
+     //Atualiza um pedido para pago
+    public void atualizarPedidoParaPagoPorCodpedido(int cod_pedido) throws SQLException {
+        String update = "UPDATE pedido "
+                + "SET cod_status = ? "
+                + "WHERE cod_pedido = ?";
+        Pedido pedido = new Pedido();
+        pedido.setCod_pedido(cod_pedido);
+        pedido.setCod_status(4);
+        update(update, pedido.getCod_pedido(),pedido.getCod_status());
+    }
     
     
 }

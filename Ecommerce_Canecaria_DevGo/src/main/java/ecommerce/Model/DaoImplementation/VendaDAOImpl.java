@@ -64,6 +64,7 @@ String query= "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTA
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return venda;
 
@@ -99,6 +100,7 @@ String query= "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTA
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return produto;
 
@@ -134,6 +136,7 @@ String query= "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTA
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return categoria;
 

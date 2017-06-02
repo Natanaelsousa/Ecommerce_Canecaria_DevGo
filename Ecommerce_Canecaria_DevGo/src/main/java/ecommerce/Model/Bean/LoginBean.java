@@ -38,13 +38,9 @@ public class LoginBean implements Serializable {
     public LoginBean() {
     }
 
-    public String editarUsuarioLogado() {
-        boolean resp = user.editarCliente(cliente);
-        if (resp == true) {
-            return "../AmbienteCliente.xhtml?faces-redirect=true";
-        } else {
-            return "EditarCadastroCliente.xhtml?faces-redirect=true";
-        }
+    public void editarUsuarioLogado() {
+       user.editarCliente(cliente);
+       
     }
 
     public String validaLogin() throws SQLException, IOException {

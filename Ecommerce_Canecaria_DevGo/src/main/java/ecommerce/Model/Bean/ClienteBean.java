@@ -74,7 +74,7 @@ public class ClienteBean {
         cliente = new Cliente();
     }
 
-    public boolean editarCliente(Cliente cliente) {
+    public String editarCliente(Cliente cliente) {
         ClienteDAOImpl daoEditar = new ClienteDAOImpl();
         getCriptoUser().setSenha(cliente.getSenha());
         cliente.setSenha(getCriptoUser().getHashSenha());
@@ -82,11 +82,29 @@ public class ClienteBean {
         try {
             daoEditar.editarCadastroCliente(cliente);
             resp = true;
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Edição realizada com sucesso!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
         } catch (SQLException ex) {
             Logger.getLogger(ClienteBean.class.getName()).log(Level.SEVERE, null, ex);
            resp = false;
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Erro ao editar!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
         }
-     return resp;   
+     return "EditarCadastroCliente.xhtml?faces-redirect=true";
     }
 
     // Responsavel por buscar um cliente pelo ID

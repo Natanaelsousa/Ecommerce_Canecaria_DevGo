@@ -7,6 +7,7 @@ package ecommerce.Model.DaoImplementation;
 
 import ecommerce.Model.Dao.CarrinhoDAO;
 import ecommerce.Model.MetodosAcessores.Carrinho;
+import ecommerce.Model.MetodosAcessores.Pedido;
 import ecommerce.Model.MetodosAcessores.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,6 +45,7 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
         return carrinho;
     }
 
@@ -61,8 +63,7 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
             String update = "update produto set QTDE_PRODUTO = QTDE_PRODUTO - ? where COD_PROD = ? ";
             update(update, carrinho.getCod_produto(), carrinho.getQtde_produto());
         }
-        String update = "update pedido set COD_STATUS = 4 where COD_PEDIDO = ? ";
-        update(update, carrinho.getCod_pedido());
+     
 
     }
       @Override
