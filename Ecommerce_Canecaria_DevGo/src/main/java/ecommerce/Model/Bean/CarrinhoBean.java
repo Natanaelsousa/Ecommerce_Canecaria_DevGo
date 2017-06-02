@@ -169,6 +169,18 @@ public class CarrinhoBean implements Serializable {
         
        
         Integer codCliente = usuario.getCliente().getCod_cliente();
+        if (produtos.isEmpty()){
+           FacesContext.getCurrentInstance().addMessage(
+                            null, new FacesMessage("Carrinho de compras esta vazio!"));
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+
+                    FacesContext.getCurrentInstance()
+                            .getExternalContext()
+                            .getFlash().setKeepMessages(true);
+                    return "CarrinhosCompras.xhtml?faces-redirect=true"; 
+        }else{
         if(codCliente != null){
         carrinhoDao.CadastrarPedido(produtos, codCliente);
         produtos.clear();
@@ -179,6 +191,7 @@ public class CarrinhoBean implements Serializable {
         }
 
     }
+      }
 
     public double getValorTotal() {
         return valorTotal;
