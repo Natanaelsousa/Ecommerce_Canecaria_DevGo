@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,17 +22,27 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
     @Override
     
-    // periodooo
+    // periodo
     public List<Venda> ListarVendas(Date dataInicial , Date dataFinal) throws SQLException {
 
         List<Venda> venda = new ArrayList<Venda>();
+        
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        String query = "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTAL_COMPRA,a.DATA_PEDIDO, d.ESTADO "
-                + "FROM pedido a "
-                + "INNER JOIN cliente b ON (a.COD_CLIENTE = b.COD_CLIENTE) "
-                + "INNER JOIN pagamento c ON (a.COD_PAGAMENTO = c.COD_PAGAMENTO) "
-                + "INNER JOIN status  d ON (a.COD_STATUS = d.COD_STATUS)"
-                + "BETWEEN  '"+dataInicial+"' AND'"+dataFinal+"'" ;
+      
+        
+    
+
+String query= "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTAL_COMPRA,a.DATA_PEDIDO, d.COD_STATUS "
+        + "FROM pedido a "
+        + "INNER JOIN cliente b "
+        + "ON (a.COD_CLIENTE = b.COD_CLIENTE) "
+        + "INNER JOIN pagamento c ON (a.COD_PAGAMENTO = c.COD_PAGAMENTO) "
+        + "INNER JOIN status  d ON (a.COD_STATUS = d.COD_STATUS) "
+        + "where a.data_pedido BETWEEN '"+formatter.format(dataInicial)+"' AND'"+formatter.format(dataFinal)+"' and d.COD_STATUS=4 or d.COD_STATUS=3";
+          
+			 
+			
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(query);
@@ -45,7 +57,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
             vendas.setFormaPagamento(rs.getString("FORMA_PAGAMENTO"));
             vendas.setValorTotal(rs.getDouble("VALOR_TOTAL_COMPRA"));
             vendas.setDataPedido(rs.getTimestamp("DATA_PEDIDO"));
-            vendas.setEstadoCompra(rs.getString("ESTADO"));
+            vendas.setEstadoCompra(rs.getString("COD_STATUS"));
 
             venda.add(vendas);
         }
