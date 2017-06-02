@@ -72,6 +72,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
         return cliente;
     }
 
@@ -107,7 +108,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-
+        closeConnetion();
         return clientes;
     }
 
@@ -141,13 +142,14 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-
+        closeConnetion();
+        
         return cliente;
     }
 
     public String buscaClientesPorEmail(String email) throws SQLException {
         String emailGravado = "";
-        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='"+email+"'";
+        String select = "SELECT * FROM CLIENTE WHERE EMAIL ='" + email + "'";
 
         PreparedStatement stmt
                 = getConnection().prepareStatement(select);
@@ -162,6 +164,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return emailGravado;
     }

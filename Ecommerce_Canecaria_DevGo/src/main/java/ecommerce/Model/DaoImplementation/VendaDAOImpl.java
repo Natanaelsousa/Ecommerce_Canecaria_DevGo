@@ -52,6 +52,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return venda;
 
@@ -87,6 +88,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return produto;
 
@@ -122,6 +124,7 @@ public class VendaDAOImpl extends GenericaDAOImpl implements VendaDAO {
 
         rs.close();
         stmt.close();
+        closeConnetion();
 
         return categoria;
 
