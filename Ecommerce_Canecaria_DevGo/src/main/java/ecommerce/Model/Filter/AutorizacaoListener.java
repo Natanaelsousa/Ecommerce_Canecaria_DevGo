@@ -8,13 +8,11 @@ package ecommerce.Model.Filter;
 
 import ecommerce.Model.Bean.FuncionarioBean;
 import ecommerce.Model.Bean.LoginBean;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -84,6 +82,9 @@ public class AutorizacaoListener implements PhaseListener {
             && usuario.getCliente() != null){
         usuario = new LoginBean ();
         return true;
+    }else if (paginaAcessada.lastIndexOf("Checkout.xhtml") > -1
+	    &&  usuario.getCliente() != null) {
+      return true;
     }
     // Outras condições...
     return false;

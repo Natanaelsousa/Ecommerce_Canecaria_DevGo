@@ -29,10 +29,10 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
                 + "SET NOME = ?, DATA_NASCIMENTO = ?,SEXO = ?, CEP = ?,RUA = ?,NUMERO = ?,BAIRRO = ?,CIDADE = ?, ESTADO = ?, "
                 + "TELEFONE_RESIDENCIAL = ?,CELULAR = ?,EMAIL = ?, SENHA = ?, CPF = ? "
                 + "WHERE COD_CLIENTE = ?";
-        update(query, cliente.getNome(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(),
+        update(query,cliente.getCod_cliente(), cliente.getNome(), cliente.getData_nascimento(), cliente.getSexo(), cliente.getCep(),
                 cliente.getRua(), cliente.getNumero(), cliente.getBairro(), cliente.getCidade(), cliente.getEstado(),
                 cliente.getTelefone_residencial(), cliente.getCelular(), cliente.getEmail(), cliente.getSenha(),
-                cliente.getCpf(), cliente.getCod_cliente());
+                cliente.getCpf());
     }
 
     //Pela regra de negocio, o cliente tem o direito de excluir seu cadastro, se informar seu CPF e Senha de acesso corretamente

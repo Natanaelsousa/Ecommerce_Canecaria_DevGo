@@ -154,13 +154,17 @@ public class CarrinhoBean implements Serializable {
 
       public String finalizarPedido() throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
-
-        int codCliente = usuario.getCliente().getCod_cliente();
+        
+       
+        Integer codCliente = usuario.getCliente().getCod_cliente();
+        if(codCliente != null){
         carrinhoDao.CadastrarPedido(produtos, codCliente);
         produtos.clear();
         valorTotal=0;
-
-        return "Checkout.xhtml?faces-redirect=true";
+        return "protegido/Checkout.xhtml?faces-redirect=true";
+       }else{
+          return "MinhaConta_Checkout.xhtml?faces-redirect=true";  
+        }
 
     }
 
