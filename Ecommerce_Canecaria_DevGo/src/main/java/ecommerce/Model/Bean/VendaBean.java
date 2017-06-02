@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -26,7 +28,7 @@ import javax.faces.context.FacesContext;
  * @author Erik
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class VendaBean {
 
     private Venda venda = new Venda();
@@ -76,7 +78,7 @@ public class VendaBean {
             System.err.println("Não foi possivel exibir o relatorio");
         }
 
-        if( dataInicial == null || dataFinal == null) {
+        if( dataInicial == null || dataFinal == null || dataInicial.after(dataFinal) || vendas == null) {
             
               Logger.getLogger(FuncionarioBean.class.getName()).log(Level.SEVERE, null, retorno);
                 FacesContext.getCurrentInstance().addMessage(
@@ -90,10 +92,14 @@ public class VendaBean {
                         .getFlash().setKeepMessages(true);
             
             retorno = "RelatorioData";
+             
         } else {
             retorno = "ListarVenda";
+             
         }
-            return retorno; 
+            return retorno;
+            
+             
         }
         /* Lista as vendas realizadas no banco */
     public List<Venda> ExibirListarVendas() throws Exception {
