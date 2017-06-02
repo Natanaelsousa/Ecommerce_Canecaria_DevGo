@@ -74,7 +74,7 @@ public class ClienteBean {
         cliente = new Cliente();
     }
 
-    public boolean editarCliente(Cliente cliente) {
+    public String editarCliente(Cliente cliente) {
         ClienteDAOImpl daoEditar = new ClienteDAOImpl();
         getCriptoUser().setSenha(cliente.getSenha());
         cliente.setSenha(getCriptoUser().getHashSenha());
@@ -104,7 +104,7 @@ public class ClienteBean {
                     .getExternalContext()
                     .getFlash().setKeepMessages(true);
         }
-     return resp;   
+     return "EditarCadastroCliente.xhtml?faces-redirect=true";
     }
 
     // Responsavel por buscar um cliente pelo ID
