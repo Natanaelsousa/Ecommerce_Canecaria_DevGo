@@ -151,6 +151,18 @@ public class CarrinhoBean implements Serializable {
          return "AcompanhamentoVendasPagas";
 
     }
+    
+    public void remover(String nome) {
+        
+        int valor = Integer.parseInt(nome);
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getCod_produto() == valor) {
+                this.valorTotal = valorTotal - produtos.get(i).getValor_produto();
+                produtos.remove(i);
+            }
+        }
+    }
 
       public String finalizarPedido() throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();

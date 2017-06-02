@@ -77,13 +77,18 @@
                         <div  class="row cart-row" id="item">
                             <div class="col-xs-12 col-sm-2">
                                 <div class="pull-left">
+                                    
+                                    
+                                    <h:form>                                  
+                                             <h:commandButton pt:type="submit" action="CarrinhoCompras.xhtml" actionListener="#{carrinhoBean.remover(prod.cod_produto)}"   style="color: red;font-weight: bold; background: none;"  value="X"></h:commandButton>
+                                    </h:form>
 
-                                    <a  id="removerCarrinho" data-toggle="tooltip" title="Remover item do carrinho!" onClick="removerItemCarrinho();"> 
+                                    <!--<a  id="removerCarrinho" data-toggle="tooltip" title="Remover item do carrinho!" onClick="removerItemCarrinho();"> 
                                         <span 
                                             class="glyphicon glyphicon-remove-sign" 
                                             aria-hidden="true"
                                             ></span>
-                                    </a>
+                                    </a>-->
                                 </div>
 
 
