@@ -187,14 +187,14 @@
 
                         <h:form id="formDois"  enctype="multipart/form-data">
                        
-                            <h:commandButton class="btn btn-success btn-lg" pt:type="submit"
+                            <h:commandButton class="btn btn-success btn-lg" pt:type="submit" style="float: right;margin-bottom: 10px;"
                                              action="#{carrinhoBean.finalizarPedido}" value="Finalizar Compra"></h:commandButton>
                         
 
-
-                        <button type="button" class="btn btn-default" id="continuarCompra">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continuar
-                        </button>
+                                             <h:commandButton class="btn btn-info btn-lg" pt:type="submit" style="float: right;margin-right:  10px"
+                                             action="Produtos.xhtml" value="Continuar Compras"></h:commandButton>                 
+                                             
+                        
                          </h:form>
                     </div>
 
