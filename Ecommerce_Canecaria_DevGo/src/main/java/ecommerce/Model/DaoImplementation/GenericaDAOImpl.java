@@ -40,7 +40,7 @@ public abstract class GenericaDAOImpl {
 
         pstmt.execute();
         pstmt.close();
-        closeConnetion();
+       
     }
 
     protected void update(String updateSql, Object id, Object... parametros) throws SQLException {

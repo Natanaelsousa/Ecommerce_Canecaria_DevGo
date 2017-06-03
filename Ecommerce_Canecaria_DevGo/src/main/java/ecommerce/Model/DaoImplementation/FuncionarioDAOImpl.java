@@ -53,7 +53,7 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return funcionario;
     }
 
@@ -79,7 +79,7 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return funcionario1;
     }
     
@@ -100,7 +100,7 @@ public class FuncionarioDAOImpl extends GenericaDAOImpl implements FuncionarioDA
 
         rs.close();
         stmt.close();
-        closeConnetion();
+        
 
         return cpfGravado;
     }

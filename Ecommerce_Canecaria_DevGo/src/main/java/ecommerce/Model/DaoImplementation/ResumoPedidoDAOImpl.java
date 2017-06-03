@@ -51,7 +51,7 @@ public class ResumoPedidoDAOImpl extends GenericaDAOImpl implements ResumoPedido
 
         rs.close();
         stmt.close();
-        closeConnetion();
+      
 
         return resumoPedido;
         

@@ -75,7 +75,7 @@ public class CategoriaDAOImpl extends GenericaDAOImpl implements CategoriaDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
 
         return categorias;
     }

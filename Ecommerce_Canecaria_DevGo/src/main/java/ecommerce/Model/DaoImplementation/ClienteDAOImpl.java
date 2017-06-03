@@ -72,7 +72,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return cliente;
     }
 
@@ -108,7 +108,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return clientes;
     }
 
@@ -142,7 +142,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+     closeConnetion();
         
         return cliente;
     }
@@ -164,7 +164,7 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+        
 
         return emailGravado;
     }

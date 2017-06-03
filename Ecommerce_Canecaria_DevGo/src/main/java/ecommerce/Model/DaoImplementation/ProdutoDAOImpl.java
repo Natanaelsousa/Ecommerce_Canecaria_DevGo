@@ -138,7 +138,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+    
         return produto;
 
     }
@@ -168,7 +168,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return produto;
     }
 
@@ -199,7 +199,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+       
         return produtos;
     }
 
@@ -225,7 +225,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
             rs.close();
             stmt.close();
-            closeConnetion();
+           
 
         } catch (SQLException ex) {
 
@@ -263,7 +263,7 @@ public class ProdutoDAOImpl extends GenericaDAOImpl implements ProdutoDAO {
 
         rs.close();
         stmt.close();
-        closeConnetion();
+      
         return produtos;
 
     }

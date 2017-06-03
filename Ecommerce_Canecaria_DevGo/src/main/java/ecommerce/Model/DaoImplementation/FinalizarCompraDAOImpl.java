@@ -48,7 +48,7 @@ public class FinalizarCompraDAOImpl extends GenericaDAOImpl implements Finalizar
 
         rs.close();
         stmt.close();
-        closeConnetion();
+        
         
         return totalCompra;
 

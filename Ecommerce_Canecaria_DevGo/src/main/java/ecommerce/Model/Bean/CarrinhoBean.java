@@ -148,6 +148,7 @@ public class CarrinhoBean implements Serializable {
         try {
             carrinhoDao.retirarProdutoDoEstoque(itensCarrinho);
             int codpedido= itensCarrinho.get(0).getCod_pedido();
+            System.out.println(codpedido);
             pedidoDao.atualizarPedidoParaPagoPorCodpedido(codpedido);
             
         } catch (SQLException ec) {
@@ -185,7 +186,7 @@ public class CarrinhoBean implements Serializable {
                     FacesContext.getCurrentInstance()
                             .getExternalContext()
                             .getFlash().setKeepMessages(true);
-                    return "CarrinhosCompras.xhtml?faces-redirect=true"; 
+                    return null; 
         }else{
         if(codCliente != null){
         carrinhoDao.CadastrarPedido(produtos, codCliente);
