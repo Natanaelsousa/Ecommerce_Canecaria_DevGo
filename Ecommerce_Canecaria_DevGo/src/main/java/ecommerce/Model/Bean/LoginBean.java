@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.context.RequestContext;
 
@@ -72,6 +74,12 @@ public class LoginBean implements Serializable {
         }
 
     }
+    public String sair() {
+    HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance()
+	    .getExternalContext().getRequest();
+    req.getSession().invalidate();
+    return "/HomePage.xhtml?faces-redirect=true";
+  }
 
 
     public Cliente getCliente() {
