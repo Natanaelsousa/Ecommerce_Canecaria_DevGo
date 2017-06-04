@@ -75,21 +75,21 @@
 
                             <ul class="nav nav-pills nav-stacked">
 
-                                <li class="active"><a><span class="glyphicon glyphicon-list-alt"></span>  CATEGORIAS</a></li>
+                                <li class="active"><a><span class="glyphicon glyphicon-th-list"></span>  CATEGORIAS</a></li>
 
                                 <ui:repeat value="#{CategoriasBean.ListarCategorias()}" var="categ" > 
 
                                     <h:form>
                                         <li>
                                             <a>
-                                                <span class="glyphicon glyphicon-chevron-right">
+                                                <span class="glyphicon glyphicon-arrow-right">
                                                     <!--<h:commandLink  value="#{categ.nome_categoria}">
                                                         <f:param name="cat" value="#{categ.cod_categoria}" />
                                                     </h:commandLink>-->
                                                     
                                                     <h:outputLink value="ProdutosCategoria.xhtml" >
                                                         <f:param name="categoriaId" value="#{categ.cod_categoria}" />
-                                                        #{categ.nome_categoria} 
+                                                      <c> #{categ.nome_categoria}</c>
                                                     </h:outputLink>
                                                     
                                                 </span>
