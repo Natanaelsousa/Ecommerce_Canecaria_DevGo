@@ -53,7 +53,7 @@ public class CarrinhoDAOImpl extends GenericaDAOImpl implements CarrinhoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //Retira produtos do estoque e atualiza o status do pedido para 5
+    //Retira produtos do estoque 
     @Override
     public void retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
         Carrinho carrinho = new Carrinho();

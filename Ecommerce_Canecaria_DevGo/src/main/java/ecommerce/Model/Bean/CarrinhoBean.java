@@ -38,8 +38,8 @@ public class CarrinhoBean implements Serializable {
     private List<Carrinho> listarItensCarrinho = new ArrayList<Carrinho>();
     FacesContext fc = FacesContext.getCurrentInstance();
     LoginBean usuario = fc.getApplication()
-	    .evaluateExpressionGet(fc, "#{LoginBean}", 
-		    LoginBean.class); 
+            .evaluateExpressionGet(fc, "#{LoginBean}",
+                    LoginBean.class);
 
     public List<Carrinho> getListarItensCarrinho() {
         return listarItensCarrinho;
@@ -144,25 +144,27 @@ public class CarrinhoBean implements Serializable {
 
     public String retirarProdutoDoEstoque(List<Carrinho> itensCarrinho) throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
-       PedidoDAO pedidoDao = new PedidoDAOImpl();
+        PedidoDAO pedidoDao = new PedidoDAOImpl();
         try {
+            //Retira os produtos que estao na lista, do estoque.
             carrinhoDao.retirarProdutoDoEstoque(itensCarrinho);
-            int codpedido= itensCarrinho.get(0).getCod_pedido();
-            System.out.println(codpedido);
-            pedidoDao.atualizarPedidoParaPagoPorCodpedido(codpedido);
+            int codpedido = itensCarrinho.get(0).getCod_pedido();
             
+            //Atualiza o status do pedido para 4(Pedido enviado).
+            pedidoDao.atualizarPedidoParaPagoPorCodpedido(codpedido);
+
         } catch (SQLException ec) {
             System.out.println("Nao foi atualizar status do pedido ou não retirar o produto do estoque");
 
         }
-         return "AcompanhamentoVendasPagas";
+        return "AcompanhamentoVendasPagas";
 
     }
-    
+
     public void remover(String nome) {
-        
+
         int valor = Integer.parseInt(nome);
-        
+
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getCod_produto() == valor) {
                 this.valorTotal = valorTotal - produtos.get(i).getValor_produto();
@@ -171,34 +173,33 @@ public class CarrinhoBean implements Serializable {
         }
     }
 
-      public String finalizarPedido() throws SQLException {
+    public String finalizarPedido() throws SQLException {
         CarrinhoDAO carrinhoDao = new CarrinhoDAOImpl();
-        
-       
+
         Integer codCliente = usuario.getCliente().getCod_cliente();
-        if (produtos.isEmpty()){
-           FacesContext.getCurrentInstance().addMessage(
-                            null, new FacesMessage("Carrinho de compras esta vazio!"));
-                    FacesContext.getCurrentInstance()
-                            .getExternalContext()
-                            .getFlash().setKeepMessages(true);
+        if (produtos.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage("Carrinho de compras esta vazio!"));
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
 
-                    FacesContext.getCurrentInstance()
-                            .getExternalContext()
-                            .getFlash().setKeepMessages(true);
-                    return null; 
-        }else{
-        if(codCliente != null){
-        carrinhoDao.CadastrarPedido(produtos, codCliente);
-        produtos.clear();
-        valorTotal=0;
-        return "protegido/Checkout.xhtml?faces-redirect=true";
-       }else{
-          return "MinhaConta_Checkout.xhtml?faces-redirect=true";  
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .getFlash().setKeepMessages(true);
+            return null;
+        } else {
+            if (codCliente != null) {
+                carrinhoDao.CadastrarPedido(produtos, codCliente);
+                produtos.clear();
+                valorTotal = 0;
+                return "protegido/Checkout.xhtml?faces-redirect=true";
+            } else {
+                return "MinhaConta_Checkout.xhtml?faces-redirect=true";
+            }
+
         }
-
     }
-      }
 
     public double getValorTotal() {
         return valorTotal;
