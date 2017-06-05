@@ -79,7 +79,7 @@
                             <tbody>
                                 <tr>
                                     <td>#{pedido.cod_pedido}</td>
-                                      <td>#{pedido.cod_cliente}</td>
+                                    <td>#{ClienteBean.buscarClientePorId(pedido.cod_cliente)}</td>
                                     <td>#{pedido.valor_a_pagar}</td>
                                     <td>#{PagamentoBean.buscarPagamentoPorId(pedido.cod_pagamento)}</td>
                                     <td>#{pedido.cep}</td>
