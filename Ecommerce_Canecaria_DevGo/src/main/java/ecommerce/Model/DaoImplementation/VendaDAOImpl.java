@@ -39,7 +39,7 @@ String query= "SELECT a.COD_PEDIDO,b.NOME,b.CPF, c.FORMA_PAGAMENTO, a.VALOR_TOTA
         + "ON (a.COD_CLIENTE = b.COD_CLIENTE) "
         + "INNER JOIN pagamento c ON (a.COD_PAGAMENTO = c.COD_PAGAMENTO) "
         + "INNER JOIN status  d ON (a.COD_STATUS = d.COD_STATUS) "
-        + "where a.data_pedido BETWEEN '"+formatter.format(dataInicial)+"' AND'"+formatter.format(dataFinal)+"' and d.COD_STATUS=4 or d.COD_STATUS=3";
+        + "where a.data_pedido BETWEEN '"+formatter.format(dataInicial)+"' AND'"+formatter.format(dataFinal)+"' and (d.COD_STATUS=4 or d.COD_STATUS=3)";
           
 			 
 			
