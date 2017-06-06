@@ -73,7 +73,7 @@
                     
 
 
-                    <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{vendaBean.ExibirListarVendas()}">
+                        <p:dataTable style="margin-top:30px;margin-bottom:30px" var="ven" value="#{vendaBean.vendas}">
                             <p:column headerText="Código">
                                 <h:outputText value="#{ven.codPedido}" />
                             </p:column>
