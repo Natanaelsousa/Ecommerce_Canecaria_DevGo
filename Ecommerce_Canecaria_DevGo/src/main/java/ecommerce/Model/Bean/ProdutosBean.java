@@ -136,7 +136,9 @@ public class ProdutosBean {
     public void InserirProdutosNoEstoque() throws Exception {
         ProdutoDAO produtos = new ProdutoDAOImpl();
         try {
+            if(produto.getQtde_para_acrescentar()>0){
             produtos.InserirQuantidadeDeProdutoExistente(produto);
+            }
         } catch (SQLException erro) {
             System.err.println("Não foi possivel incluir produtos no estoque.");
         }

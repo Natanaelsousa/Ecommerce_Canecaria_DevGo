@@ -82,7 +82,8 @@ public class PedidoDAOImpl extends GenericaDAOImpl implements PedidoDAO {
         update(update, pedido.getCod_status());
     }
     
-     //Atualiza um pedido para pago
+     //Atualiza um pedido para 4 (Pedido enviado)
+    @Override
     public void atualizarPedidoParaPagoPorCodpedido(int cod_pedido) throws SQLException {
         String update = "UPDATE pedido "
                 + "SET cod_status = ? "
