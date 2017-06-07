@@ -76,17 +76,17 @@
                                 <p class="login-img"><i class="icon_lock_alt"></i></p>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icon_profile"></i></span>
-                                    <h:inputText pt:type="text" class="form-control" id="LoginFuncionarioInput" pt:placeholder="Username"  required="true" value="#{FuncionarioBean.funcionario.login_funcionario}"/>
+                                    <h:inputText pt:type="text" class="form-control" id="LoginFuncionarioInput" pt:placeholder="Username"  required="true" value="#{LoginBean.funcionario.login_funcionario}"/>
                                 </div>
 
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                                    <h:inputText pt:type="Password" class="form-control" id="SenhaFuncionarioInput" pt:placeholder="Password" required="true" value="#{FuncionarioBean.funcionario.senha_funcionario}"/>
+                                    <h:inputText pt:type="Password" class="form-control" id="SenhaFuncionarioInput" pt:placeholder="Password" required="true" value="#{LoginBean.funcionario.senha_funcionario}"/>
 
                                 </div>
 
-                                <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Logar"  action="#{FuncionarioBean.validaLogin()}">
+                                <h:commandButton class="btn btn-primary btn-lg btn-block" p:type="submit" value="Logar"  action="#{LoginBean.validaLoginFuncionario()}">
                                 </h:commandButton>
 
 

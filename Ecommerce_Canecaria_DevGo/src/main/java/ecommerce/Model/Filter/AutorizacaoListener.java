@@ -28,9 +28,9 @@ public class AutorizacaoListener implements PhaseListener {
 	    .evaluateExpressionGet(fc, "#{LoginBean}", 
 		    LoginBean.class);    
   
-    FuncionarioBean usuaBean = fc.getApplication()
-	    .evaluateExpressionGet(fc, "#{FuncionarioBean}", 
-		    FuncionarioBean.class); 
+   LoginBean funcBean = fc.getApplication()
+	    .evaluateExpressionGet(fc, "#{LoginBean}", 
+		    LoginBean.class);  
         
 
     
@@ -43,7 +43,7 @@ public class AutorizacaoListener implements PhaseListener {
       if ( usuarioBean.getCliente() == null) {
 	nh.handleNavigation(fc, null, "MinhaConta.xhtml?faces-redirect=true");
 	return;
-      } else if (usuaBean.getFuncionario() == null){
+      } else if (funcBean.getFuncionario() == null){
           nh.handleNavigation(fc, null, "LoginEmpresa.xhtml?faces-redirect=true");
 	return;
       }

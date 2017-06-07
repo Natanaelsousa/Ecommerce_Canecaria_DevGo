@@ -6,10 +6,13 @@
 package ecommerce.Model.Bean;
 
 import ecommerce.Model.DaoImplementation.ClienteDAOImpl;
+import ecommerce.Model.DaoImplementation.FuncionarioDAOImpl;
 import ecommerce.Model.MetodosAcessores.Cliente;
+import ecommerce.Model.MetodosAcessores.Funcionario;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -28,6 +31,15 @@ public class LoginBean implements Serializable {
     private Cliente cliente = new Cliente();
     private UsuarioSistema criptoUser = new UsuarioSistema();
     private ClienteBean user = new ClienteBean();
+      private Funcionario funcionario= new Funcionario();
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
  
     public ClienteBean getUser() {
         return user;
@@ -97,5 +109,19 @@ public class LoginBean implements Serializable {
     public void setCriptoUser(UsuarioSistema criptoUser) {
         this.criptoUser = criptoUser;
     }
+    
+        public String validaLoginFuncionario() throws SQLException, IOException {
+        FuncionarioDAOImpl daoValidar = new FuncionarioDAOImpl();
+        RequestContext context = RequestContext.getCurrentInstance();
 
+        String mensagem = "Erro ao se tentar se logar!";
+        funcionario = criptoUser.obterUsuarioFunc(funcionario.getLogin_funcionario(), funcionario.getSenha_funcionario());
+        if (funcionario != null) {
+            return "/protegido/AmbienteFuncionario.xhtml?faces-redirect=true";
+        } else {
+
+            return "LoginEmpresa.xhtml?faces-redirect=true";
+        }
+
+        }
 }
