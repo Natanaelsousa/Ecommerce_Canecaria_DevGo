@@ -137,8 +137,8 @@ public class CarrinhoBean implements Serializable {
             System.out.println("Nao foi possivel listar os itens do pedido");
 
         }
-
-        return "listarItensPedidosEmpresa";
+        String retorno = "ListarItensPedidosEmpresa";
+        return retorno;
 
     }
 
@@ -149,7 +149,7 @@ public class CarrinhoBean implements Serializable {
             //Retira os produtos que estao na lista, do estoque.
             carrinhoDao.retirarProdutoDoEstoque(itensCarrinho);
             int codpedido = itensCarrinho.get(0).getCod_pedido();
-            
+
             //Atualiza o status do pedido para 4(Pedido enviado).
             pedidoDao.atualizarPedidoParaPagoPorCodpedido(codpedido);
 
@@ -157,7 +157,9 @@ public class CarrinhoBean implements Serializable {
             System.out.println("Nao foi atualizar status do pedido ou não retirar o produto do estoque");
 
         }
-        return "AcompanhamentoVendasPagas";
+
+        String retorno = "AcompanhamentoVendasPagas";
+        return retorno;
 
     }
 
