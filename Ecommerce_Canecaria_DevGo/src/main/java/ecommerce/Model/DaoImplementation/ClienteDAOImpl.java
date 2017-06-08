@@ -131,13 +131,13 @@ public class ClienteDAOImpl extends GenericaDAOImpl implements ClienteDAO {
             cliente.setNumero(rs.getString("NUMERO"));
             cliente.setSenha(rs.getString("SENHA"));
             cliente.setNome(rs.getString("NOME"));
-            cliente.setRua(rs.getNString("RUA"));
+            cliente.setRua(rs.getString("RUA"));
             cliente.setTelefone_residencial(rs.getString("TELEFONE_RESIDENCIAL"));
             cliente.setCep(rs.getString("CEP"));
-            cliente.setEmail(rs.getNString("EMAIL"));
-            cliente.setBairro(rs.getNString("BAIRRO"));
-            cliente.setSexo(rs.getNString("SEXO"));
-            cliente.setCpf(rs.getNString("CPF"));
+            cliente.setEmail(rs.getString("EMAIL"));
+            cliente.setBairro(rs.getString("BAIRRO"));
+            cliente.setSexo(rs.getString("SEXO"));
+            cliente.setCpf(rs.getString("CPF"));
         }
 
         rs.close();

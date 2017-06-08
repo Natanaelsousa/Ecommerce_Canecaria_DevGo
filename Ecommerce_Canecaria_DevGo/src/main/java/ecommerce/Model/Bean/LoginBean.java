@@ -116,7 +116,7 @@ public class LoginBean implements Serializable {
 
         String mensagem = "Erro ao se tentar se logar!";
         funcionario = criptoUser.obterUsuarioFunc(funcionario.getLogin_funcionario(), funcionario.getSenha_funcionario());
-        if (funcionario != null) {
+        if (funcionario != null && funcionario.getLogin_funcionario()!=null ) {
             return "/protegido/AmbienteFuncionario.xhtml?faces-redirect=true";
         } else {
 
