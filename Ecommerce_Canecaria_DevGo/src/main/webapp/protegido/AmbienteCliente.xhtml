@@ -56,11 +56,11 @@
             <!-- Espaço entre o menu -->
             <div class="space"></div>
             <!-- Page Content -->
-            
+
             <div class="row">
-            <div class="col-md-1 "></div>
-            <div class="alert alert-info col-md-9 " role="alert">Bem vindo! Fique a vontade no seu ambiente :-)</div>
-            <div class="col-md-2 "></div>
+                <div class="col-md-1 "></div>
+                <div class="alert alert-info col-md-9 " role="alert">Bem vindo! Fique a vontade no seu ambiente :-)</div>
+                <div class="col-md-2 "></div>
             </div>
             <div class="col-md-1 col-md-pull-2 "></div>
             <div class="col-md-3 ">
@@ -72,6 +72,10 @@
                     <a href="../Produtos.xhtml" class="list-group-item">Produtos</a>
                     <a href="../HomePage.xhtml" class="list-group-item">Sobre a Empresa</a>
                 </nav>
+                   <h:form prependId="false">
+                <h:commandButton class="btn btn-info btn-lg " id="botaoLimpar" action="#{LoginBean.sair()}" 
+                                 value="Sair" />
+            </h:form>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -163,9 +167,10 @@
                         </a>
                     </div>
                 </div>
+              
 
             </div>
-
+           
 
             <div class="space"></div>
 
