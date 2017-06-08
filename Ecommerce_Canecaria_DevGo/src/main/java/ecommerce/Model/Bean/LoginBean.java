@@ -92,6 +92,13 @@ public class LoginBean implements Serializable {
     req.getSession().invalidate();
     return "/HomePage.xhtml?faces-redirect=true";
   }
+    
+        public String sairOff() {
+    HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance()
+	    .getExternalContext().getRequest();
+    req.getSession().invalidate();
+    return "../HomePage.xhtml?faces-redirect=true";
+  }
 
 
     public Cliente getCliente() {
