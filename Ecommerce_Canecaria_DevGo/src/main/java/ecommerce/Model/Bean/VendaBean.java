@@ -72,11 +72,7 @@ public class VendaBean {
 
     public String ListarVendas() throws Exception {
         String retorno = null;
-        try {
-            vendas = vendaDao.ListarVendas(dataInicial, dataFinal);
-        } catch (SQLException erro) {
-            System.err.println("Não foi possivel exibir o relatorio");
-        }
+      
 
         if( dataInicial == null || dataFinal == null || dataInicial.after(dataFinal) || vendas == null) {
             
@@ -94,6 +90,11 @@ public class VendaBean {
             retorno = "RelatorioData";
              
         } else {
+              try {
+            vendas = vendaDao.ListarVendas(dataInicial, dataFinal);
+        } catch (SQLException erro) {
+            System.err.println("Não foi possivel exibir o relatorio");
+        }
             retorno = "ListarVenda";
              
         }
